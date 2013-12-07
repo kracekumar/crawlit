@@ -42,6 +42,6 @@ output/*/index.html
 docs/_build
 
 *.bloom
-http_*/
+http*/
 *.log
 *.json
