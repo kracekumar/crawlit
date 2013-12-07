@@ -12,7 +12,7 @@ Installation
 
 - `$ git clone https://github.com/crawlit/crawlit.git`
 - `$ cd crawlit`
-- `$ sudo python setup.py install `
+- `$ sudo python setup.py install ` or `$ pip install -r requirements`
 
 Usage:
 -----
@@ -33,7 +33,7 @@ Features
 - Single threaded
 - Auto recovery of crawler
 - Obeys Robots rule
-- Crawls links only from same domain
+- Crawls links from same domain
 - Downloads only html files
 - Uses `requests stream` option so headers are fetched and body is fetched when needed
 
