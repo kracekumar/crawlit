@@ -39,7 +39,7 @@ def get_logger(name=u'crawlit'):
     return logger
 
 
-MAJOR_VERSION, MINOR_VERSION, PATCH_VERSION = '0', '1', '2'
+MAJOR_VERSION, MINOR_VERSION, PATCH_VERSION = '0', '1', '3'
 
 visited_urls = set([])
 
@@ -189,7 +189,7 @@ def main():
     parser = argparse.ArgumentParser(
         version=get_version(),
         description='crawl a given url')
-    parser.add_argument('url', metavar='urls',
+    parser.add_argument('url', metavar='url',
         type=unicode, nargs='*', help='seed url')
     parser.add_argument('--count', metavar='count',
         type=int, help='max number of pages to fetch')
