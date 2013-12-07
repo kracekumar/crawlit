@@ -129,7 +129,6 @@ def update_queue(url, links):
         # Check if crawler is allowed to fetch
         # Allow only same domain request
         # filter same page url like #disqus_thread
-        #print full_link, full_link in visited_urls
         if not full_link in visited_urls and rules.allowed(full_link, user_agent) and is_same_domain(url, full_link) and not full_link.count("#"):
             urls_to_visit.put_nowait(full_link)
 
@@ -161,6 +160,7 @@ def crawl(url):
             visited_urls.add(url)
             # Don't download non html files
             if r.headers['content-type'].startswith("text/html"):
+                # TODO: Use console logger
                 print url, datetime.datetime.now()
                 links = extract_links(r.text.encode("utf-8"))
                 update_queue(url, links)
@@ -204,7 +204,7 @@ def main():
 
     # Focus only on one site for time being
     url = args.urls[0]
-    count_to_stop = args.count
+    count_to_stop = count_to_stop or args.count
     total_pages_crawled = 0
 
     recovery_file = "crawlit_queue.json"
