@@ -17,13 +17,13 @@ Installation
 Usage:
 -----
 
-# Crawl python.org
+#### Crawl python.org
 
 - `$ crawlit http://python.org`
 
 New directory will be created and all html files will be dumped.
 
-# Crawl only 2000 page from python.org
+#### Crawl only 2000 page from python.org
 
 - `$ crawlit http://python.org --count 2000`
 
