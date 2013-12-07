@@ -18,6 +18,8 @@ if sys.argv[-1] == 'publish':
 readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
+install_requires = open('requirements.txt').readlines()
+
 setup(
     name='crawlit',
     version=get_version(),
@@ -31,8 +33,7 @@ setup(
     ],
     package_dir={'crawlit': 'crawlit'},
     include_package_data=True,
-    install_requires=[
-    ],
+    install_requires=install_requires,
     license="BSD",
     zip_safe=False,
     keywords='crawlit',
@@ -44,8 +45,11 @@ setup(
         "Programming Language :: Python :: 2",
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
     ],
     test_suite='tests',
+    entry_points={
+        'console_scripts': [
+            'crawlit = crawlit.crawlit:main',
+        ]
+    }
 )

@@ -39,14 +39,15 @@ def get_logger(name=u'crawlit'):
     return logger
 
 
-MAJOR_VERSION, MINOR_VERSION, PATCH_VERSION = '0', '1', '0'
+MAJOR_VERSION, MINOR_VERSION, PATCH_VERSION = '0', '1', '2'
 
 visited_urls = set([])
 
 urls_to_visit = SetQueue()
 
 sess = requests.Session()
-count_to_stop = None
+# large number
+count_to_stop = 10 ** 9
 logger = get_logger()
 
 
@@ -146,6 +147,7 @@ def write_to_disk(url, data, dir_name, encoding="utf-8-sig"):
         with open(url.replace("/", "_") + ".html", "w") as f:
             f.write(data)
     except OSError, e:
+        print(e)
         logger.error(e)
         exit(1)
 
@@ -158,16 +160,18 @@ def crawl(url):
             r = sess.get(url, headers={'User-Agent': user_agent}, stream=True)
             visited_urls.add(url)
             # Don't download non html files
-            if r.headers['content-type'] == "text/html":
+            if r.headers['content-type'].startswith("text/html"):
                 print url, datetime.datetime.now()
                 links = extract_links(r.text.encode("utf-8"))
                 update_queue(url, links)
                 return r.text.encode('utf-8', 'ignore')
         # what if url is email address
         except requests.exceptions.MissingSchema, e:
-            pass
+            print(e)
+            return ""
         except requests.ConnectionError, e:
             # Any requests exception, log and don't quit.
+            print(e)
             logger.error(e)
 
 
@@ -190,7 +194,7 @@ def main():
     parser.add_argument('urls', metavar='urls',
         type=unicode, nargs='*', help='seed url')
     parser.add_argument('--count', metavar='count',
-        type=int, help='foo of the %(prog)s program')
+        type=int, help='max number of pages to fetch')
 
     args = parser.parse_args()
 
@@ -244,7 +248,6 @@ def main():
             crawl_and_store(urls_to_visit.get_nowait(), dir_name=dir_name)
             total_pages_crawled += 1
             diff = (datetime.datetime.now() - start).total_seconds() - delay
-            print diff, urls_to_visit.qsize()
             if diff:
                 sleep(delay)
 
@@ -265,8 +268,8 @@ def main():
                     json.dump(d, f)
                 logger.info(u"Dumped data to recovery file: {0}".format(recovery_file))
             except OSError, e:
+                print(e)
                 logger.error(e)
-        print(e)
         exit(1)
 
 if __name__ == "__main__":
