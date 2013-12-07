@@ -1,0 +1,301 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta http-equiv="x-dns-prefetch-control" content="off"/><title>Random stream: Archive</title><link rel="icon" href="http://31.media.tumblr.com/avatar_08684c9830f1_128.png" type="image/png"/><link rel="stylesheet" media="screen" href="http://assets.tumblr.com/assets/styles/archive.css?_v=1a390aecdf722e6e2e0fb6f3af9e51ca"><script src="http://assets.tumblr.com/assets/scripts/vendor/jquery_backbone_lodash.js?_v=aa764db8ca893a8defe92009f39ecb6b"></script><script src="http://assets.tumblr.com/assets/scripts/polyfills.js?_v=b5be1e10a97269713227159704f665ec"></script><script src="http://assets.tumblr.com/assets/scripts/archive/archive.js?_v=753f1b877593cc8e4bc8e294c3ac40cb"></script><script>
+            var l10n_str = l10n_str || {},
+            just_clicked_browse_months = false,
+            is_mobile = RegExp(" Mobile/").test(navigator.userAgent);
+        </script><!--[if lt IE 9]><script>
+              document.createElement('header');
+              document.createElement('nav');
+              document.createElement('section');
+              document.createElement('article');
+              document.createElement('aside');
+              document.createElement('footer');
+           </script><![endif]--></head><body id="body"><header id="nav_archive" class="blue_bar"><a href="/" class="title"><span id="back_to_blog"></span><img class="avatar" src="http://25.media.tumblr.com/avatar_08684c9830f1_40.png" alt="" /><h1 class="blog_title">Random stream</h1></a><div id="browse_months"><div id="jump_to_month"><span class="month">Month </span><span class="arrow"></span></div></div><nav id="register" class="nav_right"><iframe scrolling="no" frameborder="0" id="tumblr_controls" src="http://assets.tumblr.com/assets/html/archive_iframe.html?_v=00adce6fb7285572a2a2a7f10d87e867#src=http%3A%2F%2Fkracekumar.com%2Farchive%2F2012%2F5&amp;name=kracekumar" width="400" height="28" style="border:0; background-color:transparent; overflow:hidden; "></iframe></nav></header><div id="content"><!-- START CONTENT --> 
+                    <header class="heading" style="display:none;"><h2 class="date">May 2012</h2><h3 class="post_count">1 post</h3></header><section id="posts_201205" class="posts loading" style="display:none;"><div class="post post_micro is_regular post_tumblelog_2ea1319dd6a30cd913dfb6ccbc8de88a not_mine is_original with_permalink no_source has_hover" id="post_micro_22512660850"  data-post-id='22512660850' data-root-id='22512660850' data-tumblelog-name='kracekumar' data-tumblelog-key='mcD32QRLz' data-reblog-key='f0Sphlr4' data-type='regular' data-json='{"post-id":"22512660850","root-id":"22512660850","tumblelog-name":"kracekumar","tumblelog-key":"mcD32QRLz","reblog-key":"f0Sphlr4","type":"regular","json":"{\u0022post-id\u0022:\u002222512660850\u0022,\u0022root-id\u0022:\u002222512660850\u0022,\u0022tumblelog-name\u0022:\u0022kracekumar\u0022,\u0022tumblelog-key\u0022:\u0022mcD32QRLz\u0022,\u0022reblog-key\u0022:\u0022f0Sphlr4\u0022,\u0022type\u0022:\u0022regular\u0022}"}'><div class="post_header"></div><div class="post_content"><div class="post_content_inner"><div class="post_title">python `in` operator use cases</div><p>Python <em>in</em> operator is membership test operator.
+<em>Examples:</em></p>
+
+List
+
+<pre><code>
+In [1]: python_webframeworks = ['flask', 'django', 'pylons', 'pyramid', 'brubeck']
+
+In [2]: 'flask' in python_webframeworks
+
+Out[2]: True
+
+In [3]: 'web.py' in python_webframeworks
+
+Out[3]: False
+
+</code></pre>
+
+<p><em>in</em> operator iterates over the list of elements and returns  <em>True</em> or <em>False</em>.</p>
+
+<p><em>What about nested list?</em></p>
+
+<pre><code>
+
+In [4]: webframeworks = [['flask', 'django', 'pyramid'],['rails', 'sintara'],['zend', 'symfony']]
+
+
+In [5]: 'flask' in webframeworks
+Out[5]: False
+
+</code></pre>
+
+
+
+<p><em>in</em> isnt handy for nested list, unless it is overrided. </p>
+
+Dict
+
+<p> <em>in</em> operator against dictionary checks for the presence of key.</p>
+
+<pre><code>
+In [7]: person = {'name': 'kracekumar', 
+'country': 'India', 'os': 'Linux', 
+'programming_languages': {'web': 'php', 'multi_paradigm': ['python', 'ruby', 'java', 'c#']}}
+
+
+In [8]: 'name' in person
+
+Out[8]: True
+</code></pre>
+
+
+
+<p><em>in</em> doesnt check inside key if value is dict</p>
+
+<pre><code>
+In [9]: 'web' in person
+
+Out[9]: False
+
+</code></pre>
+
+
+
+<p>In case if dict needs to look into keys whose value is dict, you need to override  <code>__contains__</code>. At the end of the blog post I will explain, now lets create a class which is inherited from dict and try the same experiment.</p>
+
+<pre><code>
+
+In [10]: class Person(dict):
+   ....:     pass
+   ....: 
+
+
+In [11]: p = Person()
+
+
+In [12]: p
+
+Out[12]: {}
+
+
+In [13]: p['name'] = 'krace'
+
+
+In [14]: p
+
+Out[14]: {'name': 'krace'}
+
+
+</code></pre>
+
+<p>
+To make things simple  <code>__init__</code> and other <code>magic methods</code> are omitted. </p>
+
+<pre><code>
+In [15]: 'name' in p
+
+Out[15]: True
+
+</code></pre>
+
+
+
+Set
+
+<pre><code>
+In [16]: conferences_attended = set(['Pycon - India', 'code retreat', 'JSFOO', 'Meta Refresh']) 
+
+
+In [17]: 'Pycon - India' in conferences_attended
+
+Out[17]: True
+
+</code></pre>
+
+<p></p>
+
+Generators
+
+<pre><code>
+In [18]: 2 in xrange(3)
+
+Out[18]: True
+
+</code></pre>
+
+
+
+Nested list
+
+<pre><code>
+In [19]: nested_list = [[1, 3, 5, 7], [2, 4, 6, 8], []]
+
+
+In [20]: [] in nested_list
+
+Out[20]: True
+
+
+
+In [21]: [2, 4, 6, 8] in nested_list
+
+Out[21]: True
+
+</code></pre>
+
+<p></p>
+
+<p>In case of nested list checking whether inner list is empty is pretty handy.</p>
+
+Strings
+
+<pre><code>
+In [23]: message = " Python is simple and powerful programming language "
+
+
+In [24]: "Python" in message
+
+Out[24]: True
+
+In [25]: message.find("Python")
+
+Out[25]: 1
+
+In [26]: message = "Python is simple and powerful programming language "
+
+
+In [27]: message.find("Python")
+
+Out[27]: 0
+
+</code></pre>
+
+
+
+<p><em>in</em> can be used to check the presence of a sequence or substring against string. In other languages there will be function to check for substring, but in python its very straightforward. This is one of the reason why I love Python.</p>
+
+<p><strong>NOTE:</strong></p>
+
+<p> Dont use find method in string to find the existence of a substring because it will return the position. </p>
+
+<pre><code>
+if message.find(text):
+      #lets do what we need do
+else:
+      #fall back
+</code></pre>
+
+<p>
+<br />
+Above snippet is wrong since text might be present in the beginning which will result 0 and if condition will fail.</p>
+
+Files 
+
+<pre><code>
+In [29]: with open('test.txt', 'w') as f:
+
+     f.write(" some text for checking")
+   ....: 
+
+
+In [32]: with open('test.txt', 'r') as f:
+
+     for text in f:
+
+         print 'some' in text
+   ....:         
+True
+
+</code></pre>
+
+
+
+overriding <code>__contains__</code>
+
+<p><br />
+ Consider a <code>class Person</code>  which is inherited from <em>dict</em> and override <code>__contains__</code></p>
+
+<pre><code>
+
+In [153]: class Person(dict):
+   .....:     def __contains__(self, item):
+   .....:         for key in self:
+   .....:             if key is item:
+   .....:                 return True
+   .....:             else:
+   .....:                 if isinstance(self[key], dict):
+   .....:                     for k in self[key]:
+   .....:                         if k is item:
+   .....:                             return True
+   .....:         else:
+   .....:             return False
+   .....:         
+
+
+In [154]: p = Person()
+
+
+In [155]: p['skills'] = {'programming_languages': {'web': ['php'], 'multi_paradigm':
+['python', 'ruby', 'c#']}
+}
+
+
+In [156]: 'skills' in p
+
+Out[156]: True
+
+In [157]: 'programming_languages' in p
+
+Out[157]: True
+
+In [158]: 'web' in p
+
+Out[158]: False
+
+</code></pre>
+
+
+
+<p>In the above example <em>key</em> will be looked for two level dict only. </p></div></div><div class="post_glass post_micro_glass" 
+     title=""><a target="_blank" class="hover"
+               title=""
+               href="http://kracekumar.com/post/22512660850/python-in-operator-use-cases"><div class="hover_inner"><span class="post_date">May 6, 2012</span><span class="post_notes"
+                        data-notes="3">3 notes</span></div>  
+
+            <div class="hover_tags"><span class="tags">                        #python #in operator</span></div></a></div>
+</div></section><!-- END CONTENT --></div><div id="pagination"><div id="next_page" style="display:none"><a id="next_page_link" href="/archive/2012/5?before_time=1336309560">Next page &rarr;</a></div></div><iframe onload="javascript:this.contentWindow.postMessage(['tick_google_analytics', '/archive/2012/5?route=%2Farchive%2F%3Ayear%2F%3Amonth'].join(';'), this.src.split('/analytics.html')[0]);  COMSCORE = true;this.contentWindow.postMessage('enable_comscore;' + window.location, this.src.split('/analytics.html')[0]);" src="http://assets.tumblr.com/analytics.html?dfe9b9d3e783ff1f12fd8ce1b733bdc0" scrolling="no" width="1" height="1" frameborder="0" style="background-color:transparent; overflow:hidden; position:absolute; top:0; left:0 z-index:9999;" id="ga_target"></iframe><script type="text/javascript">
+      var _qevents = _qevents || [];
+
+      (function() {
+       var elem = document.createElement('script');
+
+       elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+       elem.async = true;
+       elem.type = "text/javascript";
+       var scpt = document.getElementsByTagName('script')[0];
+       scpt.parentNode.insertBefore(elem, scpt);
+      })();
+    </script><script type="text/javascript">
+        _qevents.push( { qacct: 'p-19UtqE8ngoZbM' } );
+    </script><noscript><div style="display: none;"><img src="//pixel.quantserve.com/pixel/'p-19UtqE8ngoZbM'.gif" height="1" width="1" alt="Quantcast"/></div></noscript><script type="text/javascript">!function(s){s.src='http://www.tumblr.com/impixu?T=1386435212&J=eyJ0eXBlIjoidXJsIiwidXJsIjoiaHR0cDpcL1wva3JhY2VrdW1hci5jb21cL2FyY2hpdmVcLzIwMTJcLzUiLCJyZXF0eXBlIjowLCJyb3V0ZSI6IlwvYXJjaGl2ZVwvOnllYXJcLzptb250aCJ9&U=PLIEEDENEJ&K=12fccf97ebc9929341f94860ecb1aadcc1d5b1169097fcb23af538fe6ee9d8ac&R='.replace(/&R=[^&$]*/,'').concat('&R='+escape(document.referrer)).slice(0,2000).replace(/%.?.?$/,'');}(new Image());</script><noscript><img style="position:absolute;z-index:-3334;top:0px;left:0px;visibility:hidden;" src="http://www.tumblr.com/impixu?T=1386435212&J=eyJ0eXBlIjoidXJsIiwidXJsIjoiaHR0cDpcL1wva3JhY2VrdW1hci5jb21cL2FyY2hpdmVcLzIwMTJcLzUiLCJyZXF0eXBlIjowLCJyb3V0ZSI6IlwvYXJjaGl2ZVwvOnllYXJcLzptb250aCIsIm5vc2NyaXB0IjoxfQ==&U=PLIEEDENEJ&K=896496af9f7739a7f793cb9bab41697f8861b7118ccc7c33c52c133af0f10809&R="></noscript><script type="text/javascript" src="http://l.yimg.com/ss/rapid-3.9.js"></script><script>
+                    (function(YAHOO) {
+                        if (YAHOO) {
+                            YAHOO.i13n.beacon_server = 'nol.yahoo.com';
+                            var keys = { pd:'/archive/:year/:month', _li:0, i_rad:0, i_strm:0 };
+                            YAHOO.rapid = new YAHOO.i13n.Rapid({spaceid:1197719231, oo:1, client_only:1, yql_enabled:false, keys:keys});
+                        }
+                    })(window.YAHOO);
+                </script><div id="browse_months_widget" class="popover popover_gradient" style="display:none"><div class="popover_inner"><section id="year_2013" class="year" style="display:none"><header class="year_navigation"><a class="previous_year" href="#"><span>2012</span></a><span class="current_year">2013</span><div class="next_year"><span></span></div><div class="clear"></div></header><nav class="months"><ul><li><a href="/archive/2013/1">January</a><span class="count">3</span></li><li><a href="/archive/2013/2">February</a><span class="count">1</span></li><li><a href="/archive/2013/3">March</a><span class="count">8</span></li><li><a href="/archive/2013/4">April</a><span class="count">2</span></li><li><a href="/archive/2013/5">May</a><span class="count">3</span></li><li><a href="/archive/2013/6">June</a><span class="count">4</span></li><li><a href="/archive/2013/7">July</a><span class="count">5</span></li><li><a href="/archive/2013/8">August</a><span class="count">2</span></li><li><a href="/archive/2013/9">September</a><span class="count">2</span></li><li><a href="/archive/2013/10">October</a><span class="count">4</span></li><li><a href="/archive/2013/11">November</a><span class="count">2</span></li><li class="empty"><span>December</span></li></ul></nav></section><section id="year_2012" class="year" style="display:block"><header class="year_navigation"><a class="previous_year" href="#"><span>2011</span></a><span class="current_year">2012</span><a class="next_year" href="#"><span>2013</span></a><div class="clear"></div></header><nav class="months"><ul><li class="empty"><span>January</span></li><li class="empty"><span>February</span></li><li><a href="/archive/2012/3">March</a><span class="count">5</span></li><li><a href="/archive/2012/4">April</a><span class="count">1</span></li><li><a href="/archive/2012/5">May</a><span class="count">1</span></li><li><a href="/archive/2012/6">June</a><span class="count">2</span></li><li><a href="/archive/2012/7">July</a><span class="count">2</span></li><li><a href="/archive/2012/8">August</a><span class="count">1</span></li><li><a href="/archive/2012/9">September</a><span class="count">3</span></li><li><a href="/archive/2012/10">October</a><span class="count">3</span></li><li><a href="/archive/2012/11">November</a><span class="count">10</span></li><li><a href="/archive/2012/12">December</a><span class="count">4</span></li></ul></nav></section><section id="year_2011" class="year" style="display:none"><header class="year_navigation"><a class="previous_year" href="#"><span>2010</span></a><span class="current_year">2011</span><a class="next_year" href="#"><span>2012</span></a><div class="clear"></div></header><nav class="months"><ul><li class="empty"><span>January</span></li><li class="empty"><span>February</span></li><li class="empty"><span>March</span></li><li class="empty"><span>April</span></li><li class="empty"><span>May</span></li><li class="empty"><span>June</span></li><li class="empty"><span>July</span></li><li class="empty"><span>August</span></li><li class="empty"><span>September</span></li><li class="empty"><span>October</span></li><li class="empty"><span>November</span></li><li class="empty"><span>December</span></li></ul></nav></section><section id="year_2010" class="year" style="display:none"><header class="year_navigation"><div class="previous_year"><span></span></div><span class="current_year">2010</span><a class="next_year" href="#"><span>2011</span></a><div class="clear"></div></header><nav class="months"><ul><li class="empty"><span>January</span></li><li class="empty"><span>February</span></li><li class="empty"><span>March</span></li><li class="empty"><span>April</span></li><li class="empty"><span>May</span></li><li><a href="/archive/2010/6">June</a><span class="count">5</span></li><li class="empty"><span>July</span></li><li class="empty"><span>August</span></li><li class="empty"><span>September</span></li><li class="empty"><span>October</span></li><li class="empty"><span>November</span></li><li class="empty"><span>December</span></li></ul></nav></section></div></div></body></html>

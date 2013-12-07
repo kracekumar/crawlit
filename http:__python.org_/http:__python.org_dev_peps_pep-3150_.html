@@ -1,0 +1,1019 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>PEP 3150 -- Statement local namespaces (aka "given" clause)</title>
+  <meta name="keywords" content="PEP 3150 -- Statement local namespaces (aka &quot;given&quot; clause)" />
+  <meta name="description" content="PEP 3150 -- Statement local namespaces (aka &quot;given&quot; clause)" />
+  <link rel="alternate" type="application/rss+xml" title="Community Events"
+        href="http://www.python.org/channews.rdf" />
+  <link rel="alternate" type="application/rss+xml" title="Python Recipes"
+        href="http://aspn.activestate.com/ASPN/Cookbook/Python/index_rss" />
+  <link rel="alternate" type="application/rss+xml" title="Usergroup News"
+        href="http://python-groups.blogspot.com/feeds/posts/default" />
+  <link rel="alternate" type="application/rss+xml" title="Python Screencasts"
+        href="http://www.showmedo.com/latestVideoFeed/rss2.0?tag=python" />
+  <link rel="alternate" type="application/rss+xml" title="Python Podcasts"
+        href="http://www.awaretek.com/python/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Foundation News"
+        href="http://feeds.feedburner.com/PythonSoftwareFoundationNews" />
+  <link rel="alternate" type="application/rss+xml" title="Python Enhancement Proposals"
+        href="http://www.python.org/dev/peps/peps.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Job Opportunities"
+        href="http://www.python.org/community/jobs/jobs.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Reddit Feed of Python What's New Online"
+        href="http://www.reddit.com/r/Python/.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Insider"
+        href="http://feeds.feedburner.com/PythonInsider" />
+
+  <link rel="stylesheet" type="text/css" media="screen" id="screen-switcher-stylesheet"
+        href="/styles/screen-switcher-default.css" />
+  <link rel="stylesheet" type="text/css" media="sc&#82;een"
+        href="/styles/netscape4.css" />
+  <link rel="stylesheet" type="text/css" media="print"
+        href="/styles/print.css" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/largestyles.css" title="large text" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/defaultfonts.css" title="default fonts" />
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search under the www.python.org Domain"
+        href="/search-pysite.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Wiki"
+        href="/search-pywiki.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within Python Books at Google Book Search"
+        href="/search-pybooks.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Documentation"
+        href="/search-pydocs.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for a Module in the Standard Library"
+        href="/search-pymodules.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for Packages inside the Cheeseshop (PyPI)"
+        href="/search-pycheese.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search Archives of the Main Python Mailing List"
+        href="/search-pythonlist.xml"/>
+
+  <script type="text/javascript" src="/js/iotbs2-key-directors-load.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-directors.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-core.js"></script>
+
+</head>
+
+
+<body>
+  <!-- Logo -->
+  <h1 id="logoheader">
+    <a href="/" id="logolink" accesskey="1"><img id="logo" src="/images/python-logo.gif" alt="homepage" border="0" /></a>
+  </h1>
+  <!-- Skip to Navigation -->
+  <div class="skiptonav"><a href="#left-hand-navigation" accesskey="2"><img src="/images/trans.gif" id="skiptonav" alt="skip to navigation" border="0" /></a></div>
+  <div class="skiptonav"><a href="#content-body" accesskey="3"><img src="/images/trans.gif" id="skiptocontent" alt="skip to content" border="0" /></a></div>
+  <!-- Utility Menu -->
+  <div id="utility-menu">
+    <!-- Search Box -->
+    <div id="searchbox">
+      <form method="get" action="http://google.com/search" id="searchform" name="searchform">
+        <div id="search">
+          <input type="hidden" id="domains" name="domains" value="www.python.org" />
+          <input type="hidden" id="sitesearch" name="sitesearch" value="www.python.org" />
+          <input type="hidden" id="sourceid" name="sourceid" value="google-search" />
+          <input type="text" class="input-text" name="q" id="q" />
+          <input type="submit" value="search" class="input-button" name="submit" id="submit" />
+          <a href="/search" class="reference">Advanced Search</a>
+        </div>
+      </form>
+    </div>
+    <div id="screen-switcher"></div>
+  </div>
+
+  <div id="left-hand-navigation">
+    <!-- Main Menu -->
+    <div id="menu">
+      <ul class="level-one">
+            <li>
+          <a href="/about/" title="About The Python Language">About</a>
+        </li>
+            <li>
+          <a href="/news/" title="Major Happenings Within the Python Community">News</a>
+        </li>
+            <li>
+          <a href="/doc/" title="Tutorials, Library Reference, C API">Documentation</a>
+        </li>
+            <li>
+          <a href="/download/" title="Start Running Python Under Windows, Mac, Linux and Others">Download</a>
+        </li>
+            <li>
+          <a href="/getit/" title="Alternate Download page for China">ä¸è½½</a>
+        </li>
+            <li>
+          <a href="/community/" title="Mailing Lists, Jobs, Conferences, SIGs, Online Chats">Community</a>
+        </li>
+            <li>
+          <a href="/psf/" title="Python Software Foundation">Foundation</a>
+        </li>
+            <li>
+          <a href="http://docs.python.org/devguide/" title="Development of the Python language and website">Core Development</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Quick Links -->
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/">Python Wiki</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://blog.python.org/">Python Insider Blog</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/Python2orPython3">Python 2 or 3?</a></h4>
+    <h4><a style="color:#D58228; margin-top:1.5em" href="/psf/donations/">Help Fund Python</a></h4>
+    <div style="align:center; padding-top: 0.5em; padding-left: 1em">
+      <a href="/psf/donations/"><img width="116" height="42" src="/images/donate.png" alt="" title="" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.5em; padding-left: 2.5em">
+            <a href="http://wiki.python.org/moin/Languages"><img
+	      style="align:center"
+              width="94" height="46"
+	      src="/images/worldmap.jpg" alt="[Python resources in languages other than English]" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.0em; padding-left: 0em">
+       <h4><a href="http://wiki.python.org/moin/Languages">Non-English Resources</a></h4>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Release%20Schedule&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com/public/basic.ics">
+                Python Release Schedule iCal Calendar
+            </a>
+        </iframe>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Events%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com/public/basic.ics">
+                Python Events iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=User%20Group%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com&amp;color=%23125A12&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com/public/basic.ics">
+                Python User Group iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+  </div>
+
+  <div id="content-body">
+    <div id="body-main">
+      <div id="content">
+        
+          <div id="breadcrumb">
+               <a href="/dev/peps/">PEP Index</a>
+               <span class="breadcrumb-separator">&gt;</span>
+            
+            PEP 3150 -- Statement local namespaces (aka "given" clause)
+          </div>
+
+
+
+        <!--
+This HTML is auto-generated.  DO NOT EDIT THIS FILE!  If you are writing a new
+PEP, see http://www.python.org/dev/peps/pep-0001 for instructions and links
+to templates.  DO NOT USE THIS HTML FILE AS YOUR TEMPLATE!
+-->
+<table class="rfc2822 docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">PEP:</th><td class="field-body">3150</td>
+</tr>
+<tr class="field"><th class="field-name">Title:</th><td class="field-body">Statement local namespaces (aka &quot;given&quot; clause)</td>
+</tr>
+<tr class="field"><th class="field-name">Version:</th><td class="field-body">061a39bd358a</td>
+</tr>
+<tr class="field"><th class="field-name">Last-Modified:</th><td class="field-body"><a class="reference external" href="http://hg.python.org/peps/file/tip/pep-3150.txt">2013-08-03 02:42:54 +1000 (Sat, 03 Aug 2013)</a></td>
+</tr>
+<tr class="field"><th class="field-name">Author:</th><td class="field-body">Nick Coghlan &lt;ncoghlan&#32;&#97;t&#32;gmail.com&gt;</td>
+</tr>
+<tr class="field"><th class="field-name">Status:</th><td class="field-body">Deferred</td>
+</tr>
+<tr class="field"><th class="field-name">Type:</th><td class="field-body">Standards Track</td>
+</tr>
+<tr class="field"><th class="field-name">Content-Type:</th><td class="field-body"><a class="reference external" href="/dev/peps/pep-0012">text/x-rst</a></td>
+</tr>
+<tr class="field"><th class="field-name">Created:</th><td class="field-body">2010-07-09</td>
+</tr>
+<tr class="field"><th class="field-name">Python-Version:</th><td class="field-body">3.4</td>
+</tr>
+<tr class="field"><th class="field-name">Post-History:</th><td class="field-body">2010-07-14, 2011-04-21, 2011-06-13</td>
+</tr>
+<tr class="field"><th class="field-name">Resolution:</th><td class="field-body">TBD</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#abstract" id="id19">Abstract</a></li>
+<li><a class="reference internal" href="#proposal" id="id20">Proposal</a><ul>
+<li><a class="reference internal" href="#semantics" id="id21">Semantics</a></li>
+<li><a class="reference internal" href="#syntax-change" id="id22">Syntax Change</a></li>
+<li><a class="reference internal" href="#new-pep-8-guidelines" id="id23">New PEP 8 Guidelines</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rationale" id="id24">Rationale</a></li>
+<li><a class="reference internal" href="#design-discussion" id="id25">Design Discussion</a><ul>
+<li><a class="reference internal" href="#keyword-choice" id="id26">Keyword Choice</a></li>
+<li><a class="reference internal" href="#relation-to-pep-403" id="id27">Relation to PEP 403</a></li>
+<li><a class="reference internal" href="#explaining-container-comprehensions-and-generator-expressions" id="id28">Explaining Container Comprehensions and Generator Expressions</a></li>
+<li><a class="reference internal" href="#explaining-decorator-clause-evaluation-and-application" id="id29">Explaining Decorator Clause Evaluation and Application</a></li>
+<li><a class="reference internal" href="#anticipated-objections" id="id30">Anticipated Objections</a><ul>
+<li><a class="reference internal" href="#two-ways-to-do-it" id="id31">Two Ways To Do It</a></li>
+<li><a class="reference internal" href="#out-of-order-execution" id="id32">Out of Order Execution</a></li>
+<li><a class="reference internal" href="#harmful-to-introspection" id="id33">Harmful to Introspection</a></li>
+<li><a class="reference internal" href="#lack-of-real-world-impact-assessment" id="id34">Lack of Real World Impact Assessment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#open-questions" id="id35">Open Questions</a><ul>
+<li><a class="reference internal" href="#syntax-for-forward-references" id="id36">Syntax for Forward References</a></li>
+<li><a class="reference internal" href="#handling-of-nonlocal-and-global" id="id37">Handling of <tt class="docutils literal">nonlocal</tt> and <tt class="docutils literal">global</tt></a></li>
+<li><a class="reference internal" href="#handling-of-break-and-continue" id="id38">Handling of <tt class="docutils literal">break</tt> and <tt class="docutils literal">continue</tt></a></li>
+<li><a class="reference internal" href="#handling-of-return-and-yield" id="id39">Handling of <tt class="docutils literal">return</tt> and <tt class="docutils literal">yield</tt></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#examples" id="id40">Examples</a></li>
+<li><a class="reference internal" href="#possible-additions" id="id41">Possible Additions</a></li>
+<li><a class="reference internal" href="#rejected-alternatives" id="id42">Rejected Alternatives</a></li>
+<li><a class="reference internal" href="#reference-implementation" id="id43">Reference Implementation</a></li>
+<li><a class="reference internal" href="#to-do" id="id44">TO-DO</a></li>
+<li><a class="reference internal" href="#references" id="id45">References</a></li>
+<li><a class="reference internal" href="#copyright" id="id46">Copyright</a></li>
+</ul>
+</div>
+<div class="section" id="abstract">
+<h1><a class="toc-backref" href="#id19">Abstract</a></h1>
+<p>This PEP proposes the addition of an optional <tt class="docutils literal">given</tt> clause to several
+Python statements that do not currently have an associated code suite. This
+clause will create a statement local namespace for additional names that are
+accessible in the associated statement, but do not become part of the
+containing namespace.</p>
+<p>Adoption of a new symbol, <tt class="docutils literal">?</tt>, is proposed to denote a forward reference
+to the namespace created by running the associated code suite. It will be
+a reference to a <tt class="docutils literal">types.SimpleNamespace</tt> object.</p>
+<p>The primary motivation is to enable a more declarative style of programming,
+where the operation to be performed is presented to the reader first, and the
+details of the necessary subcalculations are presented in the following
+indented suite. As a key example, this would elevate ordinary assignment
+statements to be on par with <tt class="docutils literal">class</tt> and <tt class="docutils literal">def</tt> statements where the name
+of the item to be defined is presented to the reader in advance of the
+details of how the value of that item is calculated. It also allows named
+functions to be used in a &quot;multi-line lambda&quot; fashion, where the name is used
+solely as a placeholder in the current expression and then defined in the
+following suite.</p>
+<p>A secondary motivation is to simplify interim calculations in module and
+class level code without polluting the resulting namespaces.</p>
+<p>The intent is that the relationship between a given clause and a separate
+function definition that performs the specified operation will be similar to
+the existing relationship between an explicit while loop and a generator that
+produces the same sequence of operations as that while loop.</p>
+<p>The specific proposal in this PEP has been informed by various explorations
+of this and related concepts over the years (e.g. <a class="footnote-reference" href="#id9" id="id1">[1]</a>, <a class="footnote-reference" href="#id10" id="id2">[2]</a>, <a class="footnote-reference" href="#id11" id="id3">[3]</a>, <a class="footnote-reference" href="#id14" id="id4">[6]</a>,
+<a class="footnote-reference" href="#id16" id="id5">[8]</a>), and is inspired to some degree by the <tt class="docutils literal">where</tt> and <tt class="docutils literal">let</tt> clauses in
+Haskell. It avoids some problems that have been identified in past proposals,
+but has not yet itself been subject to the test of implementation.</p>
+</div>
+<div class="section" id="proposal">
+<h1><a class="toc-backref" href="#id20">Proposal</a></h1>
+<p>This PEP proposes the addition of an optional <tt class="docutils literal">given</tt> clause to the
+syntax for simple statements which may contain an expression, or may
+substitute for such a statement for purely syntactic purposes. The
+current list of simple statements that would be affected by this
+addition is as follows:</p>
+<blockquote>
+<ul class="simple">
+<li>expression statement</li>
+<li>assignment statement</li>
+<li>augmented assignment statement</li>
+<li>del statement</li>
+<li>return statement</li>
+<li>yield statement</li>
+<li>raise statement</li>
+<li>assert statement</li>
+<li>pass statement</li>
+</ul>
+</blockquote>
+<p>The <tt class="docutils literal">given</tt> clause would allow subexpressions to be referenced by
+name in the header line, with the actual definitions following in
+the indented clause. As a simple example:</p>
+<pre class="literal-block">
+sorted_data = sorted(data, key=?.sort_key) given:
+    def sort_key(item):
+        return item.attr1, item.attr2
+</pre>
+<p>The new symbol <tt class="docutils literal">?</tt> is used to refer to the given namespace. It would be a
+<tt class="docutils literal">types.SimpleNamespace</tt> instance, so <tt class="docutils literal"><span class="pre">?.sort_key</span></tt> functions as
+a forward reference to a name defined in the <tt class="docutils literal">given</tt> clause.</p>
+<p>A docstring would be permitted in the given clause, and would be attached
+to the result namespace as its <tt class="docutils literal">__doc__</tt> attribute.</p>
+<p>The <tt class="docutils literal">pass</tt> statement is included to provide a consistent way to skip
+inclusion of a meaningful expression in the header line. While this is not
+an intended use case, it isn't one that can be prevented as multiple
+alternatives (such as <tt class="docutils literal">...</tt> and <tt class="docutils literal">()</tt>) remain available even if <tt class="docutils literal">pass</tt>
+itself is disallowed.</p>
+<p>The body of the given clause will execute in a new scope, using normal
+function closure semantics. To support early binding of loop variables
+and global references, as well as to allow access to other names defined at
+class scope, the <tt class="docutils literal">given</tt> clause will also allow explicit
+binding operations in the header line:</p>
+<pre class="literal-block">
+# Explicit early binding via given clause
+seq = []
+for i in range(10):
+    seq.append(.f) given i=i in:
+        def f():
+            return i
+assert [f() for f in seq] == list(range(10))
+</pre>
+<div class="section" id="semantics">
+<h2><a class="toc-backref" href="#id21">Semantics</a></h2>
+<p>The following statement:</p>
+<pre class="literal-block">
+op(?.f, ?.g) given bound_a=a, bound_b=b in:
+    def f():
+        return bound_a + bound_b
+    def g():
+        return bound_a - bound_b
+</pre>
+<p>Would be roughly equivalent to the following code (<tt class="docutils literal">__var</tt> denotes a
+hidden compiler variable or simply an entry on the interpreter stack):</p>
+<pre class="literal-block">
+__arg1 = a
+__arg2 = b
+def __scope(bound_a, bound_b):
+    def f():
+        return bound_a + bound_b
+    def g():
+        return bound_a - bound_b
+   return types.SimpleNamespace(**locals())
+__ref = __scope(__arg1, __arg2)
+__ref.__doc__ = __scope.__doc__
+op(__ref.f, __ref.g)
+</pre>
+<p>A <tt class="docutils literal">given</tt> clause is essentially a nested function which is created and
+then immediately executed. Unless explicitly passed in, names are looked
+up using normal scoping rules, and thus names defined at class scope will
+not be visible. Names declared as forward references are returned and
+used in the header statement, without being bound locally in the
+surrounding namespace.</p>
+</div>
+<div class="section" id="syntax-change">
+<h2><a class="toc-backref" href="#id22">Syntax Change</a></h2>
+<p>Current:</p>
+<pre class="literal-block">
+expr_stmt: testlist_star_expr (augassign (yield_expr|testlist) |
+             ('=' (yield_expr|testlist_star_expr))*)
+del_stmt: 'del' exprlist
+pass_stmt: 'pass'
+return_stmt: 'return' [testlist]
+yield_stmt: yield_expr
+raise_stmt: 'raise' [test ['from' test]]
+assert_stmt: 'assert' test [',' test]
+</pre>
+<p>New:</p>
+<pre class="literal-block">
+expr_stmt: testlist_star_expr (augassign (yield_expr|testlist) |
+             ('=' (yield_expr|testlist_star_expr))*) [given_clause]
+del_stmt: 'del' exprlist [given_clause]
+pass_stmt: 'pass' [given_clause]
+return_stmt: 'return' [testlist] [given_clause]
+yield_stmt: yield_expr [given_clause]
+raise_stmt: 'raise' [test ['from' test]] [given_clause]
+assert_stmt: 'assert' test [',' test] [given_clause]
+given_clause: &quot;given&quot; [(NAME '=' test)+ &quot;in&quot;]&quot;:&quot; suite
+</pre>
+<p>(Note that <tt class="docutils literal">expr_stmt</tt> in the grammar is a slight misnomer, as it covers
+assignment and augmented assignment in addition to simple expression
+statements)</p>
+<p>The new clause is added as an optional element of the existing statements
+rather than as a new kind of compound statement in order to avoid creating
+an ambiguity in the grammar. It is applied only to the specific elements
+listed so that nonsense like the following is disallowed:</p>
+<pre class="literal-block">
+break given:
+    a = b = 1
+
+import sys given:
+    a = b = 1
+</pre>
+<p>However, the precise Grammar change described above is inadequate, as it
+creates problems for the definition of simple_stmt (which allows chaining of
+multiple single line statements with &quot;;&quot; rather than &quot;\n&quot;).</p>
+<p>So the above syntax change should instead be taken as a statement of intent.
+Any actual proposal would need to resolve the simple_stmt parsing problem
+before it could be seriously considered. This would likely require a
+non-trivial restructuring of the grammar, breaking up small_stmt and
+flow_stmt to separate the statements that potentially contain arbitrary
+subexpressions and then allowing a single one of those statements with
+a <tt class="docutils literal">given</tt> clause at the simple_stmt level. Something along the lines of:</p>
+<pre class="literal-block">
+stmt: simple_stmt | given_stmt | compound_stmt
+simple_stmt: small_stmt (';' (small_stmt | subexpr_stmt))* [';'] NEWLINE
+small_stmt: (pass_stmt | flow_stmt | import_stmt |
+             global_stmt | nonlocal_stmt)
+flow_stmt: break_stmt | continue_stmt
+given_stmt: subexpr_stmt (given_clause |
+              (';' (small_stmt | subexpr_stmt))* [';']) NEWLINE
+subexpr_stmt: expr_stmt | del_stmt | flow_subexpr_stmt | assert_stmt
+flow_subexpr_stmt: return_stmt | raise_stmt | yield_stmt
+given_clause: &quot;given&quot; (NAME '=' test)* &quot;:&quot; suite
+</pre>
+<p>For reference, here are the current definitions at that level:</p>
+<pre class="literal-block">
+stmt: simple_stmt | compound_stmt
+simple_stmt: small_stmt (';' small_stmt)* [';'] NEWLINE
+small_stmt: (expr_stmt | del_stmt | pass_stmt | flow_stmt |
+             import_stmt | global_stmt | nonlocal_stmt | assert_stmt)
+flow_stmt: break_stmt | continue_stmt | return_stmt | raise_stmt | yield_stmt
+</pre>
+<p>In addition to the above changes, the definition of <tt class="docutils literal">atom</tt> would be changed
+to also allow <tt class="docutils literal">?</tt>. The restriction of this usage to statements with
+an associated <tt class="docutils literal">given</tt> clause would be handled by a later stage of the
+compilation process (likely AST construction, which already enforces
+other restrictions where the grammar is overly permissive in order to
+simplify the initial parsing step).</p>
+</div>
+<div class="section" id="new-pep-8-guidelines">
+<h2>New <a class="reference external" href="/dev/peps/pep-0008">PEP 8</a> Guidelines</h2>
+<p>As discussed on python-ideas (<a class="footnote-reference" href="#id15" id="id6">[7]</a>, <a class="footnote-reference" href="#id17" id="id7">[9]</a>) new <a class="reference external" href="/dev/peps/pep-0008">PEP 8</a> guidelines would also
+need to be developed to provide appropriate direction on when to use the
+<tt class="docutils literal">given</tt> clause over ordinary variable assignments.</p>
+<p>Based on the similar guidelines already present for <tt class="docutils literal">try</tt> statements, this
+PEP proposes the following additions for <tt class="docutils literal">given</tt> statements to the
+&quot;Programming Conventions&quot; section of <a class="reference external" href="/dev/peps/pep-0008">PEP 8</a>:</p>
+<blockquote>
+<ul class="simple">
+<li>for code that could reasonably be factored out into a separate function,
+but is not currently reused anywhere, consider using a <tt class="docutils literal">given</tt> clause.
+This clearly indicates which variables are being used only to define
+subcomponents of another statement rather than to hold algorithm or
+application state. This is an especially useful technique when
+passing multi-line functions to operations which take callable
+arguments.</li>
+<li>keep <tt class="docutils literal">given</tt> clauses concise. If they become unwieldy, either break
+them up into multiple steps or else move the details into a separate
+function.</li>
+</ul>
+</blockquote>
+</div>
+</div>
+<div class="section" id="rationale">
+<h1><a class="toc-backref" href="#id24">Rationale</a></h1>
+<p>Function and class statements in Python have a unique property
+relative to ordinary assignment statements: to some degree, they are
+<em>declarative</em>. They present the reader of the code with some critical
+information about a name that is about to be defined, before
+proceeding on with the details of the actual definition in the
+function or class body.</p>
+<p>The <em>name</em> of the object being declared is the first thing stated
+after the keyword. Other important information is also given the
+honour of preceding the implementation details:</p>
+<ul class="simple">
+<li>decorators (which can greatly affect the behaviour of the created
+object, and were placed ahead of even the keyword and name as a matter
+of practicality moreso than aesthetics)</li>
+<li>the docstring (on the first line immediately following the header line)</li>
+<li>parameters, default values and annotations for function definitions</li>
+<li>parent classes, metaclass and optionally other details (depending on
+the metaclass) for class definitions</li>
+</ul>
+<p>This PEP proposes to make a similar declarative style available for
+arbitrary assignment operations, by permitting the inclusion of a
+&quot;given&quot; suite following any simple assignment statement:</p>
+<pre class="literal-block">
+TARGET = [TARGET2 = ... TARGETN =] EXPR given:
+    SUITE
+</pre>
+<p>By convention, code in the body of the suite should be oriented solely
+towards correctly defining the assignment operation carried out in the
+header line. The header line operation should also be adequately
+descriptive (e.g. through appropriate choices of variable names) to
+give a reader a reasonable idea of the purpose of the operation
+without reading the body of the suite.</p>
+<p>However, while they are the initial motivating use case, limiting this
+feature solely to simple assignments would be overly restrictive. Once the
+feature is defined at all, it would be quite arbitrary to prevent its use
+for augmented assignments, return statements, yield expressions,
+comprehensions and arbitrary expressions that may modify the
+application state.</p>
+<p>The <tt class="docutils literal">given</tt> clause may also function as a more readable
+alternative to some uses of lambda expressions and similar
+constructs when passing one-off functions to operations
+like <tt class="docutils literal">sorted()</tt> or in callback based event-driven programming.</p>
+<p>In module and class level code, the <tt class="docutils literal">given</tt> clause will serve as a
+clear and reliable replacement for usage of the <tt class="docutils literal">del</tt> statement to keep
+interim working variables from polluting the resulting namespace.</p>
+<p>One potentially useful way to think of the proposed clause is as a middle
+ground between conventional in-line code and separation of an
+operation out into a dedicated function, just as an inline while loop may
+eventually be factored out into a dedicated generator.</p>
+</div>
+<div class="section" id="design-discussion">
+<h1><a class="toc-backref" href="#id25">Design Discussion</a></h1>
+<div class="section" id="keyword-choice">
+<h2><a class="toc-backref" href="#id26">Keyword Choice</a></h2>
+<p>This proposal initially used <tt class="docutils literal">where</tt> based on the name of a similar
+construct in Haskell. However, it has been pointed out that there
+are existing Python libraries (such as Numpy <a class="footnote-reference" href="#id12" id="id8">[4]</a>) that already use
+<tt class="docutils literal">where</tt> in the SQL query condition sense, making that keyword choice
+potentially confusing.</p>
+<p>While <tt class="docutils literal">given</tt> may also be used as a variable name (and hence would be
+deprecated using the usual <tt class="docutils literal">__future__</tt> dance for introducing
+new keywords), it is associated much more strongly with the desired
+&quot;here are some extra variables this expression may use&quot; semantics
+for the new clause.</p>
+<p>Reusing the <tt class="docutils literal">with</tt> keyword has also been proposed. This has the
+advantage of avoiding the addition of a new keyword, but also has
+a high potential for confusion as the <tt class="docutils literal">with</tt> clause and <tt class="docutils literal">with</tt>
+statement would look similar but do completely different things.
+That way lies C++ and Perl :)</p>
+</div>
+<div class="section" id="relation-to-pep-403">
+<h2>Relation to <a class="reference external" href="/dev/peps/pep-0403">PEP 403</a></h2>
+<p><a class="reference external" href="/dev/peps/pep-0403">PEP 403</a> (General Purpose Decorator Clause) attempts to achieve the main
+goals of this PEP using a less radical language change inspired by the
+existing decorator syntax.</p>
+<p>Despite having the same author, the two PEPs are in direct competition with
+each other. <a class="reference external" href="/dev/peps/pep-0403">PEP 403</a> represents a minimalist approach that attempts to achieve
+useful functionality with a minimum of change from the status quo. This PEP
+instead aims for a more flexible standalone statement design, which requires
+a larger degree of change to the language.</p>
+<p>Note that where <a class="reference external" href="/dev/peps/pep-0403">PEP 403</a> is better suited to explaining the behaviour of
+generator expressions correctly, this PEP is better able to explain the
+behaviour of decorator clauses in general. Both PEPs support adequate
+explanations for the semantics of container comprehensions.</p>
+</div>
+<div class="section" id="explaining-container-comprehensions-and-generator-expressions">
+<h2><a class="toc-backref" href="#id28">Explaining Container Comprehensions and Generator Expressions</a></h2>
+<p>One interesting feature of the proposed construct is that it can be used as
+a primitive to explain the scoping and execution order semantics of
+container comprehensions:</p>
+<pre class="literal-block">
+seq2 = [x for x in y if q(x) for y in seq if p(y)]
+
+# would be equivalent to
+
+seq2 = ?.result given seq=seq:
+    result = []
+    for y in seq:
+        if p(y):
+            for x in y:
+                if q(x):
+                    result.append(x)
+</pre>
+<p>The important point in this expansion is that it explains why comprehensions
+appear to misbehave at class scope: only the outermost iterator is evaluated
+at class scope, while all predicates, nested iterators and value expressions
+are evaluated inside a nested scope.</p>
+<p>Not that, unlike <a class="reference external" href="/dev/peps/pep-0403">PEP 403</a>, the current version of this PEP <em>cannot</em>
+provide a precisely equivalent expansion for a generator expression. The
+closest it can get is to define an additional level of scoping:</p>
+<pre class="literal-block">
+seq2 = ?.g(seq) given:
+    def g(seq):
+        for y in seq:
+            if p(y):
+                for x in y:
+                    if q(x):
+                        yield x
+</pre>
+<p>This limitation could be remedied by permitting the given clause to be
+a generator function, in which case ? would refer to a generator-iterator
+object rather than a simple namespace:</p>
+<pre class="literal-block">
+seq2 = ? given seq=seq in:
+    for y in seq:
+        if p(y):
+            for x in y:
+                if q(x):
+                    yield x
+</pre>
+<p>However, this would make the meaning of &quot;?&quot; quite ambiguous, even more so
+than is already the case for the meaning of <tt class="docutils literal">def</tt> statements (which will
+usually have a docstring indicating whether or not a function definition is
+actually a generator)</p>
+</div>
+<div class="section" id="explaining-decorator-clause-evaluation-and-application">
+<h2><a class="toc-backref" href="#id29">Explaining Decorator Clause Evaluation and Application</a></h2>
+<p>The standard explanation of decorator clause evaluation and application
+has to deal with the idea of hidden compiler variables in order to show
+steps in their order of execution. The given statement allows a decorated
+function definition like:</p>
+<pre class="literal-block">
+&#64;classmethod
+def classname(cls):
+    return cls.__name__
+</pre>
+<p>To instead be explained as roughly equivalent to:</p>
+<pre class="literal-block">
+classname = .d1(classname) given:
+    d1 = classmethod
+    def classname(cls):
+        return cls.__name__
+</pre>
+</div>
+<div class="section" id="anticipated-objections">
+<h2><a class="toc-backref" href="#id30">Anticipated Objections</a></h2>
+<div class="section" id="two-ways-to-do-it">
+<h3><a class="toc-backref" href="#id31">Two Ways To Do It</a></h3>
+<p>A lot of code may now be written with values defined either before the
+expression where they are used or afterwards in a <tt class="docutils literal">given</tt> clause, creating
+two ways to do it, perhaps without an obvious way of choosing between them.</p>
+<p>On reflection, I feel this is a misapplication of the &quot;one obvious way&quot;
+aphorism. Python already offers <em>lots</em> of ways to write code. We can use
+a for loop or a while loop, a functional style or an imperative style or an
+object oriented style. The language, in general, is designed to let people
+write code that matches the way they think. Since different people think
+differently, the way they write their code will change accordingly.</p>
+<p>Such stylistic questions in a code base are rightly left to the development
+group responsible for that code. When does an expression get so complicated
+that the subexpressions should be taken out and assigned to variables, even
+though those variables are only going to be used once? When should an inline
+while loop be replaced with a generator that implements the same logic?
+Opinions differ, and that's OK.</p>
+<p>However, explicit <a class="reference external" href="/dev/peps/pep-0008">PEP 8</a> guidance will be needed for CPython and the standard
+library, and that is discussed in the proposal above.</p>
+</div>
+<div class="section" id="out-of-order-execution">
+<h3><a class="toc-backref" href="#id32">Out of Order Execution</a></h3>
+<p>The <tt class="docutils literal">given</tt> clause makes execution jump around a little strangely, as the
+body of the <tt class="docutils literal">given</tt> clause is executed before the simple statement in the
+clause header. The closest any other part of Python comes to this is the out
+of order evaluation in list comprehensions, generator expressions and
+conditional expressions and the delayed application of decorator functions to
+the function they decorate (the decorator expressions themselves are executed
+in the order they are written).</p>
+<p>While this is true, the syntax is intended for cases where people are
+themselves <em>thinking</em> about a problem out of sequence (at least as far as
+the language is concerned). As an example of this, consider the following
+thought in the mind of a Python user:</p>
+<blockquote>
+I want to sort the items in this sequence according to the values of
+attr1 and attr2 on each item.</blockquote>
+<p>If they're comfortable with Python's <tt class="docutils literal">lambda</tt> expressions, then they might
+choose to write it like this:</p>
+<pre class="literal-block">
+sorted_list = sorted(original, key=(lambda v: v.attr1, v.attr2))
+</pre>
+<p>That gets the job done, but it hardly reaches the standard of <tt class="docutils literal">executable
+pseudocode</tt> that fits Python's reputation.</p>
+<p>If they don't like <tt class="docutils literal">lambda</tt> specifically, the <tt class="docutils literal">operator</tt> module offers an
+alternative that still allows the key function to be defined inline:</p>
+<pre class="literal-block">
+sorted_list = sorted(original,
+                     key=operator.attrgetter(v. 'attr1', 'attr2'))
+</pre>
+<dl class="docutils">
+<dt>Again, it gets the job done, but even the most generous of readers would</dt>
+<dd>not consider that to be &quot;executable pseudocode&quot;.</dd>
+</dl>
+<p>If they think both of the above options are ugly and confusing, or they need
+logic in their key function that can't be expressed as an expression (such
+as catching an exception), then Python currently forces them to reverse the
+order of their original thought and define the sorting criteria first:</p>
+<pre class="literal-block">
+def sort_key(item):
+    return item.attr1, item.attr2
+
+sorted_list = sorted(original, key=sort_key)
+</pre>
+<p>&quot;Just define a function&quot; has been the rote response to requests for multi-line
+lambda support for years. As with the above options, it gets the job done,
+but it really does represent a break between what the user is thinking and
+what the language allows them to express.</p>
+<p>I believe the proposal in this PEP would finally let Python get close to the
+&quot;executable pseudocode&quot; bar for the kind of thought expressed above:</p>
+<pre class="literal-block">
+sorted_list = sorted(original, key=?.key) given:
+    def key(item):
+        return item.attr1, item.attr2
+</pre>
+<p>Everything is in the same order as it was in the user's original thought, and
+they don't even need to come up with a name for the sorting criteria: it is
+possible to reuse the keyword argument name directly.</p>
+<p>A possible enhancement to those proposal would be to provide a convenient
+shorthand syntax to say &quot;use the given clause contents as keyword
+arguments&quot;. Even without dedicated syntax, that can be written simply as
+<tt class="docutils literal"><span class="pre">**vars(?)</span></tt>.</p>
+</div>
+<div class="section" id="harmful-to-introspection">
+<h3><a class="toc-backref" href="#id33">Harmful to Introspection</a></h3>
+<p>Poking around in module and class internals is an invaluable tool for
+white-box testing and interactive debugging. The <tt class="docutils literal">given</tt> clause will be
+quite effective at preventing access to temporary state used during
+calculations (although no more so than current usage of <tt class="docutils literal">del</tt> statements
+in that regard).</p>
+<p>While this is a valid concern, design for testability is an issue that
+cuts across many aspects of programming. If a component needs to be tested
+independently, then a <tt class="docutils literal">given</tt> statement should be refactored in to separate
+statements so that information is exposed to the test suite. This isn't
+significantly different from refactoring an operation hidden inside a
+function or generator out into its own function purely to allow it to be
+tested in isolation.</p>
+</div>
+<div class="section" id="lack-of-real-world-impact-assessment">
+<h3><a class="toc-backref" href="#id34">Lack of Real World Impact Assessment</a></h3>
+<p>The examples in the current PEP are almost all relatively small &quot;toy&quot;
+examples. The proposal in this PEP needs to be subjected to the test of
+application to a large code base (such as the standard library or a large
+Twisted application) in a search for examples where the readability of real
+world code is genuinely enhanced.</p>
+<p>This is more of a deficiency in the PEP rather than the idea, though. If
+it wasn't a real world problem, we wouldn't get so many complaints about
+the lack of multi-line lambda support and Ruby's block construct
+probably wouldn't be quite so popular.</p>
+</div>
+</div>
+</div>
+<div class="section" id="open-questions">
+<h1><a class="toc-backref" href="#id35">Open Questions</a></h1>
+<div class="section" id="syntax-for-forward-references">
+<h2><a class="toc-backref" href="#id36">Syntax for Forward References</a></h2>
+<p>The <tt class="docutils literal">?</tt> symbol is proposed for forward references to the given namespace
+as it is short, currently unused and suggests &quot;there's something missing
+here that will be filled in later&quot;.</p>
+<p>The proposal in the PEP doesn't neatly parallel any existing Python feature,
+so reusing an already used symbol has been deliberately avoided.</p>
+</div>
+<div class="section" id="handling-of-nonlocal-and-global">
+<h2><a class="toc-backref" href="#id37">Handling of <tt class="docutils literal">nonlocal</tt> and <tt class="docutils literal">global</tt></a></h2>
+<p><tt class="docutils literal">nonlocal</tt> and <tt class="docutils literal">global</tt> are explicitly disallowed in the <tt class="docutils literal">given</tt> clause
+suite and will be syntax errors if they occur. They will work normally if
+they appear within a <tt class="docutils literal">def</tt> statement within that suite.</p>
+<p>Alternatively, they could be defined as operating as if the anonymous
+functions were defined as in the expansion above.</p>
+</div>
+<div class="section" id="handling-of-break-and-continue">
+<h2><a class="toc-backref" href="#id38">Handling of <tt class="docutils literal">break</tt> and <tt class="docutils literal">continue</tt></a></h2>
+<p><tt class="docutils literal">break</tt> and <tt class="docutils literal">continue</tt> will operate as if the anonymous functions were
+defined as in the expansion above. They will be syntax errors if they occur
+in the <tt class="docutils literal">given</tt> clause suite but will work normally if they appear within
+a <tt class="docutils literal">for</tt> or <tt class="docutils literal">while</tt> loop as part of that suite.</p>
+</div>
+<div class="section" id="handling-of-return-and-yield">
+<h2><a class="toc-backref" href="#id39">Handling of <tt class="docutils literal">return</tt> and <tt class="docutils literal">yield</tt></a></h2>
+<p><tt class="docutils literal">return</tt> and <tt class="docutils literal">yield</tt> are explicitly disallowed in the <tt class="docutils literal">given</tt> clause
+suite and will be syntax errors if they occur. They will work normally if
+they appear within a <tt class="docutils literal">def</tt> statement within that suite.</p>
+</div>
+</div>
+<div class="section" id="examples">
+<h1><a class="toc-backref" href="#id40">Examples</a></h1>
+<p>Defining callbacks for event driven programming:</p>
+<pre class="literal-block">
+# Current Python (definition before use)
+def cb(sock):
+    # Do something with socket
+def eb(exc):
+    logging.exception(
+        &quot;Failed connecting to %s:%s&quot;, host, port)
+loop.create_connection((host, port), cb, eb) given:
+
+# Becomes:
+loop.create_connection((host, port), ?.cb, ?.eb) given:
+    def cb(sock):
+        # Do something with socket
+    def eb(exc):
+        logging.exception(
+            &quot;Failed connecting to %s:%s&quot;, host, port)
+</pre>
+<p>Defining &quot;one-off&quot; classes which typically only have a single instance:</p>
+<pre class="literal-block">
+# Current Python (instantiation after definition)
+class public_name():
+  ... # However many lines
+public_name = public_name(*params)
+
+# Current Python (custom decorator)
+def singleton(*args, **kwds):
+    def decorator(cls):
+        return cls(*args, **kwds)
+    return decorator
+
+&#64;singleton(*params)
+class public_name():
+  ... # However many lines
+
+# Becomes:
+public_name = ?.MeaningfulClassName(*params) given:
+  class MeaningfulClassName():
+    ... # Should trawl the stdlib for an example of doing this
+</pre>
+<p>Calculating attributes without polluting the local namespace (from os.py):</p>
+<pre class="literal-block">
+# Current Python (manual namespace cleanup)
+def _createenviron():
+  ... # 27 line function
+
+environ = _createenviron()
+del _createenviron
+
+# Becomes:
+environ = ?._createenviron() given:
+    def _createenviron():
+      ... # 27 line function
+</pre>
+<p>Replacing default argument hack (from functools.lru_cache):</p>
+<pre class="literal-block">
+# Current Python (default argument hack)
+def decorating_function(user_function,
+               tuple=tuple, sorted=sorted, len=len, KeyError=KeyError):
+  ... # 60 line function
+return decorating_function
+
+# Becomes:
+return ?.decorating_function given:
+  # Cell variables rather than locals, but should give similar speedup
+  tuple, sorted, len, KeyError = tuple, sorted, len, KeyError
+  def decorating_function(user_function):
+    ... # 60 line function
+
+# This example also nicely makes it clear that there is nothing in the
+# function after the nested function definition. Due to additional
+# nested functions, that isn't entirely clear in the current code.
+</pre>
+</div>
+<div class="section" id="possible-additions">
+<h1><a class="toc-backref" href="#id41">Possible Additions</a></h1>
+<ul class="simple">
+<li>The current proposal allows the addition of a <tt class="docutils literal">given</tt> clause only
+for simple statements. Extending the idea to allow the use of
+compound statements would be quite possible (by appending the given
+clause as an independent suite at the end), but doing so raises
+serious readability concerns (as values defined in the <tt class="docutils literal">given</tt>
+clause may be used well before they are defined, exactly the kind
+of readability trap that other features like decorators and <tt class="docutils literal">with</tt>
+statements are designed to eliminate)</li>
+<li>The &quot;explicit early binding&quot; variant may be applicable to the discussions
+on python-ideas on how to eliminate the default argument hack. A <tt class="docutils literal">given</tt>
+clause in the header line for functions (after the return type annotation)
+may be the answer to that question.</li>
+</ul>
+</div>
+<div class="section" id="rejected-alternatives">
+<h1><a class="toc-backref" href="#id42">Rejected Alternatives</a></h1>
+<ul class="simple">
+<li>An earlier version of this PEP allowed implicit forward references to the
+names in the trailing suite, and also used implicit early binding
+semantics. Both of these ideas substantially complicated the proposal
+without providing a sufficient increase in expressive power. The current
+proposing with explicit forward references and early binding brings the
+new construct into line with existing scoping semantics, greatly
+improving the chances the idea can actually be implemented.</li>
+<li>In addition to the proposals made here, there have also been suggestions
+of two suite &quot;in-order&quot; variants which provide the limited scoping of
+names without supporting out-of-order execution. I believe these
+suggestions largely miss the point of what people are complaining about
+when they ask for multi-line lambda support - it isn't that coming up
+with a name for the subexpression is especially difficult, it's that
+naming the function before the statement that uses it means the code
+no longer matches the way the developer thinks about the problem at hand.</li>
+</ul>
+</div>
+<div class="section" id="reference-implementation">
+<h1><a class="toc-backref" href="#id43">Reference Implementation</a></h1>
+<p>None as yet. If you want a crash course in Python namespace
+semantics and code compilation, feel free to try ;)</p>
+</div>
+<div class="section" id="to-do">
+<h1><a class="toc-backref" href="#id44">TO-DO</a></h1>
+<ul class="simple">
+<li>Mention <a class="reference external" href="/dev/peps/pep-0359">PEP 359</a> and possible uses for locals() in the <tt class="docutils literal">given</tt> clause</li>
+<li>Figure out if this can be used internally to make the implementation of
+zero-argument super() calls less awful</li>
+</ul>
+</div>
+<div class="section" id="references">
+<h1><a class="toc-backref" href="#id45">References</a></h1>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Explicitation lines in Python:
+<a class="reference external" href="http://mail.python.org/pipermail/python-ideas/2010-June/007476.html">http://mail.python.org/pipermail/python-ideas/2010-June/007476.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>'where' statement in Python:
+<a class="reference external" href="http://mail.python.org/pipermail/python-ideas/2010-July/007584.html">http://mail.python.org/pipermail/python-ideas/2010-July/007584.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id11" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>Where-statement (Proposal for function expressions):
+<a class="reference external" href="http://mail.python.org/pipermail/python-ideas/2009-July/005132.html">http://mail.python.org/pipermail/python-ideas/2009-July/005132.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id12" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8">[4]</a></td><td>Name conflict with NumPy for 'where' keyword choice:
+<a class="reference external" href="http://mail.python.org/pipermail/python-ideas/2010-July/007596.html">http://mail.python.org/pipermail/python-ideas/2010-July/007596.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id13" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[5]</td><td>The &quot;Status quo wins a stalemate&quot; design principle:
+<a class="reference external" href="http://www.boredomandlaziness.org/2011/02/status-quo-wins-stalemate.html">http://www.boredomandlaziness.org/2011/02/status-quo-wins-stalemate.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id14" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[6]</a></td><td>Assignments in list/generator expressions:
+<a class="reference external" href="http://mail.python.org/pipermail/python-ideas/2011-April/009863.html">http://mail.python.org/pipermail/python-ideas/2011-April/009863.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id15" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[7]</a></td><td>Possible <a class="reference external" href="/dev/peps/pep-3150">PEP 3150</a> style guidelines (#1):
+<a class="reference external" href="http://mail.python.org/pipermail/python-ideas/2011-April/009869.html">http://mail.python.org/pipermail/python-ideas/2011-April/009869.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id16" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[8]</a></td><td>Discussion of <a class="reference external" href="/dev/peps/pep-0403">PEP 403</a> (statement local function definition):
+<a class="reference external" href="http://mail.python.org/pipermail/python-ideas/2011-October/012276.html">http://mail.python.org/pipermail/python-ideas/2011-October/012276.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id17" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[9]</a></td><td>Possible <a class="reference external" href="/dev/peps/pep-3150">PEP 3150</a> style guidelines (#2):
+<a class="reference external" href="http://mail.python.org/pipermail/python-ideas/2011-October/012341.html">http://mail.python.org/pipermail/python-ideas/2011-October/012341.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id18" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[10]</td><td>Multi-line lambdas (again!)
+<a class="reference external" href="http://mail.python.org/pipermail/python-ideas/2013-August/022526.html">http://mail.python.org/pipermail/python-ideas/2013-August/022526.html</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="copyright">
+<h1><a class="toc-backref" href="#id46">Copyright</a></h1>
+<p>This document has been placed in the public domain.</p>
+<!-- Local Variables:
+mode: indented-text
+indent-tabs-mode: nil
+sentence-end-double-space: t
+fill-column: 70
+coding: utf-8
+End: -->
+</div>
+
+
+
+      </div>
+
+      
+      <div id="footer">
+	<div id="credits">
+ 	  <a href="/about/website">Website maintained by the Python community</a><br/>
+	  <a href="http://www.xs4all.com/" title="Web and email hosting provided by xs4all, Netherlands">hosting by xs4all</a> /
+	  <a href="http://www.timparkin.co.uk/" title="Design by Tim Parkin, Yorkshire man, photographer and developer">design by Tim Parkin</a>
+	</div>
+	Copyright &copy; 1990-2013, <a href='/psf/'>Python Software Foundation</a><br/>
+	<a href="/about/legal">Legal Statements</a>
+      </div>
+
+
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+

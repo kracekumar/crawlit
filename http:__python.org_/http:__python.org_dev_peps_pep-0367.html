@@ -1,0 +1,824 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>PEP 367 -- New Super</title>
+  <meta name="keywords" content="PEP 367 -- New Super" />
+  <meta name="description" content="PEP 367 -- New Super" />
+  <link rel="alternate" type="application/rss+xml" title="Community Events"
+        href="http://www.python.org/channews.rdf" />
+  <link rel="alternate" type="application/rss+xml" title="Python Recipes"
+        href="http://aspn.activestate.com/ASPN/Cookbook/Python/index_rss" />
+  <link rel="alternate" type="application/rss+xml" title="Usergroup News"
+        href="http://python-groups.blogspot.com/feeds/posts/default" />
+  <link rel="alternate" type="application/rss+xml" title="Python Screencasts"
+        href="http://www.showmedo.com/latestVideoFeed/rss2.0?tag=python" />
+  <link rel="alternate" type="application/rss+xml" title="Python Podcasts"
+        href="http://www.awaretek.com/python/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Foundation News"
+        href="http://feeds.feedburner.com/PythonSoftwareFoundationNews" />
+  <link rel="alternate" type="application/rss+xml" title="Python Enhancement Proposals"
+        href="http://www.python.org/dev/peps/peps.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Job Opportunities"
+        href="http://www.python.org/community/jobs/jobs.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Reddit Feed of Python What's New Online"
+        href="http://www.reddit.com/r/Python/.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Insider"
+        href="http://feeds.feedburner.com/PythonInsider" />
+
+  <link rel="stylesheet" type="text/css" media="screen" id="screen-switcher-stylesheet"
+        href="/styles/screen-switcher-default.css" />
+  <link rel="stylesheet" type="text/css" media="sc&#82;een"
+        href="/styles/netscape4.css" />
+  <link rel="stylesheet" type="text/css" media="print"
+        href="/styles/print.css" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/largestyles.css" title="large text" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/defaultfonts.css" title="default fonts" />
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search under the www.python.org Domain"
+        href="/search-pysite.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Wiki"
+        href="/search-pywiki.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within Python Books at Google Book Search"
+        href="/search-pybooks.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Documentation"
+        href="/search-pydocs.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for a Module in the Standard Library"
+        href="/search-pymodules.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for Packages inside the Cheeseshop (PyPI)"
+        href="/search-pycheese.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search Archives of the Main Python Mailing List"
+        href="/search-pythonlist.xml"/>
+
+  <script type="text/javascript" src="/js/iotbs2-key-directors-load.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-directors.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-core.js"></script>
+
+</head>
+
+
+<body>
+  <!-- Logo -->
+  <h1 id="logoheader">
+    <a href="/" id="logolink" accesskey="1"><img id="logo" src="/images/python-logo.gif" alt="homepage" border="0" /></a>
+  </h1>
+  <!-- Skip to Navigation -->
+  <div class="skiptonav"><a href="#left-hand-navigation" accesskey="2"><img src="/images/trans.gif" id="skiptonav" alt="skip to navigation" border="0" /></a></div>
+  <div class="skiptonav"><a href="#content-body" accesskey="3"><img src="/images/trans.gif" id="skiptocontent" alt="skip to content" border="0" /></a></div>
+  <!-- Utility Menu -->
+  <div id="utility-menu">
+    <!-- Search Box -->
+    <div id="searchbox">
+      <form method="get" action="http://google.com/search" id="searchform" name="searchform">
+        <div id="search">
+          <input type="hidden" id="domains" name="domains" value="www.python.org" />
+          <input type="hidden" id="sitesearch" name="sitesearch" value="www.python.org" />
+          <input type="hidden" id="sourceid" name="sourceid" value="google-search" />
+          <input type="text" class="input-text" name="q" id="q" />
+          <input type="submit" value="search" class="input-button" name="submit" id="submit" />
+          <a href="/search" class="reference">Advanced Search</a>
+        </div>
+      </form>
+    </div>
+    <div id="screen-switcher"></div>
+  </div>
+
+  <div id="left-hand-navigation">
+    <!-- Main Menu -->
+    <div id="menu">
+      <ul class="level-one">
+            <li>
+          <a href="/about/" title="About The Python Language">About</a>
+        </li>
+            <li>
+          <a href="/news/" title="Major Happenings Within the Python Community">News</a>
+        </li>
+            <li>
+          <a href="/doc/" title="Tutorials, Library Reference, C API">Documentation</a>
+        </li>
+            <li>
+          <a href="/download/" title="Start Running Python Under Windows, Mac, Linux and Others">Download</a>
+        </li>
+            <li>
+          <a href="/getit/" title="Alternate Download page for China">ä¸è½½</a>
+        </li>
+            <li>
+          <a href="/community/" title="Mailing Lists, Jobs, Conferences, SIGs, Online Chats">Community</a>
+        </li>
+            <li>
+          <a href="/psf/" title="Python Software Foundation">Foundation</a>
+        </li>
+            <li>
+          <a href="http://docs.python.org/devguide/" title="Development of the Python language and website">Core Development</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Quick Links -->
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/">Python Wiki</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://blog.python.org/">Python Insider Blog</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/Python2orPython3">Python 2 or 3?</a></h4>
+    <h4><a style="color:#D58228; margin-top:1.5em" href="/psf/donations/">Help Fund Python</a></h4>
+    <div style="align:center; padding-top: 0.5em; padding-left: 1em">
+      <a href="/psf/donations/"><img width="116" height="42" src="/images/donate.png" alt="" title="" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.5em; padding-left: 2.5em">
+            <a href="http://wiki.python.org/moin/Languages"><img
+	      style="align:center"
+              width="94" height="46"
+	      src="/images/worldmap.jpg" alt="[Python resources in languages other than English]" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.0em; padding-left: 0em">
+       <h4><a href="http://wiki.python.org/moin/Languages">Non-English Resources</a></h4>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Release%20Schedule&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com/public/basic.ics">
+                Python Release Schedule iCal Calendar
+            </a>
+        </iframe>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Events%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com/public/basic.ics">
+                Python Events iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=User%20Group%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com&amp;color=%23125A12&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com/public/basic.ics">
+                Python User Group iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+  </div>
+
+  <div id="content-body">
+    <div id="body-main">
+      <div id="content">
+        
+          <div id="breadcrumb">
+               <a href="/dev/peps/">PEP Index</a>
+               <span class="breadcrumb-separator">&gt;</span>
+            
+            PEP 367 -- New Super
+          </div>
+
+
+
+        <!--
+This HTML is auto-generated.  DO NOT EDIT THIS FILE!  If you are writing a new
+PEP, see http://www.python.org/dev/peps/pep-0001 for instructions and links
+to templates.  DO NOT USE THIS HTML FILE AS YOUR TEMPLATE!
+-->
+<table class="rfc2822 docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">PEP:</th><td class="field-body">367</td>
+</tr>
+<tr class="field"><th class="field-name">Title:</th><td class="field-body">New Super</td>
+</tr>
+<tr class="field"><th class="field-name">Version:</th><td class="field-body">763b6e5c6cf1</td>
+</tr>
+<tr class="field"><th class="field-name">Last-Modified:</th><td class="field-body"><a class="reference external" href="http://hg.python.org/peps/file/tip/pep-0367.txt">2011-03-04 04:58:22 +0000 (Fri, 04 Mar 2011)</a></td>
+</tr>
+<tr class="field"><th class="field-name">Author:</th><td class="field-body">Calvin Spealman &lt;ironfroggy&#32;&#97;t&#32;gmail.com&gt;,
+Tim Delaney &lt;timothy.c.delaney&#32;&#97;t&#32;gmail.com&gt;</td>
+</tr>
+<tr class="field"><th class="field-name">Status:</th><td class="field-body">Superseded</td>
+</tr>
+<tr class="field"><th class="field-name">Type:</th><td class="field-body">Standards Track</td>
+</tr>
+<tr class="field"><th class="field-name">Content-Type:</th><td class="field-body"><a class="reference external" href="/dev/peps/pep-0012">text/x-rst</a></td>
+</tr>
+<tr class="field"><th class="field-name">Created:</th><td class="field-body">28-Apr-2007</td>
+</tr>
+<tr class="field"><th class="field-name">Python-Version:</th><td class="field-body">2.6</td>
+</tr>
+<tr class="field"><th class="field-name">Post-History:</th><td class="field-body">28-Apr-2007, 29-Apr-2007 (1), 29-Apr-2007 (2), 14-May-2007</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#numbering-note" id="id5">Numbering Note</a></li>
+<li><a class="reference internal" href="#abstract" id="id6">Abstract</a></li>
+<li><a class="reference internal" href="#rationale" id="id7">Rationale</a></li>
+<li><a class="reference internal" href="#specification" id="id8">Specification</a><ul>
+<li><a class="reference internal" href="#open-issues" id="id9">Open Issues</a><ul>
+<li><a class="reference internal" href="#determining-the-class-object-to-use" id="id10">Determining the class object to use</a></li>
+<li><a class="reference internal" href="#should-super-actually-become-a-keyword" id="id11">Should <tt class="docutils literal">super</tt> actually become a keyword?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#closed-issues" id="id12">Closed Issues</a><ul>
+<li><a class="reference internal" href="#super-used-with-call-attributes" id="id13">super used with __call__ attributes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#reference-implementation" id="id14">Reference Implementation</a></li>
+<li><a class="reference internal" href="#alternative-proposals" id="id15">Alternative Proposals</a><ul>
+<li><a class="reference internal" href="#no-changes" id="id16">No Changes</a></li>
+<li><a class="reference internal" href="#dynamic-attribute-on-super-type" id="id17">Dynamic attribute on super type</a></li>
+<li><a class="reference internal" href="#super-this-class-self" id="id18">super(__this_class__, self)</a></li>
+<li><a class="reference internal" href="#self-super-foo-args" id="id19">self.__super__.foo(*args)</a></li>
+<li><a class="reference internal" href="#super-self-args-or-super-self-args" id="id20">super(self, *args) or __super__(self, *args)</a></li>
+<li><a class="reference internal" href="#super-foo-self-args" id="id21">super.foo(self, *args)</a></li>
+<li><a class="reference internal" href="#super-or-super" id="id22">super or super()</a></li>
+<li><a class="reference internal" href="#super-p-kw" id="id23">super(*p, **kw)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#history" id="id24">History</a></li>
+<li><a class="reference internal" href="#references" id="id25">References</a></li>
+<li><a class="reference internal" href="#copyright" id="id26">Copyright</a></li>
+</ul>
+</div>
+<div class="section" id="numbering-note">
+<h1><a class="toc-backref" href="#id5">Numbering Note</a></h1>
+<p>This PEP has been renumbered to <a class="reference external" href="/dev/peps/pep-3135">PEP 3135</a>.  The text below is the last
+version submitted under the old number.</p>
+</div>
+<div class="section" id="abstract">
+<h1><a class="toc-backref" href="#id6">Abstract</a></h1>
+<p>This PEP proposes syntactic sugar for use of the <tt class="docutils literal">super</tt> type to automatically
+construct instances of the super type binding to the class that a method was
+defined in, and the instance (or class object for classmethods) that the method
+is currently acting upon.</p>
+<p>The premise of the new super usage suggested is as follows:</p>
+<pre class="literal-block">
+super.foo(1, 2)
+</pre>
+<p>to replace the old:</p>
+<pre class="literal-block">
+super(Foo, self).foo(1, 2)
+</pre>
+<p>and the current <tt class="docutils literal">__builtin__.super</tt> be aliased to <tt class="docutils literal">__builtin__.__super__</tt>
+(with <tt class="docutils literal">__builtin__.super</tt> to be removed in Python 3.0).</p>
+<p>It is further proposed that assignment to <tt class="docutils literal">super</tt> become a <tt class="docutils literal">SyntaxError</tt>,
+similar to the behaviour of <tt class="docutils literal">None</tt>.</p>
+</div>
+<div class="section" id="rationale">
+<h1><a class="toc-backref" href="#id7">Rationale</a></h1>
+<p>The current usage of super requires an explicit passing of both the class and
+instance it must operate from, requiring a breaking of the DRY (Don't Repeat
+Yourself) rule. This hinders any change in class name, and is often considered
+a wart by many.</p>
+</div>
+<div class="section" id="specification">
+<h1><a class="toc-backref" href="#id8">Specification</a></h1>
+<p>Within the specification section, some special terminology will be used to
+distinguish similar and closely related concepts. &quot;super type&quot; will refer to
+the actual builtin type named &quot;super&quot;. A &quot;super instance&quot; is simply an instance
+of the super type, which is associated with a class and possibly with an
+instance of that class.</p>
+<p>Because the new <tt class="docutils literal">super</tt> semantics are not backwards compatible with Python
+2.5, the new semantics will require a <tt class="docutils literal">__future__</tt> import:</p>
+<pre class="literal-block">
+from __future__ import new_super
+</pre>
+<p>The current <tt class="docutils literal">__builtin__.super</tt> will be aliased to <tt class="docutils literal">__builtin__.__super__</tt>.
+This will occur regardless of whether the new <tt class="docutils literal">super</tt> semantics are active.
+It is not possible to simply rename <tt class="docutils literal">__builtin__.super</tt>, as that would affect
+modules that do not use the new <tt class="docutils literal">super</tt> semantics. In Python 3.0 it is
+proposed that the name <tt class="docutils literal">__builtin__.super</tt> will be removed.</p>
+<p>Replacing the old usage of super, calls to the next class in the MRO (method
+resolution order) can be made without explicitly creating a <tt class="docutils literal">super</tt>
+instance (although doing so will still be supported via <tt class="docutils literal">__super__</tt>). Every
+function will have an implicit local named <tt class="docutils literal">super</tt>. This name behaves
+identically to a normal local, including use by inner functions via a cell,
+with the following exceptions:</p>
+<ol class="arabic simple">
+<li>Assigning to the name <tt class="docutils literal">super</tt> will raise a <tt class="docutils literal">SyntaxError</tt> at compile time;</li>
+<li>Calling a static method or normal function that accesses the name <tt class="docutils literal">super</tt>
+will raise a <tt class="docutils literal">TypeError</tt> at runtime.</li>
+</ol>
+<p>Every function that uses the name <tt class="docutils literal">super</tt>, or has an inner function that
+uses the name <tt class="docutils literal">super</tt>, will include a preamble that performs the equivalent
+of:</p>
+<pre class="literal-block">
+super = __builtin__.__super__(&lt;class&gt;, &lt;instance&gt;)
+</pre>
+<p>where <tt class="docutils literal">&lt;class&gt;</tt> is the class that the method was defined in, and
+<tt class="docutils literal">&lt;instance&gt;</tt> is the first parameter of the method (normally <tt class="docutils literal">self</tt> for
+instance methods, and <tt class="docutils literal">cls</tt> for class methods). For static methods and normal
+functions, <tt class="docutils literal">&lt;class&gt;</tt> will be <tt class="docutils literal">None</tt>, resulting in a <tt class="docutils literal">TypeError</tt> being
+raised during the preamble.</p>
+<p>Note: The relationship between <tt class="docutils literal">super</tt> and <tt class="docutils literal">__super__</tt> is similar to that
+between <tt class="docutils literal">import</tt> and <tt class="docutils literal">__import__</tt>.</p>
+<p>Much of this was discussed in the thread of the python-dev list, &quot;Fixing super
+anyone?&quot; <a class="footnote-reference" href="#id3" id="id1">[1]</a>.</p>
+<div class="section" id="open-issues">
+<h2><a class="toc-backref" href="#id9">Open Issues</a></h2>
+<div class="section" id="determining-the-class-object-to-use">
+<h3><a class="toc-backref" href="#id10">Determining the class object to use</a></h3>
+<p>The exact mechanism for associating the method with the defining class is not
+specified in this PEP, and should be chosen for maximum performance. For
+CPython, it is suggested that the class instance be held in a C-level variable
+on the function object which is bound to one of <tt class="docutils literal">NULL</tt> (not part of a class),
+<tt class="docutils literal">Py_None</tt> (static method) or a class object (instance or class method).</p>
+</div>
+<div class="section" id="should-super-actually-become-a-keyword">
+<h3><a class="toc-backref" href="#id11">Should <tt class="docutils literal">super</tt> actually become a keyword?</a></h3>
+<p>With this proposal, <tt class="docutils literal">super</tt> would become a keyword to the same extent that
+<tt class="docutils literal">None</tt> is a keyword. It is possible that further restricting the <tt class="docutils literal">super</tt>
+name may simplify implementation, however some are against the actual keyword-
+ization of super. The simplest solution is often the correct solution and the
+simplest solution may well not be adding additional keywords to the language
+when they are not needed. Still, it may solve other open issues.</p>
+</div>
+</div>
+<div class="section" id="closed-issues">
+<h2><a class="toc-backref" href="#id12">Closed Issues</a></h2>
+<div class="section" id="super-used-with-call-attributes">
+<h3><a class="toc-backref" href="#id13">super used with __call__ attributes</a></h3>
+<p>It was considered that it might be a problem that instantiating super instances
+the classic way, because calling it would lookup the __call__ attribute and
+thus try to perform an automatic super lookup to the next class in the MRO.
+However, this was found to be false, because calling an object only looks up
+the __call__ method directly on the object's type. The following example shows
+this in action.</p>
+<pre class="literal-block">
+class A(object):
+    def __call__(self):
+        return '__call__'
+    def __getattribute__(self, attr):
+        if attr == '__call__':
+            return lambda: '__getattribute__'
+a = A()
+assert a() == '__call__'
+assert a.__call__() == '__getattribute__'
+</pre>
+<p>In any case, with the renaming of <tt class="docutils literal">__builtin__.super</tt> to
+<tt class="docutils literal">__builtin__.__super__</tt> this issue goes away entirely.</p>
+</div>
+</div>
+</div>
+<div class="section" id="reference-implementation">
+<h1><a class="toc-backref" href="#id14">Reference Implementation</a></h1>
+<p>It is impossible to implement the above specification entirely in Python. This
+reference implementation has the following differences to the specification:</p>
+<ol class="arabic simple">
+<li>New <tt class="docutils literal">super</tt> semantics are implemented using bytecode hacking.</li>
+<li>Assignment to <tt class="docutils literal">super</tt> is not a <tt class="docutils literal">SyntaxError</tt>. Also see point #4.</li>
+<li>Classes must either use the metaclass <tt class="docutils literal">autosuper_meta</tt> or inherit from
+the base class <tt class="docutils literal">autosuper</tt> to acquire the new <tt class="docutils literal">super</tt> semantics.</li>
+<li><tt class="docutils literal">super</tt> is not an implicit local variable. In particular, for inner
+functions to be able to use the super instance, there must be an assignment
+of the form <tt class="docutils literal">super = super</tt> in the method.</li>
+</ol>
+<p>The reference implementation assumes that it is being run on Python 2.5+.</p>
+<pre class="literal-block">
+#!/usr/bin/env python
+#
+# autosuper.py
+
+from array import array
+import dis
+import new
+import types
+import __builtin__
+__builtin__.__super__ = __builtin__.super
+del __builtin__.super
+
+# We need these for modifying bytecode
+from opcode import opmap, HAVE_ARGUMENT, EXTENDED_ARG
+
+LOAD_GLOBAL = opmap['LOAD_GLOBAL']
+LOAD_NAME = opmap['LOAD_NAME']
+LOAD_CONST = opmap['LOAD_CONST']
+LOAD_FAST = opmap['LOAD_FAST']
+LOAD_ATTR = opmap['LOAD_ATTR']
+STORE_FAST = opmap['STORE_FAST']
+LOAD_DEREF = opmap['LOAD_DEREF']
+STORE_DEREF = opmap['STORE_DEREF']
+CALL_FUNCTION = opmap['CALL_FUNCTION']
+STORE_GLOBAL = opmap['STORE_GLOBAL']
+DUP_TOP = opmap['DUP_TOP']
+POP_TOP = opmap['POP_TOP']
+NOP = opmap['NOP']
+JUMP_FORWARD = opmap['JUMP_FORWARD']
+ABSOLUTE_TARGET = dis.hasjabs
+
+def _oparg(code, opcode_pos):
+    return code[opcode_pos+1] + (code[opcode_pos+2] &lt;&lt; 8)
+
+def _bind_autosuper(func, cls):
+    co = func.func_code
+    name = func.func_name
+    newcode = array('B', co.co_code)
+    codelen = len(newcode)
+    newconsts = list(co.co_consts)
+    newvarnames = list(co.co_varnames)
+
+    # Check if the global 'super' keyword is already present
+    try:
+        sn_pos = list(co.co_names).index('super')
+    except ValueError:
+        sn_pos = None
+
+    # Check if the varname 'super' keyword is already present
+    try:
+        sv_pos = newvarnames.index('super')
+    except ValueError:
+        sv_pos = None
+
+    # Check if the callvar 'super' keyword is already present
+    try:
+        sc_pos = list(co.co_cellvars).index('super')
+    except ValueError:
+        sc_pos = None
+
+    # If 'super' isn't used anywhere in the function, we don't have anything to do
+    if sn_pos is None and sv_pos is None and sc_pos is None:
+        return func
+
+    c_pos = None
+    s_pos = None
+    n_pos = None
+
+    # Check if the 'cls_name' and 'super' objects are already in the constants
+    for pos, o in enumerate(newconsts):
+        if o is cls:
+            c_pos = pos
+
+        if o is __super__:
+            s_pos = pos
+
+        if o == name:
+            n_pos = pos
+
+    # Add in any missing objects to constants and varnames
+    if c_pos is None:
+        c_pos = len(newconsts)
+        newconsts.append(cls)
+
+    if n_pos is None:
+        n_pos = len(newconsts)
+        newconsts.append(name)
+
+    if s_pos is None:
+        s_pos = len(newconsts)
+        newconsts.append(__super__)
+
+    if sv_pos is None:
+        sv_pos = len(newvarnames)
+        newvarnames.append('super')
+
+    # This goes at the start of the function. It is:
+    #
+    #   super = __super__(cls, self)
+    #
+    # If 'super' is a cell variable, we store to both the
+    # local and cell variables (i.e. STORE_FAST and STORE_DEREF).
+    #
+    preamble = [
+        LOAD_CONST, s_pos &amp; 0xFF, s_pos &gt;&gt; 8,
+        LOAD_CONST, c_pos &amp; 0xFF, c_pos &gt;&gt; 8,
+        LOAD_FAST, 0, 0,
+        CALL_FUNCTION, 2, 0,
+    ]
+
+    if sc_pos is None:
+        # 'super' is not a cell variable - we can just use the local variable
+        preamble += [
+            STORE_FAST, sv_pos &amp; 0xFF, sv_pos &gt;&gt; 8,
+        ]
+    else:
+        # If 'super' is a cell variable, we need to handle LOAD_DEREF.
+        preamble += [
+            DUP_TOP,
+            STORE_FAST, sv_pos &amp; 0xFF, sv_pos &gt;&gt; 8,
+            STORE_DEREF, sc_pos &amp; 0xFF, sc_pos &gt;&gt; 8,
+        ]
+
+    preamble = array('B', preamble)
+
+    # Bytecode for loading the local 'super' variable.
+    load_super = array('B', [
+        LOAD_FAST, sv_pos &amp; 0xFF, sv_pos &gt;&gt; 8,
+    ])
+
+    preamble_len = len(preamble)
+    need_preamble = False
+    i = 0
+
+    while i &lt; codelen:
+        opcode = newcode[i]
+        need_load = False
+        remove_store = False
+
+        if opcode == EXTENDED_ARG:
+            raise TypeError(&quot;Cannot use 'super' in function with EXTENDED_ARG opcode&quot;)
+
+        # If the opcode is an absolute target it needs to be adjusted
+        # to take into account the preamble.
+        elif opcode in ABSOLUTE_TARGET:
+            oparg = _oparg(newcode, i) + preamble_len
+            newcode[i+1] = oparg &amp; 0xFF
+            newcode[i+2] = oparg &gt;&gt; 8
+
+        # If LOAD_GLOBAL(super) or LOAD_NAME(super) then we want to change it into
+        # LOAD_FAST(super)
+        elif (opcode == LOAD_GLOBAL or opcode == LOAD_NAME) and _oparg(newcode, i) == sn_pos:
+            need_preamble = need_load = True
+
+        # If LOAD_FAST(super) then we just need to add the preamble
+        elif opcode == LOAD_FAST and _oparg(newcode, i) == sv_pos:
+            need_preamble = need_load = True
+
+        # If LOAD_DEREF(super) then we change it into LOAD_FAST(super) because
+        # it's slightly faster.
+        elif opcode == LOAD_DEREF and _oparg(newcode, i) == sc_pos:
+            need_preamble = need_load = True
+
+        if need_load:
+            newcode[i:i+3] = load_super
+
+        i += 1
+
+        if opcode &gt;= HAVE_ARGUMENT:
+            i += 2
+
+    # No changes needed - get out.
+    if not need_preamble:
+        return func
+
+    # Our preamble will have 3 things on the stack
+    co_stacksize = max(3, co.co_stacksize)
+
+    # Conceptually, our preamble is on the `def` line.
+    co_lnotab = array('B', co.co_lnotab)
+
+    if co_lnotab:
+        co_lnotab[0] += preamble_len
+
+    co_lnotab = co_lnotab.tostring()
+
+    # Our code consists of the preamble and the modified code.
+    codestr = (preamble + newcode).tostring()
+
+    codeobj = new.code(co.co_argcount, len(newvarnames), co_stacksize,
+                       co.co_flags, codestr, tuple(newconsts), co.co_names,
+                       tuple(newvarnames), co.co_filename, co.co_name,
+                       co.co_firstlineno, co_lnotab, co.co_freevars,
+                       co.co_cellvars)
+
+    func.func_code = codeobj
+    func.func_class = cls
+    return func
+
+class autosuper_meta(type):
+    def __init__(cls, name, bases, clsdict):
+        UnboundMethodType = types.UnboundMethodType
+
+        for v in vars(cls):
+            o = getattr(cls, v)
+            if isinstance(o, UnboundMethodType):
+                _bind_autosuper(o.im_func, cls)
+
+class autosuper(object):
+    __metaclass__ = autosuper_meta
+
+if __name__ == '__main__':
+    class A(autosuper):
+        def f(self):
+            return 'A'
+
+    class B(A):
+        def f(self):
+            return 'B' + super.f()
+
+    class C(A):
+        def f(self):
+            def inner():
+                return 'C' + super.f()
+
+            # Needed to put 'super' into a cell
+            super = super
+            return inner()
+
+    class D(B, C):
+        def f(self, arg=None):
+            var = None
+            return 'D' + super.f()
+
+    assert D().f() == 'DBCA'
+</pre>
+<p>Disassembly of B.f and C.f reveals the different preambles used when <tt class="docutils literal">super</tt>
+is simply a local variable compared to when it is used by an inner function.</p>
+<pre class="literal-block">
+&gt;&gt;&gt; dis.dis(B.f)
+
+214           0 LOAD_CONST               4 (&lt;type 'super'&gt;)
+              3 LOAD_CONST               2 (&lt;class '__main__.B'&gt;)
+              6 LOAD_FAST                0 (self)
+              9 CALL_FUNCTION            2
+             12 STORE_FAST               1 (super)
+
+215          15 LOAD_CONST               1 ('B')
+             18 LOAD_FAST                1 (super)
+             21 LOAD_ATTR                1 (f)
+             24 CALL_FUNCTION            0
+             27 BINARY_ADD
+             28 RETURN_VALUE
+</pre>
+<pre class="literal-block">
+&gt;&gt;&gt; dis.dis(C.f)
+
+218           0 LOAD_CONST               4 (&lt;type 'super'&gt;)
+              3 LOAD_CONST               2 (&lt;class '__main__.C'&gt;)
+              6 LOAD_FAST                0 (self)
+              9 CALL_FUNCTION            2
+             12 DUP_TOP
+             13 STORE_FAST               1 (super)
+             16 STORE_DEREF              0 (super)
+
+219          19 LOAD_CLOSURE             0 (super)
+             22 LOAD_CONST               1 (&lt;code object inner at 00C160A0, file &quot;autosuper.py&quot;, line 219&gt;)
+             25 MAKE_CLOSURE             0
+             28 STORE_FAST               2 (inner)
+
+223          31 LOAD_FAST                1 (super)
+             34 STORE_DEREF              0 (super)
+
+224          37 LOAD_FAST                2 (inner)
+             40 CALL_FUNCTION            0
+             43 RETURN_VALUE
+</pre>
+<p>Note that in the final implementation, the preamble would not be part of the
+bytecode of the method, but would occur immediately following unpacking of
+parameters.</p>
+</div>
+<div class="section" id="alternative-proposals">
+<h1><a class="toc-backref" href="#id15">Alternative Proposals</a></h1>
+<div class="section" id="no-changes">
+<h2><a class="toc-backref" href="#id16">No Changes</a></h2>
+<p>Although its always attractive to just keep things how they are, people have
+sought a change in the usage of super calling for some time, and for good
+reason, all mentioned previously.</p>
+<ul class="simple">
+<li>Decoupling from the class name (which might not even be bound to the
+right class anymore!)</li>
+<li>Simpler looking, cleaner super calls would be better</li>
+</ul>
+</div>
+<div class="section" id="dynamic-attribute-on-super-type">
+<h2><a class="toc-backref" href="#id17">Dynamic attribute on super type</a></h2>
+<p>The proposal adds a dynamic attribute lookup to the super type, which will
+automatically determine the proper class and instance parameters. Each super
+attribute lookup identifies these parameters and performs the super lookup on
+the instance, as the current super implementation does with the explicit
+invokation of a super instance upon a class and instance.</p>
+<p>This proposal relies on sys._getframe(), which is not appropriate for anything
+except a prototype implementation.</p>
+</div>
+<div class="section" id="super-this-class-self">
+<h2><a class="toc-backref" href="#id18">super(__this_class__, self)</a></h2>
+<p>This is nearly an anti-proposal, as it basically relies on the acceptance of
+the __this_class__ PEP, which proposes a special name that would always be
+bound to the class within which it is used. If that is accepted, __this_class__
+could simply be used instead of the class' name explicitly, solving the name
+binding issues <a class="footnote-reference" href="#id4" id="id2">[2]</a>.</p>
+</div>
+<div class="section" id="self-super-foo-args">
+<h2><a class="toc-backref" href="#id19">self.__super__.foo(*args)</a></h2>
+<p>The __super__ attribute is mentioned in this PEP in several places, and could
+be a candidate for the complete solution, actually using it explicitly instead
+of any super usage directly. However, double-underscore names are usually an
+internal detail, and attempted to be kept out of everyday code.</p>
+</div>
+<div class="section" id="super-self-args-or-super-self-args">
+<h2><a class="toc-backref" href="#id20">super(self, *args) or __super__(self, *args)</a></h2>
+<p>This solution only solves the problem of the type indication, does not handle
+differently named super methods, and is explicit about the name of the
+instance. It is less flexable without being able to enacted on other method
+names, in cases where that is needed. One use case this fails is where a base-
+class has a factory classmethod and a subclass has two factory classmethods,
+both of which needing to properly make super calls to the one in the base-
+class.</p>
+</div>
+<div class="section" id="super-foo-self-args">
+<h2><a class="toc-backref" href="#id21">super.foo(self, *args)</a></h2>
+<p>This variation actually eliminates the problems with locating the proper
+instance, and if any of the alternatives were pushed into the spotlight, I
+would want it to be this one.</p>
+</div>
+<div class="section" id="super-or-super">
+<h2><a class="toc-backref" href="#id22">super or super()</a></h2>
+<p>This proposal leaves no room for different names, signatures, or application
+to other classes, or instances. A way to allow some similar use alongside the
+normal proposal would be favorable, encouraging good design of multiple
+inheritance trees and compatible methods.</p>
+</div>
+<div class="section" id="super-p-kw">
+<h2><a class="toc-backref" href="#id23">super(*p, **kw)</a></h2>
+<p>There has been the proposal that directly calling <tt class="docutils literal"><span class="pre">super(*p,</span> **kw)</tt> would
+be equivalent to calling the method on the <tt class="docutils literal">super</tt> object with the same name
+as the method currently being executed i.e. the following two methods would be
+equivalent:</p>
+<pre class="literal-block">
+def f(self, *p, **kw):
+    super.f(*p, **kw)
+</pre>
+<pre class="literal-block">
+def f(self, *p, **kw):
+    super(*p, **kw)
+</pre>
+<p>There is strong sentiment for and against this, but implementation and style
+concerns are obvious. Guido has suggested that this should be excluded from
+this PEP on the principle of KISS (Keep It Simple Stupid).</p>
+</div>
+</div>
+<div class="section" id="history">
+<h1><a class="toc-backref" href="#id24">History</a></h1>
+<dl class="docutils">
+<dt>29-Apr-2007 - Changed title from &quot;Super As A Keyword&quot; to &quot;New Super&quot;</dt>
+<dd><ul class="first last simple">
+<li>Updated much of the language and added a terminology section
+for clarification in confusing places.</li>
+<li>Added reference implementation and history sections.</li>
+</ul>
+</dd>
+<dt>06-May-2007 - Updated by Tim Delaney to reflect discussions on the python-3000</dt>
+<dd>and python-dev mailing lists.</dd>
+</dl>
+</div>
+<div class="section" id="references">
+<h1><a class="toc-backref" href="#id25">References</a></h1>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Fixing super anyone?
+(<a class="reference external" href="http://mail.python.org/pipermail/python-3000/2007-April/006667.html">http://mail.python.org/pipermail/python-3000/2007-April/006667.html</a>)</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="/dev/peps/pep-3130">PEP 3130</a>: Access to Module/Class/Function Currently Being Defined (this)
+(<a class="reference external" href="http://mail.python.org/pipermail/python-ideas/2007-April/000542.html">http://mail.python.org/pipermail/python-ideas/2007-April/000542.html</a>)</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="copyright">
+<h1><a class="toc-backref" href="#id26">Copyright</a></h1>
+<p>This document has been placed in the public domain.</p>
+<!-- Local Variables:
+mode: indented-text
+indent-tabs-mode: nil
+sentence-end-double-space: t
+fill-column: 70
+coding: utf-8
+End: -->
+</div>
+
+
+
+      </div>
+
+      
+      <div id="footer">
+	<div id="credits">
+ 	  <a href="/about/website">Website maintained by the Python community</a><br/>
+	  <a href="http://www.xs4all.com/" title="Web and email hosting provided by xs4all, Netherlands">hosting by xs4all</a> /
+	  <a href="http://www.timparkin.co.uk/" title="Design by Tim Parkin, Yorkshire man, photographer and developer">design by Tim Parkin</a>
+	</div>
+	Copyright &copy; 1990-2013, <a href='/psf/'>Python Software Foundation</a><br/>
+	<a href="/about/legal">Legal Statements</a>
+      </div>
+
+
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+

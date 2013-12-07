@@ -1,0 +1,821 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>PEP 302 -- New Import Hooks</title>
+  <meta name="keywords" content="PEP 302 -- New Import Hooks" />
+  <meta name="description" content="PEP 302 -- New Import Hooks" />
+  <link rel="alternate" type="application/rss+xml" title="Community Events"
+        href="http://www.python.org/channews.rdf" />
+  <link rel="alternate" type="application/rss+xml" title="Python Recipes"
+        href="http://aspn.activestate.com/ASPN/Cookbook/Python/index_rss" />
+  <link rel="alternate" type="application/rss+xml" title="Usergroup News"
+        href="http://python-groups.blogspot.com/feeds/posts/default" />
+  <link rel="alternate" type="application/rss+xml" title="Python Screencasts"
+        href="http://www.showmedo.com/latestVideoFeed/rss2.0?tag=python" />
+  <link rel="alternate" type="application/rss+xml" title="Python Podcasts"
+        href="http://www.awaretek.com/python/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Foundation News"
+        href="http://feeds.feedburner.com/PythonSoftwareFoundationNews" />
+  <link rel="alternate" type="application/rss+xml" title="Python Enhancement Proposals"
+        href="http://www.python.org/dev/peps/peps.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Job Opportunities"
+        href="http://www.python.org/community/jobs/jobs.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Reddit Feed of Python What's New Online"
+        href="http://www.reddit.com/r/Python/.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Insider"
+        href="http://feeds.feedburner.com/PythonInsider" />
+
+  <link rel="stylesheet" type="text/css" media="screen" id="screen-switcher-stylesheet"
+        href="/styles/screen-switcher-default.css" />
+  <link rel="stylesheet" type="text/css" media="sc&#82;een"
+        href="/styles/netscape4.css" />
+  <link rel="stylesheet" type="text/css" media="print"
+        href="/styles/print.css" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/largestyles.css" title="large text" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/defaultfonts.css" title="default fonts" />
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search under the www.python.org Domain"
+        href="/search-pysite.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Wiki"
+        href="/search-pywiki.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within Python Books at Google Book Search"
+        href="/search-pybooks.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Documentation"
+        href="/search-pydocs.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for a Module in the Standard Library"
+        href="/search-pymodules.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for Packages inside the Cheeseshop (PyPI)"
+        href="/search-pycheese.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search Archives of the Main Python Mailing List"
+        href="/search-pythonlist.xml"/>
+
+  <script type="text/javascript" src="/js/iotbs2-key-directors-load.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-directors.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-core.js"></script>
+
+</head>
+
+
+<body>
+  <!-- Logo -->
+  <h1 id="logoheader">
+    <a href="/" id="logolink" accesskey="1"><img id="logo" src="/images/python-logo.gif" alt="homepage" border="0" /></a>
+  </h1>
+  <!-- Skip to Navigation -->
+  <div class="skiptonav"><a href="#left-hand-navigation" accesskey="2"><img src="/images/trans.gif" id="skiptonav" alt="skip to navigation" border="0" /></a></div>
+  <div class="skiptonav"><a href="#content-body" accesskey="3"><img src="/images/trans.gif" id="skiptocontent" alt="skip to content" border="0" /></a></div>
+  <!-- Utility Menu -->
+  <div id="utility-menu">
+    <!-- Search Box -->
+    <div id="searchbox">
+      <form method="get" action="http://google.com/search" id="searchform" name="searchform">
+        <div id="search">
+          <input type="hidden" id="domains" name="domains" value="www.python.org" />
+          <input type="hidden" id="sitesearch" name="sitesearch" value="www.python.org" />
+          <input type="hidden" id="sourceid" name="sourceid" value="google-search" />
+          <input type="text" class="input-text" name="q" id="q" />
+          <input type="submit" value="search" class="input-button" name="submit" id="submit" />
+          <a href="/search" class="reference">Advanced Search</a>
+        </div>
+      </form>
+    </div>
+    <div id="screen-switcher"></div>
+  </div>
+
+  <div id="left-hand-navigation">
+    <!-- Main Menu -->
+    <div id="menu">
+      <ul class="level-one">
+            <li>
+          <a href="/about/" title="About The Python Language">About</a>
+        </li>
+            <li>
+          <a href="/news/" title="Major Happenings Within the Python Community">News</a>
+        </li>
+            <li>
+          <a href="/doc/" title="Tutorials, Library Reference, C API">Documentation</a>
+        </li>
+            <li>
+          <a href="/download/" title="Start Running Python Under Windows, Mac, Linux and Others">Download</a>
+        </li>
+            <li>
+          <a href="/getit/" title="Alternate Download page for China">ä¸è½½</a>
+        </li>
+            <li>
+          <a href="/community/" title="Mailing Lists, Jobs, Conferences, SIGs, Online Chats">Community</a>
+        </li>
+            <li>
+          <a href="/psf/" title="Python Software Foundation">Foundation</a>
+        </li>
+            <li>
+          <a href="http://docs.python.org/devguide/" title="Development of the Python language and website">Core Development</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Quick Links -->
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/">Python Wiki</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://blog.python.org/">Python Insider Blog</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/Python2orPython3">Python 2 or 3?</a></h4>
+    <h4><a style="color:#D58228; margin-top:1.5em" href="/psf/donations/">Help Fund Python</a></h4>
+    <div style="align:center; padding-top: 0.5em; padding-left: 1em">
+      <a href="/psf/donations/"><img width="116" height="42" src="/images/donate.png" alt="" title="" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.5em; padding-left: 2.5em">
+            <a href="http://wiki.python.org/moin/Languages"><img
+	      style="align:center"
+              width="94" height="46"
+	      src="/images/worldmap.jpg" alt="[Python resources in languages other than English]" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.0em; padding-left: 0em">
+       <h4><a href="http://wiki.python.org/moin/Languages">Non-English Resources</a></h4>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Release%20Schedule&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com/public/basic.ics">
+                Python Release Schedule iCal Calendar
+            </a>
+        </iframe>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Events%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com/public/basic.ics">
+                Python Events iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=User%20Group%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com&amp;color=%23125A12&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com/public/basic.ics">
+                Python User Group iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+  </div>
+
+  <div id="content-body">
+    <div id="body-main">
+      <div id="content">
+        
+          <div id="breadcrumb">
+               <a href="/dev/peps/">PEP Index</a>
+               <span class="breadcrumb-separator">&gt;</span>
+            
+            PEP 302 -- New Import Hooks
+          </div>
+
+
+
+        <!--
+This HTML is auto-generated.  DO NOT EDIT THIS FILE!  If you are writing a new
+PEP, see http://www.python.org/dev/peps/pep-0001 for instructions and links
+to templates.  DO NOT USE THIS HTML FILE AS YOUR TEMPLATE!
+-->
+<table class="rfc2822 docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">PEP:</th><td class="field-body">302</td>
+</tr>
+<tr class="field"><th class="field-name">Title:</th><td class="field-body">New Import Hooks</td>
+</tr>
+<tr class="field"><th class="field-name">Version:</th><td class="field-body">af43643e51da</td>
+</tr>
+<tr class="field"><th class="field-name">Last-Modified:</th><td class="field-body"><a class="reference external" href="http://hg.python.org/peps/file/tip/pep-0302.txt">2013-05-04 14:04:46 -0400 (Sat, 04 May 2013)</a></td>
+</tr>
+<tr class="field"><th class="field-name">Author:</th><td class="field-body">Just van Rossum &lt;just&#32;&#97;t&#32;letterror.com&gt;,
+Paul Moore &lt;gustav&#32;&#97;t&#32;morpheus.demon.co.uk&gt;</td>
+</tr>
+<tr class="field"><th class="field-name">Status:</th><td class="field-body">Final</td>
+</tr>
+<tr class="field"><th class="field-name">Type:</th><td class="field-body">Standards Track</td>
+</tr>
+<tr class="field"><th class="field-name">Content-Type:</th><td class="field-body"><a class="reference external" href="/dev/peps/pep-0012">text/x-rst</a></td>
+</tr>
+<tr class="field"><th class="field-name">Created:</th><td class="field-body">19-Dec-2002</td>
+</tr>
+<tr class="field"><th class="field-name">Python-Version:</th><td class="field-body">2.3</td>
+</tr>
+<tr class="field"><th class="field-name">Post-History:</th><td class="field-body">19-Dec-2002</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#abstract" id="id23">Abstract</a></li>
+<li><a class="reference internal" href="#motivation" id="id24">Motivation</a></li>
+<li><a class="reference internal" href="#use-cases" id="id25">Use cases</a></li>
+<li><a class="reference internal" href="#rationale" id="id26">Rationale</a></li>
+<li><a class="reference internal" href="#specification-part-1-the-importer-protocol" id="id27">Specification part 1: The Importer Protocol</a></li>
+<li><a class="reference internal" href="#specification-part-2-registering-hooks" id="id28">Specification part 2: Registering Hooks</a></li>
+<li><a class="reference internal" href="#packages-and-the-role-of-path" id="id29">Packages and the role of <tt class="docutils literal">__path__</tt></a></li>
+<li><a class="reference internal" href="#optional-extensions-to-the-importer-protocol" id="id30">Optional Extensions to the Importer Protocol</a></li>
+<li><a class="reference internal" href="#integration-with-the-imp-module" id="id31">Integration with the 'imp' module</a></li>
+<li><a class="reference internal" href="#forward-compatibility" id="id32">Forward Compatibility</a></li>
+<li><a class="reference internal" href="#open-issues" id="id33">Open Issues</a></li>
+<li><a class="reference internal" href="#implementation" id="id34">Implementation</a></li>
+<li><a class="reference internal" href="#references-and-footnotes" id="id35">References and Footnotes</a></li>
+<li><a class="reference internal" href="#copyright" id="id36">Copyright</a></li>
+</ul>
+</div>
+<div class="warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The language reference for import <a class="footnote-reference" href="#id21" id="id1">[10]</a> and importlib documentation
+<a class="footnote-reference" href="#id22" id="id2">[11]</a> now supercede this PEP. This document is no longer updated
+and provided for historical purposes only.</p>
+</div>
+<div class="section" id="abstract">
+<h1><a class="toc-backref" href="#id23">Abstract</a></h1>
+<p>This PEP proposes to add a new set of import hooks that offer better
+customization of the Python import mechanism.  Contrary to the current
+<tt class="docutils literal">__import__</tt> hook, a new-style hook can be injected into the existing
+scheme, allowing for a finer grained control of how modules are found and how
+they are loaded.</p>
+</div>
+<div class="section" id="motivation">
+<h1><a class="toc-backref" href="#id24">Motivation</a></h1>
+<p>The only way to customize the import mechanism is currently to override the
+built-in <tt class="docutils literal">__import__</tt> function.  However, overriding <tt class="docutils literal">__import__</tt> has many
+problems.  To begin with:</p>
+<blockquote>
+<ul class="simple">
+<li>An <tt class="docutils literal">__import__</tt> replacement needs to <em>fully</em> reimplement the entire
+import mechanism, or call the original <tt class="docutils literal">__import__</tt> before or after the
+custom code.</li>
+<li>It has very complex semantics and responsibilities.</li>
+<li><tt class="docutils literal">__import__</tt> gets called even for modules that are already in
+<tt class="docutils literal">sys.modules</tt>, which is almost never what you want, unless you're writing
+some sort of monitoring tool.</li>
+</ul>
+</blockquote>
+<p>The situation gets worse when you need to extend the import mechanism from C:
+it's currently impossible, apart from hacking Python's <tt class="docutils literal">import.c</tt> or
+reimplementing much of <tt class="docutils literal">import.c</tt> from scratch.</p>
+<p>There is a fairly long history of tools written in Python that allow extending
+the import mechanism in various way, based on the <tt class="docutils literal">__import__</tt> hook.  The
+Standard Library includes two such tools: <tt class="docutils literal">ihooks.py</tt> (by GvR) and
+<tt class="docutils literal">imputil.py</tt> <a class="footnote-reference" href="#id12" id="id3">[1]</a> (Greg Stein), but perhaps the most famous is <tt class="docutils literal">iu.py</tt> by
+Gordon McMillan, available as part of his Installer package.  Their usefulness
+is somewhat limited because they are written in Python; bootstrapping issues
+need to worked around as you can't load the module containing the hook with
+the hook itself.  So if you want the entire Standard Library to be loadable
+from an import hook, the hook must be written in C.</p>
+</div>
+<div class="section" id="use-cases">
+<h1><a class="toc-backref" href="#id25">Use cases</a></h1>
+<p>This section lists several existing applications that depend on import hooks.
+Among these, a lot of duplicate work was done that could have been saved if
+there had been a more flexible import hook at the time.  This PEP should make
+life a lot easier for similar projects in the future.</p>
+<p>Extending the import mechanism is needed when you want to load modules that
+are stored in a non-standard way.  Examples include modules that are bundled
+together in an archive; byte code that is not stored in a <tt class="docutils literal">pyc</tt> formatted
+file; modules that are loaded from a database over a network.</p>
+<p>The work on this PEP was partly triggered by the implementation of <a class="reference external" href="/dev/peps/pep-0273">PEP 273</a>,
+which adds imports from Zip archives as a built-in feature to Python.  While
+the PEP itself was widely accepted as a must-have feature, the implementation
+left a few things to desire.  For one thing it went through great lengths to
+integrate itself with <tt class="docutils literal">import.c</tt>, adding lots of code that was either
+specific for Zip file imports or <em>not</em> specific to Zip imports, yet was not
+generally useful (or even desirable) either.  Yet the <a class="reference external" href="/dev/peps/pep-0273">PEP 273</a> implementation
+can hardly be blamed for this: it is simply extremely hard to do, given the
+current state of <tt class="docutils literal">import.c</tt>.</p>
+<p>Packaging applications for end users is a typical use case for import hooks,
+if not <em>the</em> typical use case.  Distributing lots of source or <tt class="docutils literal">pyc</tt> files
+around is not always appropriate (let alone a separate Python installation),
+so there is a frequent desire to package all needed modules in a single file.
+So frequent in fact that multiple solutions have been implemented over the
+years.</p>
+<p>The oldest one is included with the Python source code: Freeze <a class="footnote-reference" href="#id13" id="id4">[2]</a>.  It puts
+marshalled byte code into static objects in C source code.  Freeze's &quot;import
+hook&quot; is hard wired into <tt class="docutils literal">import.c</tt>, and has a couple of issues.  Later
+solutions include Fredrik Lundh's Squeeze, Gordon McMillan's Installer, and
+Thomas Heller's py2exe <a class="footnote-reference" href="#id14" id="id5">[3]</a>.  MacPython ships with a tool called
+<tt class="docutils literal">BuildApplication</tt>.</p>
+<p>Squeeze, Installer and py2exe use an <tt class="docutils literal">__import__</tt> based scheme (py2exe
+currently uses Installer's <tt class="docutils literal">iu.py</tt>, Squeeze used <tt class="docutils literal">ihooks.py</tt>), MacPython
+has two Mac-specific import hooks hard wired into <tt class="docutils literal">import.c</tt>, that are
+similar to the Freeze hook.  The hooks proposed in this PEP enables us (at
+least in theory; it's not a short term goal) to get rid of the hard coded
+hooks in <tt class="docutils literal">import.c</tt>, and would allow the <tt class="docutils literal">__import__</tt>-based tools to get
+rid of most of their <tt class="docutils literal">import.c</tt> emulation code.</p>
+<p>Before work on the design and implementation of this PEP was started, a new
+<tt class="docutils literal">BuildApplication</tt>-like tool for Mac OS X prompted one of the authors of
+this PEP (JvR) to expose the table of frozen modules to Python, in the <tt class="docutils literal">imp</tt>
+module.  The main reason was to be able to use the freeze import hook
+(avoiding fancy <tt class="docutils literal">__import__</tt> support), yet to also be able to supply a set
+of modules at runtime.  This resulted in issue #642578 <a class="footnote-reference" href="#id15" id="id6">[4]</a>, which was
+mysteriously accepted (mostly because nobody seemed to care either way ;-).
+Yet it is completely superfluous when this PEP gets accepted, as it offers a
+much nicer and general way to do the same thing.</p>
+</div>
+<div class="section" id="rationale">
+<h1><a class="toc-backref" href="#id26">Rationale</a></h1>
+<p>While experimenting with alternative implementation ideas to get built-in Zip
+import, it was discovered that achieving this is possible with only a fairly
+small amount of changes to <tt class="docutils literal">import.c</tt>.  This allowed to factor out the
+Zip-specific stuff into a new source file, while at the same time creating a
+<em>general</em> new import hook scheme: the one you're reading about now.</p>
+<p>An earlier design allowed non-string objects on <tt class="docutils literal">sys.path</tt>.  Such an object
+would have the necessary methods to handle an import.  This has two
+disadvantages: 1) it breaks code that assumes all items on <tt class="docutils literal">sys.path</tt> are
+strings; 2) it is not compatible with the <tt class="docutils literal">PYTHONPATH</tt> environment variable.
+The latter is directly needed for Zip imports.  A compromise came from Jython:
+allow string <em>subclasses</em> on <tt class="docutils literal">sys.path</tt>, which would then act as importer
+objects.  This avoids some breakage, and seems to work well for Jython (where
+it is used to load modules from <tt class="docutils literal">.jar</tt> files), but it was perceived as an
+&quot;ugly hack&quot;.</p>
+<p>This lead to a more elaborate scheme, (mostly copied from McMillan's
+<tt class="docutils literal">iu.py</tt>) in which each in a list of candidates is asked whether it can
+handle the <tt class="docutils literal">sys.path</tt> item, until one is found that can.  This list of
+candidates is a new object in the <tt class="docutils literal">sys</tt> module: <tt class="docutils literal">sys.path_hooks</tt>.</p>
+<p>Traversing <tt class="docutils literal">sys.path_hooks</tt> for each path item for each new import can be
+expensive, so the results are cached in another new object in the <tt class="docutils literal">sys</tt>
+module: <tt class="docutils literal">sys.path_importer_cache</tt>.  It maps <tt class="docutils literal">sys.path</tt> entries to importer
+objects.</p>
+<p>To minimize the impact on <tt class="docutils literal">import.c</tt> as well as to avoid adding extra
+overhead, it was chosen to not add an explicit hook and importer object for
+the existing file system import logic (as <tt class="docutils literal">iu.py</tt> has), but to simply fall
+back to the built-in logic if no hook on <tt class="docutils literal">sys.path_hooks</tt> could handle the
+path item.  If this is the case, a <tt class="docutils literal">None</tt> value is stored in
+<tt class="docutils literal">sys.path_importer_cache</tt>, again to avoid repeated lookups.  (Later we can
+go further and add a real importer object for the built-in mechanism, for now,
+the <tt class="docutils literal">None</tt> fallback scheme should suffice.)</p>
+<p>A question was raised: what about importers that don't need <em>any</em> entry on
+<tt class="docutils literal">sys.path</tt>? (Built-in and frozen modules fall into that category.)  Again,
+Gordon McMillan to the rescue: <tt class="docutils literal">iu.py</tt> contains a thing he calls the
+<em>metapath</em>.  In this PEP's implementation, it's a list of importer objects
+that is traversed <em>before</em> <tt class="docutils literal">sys.path</tt>.  This list is yet another new object
+in the <tt class="docutils literal">sys</tt> module: <tt class="docutils literal">sys.meta_path</tt>.  Currently, this list is empty by
+default, and frozen and built-in module imports are done after traversing
+<tt class="docutils literal">sys.meta_path</tt>, but still before <tt class="docutils literal">sys.path</tt>.</p>
+</div>
+<div class="section" id="specification-part-1-the-importer-protocol">
+<h1><a class="toc-backref" href="#id27">Specification part 1: The Importer Protocol</a></h1>
+<p>This PEP introduces a new protocol: the &quot;Importer Protocol&quot;.  It is important
+to understand the context in which the protocol operates, so here is a brief
+overview of the outer shells of the import mechanism.</p>
+<p>When an import statement is encountered, the interpreter looks up the
+<tt class="docutils literal">__import__</tt> function in the built-in name space.  <tt class="docutils literal">__import__</tt> is then
+called with four arguments, amongst which are the name of the module being
+imported (may be a dotted name) and a reference to the current global
+namespace.</p>
+<p>The built-in <tt class="docutils literal">__import__</tt> function (known as <tt class="docutils literal">PyImport_ImportModuleEx()</tt>
+in <tt class="docutils literal">import.c</tt>) will then check to see whether the module doing the import is
+a package or a submodule of a package.  If it is indeed a (submodule of a)
+package, it first tries to do the import relative to the package (the parent
+package for a submodule).  For example if a package named &quot;spam&quot; does &quot;import
+eggs&quot;, it will first look for a module named &quot;spam.eggs&quot;.  If that fails, the
+import continues as an absolute import: it will look for a module named
+&quot;eggs&quot;.  Dotted name imports work pretty much the same: if package &quot;spam&quot; does
+&quot;import eggs.bacon&quot; (and &quot;spam.eggs&quot; exists and is itself a package),
+&quot;spam.eggs.bacon&quot; is tried.  If that fails &quot;eggs.bacon&quot; is tried.  (There are
+more subtleties that are not described here, but these are not relevant for
+implementers of the Importer Protocol.)</p>
+<p>Deeper down in the mechanism, a dotted name import is split up by its
+components.  For &quot;import spam.ham&quot;, first an &quot;import spam&quot; is done, and only
+when that succeeds is &quot;ham&quot; imported as a submodule of &quot;spam&quot;.</p>
+<p>The Importer Protocol operates at this level of <em>individual</em> imports.  By the
+time an importer gets a request for &quot;spam.ham&quot;, module &quot;spam&quot; has already been
+imported.</p>
+<p>The protocol involves two objects: a <em>finder</em> and a <em>loader</em>.  A finder object
+has a single method:</p>
+<pre class="literal-block">
+finder.find_module(fullname, path=None)
+</pre>
+<p>This method will be called with the fully qualified name of the module.  If
+the finder is installed on <tt class="docutils literal">sys.meta_path</tt>, it will receive a second
+argument, which is <tt class="docutils literal">None</tt> for a top-level module, or <tt class="docutils literal">package.__path__</tt>
+for submodules or subpackages <a class="footnote-reference" href="#id16" id="id7">[5]</a>.  It should return a loader object if the
+module was found, or <tt class="docutils literal">None</tt> if it wasn't.  If <tt class="docutils literal">find_module()</tt> raises an
+exception, it will be propagated to the caller, aborting the import.</p>
+<p>A loader object also has one method:</p>
+<pre class="literal-block">
+loader.load_module(fullname)
+</pre>
+<p>This method returns the loaded module or raises an exception, preferably
+<tt class="docutils literal">ImportError</tt> if an existing exception is not being propagated.  If
+<tt class="docutils literal">load_module()</tt> is asked to load a module that it cannot, <tt class="docutils literal">ImportError</tt> is
+to be raised.</p>
+<p>In many cases the finder and loader can be one and the same object:
+<tt class="docutils literal">finder.find_module()</tt> would just return <tt class="docutils literal">self</tt>.</p>
+<p>The <tt class="docutils literal">fullname</tt> argument of both methods is the fully qualified module name,
+for example &quot;spam.eggs.ham&quot;.  As explained above, when
+<tt class="docutils literal"><span class="pre">finder.find_module(&quot;spam.eggs.ham&quot;)</span></tt> is called, &quot;spam.eggs&quot; has already
+been imported and added to <tt class="docutils literal">sys.modules</tt>.  However, the <tt class="docutils literal">find_module()</tt>
+method isn't necessarily always called during an actual import: meta tools
+that analyze import dependencies (such as freeze, Installer or py2exe) don't
+actually load modules, so a finder shouldn't <em>depend</em> on the parent package
+being available in <tt class="docutils literal">sys.modules</tt>.</p>
+<p>The <tt class="docutils literal">load_module()</tt> method has a few responsibilities that it must fulfill
+<em>before</em> it runs any code:</p>
+<blockquote>
+<ul>
+<li><p class="first">If there is an existing module object named 'fullname' in <tt class="docutils literal">sys.modules</tt>,
+the loader must use that existing module.  (Otherwise, the <tt class="docutils literal">reload()</tt>
+builtin will not work correctly.)  If a module named 'fullname' does not
+exist in <tt class="docutils literal">sys.modules</tt>, the loader must create a new module object and
+add it to <tt class="docutils literal">sys.modules</tt>.</p>
+<p>Note that the module object <em>must</em> be in <tt class="docutils literal">sys.modules</tt> before the loader
+executes the module code.  This is crucial because the module code may
+(directly or indirectly) import itself; adding it to <tt class="docutils literal">sys.modules</tt>
+beforehand prevents unbounded recursion in the worst case and multiple
+loading in the best.</p>
+<p>If the load fails, the loader needs to remove any module it may have
+inserted into <tt class="docutils literal">sys.modules</tt>. If the module was already in <tt class="docutils literal">sys.modules</tt>
+then the loader should leave it alone.</p>
+</li>
+<li><p class="first">The <tt class="docutils literal">__file__</tt> attribute must be set.  This must be a string, but it may
+be a dummy value, for example &quot;&lt;frozen&gt;&quot;.  The privilege of not having a
+<tt class="docutils literal">__file__</tt> attribute at all is reserved for built-in modules.</p>
+</li>
+<li><p class="first">The <tt class="docutils literal">__name__</tt> attribute must be set.  If one uses <tt class="docutils literal">imp.new_module()</tt>
+then the attribute is set automatically.</p>
+</li>
+<li><p class="first">If it's a package, the <tt class="docutils literal">__path__</tt> variable must be set.  This must be a
+list, but may be empty if <tt class="docutils literal">__path__</tt> has no further significance to the
+importer (more on this later).</p>
+</li>
+<li><p class="first">The <tt class="docutils literal">__loader__</tt> attribute must be set to the loader object.  This is
+mostly for introspection and reloading, but can be used for
+importer-specific extras, for example getting data associated with an
+importer.</p>
+</li>
+<li><p class="first">The <tt class="docutils literal">__package__</tt> attribute <a class="footnote-reference" href="#id19" id="id8">[8]</a> must be set.</p>
+<p>If the module is a Python module (as opposed to a built-in module or a
+dynamically loaded extension), it should execute the module's code in the
+module's global name space (<tt class="docutils literal">module.__dict__</tt>).</p>
+<p>Here is a minimal pattern for a <tt class="docutils literal">load_module()</tt> method:</p>
+<pre class="literal-block">
+# Consider using importlib.util.module_for_loader() to handle
+# most of these details for you.
+def load_module(self, fullname):
+    code = self.get_code(fullname)
+    ispkg = self.is_package(fullname)
+    mod = sys.modules.setdefault(fullname, imp.new_module(fullname))
+    mod.__file__ = &quot;&lt;%s&gt;&quot; % self.__class__.__name__
+    mod.__loader__ = self
+    if ispkg:
+        mod.__path__ = []
+        mod.__package__ = fullname
+    else:
+        mod.__package__ = fullname.rpartition('.')[0]
+    exec(code, mod.__dict__)
+    return mod
+</pre>
+</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="specification-part-2-registering-hooks">
+<h1><a class="toc-backref" href="#id28">Specification part 2: Registering Hooks</a></h1>
+<p>There are two types of import hooks: <em>Meta hooks</em> and <em>Path hooks</em>.  Meta
+hooks are called at the start of import processing, before any other import
+processing (so that meta hooks can override <tt class="docutils literal">sys.path</tt> processing, frozen
+modules, or even built-in modules).  To register a meta hook, simply add the
+finder object to <tt class="docutils literal">sys.meta_path</tt> (the list of registered meta hooks).</p>
+<p>Path hooks are called as part of <tt class="docutils literal">sys.path</tt> (or <tt class="docutils literal">package.__path__</tt>)
+processing, at the point where their associated path item is encountered.  A
+path hook is registered by adding an importer factory to <tt class="docutils literal">sys.path_hooks</tt>.</p>
+<p><tt class="docutils literal">sys.path_hooks</tt> is a list of callables, which will be checked in sequence
+to determine if they can handle a given path item.  The callable is called
+with one argument, the path item.  The callable must raise <tt class="docutils literal">ImportError</tt> if
+it is unable to handle the path item, and return an importer object if it can
+handle the path item.  Note that if the callable returns an importer object
+for a specific <tt class="docutils literal">sys.path</tt> entry, the builtin import machinery will not be
+invoked to handle that entry any longer, even if the importer object later
+fails to find a specific module.  The callable is typically the class of the
+import hook, and hence the class <tt class="docutils literal">__init__()</tt> method is called.  (This is
+also the reason why it should raise <tt class="docutils literal">ImportError</tt>: an <tt class="docutils literal">__init__()</tt> method
+can't return anything.  This would be possible with a <tt class="docutils literal">__new__()</tt> method in
+a new style class, but we don't want to require anything about how a hook is
+implemented.)</p>
+<p>The results of path hook checks are cached in <tt class="docutils literal">sys.path_importer_cache</tt>,
+which is a dictionary mapping path entries to importer objects.  The cache is
+checked before <tt class="docutils literal">sys.path_hooks</tt> is scanned.  If it is necessary to force a
+rescan of <tt class="docutils literal">sys.path_hooks</tt>, it is possible to manually clear all or part of
+<tt class="docutils literal">sys.path_importer_cache</tt>.</p>
+<p>Just like <tt class="docutils literal">sys.path</tt> itself, the new <tt class="docutils literal">sys</tt> variables must have specific
+types:</p>
+<blockquote>
+<ul class="simple">
+<li><tt class="docutils literal">sys.meta_path</tt> and <tt class="docutils literal">sys.path_hooks</tt> must be Python lists.</li>
+<li><tt class="docutils literal">sys.path_importer_cache</tt> must be a Python dict.</li>
+</ul>
+</blockquote>
+<p>Modifying these variables in place is allowed, as is replacing them with new
+objects.</p>
+</div>
+<div class="section" id="packages-and-the-role-of-path">
+<h1><a class="toc-backref" href="#id29">Packages and the role of <tt class="docutils literal">__path__</tt></a></h1>
+<p>If a module has a <tt class="docutils literal">__path__</tt> attribute, the import mechanism will treat it
+as a package.  The <tt class="docutils literal">__path__</tt> variable is used instead of <tt class="docutils literal">sys.path</tt> when
+importing submodules of the package.  The rules for <tt class="docutils literal">sys.path</tt> therefore
+also apply to <tt class="docutils literal">pkg.__path__</tt>.  So <tt class="docutils literal">sys.path_hooks</tt> is also consulted when
+<tt class="docutils literal">pkg.__path__</tt> is traversed.  Meta importers don't necessarily use
+<tt class="docutils literal">sys.path</tt> at all to do their work and may therefore ignore the value of
+<tt class="docutils literal">pkg.__path__</tt>.  In this case it is still advised to set it to list, which
+can be empty.</p>
+</div>
+<div class="section" id="optional-extensions-to-the-importer-protocol">
+<h1><a class="toc-backref" href="#id30">Optional Extensions to the Importer Protocol</a></h1>
+<p>The Importer Protocol defines three optional extensions.  One is to retrieve
+data files, the second is to support module packaging tools and/or tools that
+analyze module dependencies (for example Freeze), while the last is to support
+execution of modules as scripts.  The latter two categories of tools usually
+don't actually <em>load</em> modules, they only need to know if and where they are
+available.  All three extensions are highly recommended for general purpose
+importers, but may safely be left out if those features aren't needed.</p>
+<p>To retrieve the data for arbitrary &quot;files&quot; from the underlying storage
+backend, loader objects may supply a method named <tt class="docutils literal">get_data()</tt>:</p>
+<pre class="literal-block">
+loader.get_data(path)
+</pre>
+<p>This method returns the data as a string, or raise <tt class="docutils literal">IOError</tt> if the &quot;file&quot;
+wasn't found.  The data is always returned as if &quot;binary&quot; mode was used -
+there is no CRLF translation of text files, for example.  It is meant for
+importers that have some file-system-like properties.  The 'path' argument is
+a path that can be constructed by munging <tt class="docutils literal">module.__file__</tt> (or
+<tt class="docutils literal">pkg.__path__</tt> items) with the <tt class="docutils literal">os.path.*</tt> functions, for example:</p>
+<pre class="literal-block">
+d = os.path.dirname(__file__)
+data = __loader__.get_data(os.path.join(d, &quot;logo.gif&quot;))
+</pre>
+<p>The following set of methods may be implemented if support for (for example)
+Freeze-like tools is desirable.  It consists of three additional methods
+which, to make it easier for the caller, each of which should be implemented,
+or none at all:</p>
+<pre class="literal-block">
+loader.is_package(fullname)
+loader.get_code(fullname)
+loader.get_source(fullname)
+</pre>
+<p>All three methods should raise <tt class="docutils literal">ImportError</tt> if the module wasn't found.</p>
+<p>The <tt class="docutils literal">loader.is_package(fullname)</tt> method should return <tt class="docutils literal">True</tt> if the
+module specified by 'fullname' is a package and <tt class="docutils literal">False</tt> if it isn't.</p>
+<p>The <tt class="docutils literal">loader.get_code(fullname)</tt> method should return the code object
+associated with the module, or <tt class="docutils literal">None</tt> if it's a built-in or extension
+module.  If the loader doesn't have the code object but it <em>does</em> have the
+source code, it should return the compiled source code.  (This is so that our
+caller doesn't also need to check <tt class="docutils literal">get_source()</tt> if all it needs is the code
+object.)</p>
+<p>The <tt class="docutils literal">loader.get_source(fullname)</tt> method should return the source code for
+the module as a string (using newline characters for line endings) or <tt class="docutils literal">None</tt>
+if the source is not available (yet it should still raise <tt class="docutils literal">ImportError</tt> if
+the module can't be found by the importer at all).</p>
+<p>To support execution of modules as scripts <a class="footnote-reference" href="#id17" id="id9">[6]</a>, the above three methods for
+finding the code associated with a module must be implemented. In addition to
+those methods, the following method may be provided in order to allow the
+<tt class="docutils literal">runpy</tt> module to correctly set the <tt class="docutils literal">__file__</tt> attribute:</p>
+<pre class="literal-block">
+loader.get_filename(fullname)
+</pre>
+<p>This method should return the value that <tt class="docutils literal">__file__</tt> would be set to if the
+named module was loaded. If the module is not found, then <tt class="docutils literal">ImportError</tt>
+should be raised.</p>
+</div>
+<div class="section" id="integration-with-the-imp-module">
+<h1><a class="toc-backref" href="#id31">Integration with the 'imp' module</a></h1>
+<p>The new import hooks are not easily integrated in the existing
+<tt class="docutils literal">imp.find_module()</tt> and <tt class="docutils literal">imp.load_module()</tt> calls.  It's questionable
+whether it's possible at all without breaking code; it is better to simply add
+a new function to the <tt class="docutils literal">imp</tt> module.  The meaning of the existing
+<tt class="docutils literal">imp.find_module()</tt> and <tt class="docutils literal">imp.load_module()</tt> calls changes from: &quot;they
+expose the built-in import mechanism&quot; to &quot;they expose the basic <em>unhooked</em>
+built-in import mechanism&quot;.  They simply won't invoke any import hooks.  A new
+<tt class="docutils literal">imp</tt> module function is proposed (but not yet implemented) under the name
+<tt class="docutils literal">get_loader()</tt>, which is used as in the following pattern:</p>
+<pre class="literal-block">
+loader = imp.get_loader(fullname, path)
+if loader is not None:
+    loader.load_module(fullname)
+</pre>
+<p>In the case of a &quot;basic&quot; import, one the <cite>imp.find_module()</cite> function would
+handle, the loader object would be a wrapper for the current output of
+<tt class="docutils literal">imp.find_module()</tt>, and <tt class="docutils literal">loader.load_module()</tt> would call
+<tt class="docutils literal">imp.load_module()</tt> with that output.</p>
+<p>Note that this wrapper is currently not yet implemented, although a Python
+prototype exists in the <tt class="docutils literal">test_importhooks.py</tt> script (the <tt class="docutils literal">ImpWrapper</tt>
+class) included with the patch.</p>
+</div>
+<div class="section" id="forward-compatibility">
+<h1><a class="toc-backref" href="#id32">Forward Compatibility</a></h1>
+<p>Existing <tt class="docutils literal">__import__</tt> hooks will not invoke new-style hooks by magic, unless
+they call the original <tt class="docutils literal">__import__</tt> function as a fallback.  For example,
+<tt class="docutils literal">ihooks.py</tt>, <tt class="docutils literal">iu.py</tt> and <tt class="docutils literal">imputil.py</tt> are in this sense not forward
+compatible with this PEP.</p>
+</div>
+<div class="section" id="open-issues">
+<h1><a class="toc-backref" href="#id33">Open Issues</a></h1>
+<p>Modules often need supporting data files to do their job, particularly in the
+case of complex packages or full applications.  Current practice is generally
+to locate such files via <tt class="docutils literal">sys.path</tt> (or a <tt class="docutils literal">package.__path__</tt> attribute).
+This approach will not work, in general, for modules loaded via an import
+hook.</p>
+<p>There are a number of possible ways to address this problem:</p>
+<blockquote>
+<ul class="simple">
+<li>&quot;Don't do that&quot;.  If a package needs to locate data files via its
+<tt class="docutils literal">__path__</tt>, it is not suitable for loading via an import hook.  The
+package can still be located on a directory in <tt class="docutils literal">sys.path</tt>, as at present,
+so this should not be seen as a major issue.</li>
+<li>Locate data files from a standard location, rather than relative to the
+module file.  A relatively simple approach (which is supported by
+distutils) would be to locate data files based on <tt class="docutils literal">sys.prefix</tt> (or
+<tt class="docutils literal">sys.exec_prefix</tt>).  For example, looking in
+<tt class="docutils literal">os.path.join(sys.prefix, &quot;data&quot;, package_name)</tt>.</li>
+<li>Import hooks could offer a standard way of getting at data files relative
+to the module file.  The standard <tt class="docutils literal">zipimport</tt> object provides a method
+<tt class="docutils literal">get_data(name)</tt> which returns the content of the &quot;file&quot; called <tt class="docutils literal">name</tt>,
+as a string.  To allow modules to get at the importer object, <tt class="docutils literal">zipimport</tt>
+also adds an attribute <tt class="docutils literal">__loader__</tt> to the module, containing the
+<tt class="docutils literal">zipimport</tt> object used to load the module.  If such an approach is used,
+it is important that client code takes care not to break if the
+<tt class="docutils literal">get_data()</tt> method is not available, so it is not clear that this
+approach offers a general answer to the problem.</li>
+</ul>
+</blockquote>
+<p>It was suggested on python-dev that it would be useful to be able to receive a
+list of available modules from an importer and/or a list of available data
+files for use with the <tt class="docutils literal">get_data()</tt> method.  The protocol could grow two
+additional extensions, say <tt class="docutils literal">list_modules()</tt> and <tt class="docutils literal">list_files()</tt>.  The
+latter makes sense on loader objects with a <tt class="docutils literal">get_data()</tt> method.  However,
+it's a bit unclear which object should implement <tt class="docutils literal">list_modules()</tt>: the
+importer or the loader or both?</p>
+<p>This PEP is biased towards loading modules from alternative places: it
+currently doesn't offer dedicated solutions for loading modules from
+alternative file formats or with alternative compilers.  In contrast, the
+<tt class="docutils literal">ihooks</tt> module from the standard library does have a fairly straightforward
+way to do this.  The Quixote project <a class="footnote-reference" href="#id18" id="id10">[7]</a> uses this technique to import PTL
+files as if they are ordinary Python modules.  To do the same with the new
+hooks would either mean to add a new module implementing a subset of
+<tt class="docutils literal">ihooks</tt> as a new-style importer, or add a hookable built-in path importer
+object.</p>
+<p>There is no specific support within this PEP for &quot;stacking&quot; hooks.  For
+example, it is not obvious how to write a hook to load modules from <tt class="docutils literal">tar.gz</tt>
+files by combining separate hooks to load modules from <tt class="docutils literal">.tar</tt> and <tt class="docutils literal">.gz</tt>
+files.  However, there is no support for such stacking in the existing hook
+mechanisms (either the basic &quot;replace <tt class="docutils literal">__import__</tt>&quot; method, or any of the
+existing import hook modules) and so this functionality is not an obvious
+requirement of the new mechanism.  It may be worth considering as a future
+enhancement, however.</p>
+<p>It is possible (via <tt class="docutils literal">sys.meta_path</tt>) to add hooks which run before
+<tt class="docutils literal">sys.path</tt> is processed.  However, there is no equivalent way of adding
+hooks to run after <tt class="docutils literal">sys.path</tt> is processed.  For now, if a hook is required
+after <tt class="docutils literal">sys.path</tt> has been processed, it can be simulated by adding an
+arbitrary &quot;cookie&quot; string at the end of <tt class="docutils literal">sys.path</tt>, and having the required
+hook associated with this cookie, via the normal <tt class="docutils literal">sys.path_hooks</tt>
+processing.  In the longer term, the path handling code will become a &quot;real&quot;
+hook on <tt class="docutils literal">sys.meta_path</tt>, and at that stage it will be possible to insert
+user-defined hooks either before or after it.</p>
+</div>
+<div class="section" id="implementation">
+<h1><a class="toc-backref" href="#id34">Implementation</a></h1>
+<p>The <a class="reference external" href="/dev/peps/pep-0302">PEP 302</a> implementation has been integrated with Python as of 2.3a1.  An
+earlier version is available as patch #652586 <a class="footnote-reference" href="#id20" id="id11">[9]</a>, but more interestingly,
+the issue contains a fairly detailed history of the development and design.</p>
+<p><a class="reference external" href="/dev/peps/pep-0273">PEP 273</a> has been implemented using <a class="reference external" href="/dev/peps/pep-0302">PEP 302</a>'s import hooks.</p>
+</div>
+<div class="section" id="references-and-footnotes">
+<h1><a class="toc-backref" href="#id35">References and Footnotes</a></h1>
+<table class="docutils footnote" frame="void" id="id12" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[1]</a></td><td>imputil module
+<a class="reference external" href="http://docs.python.org/library/imputil.html">http://docs.python.org/library/imputil.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id13" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[2]</a></td><td>The Freeze tool.
+See also the <tt class="docutils literal">Tools/freeze/</tt> directory in a Python source distribution</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id14" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[3]</a></td><td>py2exe by Thomas Heller
+<a class="reference external" href="http://www.py2exe.org/">http://www.py2exe.org/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id15" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[4]</a></td><td>imp.set_frozenmodules() patch
+<a class="reference external" href="http://bugs.python.org/issue642578">http://bugs.python.org/issue642578</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id16" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[5]</a></td><td>The path argument to <tt class="docutils literal">finder.find_module()</tt> is there because the
+<tt class="docutils literal">pkg.__path__</tt> variable may be needed at this point.  It may either come
+from the actual parent module or be supplied by <tt class="docutils literal">imp.find_module()</tt> or
+the proposed <tt class="docutils literal">imp.get_loader()</tt> function.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id17" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id9">[6]</a></td><td><a class="reference external" href="/dev/peps/pep-0338">PEP 338</a>: Executing modules as scripts
+<a class="reference external" href="http://www.python.org/dev/peps/pep-0338/">http://www.python.org/dev/peps/pep-0338/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id18" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id10">[7]</a></td><td>Quixote, a framework for developing Web applications
+<a class="reference external" href="http://www.mems-exchange.org/software/quixote/">http://www.mems-exchange.org/software/quixote/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id19" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8">[8]</a></td><td><a class="reference external" href="/dev/peps/pep-0366">PEP 366</a>: Main module explicit relative imports
+<a class="reference external" href="http://www.python.org/dev/peps/pep-0366/">http://www.python.org/dev/peps/pep-0366/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id20" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id11">[9]</a></td><td>New import hooks + Import from Zip files
+<a class="reference external" href="http://bugs.python.org/issue652586">http://bugs.python.org/issue652586</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id21" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[10]</a></td><td>Language reference for imports
+<a class="reference external" href="http://docs.python.org/3/reference/import.html">http://docs.python.org/3/reference/import.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id22" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[11]</a></td><td>importlib documentation
+<a class="reference external" href="http://docs.python.org/3/library/importlib.html#module-importlib">http://docs.python.org/3/library/importlib.html#module-importlib</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="copyright">
+<h1><a class="toc-backref" href="#id36">Copyright</a></h1>
+<p>This document has been placed in the public domain.</p>
+<!-- Local Variables:
+mode: indented-text
+indent-tabs-mode: nil
+sentence-end-double-space: t
+fill-column: 70
+coding: utf-8
+End: -->
+</div>
+
+
+
+      </div>
+
+      
+      <div id="footer">
+	<div id="credits">
+ 	  <a href="/about/website">Website maintained by the Python community</a><br/>
+	  <a href="http://www.xs4all.com/" title="Web and email hosting provided by xs4all, Netherlands">hosting by xs4all</a> /
+	  <a href="http://www.timparkin.co.uk/" title="Design by Tim Parkin, Yorkshire man, photographer and developer">design by Tim Parkin</a>
+	</div>
+	Copyright &copy; 1990-2013, <a href='/psf/'>Python Software Foundation</a><br/>
+	<a href="/about/legal">Legal Statements</a>
+      </div>
+
+
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,465 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>PEP 382 -- Namespace Packages</title>
+  <meta name="keywords" content="PEP 382 -- Namespace Packages" />
+  <meta name="description" content="PEP 382 -- Namespace Packages" />
+  <link rel="alternate" type="application/rss+xml" title="Community Events"
+        href="http://www.python.org/channews.rdf" />
+  <link rel="alternate" type="application/rss+xml" title="Python Recipes"
+        href="http://aspn.activestate.com/ASPN/Cookbook/Python/index_rss" />
+  <link rel="alternate" type="application/rss+xml" title="Usergroup News"
+        href="http://python-groups.blogspot.com/feeds/posts/default" />
+  <link rel="alternate" type="application/rss+xml" title="Python Screencasts"
+        href="http://www.showmedo.com/latestVideoFeed/rss2.0?tag=python" />
+  <link rel="alternate" type="application/rss+xml" title="Python Podcasts"
+        href="http://www.awaretek.com/python/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Foundation News"
+        href="http://feeds.feedburner.com/PythonSoftwareFoundationNews" />
+  <link rel="alternate" type="application/rss+xml" title="Python Enhancement Proposals"
+        href="http://www.python.org/dev/peps/peps.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Job Opportunities"
+        href="http://www.python.org/community/jobs/jobs.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Reddit Feed of Python What's New Online"
+        href="http://www.reddit.com/r/Python/.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Insider"
+        href="http://feeds.feedburner.com/PythonInsider" />
+
+  <link rel="stylesheet" type="text/css" media="screen" id="screen-switcher-stylesheet"
+        href="/styles/screen-switcher-default.css" />
+  <link rel="stylesheet" type="text/css" media="sc&#82;een"
+        href="/styles/netscape4.css" />
+  <link rel="stylesheet" type="text/css" media="print"
+        href="/styles/print.css" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/largestyles.css" title="large text" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/defaultfonts.css" title="default fonts" />
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search under the www.python.org Domain"
+        href="/search-pysite.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Wiki"
+        href="/search-pywiki.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within Python Books at Google Book Search"
+        href="/search-pybooks.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Documentation"
+        href="/search-pydocs.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for a Module in the Standard Library"
+        href="/search-pymodules.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for Packages inside the Cheeseshop (PyPI)"
+        href="/search-pycheese.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search Archives of the Main Python Mailing List"
+        href="/search-pythonlist.xml"/>
+
+  <script type="text/javascript" src="/js/iotbs2-key-directors-load.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-directors.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-core.js"></script>
+
+</head>
+
+
+<body>
+  <!-- Logo -->
+  <h1 id="logoheader">
+    <a href="/" id="logolink" accesskey="1"><img id="logo" src="/images/python-logo.gif" alt="homepage" border="0" /></a>
+  </h1>
+  <!-- Skip to Navigation -->
+  <div class="skiptonav"><a href="#left-hand-navigation" accesskey="2"><img src="/images/trans.gif" id="skiptonav" alt="skip to navigation" border="0" /></a></div>
+  <div class="skiptonav"><a href="#content-body" accesskey="3"><img src="/images/trans.gif" id="skiptocontent" alt="skip to content" border="0" /></a></div>
+  <!-- Utility Menu -->
+  <div id="utility-menu">
+    <!-- Search Box -->
+    <div id="searchbox">
+      <form method="get" action="http://google.com/search" id="searchform" name="searchform">
+        <div id="search">
+          <input type="hidden" id="domains" name="domains" value="www.python.org" />
+          <input type="hidden" id="sitesearch" name="sitesearch" value="www.python.org" />
+          <input type="hidden" id="sourceid" name="sourceid" value="google-search" />
+          <input type="text" class="input-text" name="q" id="q" />
+          <input type="submit" value="search" class="input-button" name="submit" id="submit" />
+          <a href="/search" class="reference">Advanced Search</a>
+        </div>
+      </form>
+    </div>
+    <div id="screen-switcher"></div>
+  </div>
+
+  <div id="left-hand-navigation">
+    <!-- Main Menu -->
+    <div id="menu">
+      <ul class="level-one">
+            <li>
+          <a href="/about/" title="About The Python Language">About</a>
+        </li>
+            <li>
+          <a href="/news/" title="Major Happenings Within the Python Community">News</a>
+        </li>
+            <li>
+          <a href="/doc/" title="Tutorials, Library Reference, C API">Documentation</a>
+        </li>
+            <li>
+          <a href="/download/" title="Start Running Python Under Windows, Mac, Linux and Others">Download</a>
+        </li>
+            <li>
+          <a href="/getit/" title="Alternate Download page for China">ä¸è½½</a>
+        </li>
+            <li>
+          <a href="/community/" title="Mailing Lists, Jobs, Conferences, SIGs, Online Chats">Community</a>
+        </li>
+            <li>
+          <a href="/psf/" title="Python Software Foundation">Foundation</a>
+        </li>
+            <li>
+          <a href="http://docs.python.org/devguide/" title="Development of the Python language and website">Core Development</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Quick Links -->
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/">Python Wiki</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://blog.python.org/">Python Insider Blog</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/Python2orPython3">Python 2 or 3?</a></h4>
+    <h4><a style="color:#D58228; margin-top:1.5em" href="/psf/donations/">Help Fund Python</a></h4>
+    <div style="align:center; padding-top: 0.5em; padding-left: 1em">
+      <a href="/psf/donations/"><img width="116" height="42" src="/images/donate.png" alt="" title="" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.5em; padding-left: 2.5em">
+            <a href="http://wiki.python.org/moin/Languages"><img
+	      style="align:center"
+              width="94" height="46"
+	      src="/images/worldmap.jpg" alt="[Python resources in languages other than English]" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.0em; padding-left: 0em">
+       <h4><a href="http://wiki.python.org/moin/Languages">Non-English Resources</a></h4>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Release%20Schedule&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com/public/basic.ics">
+                Python Release Schedule iCal Calendar
+            </a>
+        </iframe>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Events%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com/public/basic.ics">
+                Python Events iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=User%20Group%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com&amp;color=%23125A12&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com/public/basic.ics">
+                Python User Group iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+  </div>
+
+  <div id="content-body">
+    <div id="body-main">
+      <div id="content">
+        
+          <div id="breadcrumb">
+               <a href="/dev/peps/">PEP Index</a>
+               <span class="breadcrumb-separator">&gt;</span>
+            
+            PEP 382 -- Namespace Packages
+          </div>
+
+
+
+        <!--
+This HTML is auto-generated.  DO NOT EDIT THIS FILE!  If you are writing a new
+PEP, see http://www.python.org/dev/peps/pep-0001 for instructions and links
+to templates.  DO NOT USE THIS HTML FILE AS YOUR TEMPLATE!
+-->
+<table class="rfc2822 docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">PEP:</th><td class="field-body">382</td>
+</tr>
+<tr class="field"><th class="field-name">Title:</th><td class="field-body">Namespace Packages</td>
+</tr>
+<tr class="field"><th class="field-name">Version:</th><td class="field-body">5b93aa6c1322</td>
+</tr>
+<tr class="field"><th class="field-name">Last-Modified:</th><td class="field-body"><a class="reference external" href="http://hg.python.org/peps/file/tip/pep-0382.txt">2012-03-12 16:58:36 -0700 (Mon, 12 Mar 2012)</a></td>
+</tr>
+<tr class="field"><th class="field-name">Author:</th><td class="field-body">Martin v. LÃ¶wis &lt;martin&#32;&#97;t&#32;v.loewis.de&gt;</td>
+</tr>
+<tr class="field"><th class="field-name">Status:</th><td class="field-body">Rejected</td>
+</tr>
+<tr class="field"><th class="field-name">Type:</th><td class="field-body">Standards Track</td>
+</tr>
+<tr class="field"><th class="field-name">Content-Type:</th><td class="field-body"><a class="reference external" href="/dev/peps/pep-0012">text/x-rst</a></td>
+</tr>
+<tr class="field"><th class="field-name">Created:</th><td class="field-body">02-Apr-2009</td>
+</tr>
+<tr class="field"><th class="field-name">Python-Version:</th><td class="field-body">3.2</td>
+</tr>
+<tr class="field"><th class="field-name">Post-History:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#rejection-notice" id="id5">Rejection Notice</a></li>
+<li><a class="reference internal" href="#abstract" id="id6">Abstract</a></li>
+<li><a class="reference internal" href="#terminology" id="id7">Terminology</a></li>
+<li><a class="reference internal" href="#namespace-packages-today" id="id8">Namespace packages today</a></li>
+<li><a class="reference internal" href="#rationale" id="id9">Rationale</a></li>
+<li><a class="reference internal" href="#specification" id="id10">Specification</a><ul>
+<li><a class="reference internal" href="#impact-on-import-hooks" id="id11">Impact on Import Hooks</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#discussion" id="id12">Discussion</a></li>
+<li><a class="reference internal" href="#references" id="id13">References</a></li>
+<li><a class="reference internal" href="#copyright" id="id14">Copyright</a></li>
+</ul>
+</div>
+<div class="section" id="rejection-notice">
+<h1><a class="toc-backref" href="#id5">Rejection Notice</a></h1>
+<p>On the first day of sprints at US PyCon 2012 we had a long and
+fruitful discussion about <a class="reference external" href="/dev/peps/pep-0382">PEP 382</a> and <a class="reference external" href="/dev/peps/pep-0402">PEP 402</a>.  We ended up rejecting
+both but a new PEP will be written to carry on in the spirit of <a class="reference external" href="/dev/peps/pep-0402">PEP
+402</a>.  Martin von LÃ¶wis wrote up a summary: <a class="footnote-reference" href="#id4" id="id1">[2]</a>.</p>
+</div>
+<div class="section" id="abstract">
+<h1><a class="toc-backref" href="#id6">Abstract</a></h1>
+<p>Namespace packages are a mechanism for splitting a single Python
+package across multiple directories on disk. In current Python
+versions, an algorithm to compute the packages __path__ must be
+formulated. With the enhancement proposed here, the import machinery
+itself will construct the list of directories that make up the
+package.   An implementation of this PEP is available at <a class="footnote-reference" href="#id3" id="id2">[1]</a>.</p>
+</div>
+<div class="section" id="terminology">
+<h1><a class="toc-backref" href="#id7">Terminology</a></h1>
+<p>Within this PEP, the term package refers to Python packages as defined
+by Python's import statement. The term distribution refers to
+separately installable sets of Python modules as stored in the Python
+package index, and installed by distutils or setuptools. The term
+vendor package refers to groups of files installed by an operating
+system's packaging mechanism (e.g. Debian or Redhat packages install
+on Linux systems).</p>
+<p>The term portion refers to a set of files in a single directory (possibly
+stored in a zip file) that contribute to a namespace package.</p>
+</div>
+<div class="section" id="namespace-packages-today">
+<h1><a class="toc-backref" href="#id8">Namespace packages today</a></h1>
+<p>Python currently provides the pkgutil.extend_path to denote a package as
+a namespace package. The recommended way of using it is to put:</p>
+<pre class="literal-block">
+from pkgutil import extend_path
+__path__ = extend_path(__path__, __name__)
+</pre>
+<p>in the package's <tt class="docutils literal">__init__.py</tt>. Every distribution needs to provide
+the same contents in its <tt class="docutils literal">__init__.py</tt>, so that extend_path is
+invoked independent of which portion of the package gets imported
+first. As a consequence, the package's <tt class="docutils literal">__init__.py</tt> cannot
+practically define any names as it depends on the order of the package
+fragments on sys.path which portion is imported first. As a special
+feature, extend_path reads files named <tt class="docutils literal"><span class="pre">&lt;packagename&gt;.pkg</span></tt> which
+allow to declare additional portions.</p>
+<p>setuptools provides a similar function pkg_resources.declare_namespace
+that is used in the form:</p>
+<pre class="literal-block">
+import pkg_resources
+pkg_resources.declare_namespace(__name__)
+</pre>
+<p>In the portion's __init__.py, no assignment to __path__ is necessary,
+as declare_namespace modifies the package __path__ through sys.modules.
+As a special feature, declare_namespace also supports zip files, and
+registers the package name internally so that future additions to sys.path
+by setuptools can properly add additional portions to each package.</p>
+<p>setuptools allows declaring namespace packages in a distribution's
+setup.py, so that distribution developers don't need to put the
+magic __path__ modification into __init__.py themselves.</p>
+</div>
+<div class="section" id="rationale">
+<h1><a class="toc-backref" href="#id9">Rationale</a></h1>
+<p>The current imperative approach to namespace packages has lead to
+multiple slightly-incompatible mechanisms for providing namespace
+packages. For example, pkgutil supports <tt class="docutils literal">*.pkg</tt> files; setuptools
+doesn't. Likewise, setuptools supports inspecting zip files, and
+supports adding portions to its _namespace_packages variable, whereas
+pkgutil doesn't.</p>
+<p>In addition, the current approach causes problems for system vendors.
+Vendor packages typically must not provide overlapping files, and an
+attempt to install a vendor package that has a file already on disk
+will fail or cause unpredictable behavior. As vendors might chose to
+package distributions such that they will end up all in a single
+directory for the namespace package, all portions would contribute
+conflicting __init__.py files.</p>
+</div>
+<div class="section" id="specification">
+<h1><a class="toc-backref" href="#id10">Specification</a></h1>
+<p>Rather than using an imperative mechanism for importing packages, a
+declarative approach is proposed here: A directory whose name ends
+with <tt class="docutils literal">.pyp</tt> (for Python package) contains a portion of a package.</p>
+<p>The import statement is extended so that computes the package's
+<tt class="docutils literal">__path__</tt> attribute for a package named <tt class="docutils literal">P</tt> as consisting of
+optionally a single directory name <tt class="docutils literal">P</tt> containing a file
+<tt class="docutils literal">__init__.py</tt>, plus all directories named <tt class="docutils literal">P.pyp</tt>, in the order in
+which they are found in the parent's package <tt class="docutils literal">__path__</tt> (or
+<tt class="docutils literal">sys.path</tt>). If either of these are found, search for additional
+portions of the package continues.</p>
+<p>A directory may contain both a package in the <tt class="docutils literal">P/__init__.py</tt> and
+the <tt class="docutils literal">P.pyp</tt> form.</p>
+<p>No other change to the importing mechanism is made; searching modules
+(including __init__.py) will continue to stop at the first module
+encountered. In summary, the process import a package foo works like
+this:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>sys.path is searched for directories foo or foo.pyp, or a file foo.&lt;ext&gt;.
+If a file is found and no directory, it is treated as a module, and imported.</li>
+<li>If a directory foo is found, a check is made whether it contains __init__.py.
+If so, the location of the __init__.py is remembered. Otherwise, the directory
+is skipped. Once an __init__.py is found, further directories called foo are
+skipped.</li>
+<li>For both directories foo and foo.pyp, the directories are added to the package's
+__path__.</li>
+<li>If an __init__ module was found, it is imported, with __path__
+being initialized to the path computed all <tt class="docutils literal">.pyp</tt> directories.</li>
+</ol>
+</blockquote>
+<div class="section" id="impact-on-import-hooks">
+<h2><a class="toc-backref" href="#id11">Impact on Import Hooks</a></h2>
+<p>Both loaders and finders as defined in <a class="reference external" href="/dev/peps/pep-0302">PEP 302</a> will need to be changed
+to support namespace packages. Failure to comform to the protocol
+below might cause a package not being recognized as a namespace
+package; loaders and finders not supporting this protocol must raise
+AttributeError when the functions below get accessed.</p>
+<p>Finders need to support looking for *.pth files in step 1 of above
+algorithm. To do so, a finder used as a path hook must support a
+method:</p>
+<blockquote>
+finder.find_package_portion(fullname)</blockquote>
+<p>This method will be called in the same manner as find_module, and it
+must return an string to be added to the package's <tt class="docutils literal">__path__</tt>.
+If the finder doesn't find a portion of the package, it shall return
+<tt class="docutils literal">None</tt>. Raising <tt class="docutils literal">AttributeError</tt> from above call will be treated
+as non-conformance with this PEP, and the exception will be ignored.
+All other exceptions are reported.</p>
+<p>A finder may report both success from <tt class="docutils literal">find_module</tt> and from
+<tt class="docutils literal">find_package_portion</tt>, allowing for both a package containing
+an <tt class="docutils literal">__init__.py</tt> and a portion of the same package.</p>
+<p>All strings returned from <tt class="docutils literal">find_package_portion</tt>, along with all
+path names of <tt class="docutils literal">.pyp</tt> directories are added to the new package's
+<tt class="docutils literal">__path__</tt>.</p>
+</div>
+</div>
+<div class="section" id="discussion">
+<h1><a class="toc-backref" href="#id12">Discussion</a></h1>
+<p>Original versions of this specification proposed the addition of
+<tt class="docutils literal">*.pth</tt> files, similar to the way those files are used on sys.path.
+With a wildcard marker (<tt class="docutils literal">*</tt>), a package could indicate that the
+entire path is derived by looking at the parent path, searching for
+properly-named subdirectories.</p>
+<p>People then observed that the support for the full .pth syntax is
+inappropriate, and the .pth files were changed to be mere marker
+files, indicating that a directories is a package. Peter TrÃ¶ger
+suggested that .pth is an unsuitable file extension, as all file
+extensions related to Python should start with <tt class="docutils literal">.py</tt>. Therefore, the
+marker file was renamed to be <tt class="docutils literal">.pyp</tt>.</p>
+<p>Dinu Gherman then observed that using a marker file is not necessary,
+and that a directoy extension could well serve as a such as a
+marker. This is what this PEP currently proposes.</p>
+<p>Phillip Eby designed <a class="reference external" href="/dev/peps/pep-0402">PEP 402</a> as an alternative approach to this PEP,
+after comparing Python's package syntax with that found in other
+languages. <a class="reference external" href="/dev/peps/pep-0402">PEP 402</a> proposes not to use a marker file at all. At the
+discussion at PyCon DE 2011, people remarked that having an explicit
+declaration of a directory as contributing to a package is a desirable
+property, rather than an obstactle. In particular, Jython developers
+noticed that Jython could easily mistake a directory that is a Java
+package as being a Python package, if there is no need to declare
+Python packages.</p>
+<p>Packages can stop filling out the namespace package's __init__.py.  As
+a consequence, extend_path and declare_namespace become obsolete.</p>
+<p>Namespace packages can start providing non-trivial __init__.py
+implementations; to do so, it is recommended that a single distribution
+provides a portion with just the namespace package's __init__.py
+(and potentially other modules that belong to the namespace package
+proper).</p>
+<p>The mechanism is mostly compatible with the existing namespace
+mechanisms. extend_path will be adjusted to this specification;
+any other mechanism might cause portions to get added twice to
+__path__.</p>
+</div>
+<div class="section" id="references">
+<h1><a class="toc-backref" href="#id13">References</a></h1>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td><a class="reference external" href="/dev/peps/pep-0382">PEP 382</a> branch
+(<a class="reference external" href="http://hg.python.org/features/pep-382-2#pep-382">http://hg.python.org/features/pep-382-2#pep-382</a>)</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[2]</a></td><td>Namespace Packages resolution
+(<a class="reference external" href="http://mail.python.org/pipermail/import-sig/2012-March/000421.html">http://mail.python.org/pipermail/import-sig/2012-March/000421.html</a>)</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="copyright">
+<h1><a class="toc-backref" href="#id14">Copyright</a></h1>
+<p>This document has been placed in the public domain.</p>
+<!-- Local Variables:
+mode: indented-text
+indent-tabs-mode: nil
+sentence-end-double-space: t
+fill-column: 70
+coding: utf-8
+End: -->
+</div>
+
+
+
+      </div>
+
+      
+      <div id="footer">
+	<div id="credits">
+ 	  <a href="/about/website">Website maintained by the Python community</a><br/>
+	  <a href="http://www.xs4all.com/" title="Web and email hosting provided by xs4all, Netherlands">hosting by xs4all</a> /
+	  <a href="http://www.timparkin.co.uk/" title="Design by Tim Parkin, Yorkshire man, photographer and developer">design by Tim Parkin</a>
+	</div>
+	Copyright &copy; 1990-2013, <a href='/psf/'>Python Software Foundation</a><br/>
+	<a href="/about/legal">Legal Statements</a>
+      </div>
+
+
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,440 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>PEP 412 -- Key-Sharing Dictionary</title>
+  <meta name="keywords" content="PEP 412 -- Key-Sharing Dictionary" />
+  <meta name="description" content="PEP 412 -- Key-Sharing Dictionary" />
+  <link rel="alternate" type="application/rss+xml" title="Community Events"
+        href="http://www.python.org/channews.rdf" />
+  <link rel="alternate" type="application/rss+xml" title="Python Recipes"
+        href="http://aspn.activestate.com/ASPN/Cookbook/Python/index_rss" />
+  <link rel="alternate" type="application/rss+xml" title="Usergroup News"
+        href="http://python-groups.blogspot.com/feeds/posts/default" />
+  <link rel="alternate" type="application/rss+xml" title="Python Screencasts"
+        href="http://www.showmedo.com/latestVideoFeed/rss2.0?tag=python" />
+  <link rel="alternate" type="application/rss+xml" title="Python Podcasts"
+        href="http://www.awaretek.com/python/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Foundation News"
+        href="http://feeds.feedburner.com/PythonSoftwareFoundationNews" />
+  <link rel="alternate" type="application/rss+xml" title="Python Enhancement Proposals"
+        href="http://www.python.org/dev/peps/peps.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Job Opportunities"
+        href="http://www.python.org/community/jobs/jobs.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Reddit Feed of Python What's New Online"
+        href="http://www.reddit.com/r/Python/.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Insider"
+        href="http://feeds.feedburner.com/PythonInsider" />
+
+  <link rel="stylesheet" type="text/css" media="screen" id="screen-switcher-stylesheet"
+        href="/styles/screen-switcher-default.css" />
+  <link rel="stylesheet" type="text/css" media="sc&#82;een"
+        href="/styles/netscape4.css" />
+  <link rel="stylesheet" type="text/css" media="print"
+        href="/styles/print.css" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/largestyles.css" title="large text" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/defaultfonts.css" title="default fonts" />
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search under the www.python.org Domain"
+        href="/search-pysite.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Wiki"
+        href="/search-pywiki.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within Python Books at Google Book Search"
+        href="/search-pybooks.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Documentation"
+        href="/search-pydocs.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for a Module in the Standard Library"
+        href="/search-pymodules.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for Packages inside the Cheeseshop (PyPI)"
+        href="/search-pycheese.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search Archives of the Main Python Mailing List"
+        href="/search-pythonlist.xml"/>
+
+  <script type="text/javascript" src="/js/iotbs2-key-directors-load.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-directors.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-core.js"></script>
+
+</head>
+
+
+<body>
+  <!-- Logo -->
+  <h1 id="logoheader">
+    <a href="/" id="logolink" accesskey="1"><img id="logo" src="/images/python-logo.gif" alt="homepage" border="0" /></a>
+  </h1>
+  <!-- Skip to Navigation -->
+  <div class="skiptonav"><a href="#left-hand-navigation" accesskey="2"><img src="/images/trans.gif" id="skiptonav" alt="skip to navigation" border="0" /></a></div>
+  <div class="skiptonav"><a href="#content-body" accesskey="3"><img src="/images/trans.gif" id="skiptocontent" alt="skip to content" border="0" /></a></div>
+  <!-- Utility Menu -->
+  <div id="utility-menu">
+    <!-- Search Box -->
+    <div id="searchbox">
+      <form method="get" action="http://google.com/search" id="searchform" name="searchform">
+        <div id="search">
+          <input type="hidden" id="domains" name="domains" value="www.python.org" />
+          <input type="hidden" id="sitesearch" name="sitesearch" value="www.python.org" />
+          <input type="hidden" id="sourceid" name="sourceid" value="google-search" />
+          <input type="text" class="input-text" name="q" id="q" />
+          <input type="submit" value="search" class="input-button" name="submit" id="submit" />
+          <a href="/search" class="reference">Advanced Search</a>
+        </div>
+      </form>
+    </div>
+    <div id="screen-switcher"></div>
+  </div>
+
+  <div id="left-hand-navigation">
+    <!-- Main Menu -->
+    <div id="menu">
+      <ul class="level-one">
+            <li>
+          <a href="/about/" title="About The Python Language">About</a>
+        </li>
+            <li>
+          <a href="/news/" title="Major Happenings Within the Python Community">News</a>
+        </li>
+            <li>
+          <a href="/doc/" title="Tutorials, Library Reference, C API">Documentation</a>
+        </li>
+            <li>
+          <a href="/download/" title="Start Running Python Under Windows, Mac, Linux and Others">Download</a>
+        </li>
+            <li>
+          <a href="/getit/" title="Alternate Download page for China">ä¸è½½</a>
+        </li>
+            <li>
+          <a href="/community/" title="Mailing Lists, Jobs, Conferences, SIGs, Online Chats">Community</a>
+        </li>
+            <li>
+          <a href="/psf/" title="Python Software Foundation">Foundation</a>
+        </li>
+            <li>
+          <a href="http://docs.python.org/devguide/" title="Development of the Python language and website">Core Development</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Quick Links -->
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/">Python Wiki</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://blog.python.org/">Python Insider Blog</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/Python2orPython3">Python 2 or 3?</a></h4>
+    <h4><a style="color:#D58228; margin-top:1.5em" href="/psf/donations/">Help Fund Python</a></h4>
+    <div style="align:center; padding-top: 0.5em; padding-left: 1em">
+      <a href="/psf/donations/"><img width="116" height="42" src="/images/donate.png" alt="" title="" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.5em; padding-left: 2.5em">
+            <a href="http://wiki.python.org/moin/Languages"><img
+	      style="align:center"
+              width="94" height="46"
+	      src="/images/worldmap.jpg" alt="[Python resources in languages other than English]" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.0em; padding-left: 0em">
+       <h4><a href="http://wiki.python.org/moin/Languages">Non-English Resources</a></h4>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Release%20Schedule&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com/public/basic.ics">
+                Python Release Schedule iCal Calendar
+            </a>
+        </iframe>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Events%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com/public/basic.ics">
+                Python Events iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=User%20Group%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com&amp;color=%23125A12&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com/public/basic.ics">
+                Python User Group iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+  </div>
+
+  <div id="content-body">
+    <div id="body-main">
+      <div id="content">
+        
+          <div id="breadcrumb">
+               <a href="/dev/peps/">PEP Index</a>
+               <span class="breadcrumb-separator">&gt;</span>
+            
+            PEP 412 -- Key-Sharing Dictionary
+          </div>
+
+
+
+        <!--
+This HTML is auto-generated.  DO NOT EDIT THIS FILE!  If you are writing a new
+PEP, see http://www.python.org/dev/peps/pep-0001 for instructions and links
+to templates.  DO NOT USE THIS HTML FILE AS YOUR TEMPLATE!
+-->
+<table class="rfc2822 docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">PEP:</th><td class="field-body">412</td>
+</tr>
+<tr class="field"><th class="field-name">Title:</th><td class="field-body">Key-Sharing Dictionary</td>
+</tr>
+<tr class="field"><th class="field-name">Version:</th><td class="field-body">5ad47148ed20</td>
+</tr>
+<tr class="field"><th class="field-name">Last-Modified:</th><td class="field-body"><a class="reference external" href="http://hg.python.org/peps/file/tip/pep-0412.txt">2012-04-23 11:28:28 -0400 (Mon, 23 Apr 2012)</a></td>
+</tr>
+<tr class="field"><th class="field-name">Author:</th><td class="field-body">Mark Shannon &lt;mark&#32;&#97;t&#32;hotpy.org&gt;</td>
+</tr>
+<tr class="field"><th class="field-name">Status:</th><td class="field-body">Final</td>
+</tr>
+<tr class="field"><th class="field-name">Type:</th><td class="field-body">Standards Track</td>
+</tr>
+<tr class="field"><th class="field-name">Content-Type:</th><td class="field-body"><a class="reference external" href="/dev/peps/pep-0012">text/x-rst</a></td>
+</tr>
+<tr class="field"><th class="field-name">Created:</th><td class="field-body">08-Feb-2012</td>
+</tr>
+<tr class="field"><th class="field-name">Python-Version:</th><td class="field-body">3.3 or 3.4</td>
+</tr>
+<tr class="field"><th class="field-name">Post-History:</th><td class="field-body">08-Feb-2012</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#abstract" id="id4">Abstract</a></li>
+<li><a class="reference internal" href="#motivation" id="id5">Motivation</a></li>
+<li><a class="reference internal" href="#behaviour" id="id6">Behaviour</a></li>
+<li><a class="reference internal" href="#performance" id="id7">Performance</a><ul>
+<li><a class="reference internal" href="#memory-usage" id="id8">Memory Usage</a></li>
+<li><a class="reference internal" href="#speed" id="id9">Speed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#implementation" id="id10">Implementation</a><ul>
+<li><a class="reference internal" href="#split-table-dictionaries" id="id11">Split-Table dictionaries</a></li>
+<li><a class="reference internal" href="#combined-table-dictionaries" id="id12">Combined-Table dictionaries</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id1" id="id13">Implementation</a></li>
+<li><a class="reference internal" href="#pros-and-cons" id="id14">Pros and Cons</a><ul>
+<li><a class="reference internal" href="#pros" id="id15">Pros</a></li>
+<li><a class="reference internal" href="#cons" id="id16">Cons</a></li>
+<li><a class="reference internal" href="#alternative-implementation" id="id17">Alternative Implementation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#references" id="id18">References</a></li>
+<li><a class="reference internal" href="#copyright" id="id19">Copyright</a></li>
+</ul>
+</div>
+<div class="section" id="abstract">
+<h1><a class="toc-backref" href="#id4">Abstract</a></h1>
+<p>This PEP proposes a change in the implementation of the builtin
+dictionary type <tt class="docutils literal">dict</tt>.  The new implementation allows dictionaries
+which are used as attribute dictionaries (the <tt class="docutils literal">__dict__</tt> attribute
+of an object) to share keys with other attribute dictionaries of
+instances of the same class.</p>
+</div>
+<div class="section" id="motivation">
+<h1><a class="toc-backref" href="#id5">Motivation</a></h1>
+<p>The current dictionary implementation uses more memory than is
+necessary when used as a container for object attributes as the keys
+are replicated for each instance rather than being shared across many
+instances of the same class.  Despite this, the current dictionary
+implementation is finely tuned and performs very well as a
+general-purpose mapping object.</p>
+<p>By separating the keys (and hashes) from the values it is possible to
+share the keys between multiple dictionaries and improve memory use.
+By ensuring that keys are separated from the values only when
+beneficial, it is possible to retain the high-performance of the
+current dictionary implementation when used as a general-purpose
+mapping object.</p>
+</div>
+<div class="section" id="behaviour">
+<h1><a class="toc-backref" href="#id6">Behaviour</a></h1>
+<p>The new dictionary behaves in the same way as the old implementation.
+It fully conforms to the Python API, the C API and the ABI.</p>
+</div>
+<div class="section" id="performance">
+<h1><a class="toc-backref" href="#id7">Performance</a></h1>
+<div class="section" id="memory-usage">
+<h2><a class="toc-backref" href="#id8">Memory Usage</a></h2>
+<p>Reduction in memory use is directly related to the number of
+dictionaries with shared keys in existence at any time.  These
+dictionaries are typically half the size of the current dictionary
+implementation.</p>
+<p>Benchmarking shows that memory use is reduced by 10% to 20% for
+object-oriented programs with no significant change in memory use for
+other programs.</p>
+</div>
+<div class="section" id="speed">
+<h2><a class="toc-backref" href="#id9">Speed</a></h2>
+<p>The performance of the new implementation is dominated by memory
+locality effects.  When keys are not shared (for example in module
+dictionaries and dictionary explicitly created by <tt class="docutils literal">dict()</tt> or
+<tt class="docutils literal">{}</tt>) then performance is unchanged (within a percent or two) from
+the current implementation.</p>
+<p>For the shared keys case, the new implementation tends to separate
+keys from values, but reduces total memory usage.  This will improve
+performance in many cases as the effects of reduced memory usage
+outweigh the loss of locality, but some programs may show a small slow
+down.</p>
+<p>Benchmarking shows no significant change of speed for most benchmarks.
+Object-oriented benchmarks show small speed ups when they create large
+numbers of objects of the same class (the gcbench benchmark shows a
+10% speed up; this is likely to be an upper limit).</p>
+</div>
+</div>
+<div class="section" id="implementation">
+<h1><a class="toc-backref" href="#id10">Implementation</a></h1>
+<p>Both the old and new dictionaries consist of a fixed-sized dict struct
+and a re-sizeable table.  In the new dictionary the table can be
+further split into a keys table and values array.  The keys table
+holds the keys and hashes and (for non-split tables) the values as
+well.  It differs only from the original implementation in that it
+contains a number of fields that were previously in the dict struct.
+If a table is split the values in the keys table are ignored, instead
+the values are held in a separate array.</p>
+<div class="section" id="split-table-dictionaries">
+<h2><a class="toc-backref" href="#id11">Split-Table dictionaries</a></h2>
+<p>When dictionaries are created to fill the __dict__ slot of an object,
+they are created in split form.  The keys table is cached in the type,
+potentially allowing all attribute dictionaries of instances of one
+class to share keys.  In the event of the keys of these dictionaries
+starting to diverge, individual dictionaries will lazily convert to
+the combined-table form.  This ensures good memory use in the common
+case, and correctness in all cases.</p>
+<p>When resizing a split dictionary it is converted to a combined table.
+If resizing is as a result of storing an instance attribute, and there
+is only instance of a class, then the dictionary will be re-split
+immediately.  Since most OO code will set attributes in the __init__
+method, all attributes will be set before a second instance is created
+and no more resizing will be necessary as all further instance
+dictionaries will have the correct size.  For more complex use
+patterns, it is impossible to know what is the best approach, so the
+implementation allows extra insertions up to the point of a resize
+when it reverts to the combined table (non-shared keys).</p>
+<p>A deletion from a split dictionary does not change the keys table, it
+simply removes the value from the values array.</p>
+</div>
+<div class="section" id="combined-table-dictionaries">
+<h2><a class="toc-backref" href="#id12">Combined-Table dictionaries</a></h2>
+<p>Explicit dictionaries (<tt class="docutils literal">dict()</tt> or <tt class="docutils literal">{}</tt>), module dictionaries and
+most other dictionaries are created as combined-table dictionaries.  A
+combined-table dictionary never becomes a split-table dictionary.
+Combined tables are laid out in much the same way as the tables in the
+old dictionary, resulting in very similar performance.</p>
+</div>
+</div>
+<div class="section" id="id1">
+<h1><a class="toc-backref" href="#id13">Implementation</a></h1>
+<p>The new dictionary implementation is available at <a class="footnote-reference" href="#id3" id="id2">[1]</a>.</p>
+</div>
+<div class="section" id="pros-and-cons">
+<h1><a class="toc-backref" href="#id14">Pros and Cons</a></h1>
+<div class="section" id="pros">
+<h2><a class="toc-backref" href="#id15">Pros</a></h2>
+<p>Significant memory savings for object-oriented applications.  Small
+improvement to speed for programs which create lots of similar
+objects.</p>
+</div>
+<div class="section" id="cons">
+<h2><a class="toc-backref" href="#id16">Cons</a></h2>
+<p>Change to data structures: Third party modules which meddle with the
+internals of the dictionary implementation will break.</p>
+<p>Changes to repr() output and iteration order: For most cases, this
+will be unchanged.  However for some split-table dictionaries the
+iteration order will change.</p>
+<p>Neither of these cons should be a problem.  Modules which meddle with
+the internals of the dictionary implementation are already broken and
+should be fixed to use the API.  The iteration order of dictionaries
+was never defined and has always been arbitrary; it is different for
+Jython and PyPy.</p>
+</div>
+<div class="section" id="alternative-implementation">
+<h2><a class="toc-backref" href="#id17">Alternative Implementation</a></h2>
+<p>An alternative implementation for split tables, which could save even
+more memory, is to store an index in the value field of the keys table
+(instead of ignoring the value field).  This index would explicitly
+state where in the value array to look.  The value array would then
+only require 1 field for each usable slot in the key table, rather
+than each slot in the key table.</p>
+<p>This &quot;indexed&quot; version would reduce the size of value array by about
+one third. The keys table would need an extra &quot;values_size&quot; field,
+increasing the size of combined dicts by one word.  The extra
+indirection adds more complexity to the code, potentially reducing
+performance a little.</p>
+<p>The &quot;indexed&quot; version will not be included in this implementation, but
+should be considered deferred rather than rejected, pending further
+experimentation.</p>
+</div>
+</div>
+<div class="section" id="references">
+<h1><a class="toc-backref" href="#id18">References</a></h1>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>Reference Implementation:
+<a class="reference external" href="https://bitbucket.org/markshannon/cpython_new_dict">https://bitbucket.org/markshannon/cpython_new_dict</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="copyright">
+<h1><a class="toc-backref" href="#id19">Copyright</a></h1>
+<p>This document has been placed in the public domain.</p>
+<!-- Local Variables:
+mode: indented-text
+indent-tabs-mode: nil
+sentence-end-double-space: t
+fill-column: 70
+coding: utf-8
+End: -->
+</div>
+
+
+
+      </div>
+
+      
+      <div id="footer">
+	<div id="credits">
+ 	  <a href="/about/website">Website maintained by the Python community</a><br/>
+	  <a href="http://www.xs4all.com/" title="Web and email hosting provided by xs4all, Netherlands">hosting by xs4all</a> /
+	  <a href="http://www.timparkin.co.uk/" title="Design by Tim Parkin, Yorkshire man, photographer and developer">design by Tim Parkin</a>
+	</div>
+	Copyright &copy; 1990-2013, <a href='/psf/'>Python Software Foundation</a><br/>
+	<a href="/about/legal">Legal Statements</a>
+      </div>
+
+
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+

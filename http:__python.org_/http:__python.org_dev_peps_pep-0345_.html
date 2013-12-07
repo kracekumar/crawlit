@@ -1,0 +1,772 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>PEP 345 -- Metadata for Python Software Packages 1.2</title>
+  <meta name="keywords" content="PEP 345 -- Metadata for Python Software Packages 1.2" />
+  <meta name="description" content="PEP 345 -- Metadata for Python Software Packages 1.2" />
+  <link rel="alternate" type="application/rss+xml" title="Community Events"
+        href="http://www.python.org/channews.rdf" />
+  <link rel="alternate" type="application/rss+xml" title="Python Recipes"
+        href="http://aspn.activestate.com/ASPN/Cookbook/Python/index_rss" />
+  <link rel="alternate" type="application/rss+xml" title="Usergroup News"
+        href="http://python-groups.blogspot.com/feeds/posts/default" />
+  <link rel="alternate" type="application/rss+xml" title="Python Screencasts"
+        href="http://www.showmedo.com/latestVideoFeed/rss2.0?tag=python" />
+  <link rel="alternate" type="application/rss+xml" title="Python Podcasts"
+        href="http://www.awaretek.com/python/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Foundation News"
+        href="http://feeds.feedburner.com/PythonSoftwareFoundationNews" />
+  <link rel="alternate" type="application/rss+xml" title="Python Enhancement Proposals"
+        href="http://www.python.org/dev/peps/peps.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Job Opportunities"
+        href="http://www.python.org/community/jobs/jobs.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Reddit Feed of Python What's New Online"
+        href="http://www.reddit.com/r/Python/.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Insider"
+        href="http://feeds.feedburner.com/PythonInsider" />
+
+  <link rel="stylesheet" type="text/css" media="screen" id="screen-switcher-stylesheet"
+        href="/styles/screen-switcher-default.css" />
+  <link rel="stylesheet" type="text/css" media="sc&#82;een"
+        href="/styles/netscape4.css" />
+  <link rel="stylesheet" type="text/css" media="print"
+        href="/styles/print.css" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/largestyles.css" title="large text" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/defaultfonts.css" title="default fonts" />
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search under the www.python.org Domain"
+        href="/search-pysite.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Wiki"
+        href="/search-pywiki.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within Python Books at Google Book Search"
+        href="/search-pybooks.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Documentation"
+        href="/search-pydocs.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for a Module in the Standard Library"
+        href="/search-pymodules.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for Packages inside the Cheeseshop (PyPI)"
+        href="/search-pycheese.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search Archives of the Main Python Mailing List"
+        href="/search-pythonlist.xml"/>
+
+  <script type="text/javascript" src="/js/iotbs2-key-directors-load.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-directors.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-core.js"></script>
+
+</head>
+
+
+<body>
+  <!-- Logo -->
+  <h1 id="logoheader">
+    <a href="/" id="logolink" accesskey="1"><img id="logo" src="/images/python-logo.gif" alt="homepage" border="0" /></a>
+  </h1>
+  <!-- Skip to Navigation -->
+  <div class="skiptonav"><a href="#left-hand-navigation" accesskey="2"><img src="/images/trans.gif" id="skiptonav" alt="skip to navigation" border="0" /></a></div>
+  <div class="skiptonav"><a href="#content-body" accesskey="3"><img src="/images/trans.gif" id="skiptocontent" alt="skip to content" border="0" /></a></div>
+  <!-- Utility Menu -->
+  <div id="utility-menu">
+    <!-- Search Box -->
+    <div id="searchbox">
+      <form method="get" action="http://google.com/search" id="searchform" name="searchform">
+        <div id="search">
+          <input type="hidden" id="domains" name="domains" value="www.python.org" />
+          <input type="hidden" id="sitesearch" name="sitesearch" value="www.python.org" />
+          <input type="hidden" id="sourceid" name="sourceid" value="google-search" />
+          <input type="text" class="input-text" name="q" id="q" />
+          <input type="submit" value="search" class="input-button" name="submit" id="submit" />
+          <a href="/search" class="reference">Advanced Search</a>
+        </div>
+      </form>
+    </div>
+    <div id="screen-switcher"></div>
+  </div>
+
+  <div id="left-hand-navigation">
+    <!-- Main Menu -->
+    <div id="menu">
+      <ul class="level-one">
+            <li>
+          <a href="/about/" title="About The Python Language">About</a>
+        </li>
+            <li>
+          <a href="/news/" title="Major Happenings Within the Python Community">News</a>
+        </li>
+            <li>
+          <a href="/doc/" title="Tutorials, Library Reference, C API">Documentation</a>
+        </li>
+            <li>
+          <a href="/download/" title="Start Running Python Under Windows, Mac, Linux and Others">Download</a>
+        </li>
+            <li>
+          <a href="/getit/" title="Alternate Download page for China">ä¸è½½</a>
+        </li>
+            <li>
+          <a href="/community/" title="Mailing Lists, Jobs, Conferences, SIGs, Online Chats">Community</a>
+        </li>
+            <li>
+          <a href="/psf/" title="Python Software Foundation">Foundation</a>
+        </li>
+            <li>
+          <a href="http://docs.python.org/devguide/" title="Development of the Python language and website">Core Development</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Quick Links -->
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/">Python Wiki</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://blog.python.org/">Python Insider Blog</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/Python2orPython3">Python 2 or 3?</a></h4>
+    <h4><a style="color:#D58228; margin-top:1.5em" href="/psf/donations/">Help Fund Python</a></h4>
+    <div style="align:center; padding-top: 0.5em; padding-left: 1em">
+      <a href="/psf/donations/"><img width="116" height="42" src="/images/donate.png" alt="" title="" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.5em; padding-left: 2.5em">
+            <a href="http://wiki.python.org/moin/Languages"><img
+	      style="align:center"
+              width="94" height="46"
+	      src="/images/worldmap.jpg" alt="[Python resources in languages other than English]" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.0em; padding-left: 0em">
+       <h4><a href="http://wiki.python.org/moin/Languages">Non-English Resources</a></h4>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Release%20Schedule&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com/public/basic.ics">
+                Python Release Schedule iCal Calendar
+            </a>
+        </iframe>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Events%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com/public/basic.ics">
+                Python Events iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=User%20Group%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com&amp;color=%23125A12&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com/public/basic.ics">
+                Python User Group iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+  </div>
+
+  <div id="content-body">
+    <div id="body-main">
+      <div id="content">
+        
+          <div id="breadcrumb">
+               <a href="/dev/peps/">PEP Index</a>
+               <span class="breadcrumb-separator">&gt;</span>
+            
+            PEP 345 -- Metadata for Python Software Packages 1.2
+          </div>
+
+
+
+        <!--
+This HTML is auto-generated.  DO NOT EDIT THIS FILE!  If you are writing a new
+PEP, see http://www.python.org/dev/peps/pep-0001 for instructions and links
+to templates.  DO NOT USE THIS HTML FILE AS YOUR TEMPLATE!
+-->
+<table class="rfc2822 docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">PEP:</th><td class="field-body">345</td>
+</tr>
+<tr class="field"><th class="field-name">Title:</th><td class="field-body">Metadata for Python Software Packages 1.2</td>
+</tr>
+<tr class="field"><th class="field-name">Version:</th><td class="field-body">136ef3de98d5</td>
+</tr>
+<tr class="field"><th class="field-name">Last-Modified:</th><td class="field-body"><a class="reference external" href="http://hg.python.org/peps/file/tip/pep-0345.txt">2012-07-07 14:31:27 -0400 (Sat, 07 Jul 2012)</a></td>
+</tr>
+<tr class="field"><th class="field-name">Author:</th><td class="field-body">Richard Jones &lt;richard&#32;&#97;t&#32;python.org&gt;</td>
+</tr>
+<tr class="field"><th class="field-name">Discussions-To:</th><td class="field-body">Distutils SIG</td>
+</tr>
+<tr class="field"><th class="field-name">Status:</th><td class="field-body">Accepted</td>
+</tr>
+<tr class="field"><th class="field-name">Type:</th><td class="field-body">Standards Track</td>
+</tr>
+<tr class="field"><th class="field-name">Content-Type:</th><td class="field-body"><a class="reference external" href="/dev/peps/pep-0012">text/x-rst</a></td>
+</tr>
+<tr class="field"><th class="field-name">Created:</th><td class="field-body">28-Apr-2005</td>
+</tr>
+<tr class="field"><th class="field-name">Python-Version:</th><td class="field-body">2.5</td>
+</tr>
+<tr class="field"><th class="field-name">Post-History:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#abstract" id="id7">Abstract</a></li>
+<li><a class="reference internal" href="#fields" id="id8">Fields</a><ul>
+<li><a class="reference internal" href="#metadata-version" id="id9">Metadata-Version</a></li>
+<li><a class="reference internal" href="#name" id="id10">Name</a></li>
+<li><a class="reference internal" href="#version" id="id11">Version</a></li>
+<li><a class="reference internal" href="#platform-multiple-use" id="id12">Platform (multiple use)</a></li>
+<li><a class="reference internal" href="#supported-platform-multiple-use" id="id13">Supported-Platform (multiple use)</a></li>
+<li><a class="reference internal" href="#summary" id="id14">Summary</a></li>
+<li><a class="reference internal" href="#description-optional" id="id15">Description (optional)</a></li>
+<li><a class="reference internal" href="#keywords-optional" id="id16">Keywords (optional)</a></li>
+<li><a class="reference internal" href="#home-page-optional" id="id17">Home-page (optional)</a></li>
+<li><a class="reference internal" href="#download-url" id="id18">Download-URL</a></li>
+<li><a class="reference internal" href="#author-optional" id="id19">Author (optional)</a></li>
+<li><a class="reference internal" href="#author-email-optional" id="id20">Author-email (optional)</a></li>
+<li><a class="reference internal" href="#maintainer-optional" id="id21">Maintainer (optional)</a></li>
+<li><a class="reference internal" href="#maintainer-email-optional" id="id22">Maintainer-email (optional)</a></li>
+<li><a class="reference internal" href="#license-optional" id="id23">License (optional)</a></li>
+<li><a class="reference internal" href="#classifier-multiple-use" id="id24">Classifier (multiple use)</a></li>
+<li><a class="reference internal" href="#requires-dist-multiple-use" id="id25">Requires-Dist (multiple use)</a></li>
+<li><a class="reference internal" href="#provides-dist-multiple-use" id="id26">Provides-Dist (multiple use)</a></li>
+<li><a class="reference internal" href="#obsoletes-dist-multiple-use" id="id27">Obsoletes-Dist (multiple use)</a></li>
+<li><a class="reference internal" href="#requires-python" id="id28">Requires-Python</a></li>
+<li><a class="reference internal" href="#requires-external-multiple-use" id="id29">Requires-External (multiple use)</a></li>
+<li><a class="reference internal" href="#project-url-multiple-use" id="id30">Project-URL (multiple-use)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#version-specifiers" id="id31">Version Specifiers</a></li>
+<li><a class="reference internal" href="#environment-markers" id="id32">Environment markers</a></li>
+<li><a class="reference internal" href="#summary-of-differences-from-pep-314" id="id33">Summary of Differences From PEP 314</a></li>
+<li><a class="reference internal" href="#references" id="id34">References</a></li>
+<li><a class="reference internal" href="#copyright" id="id35">Copyright</a></li>
+<li><a class="reference internal" href="#acknowledgements" id="id36">Acknowledgements</a></li>
+</ul>
+</div>
+<div class="section" id="abstract">
+<h1><a class="toc-backref" href="#id7">Abstract</a></h1>
+<p>This PEP describes a mechanism for adding metadata to Python distributions.
+It includes specifics of the field names, and their semantics and
+usage.</p>
+<p>This document specifies version 1.2 of the metadata format.
+Version 1.0 is specified in <a class="reference external" href="/dev/peps/pep-0241">PEP 241</a>.
+Version 1.1 is specified in <a class="reference external" href="/dev/peps/pep-0314">PEP 314</a>.</p>
+<p>Version 1.2 of the metadata format adds a number of optional fields
+designed to make third-party packaging of Python Software easier.
+These fields are &quot;Requires-Python&quot;, &quot;Requires-External&quot;, &quot;Requires-Dist&quot;,
+&quot;Provides-Dist&quot;, and &quot;Obsoletes-Dist&quot;.  This version also changes the
+&quot;Platform&quot; field. Three new fields were also added: &quot;Maintainer&quot;,
+&quot;Maintainer-email&quot; and &quot;Project-URL&quot;.</p>
+<p>Last, this new version also adds <cite>environment markers</cite>.</p>
+</div>
+<div class="section" id="fields">
+<h1><a class="toc-backref" href="#id8">Fields</a></h1>
+<p>This section specifies the names and semantics of each of the
+supported metadata fields.</p>
+<p>Fields marked with &quot;(Multiple use)&quot; may be specified multiple
+times in a single PKG-INFO file.  Other fields may only occur
+once in a PKG-INFO file.  Fields marked with &quot;(optional)&quot; are
+not required to appear in a valid PKG-INFO file; all other
+fields must be present.</p>
+<div class="section" id="metadata-version">
+<h2><a class="toc-backref" href="#id9">Metadata-Version</a></h2>
+<p>Version of the file format; &quot;1.2&quot; is the only legal value.</p>
+<p>Example:</p>
+<pre class="literal-block">
+Metadata-Version: 1.2
+</pre>
+</div>
+<div class="section" id="name">
+<h2><a class="toc-backref" href="#id10">Name</a></h2>
+<p>The name of the distributions.</p>
+<p>Example:</p>
+<pre class="literal-block">
+Name: BeagleVote
+</pre>
+</div>
+<div class="section" id="version">
+<h2><a class="toc-backref" href="#id11">Version</a></h2>
+<p>A string containing the distribution's version number.  This
+field  must be in the format specified in <a class="reference external" href="/dev/peps/pep-0386">PEP 386</a>.</p>
+<p>Example:</p>
+<pre class="literal-block">
+Version: 1.0a2
+</pre>
+</div>
+<div class="section" id="platform-multiple-use">
+<h2><a class="toc-backref" href="#id12">Platform (multiple use)</a></h2>
+<p>A Platform specification describing an operating system supported by
+the distribution which is not listed in the &quot;Operating System&quot; Trove classifiers.
+See &quot;Classifier&quot; below.</p>
+<p>Examples:</p>
+<pre class="literal-block">
+Platform: ObscureUnix
+Platform: RareDOS
+</pre>
+</div>
+<div class="section" id="supported-platform-multiple-use">
+<h2><a class="toc-backref" href="#id13">Supported-Platform (multiple use)</a></h2>
+<p>Binary distributions containing a PKG-INFO file will use the
+Supported-Platform field in their metadata to specify the OS and
+CPU for which the binary distribution was compiled.  The semantics of
+the Supported-Platform field are not specified in this PEP.</p>
+<p>Example:</p>
+<pre class="literal-block">
+Supported-Platform: RedHat 7.2
+Supported-Platform: i386-win32-2791
+</pre>
+</div>
+<div class="section" id="summary">
+<h2><a class="toc-backref" href="#id14">Summary</a></h2>
+<p>A one-line summary of what the distribution does.</p>
+<p>Example:</p>
+<pre class="literal-block">
+Summary: A module for collecting votes from beagles.
+</pre>
+</div>
+<div class="section" id="description-optional">
+<h2><a class="toc-backref" href="#id15">Description (optional)</a></h2>
+<p>A longer description of the distribution that can run to several
+paragraphs.  Software that deals with metadata should not assume
+any maximum size for this field, though people shouldn't include
+their instruction manual as the description.</p>
+<p>The contents of this field can be written using reStructuredText
+markup <a class="footnote-reference" href="#id3" id="id1">[1]</a>.  For programs that work with the metadata, supporting
+markup is optional; programs can also display the contents of the
+field as-is.  This means that authors should be conservative in
+the markup they use.</p>
+<p>To support empty lines and lines with indentation with respect to
+the <a class="reference external" href="http://www.faqs.org/rfcs/rfc822.html">RFC 822</a> format, any CRLF character has to be suffixed by 7 spaces
+followed by a pipe (&quot;|&quot;) char. As a result, the Description field is
+encoded into a folded field that can be interpreted by <a class="reference external" href="http://www.faqs.org/rfcs/rfc822.html">RFC822</a>
+parser <a class="footnote-reference" href="#id4" id="id2">[2]</a>.</p>
+<p>Example:</p>
+<pre class="literal-block">
+Description: This project provides powerful math functions
+        |For example, you can use `sum()` to sum numbers:
+        |
+        |Example::
+        |
+        |    &gt;&gt;&gt; sum(1, 2)
+        |    3
+        |
+</pre>
+<p>This encoding implies that any occurences of a CRLF followed by 7 spaces
+and a pipe char have to be replaced by a single CRLF when the field is unfolded
+using a <a class="reference external" href="http://www.faqs.org/rfcs/rfc822.html">RFC822</a> reader.</p>
+</div>
+<div class="section" id="keywords-optional">
+<h2><a class="toc-backref" href="#id16">Keywords (optional)</a></h2>
+<p>A list of additional keywords to be used to assist searching
+for the distribution in a larger catalog.</p>
+<p>Example:</p>
+<pre class="literal-block">
+Keywords: dog puppy voting election
+</pre>
+</div>
+<div class="section" id="home-page-optional">
+<h2><a class="toc-backref" href="#id17">Home-page (optional)</a></h2>
+<p>A string containing the URL for the distribution's home page.</p>
+<p>Example:</p>
+<pre class="literal-block">
+Home-page: http://www.example.com/~cschultz/bvote/
+</pre>
+</div>
+<div class="section" id="download-url">
+<h2><a class="toc-backref" href="#id18">Download-URL</a></h2>
+<p>A string containing the URL from which this version of the distribution
+can be downloaded.  (This means that the URL can't be something like
+&quot;.../BeagleVote-latest.tgz&quot;, but instead must be &quot;.../BeagleVote-0.45.tgz&quot;.)</p>
+</div>
+<div class="section" id="author-optional">
+<h2><a class="toc-backref" href="#id19">Author (optional)</a></h2>
+<p>A string containing the author's name at a minimum; additional
+contact information may be provided.</p>
+<p>Example:</p>
+<pre class="literal-block">
+Author: C. Schultz, Universal Features Syndicate,
+        Los Angeles, CA &lt;cschultz&#64;peanuts.example.com&gt;
+</pre>
+</div>
+<div class="section" id="author-email-optional">
+<h2><a class="toc-backref" href="#id20">Author-email (optional)</a></h2>
+<p>A string containing the author's e-mail address.  It can contain
+a name and e-mail address in the legal forms for a <a class="reference external" href="http://www.faqs.org/rfcs/rfc822.html">RFC-822</a>
+<tt class="docutils literal">From:</tt> header.</p>
+<p>Example:</p>
+<pre class="literal-block">
+Author-email: &quot;C. Schultz&quot; &lt;cschultz&#64;example.com&gt;
+</pre>
+</div>
+<div class="section" id="maintainer-optional">
+<h2><a class="toc-backref" href="#id21">Maintainer (optional)</a></h2>
+<p>A string containing the maintainer's name at a minimum; additional
+contact information may be provided.</p>
+<p>Note that this field is intended for use when a project is being
+maintained by someone other than the original author:  it should be
+omitted if it is identical to <tt class="docutils literal">Author</tt>.</p>
+<p>Example:</p>
+<pre class="literal-block">
+Maintainer: C. Schultz, Universal Features Syndicate,
+        Los Angeles, CA &lt;cschultz&#64;peanuts.example.com&gt;
+</pre>
+</div>
+<div class="section" id="maintainer-email-optional">
+<h2><a class="toc-backref" href="#id22">Maintainer-email (optional)</a></h2>
+<p>A string containing the maintainer's e-mail address.  It can contain
+a name and e-mail address in the legal forms for a <a class="reference external" href="http://www.faqs.org/rfcs/rfc822.html">RFC-822</a>
+<tt class="docutils literal">From:</tt> header.</p>
+<p>Note that this field is intended for use when a project is being
+maintained by someone other than the original author:  it should be
+omitted if it is identical to <tt class="docutils literal"><span class="pre">Author-email</span></tt>.</p>
+<p>Example:</p>
+<pre class="literal-block">
+Maintainer-email: &quot;C. Schultz&quot; &lt;cschultz&#64;example.com&gt;
+</pre>
+</div>
+<div class="section" id="license-optional">
+<h2><a class="toc-backref" href="#id23">License (optional)</a></h2>
+<p>Text indicating the license covering the distribution where the license
+is not a selection from the &quot;License&quot; Trove classifiers. See
+&quot;Classifier&quot; below.  This field may also be used to specify a
+particular version of a licencse which is named via the <tt class="docutils literal">Classifier</tt>
+field, or to indicate a variation or exception to such a license.</p>
+<p>Examples:</p>
+<pre class="literal-block">
+License: This software may only be obtained by sending the
+        author a postcard, and then the user promises not
+        to redistribute it.
+
+License: GPL version 3, excluding DRM provisions
+</pre>
+</div>
+<div class="section" id="classifier-multiple-use">
+<h2><a class="toc-backref" href="#id24">Classifier (multiple use)</a></h2>
+<p>Each entry is a string giving a single classification value
+for the distribution.  Classifiers are described in <a class="reference external" href="/dev/peps/pep-0301">PEP 301</a> [2].</p>
+<p>Examples:</p>
+<pre class="literal-block">
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console (Text Based)
+</pre>
+</div>
+<div class="section" id="requires-dist-multiple-use">
+<h2><a class="toc-backref" href="#id25">Requires-Dist (multiple use)</a></h2>
+<p>Each entry contains a string naming some other distutils
+project required by this distribution.</p>
+<p>The format of a requirement string is identical to that of a
+distutils project name (e.g., as found in the <tt class="docutils literal">Name:</tt> field.
+optionally followed by a version declaration within parentheses.</p>
+<p>The distutils project names should correspond to names as found
+on the <a class="reference external" href="http://pypi.python.org/pypi/">Python Package Index</a> <a class="footnote-reference" href="#id5" id="id6">[3]</a>.</p>
+<p>Version declarations must follow the rules described in
+<a class="reference internal" href="#version-specifiers">Version Specifiers</a></p>
+<p>Examples:</p>
+<pre class="literal-block">
+Requires-Dist: pkginfo
+Requires-Dist: PasteDeploy
+Requires-Dist: zope.interface (&gt;3.5.0)
+</pre>
+</div>
+<div class="section" id="provides-dist-multiple-use">
+<h2><a class="toc-backref" href="#id26">Provides-Dist (multiple use)</a></h2>
+<p>Each entry contains a string naming a Distutils project which
+is contained within this distribution.  This field <em>must</em> include
+the project identified in the <tt class="docutils literal">Name</tt> field, followed by the
+version : Name (Version).</p>
+<p>A distribution may provide additional names, e.g. to indicate that
+multiple projects have been bundled together.  For instance, source
+distributions of the <tt class="docutils literal">ZODB</tt> project have historically included
+the <tt class="docutils literal">transaction</tt> project, which is now available as a separate
+distribution.  Installing such a source distribution satisfies
+requirements for both <tt class="docutils literal">ZODB</tt> and <tt class="docutils literal">transaction</tt>.</p>
+<p>A distribution may also provide a &quot;virtual&quot; project name, which does
+not correspond to any separately-distributed project:  such a name
+might be used to indicate an abstract capability which could be supplied
+by one of multiple projects.  E.g., multiple projects might supply
+RDBMS bindings for use by a given ORM:  each project might declare
+that it provides <tt class="docutils literal"><span class="pre">ORM-bindings</span></tt>, allowing other projects to depend
+only on having at most one of them installed.</p>
+<p>A version declaration may be supplied and must follow the rules described
+in <a class="reference internal" href="#version-specifiers">Version Specifiers</a>. The distribution's version number will be implied
+if none is specified.</p>
+<p>Examples:</p>
+<pre class="literal-block">
+Provides-Dist: OtherProject
+Provides-Dist: AnotherProject (3.4)
+Provides-Dist: virtual_package
+</pre>
+</div>
+<div class="section" id="obsoletes-dist-multiple-use">
+<h2><a class="toc-backref" href="#id27">Obsoletes-Dist (multiple use)</a></h2>
+<p>Each entry contains a string describing a distutils project's distribution
+which this distribution renders obsolete, meaning that the two projects
+should not be installed at the same time.</p>
+<p>Version declarations can be supplied.  Version numbers must be in the
+format specified in <a class="reference internal" href="#version-specifiers">Version Specifiers</a>.</p>
+<p>The most common use of this field will be in case a project name
+changes, e.g. Gorgon 2.3 gets subsumed into Torqued Python 1.0.
+When you install Torqued Python, the Gorgon distribution should be
+removed.</p>
+<p>Examples:</p>
+<pre class="literal-block">
+Obsoletes-Dist: Gorgon
+Obsoletes-Dist: OtherProject (&lt;3.0)
+</pre>
+</div>
+<div class="section" id="requires-python">
+<h2><a class="toc-backref" href="#id28">Requires-Python</a></h2>
+<p>This field specifies the Python version(s) that the distribution is
+guaranteed to be compatible with.</p>
+<p>Version numbers must be in the format specified in <a class="reference internal" href="#version-specifiers">Version Specifiers</a>.</p>
+<p>Examples:</p>
+<pre class="literal-block">
+Requires-Python: 2.5
+Requires-Python: &gt;2.1
+Requires-Python: &gt;=2.3.4
+Requires-Python: &gt;=2.5,&lt;2.7
+</pre>
+</div>
+<div class="section" id="requires-external-multiple-use">
+<h2><a class="toc-backref" href="#id29">Requires-External (multiple use)</a></h2>
+<p>Each entry contains a string describing some dependency in the
+system that the distribution is to be used.  This field is intended to
+serve as a hint to downstream project maintainers, and has no
+semantics which are meaningful to the <tt class="docutils literal">distutils</tt> distribution.</p>
+<p>The format of a requirement string is a name of an external
+dependency, optionally followed by a version declaration within
+parentheses.</p>
+<p>Because they refer to non-Python software releases, version numbers
+for this field are <strong>not</strong> required to conform to the format
+specified in <a class="reference external" href="/dev/peps/pep-0386">PEP 386</a>:  they should correspond to the
+version scheme used by the external dependency.</p>
+<p>Notice that there's is no particular rule on the strings to be used.</p>
+<p>Examples:</p>
+<pre class="literal-block">
+Requires-External: C
+Requires-External: libpng (&gt;=1.5)
+</pre>
+</div>
+<div class="section" id="project-url-multiple-use">
+<h2><a class="toc-backref" href="#id30">Project-URL (multiple-use)</a></h2>
+<p>A string containing a browsable URL for the project and a label for it,
+separated by a comma.</p>
+<p>Example:</p>
+<pre class="literal-block">
+Bug Tracker, http://bitbucket.org/tarek/distribute/issues/
+</pre>
+<p>The label is a free text limited to 32 signs.</p>
+</div>
+</div>
+<div class="section" id="version-specifiers">
+<h1><a class="toc-backref" href="#id31">Version Specifiers</a></h1>
+<p>Version specifiers are a series of conditional operators and
+version numbers, separated by commas.  Conditional operators
+must be one of &quot;&lt;&quot;, &quot;&gt;&quot;, &quot;&lt;=&quot;, &quot;&gt;=&quot;, &quot;==&quot; and &quot;!=&quot;.</p>
+<p>Any number of conditional operators can be specified, e.g.
+the string &quot;&gt;1.0, !=1.3.4, &lt;2.0&quot; is a legal version declaration.
+The comma (&quot;,&quot;) is equivalent to the <strong>and</strong> operator.</p>
+<p>Each version number must be in the format specified in <a class="reference external" href="/dev/peps/pep-0386">PEP 386</a>.</p>
+<p>When a version is provided, it always includes all versions that
+starts with the same value. For example the &quot;2.5&quot; version of Python
+will include versions like &quot;2.5.2&quot; or &quot;2.5.3&quot;. Pre and post releases
+in that case are excluded. So in our example, versions like &quot;2.5a1&quot; are
+not included when &quot;2.5&quot; is used. If the first version of the range is
+required, it has to be explicitly given. In our example, it will be
+&quot;2.5.0&quot;.</p>
+<p>Notice that some projects might omit the &quot;.0&quot; prefix for the first release
+of the &quot;2.5.x&quot; series:</p>
+<ul class="simple">
+<li>2.5</li>
+<li>2.5.1</li>
+<li>2.5.2</li>
+<li>etc.</li>
+</ul>
+<p>In that case, &quot;2.5.0&quot; will have to be explicitly used to avoid any confusion
+between the &quot;2.5&quot; notation that represents the full range. It is a recommended
+practice to use schemes of the same length for a series to completely avoid
+this problem.</p>
+<p>Some Examples:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">Requires-Dist:</span> zope.interface (3.1)</tt>: any version that starts with 3.1,
+excluding post or pre-releases.</li>
+<li><tt class="docutils literal"><span class="pre">Requires-Dist:</span> zope.interface (3.1.0)</tt>: any version that starts with
+3.1.0, excluding post or pre-releases. Since that particular project doesn't
+use more than 3 digits, it also means &quot;only the 3.1.0 release&quot;.</li>
+<li><tt class="docutils literal"><span class="pre">Requires-Python:</span> 3</tt>: Any Python 3 version, no matter wich one, excluding
+post or pre-releases.</li>
+<li><tt class="docutils literal"><span class="pre">Requires-Python:</span> <span class="pre">&gt;=2.6,&lt;3</span></tt>: Any version of Python 2.6 or 2.7, including
+post releases of 2.6, pre and post releases of 2.7. It excludes pre releases
+of Python 3.</li>
+<li><tt class="docutils literal"><span class="pre">Requires-Python:</span> 2.6.2</tt>: Equivalent to &quot;&gt;=2.6.2,&lt;2.6.3&quot;. So this includes
+only Python 2.6.2. Of course, if Python was numbered with 4 digits, it would
+have include all versions of the 2.6.2 series.</li>
+<li><tt class="docutils literal"><span class="pre">Requires-Python:</span> 2.5.0</tt>: Equivalent to &quot;&gt;=2.5.0,&lt;2.5.1&quot;.</li>
+<li><tt class="docutils literal"><span class="pre">Requires-Dist:</span> zope.interface <span class="pre">(3.1,!=3.1.3)</span></tt>: any version that starts with
+3.1, excluding post or pre-releases of 3.1 <em>and</em> excluding any version that
+starts with &quot;3.1.3&quot;. For this particular project, this means: &quot;any version
+of the 3.1 series but not 3.1.3&quot;. This is equivalent to:
+&quot;&gt;=3.1,!=3.1.3,&lt;3.2&quot;.</li>
+</ul>
+</div>
+<div class="section" id="environment-markers">
+<h1><a class="toc-backref" href="#id32">Environment markers</a></h1>
+<p>An <strong>environment marker</strong> is a marker that can be added at the end of a
+field after a semi-colon (&quot;;&quot;), to add a condition about the execution
+environment.</p>
+<p>Here are some example of fields using such markers:</p>
+<pre class="literal-block">
+Requires-Dist: pywin32 (&gt;1.0); sys.platform == 'win32'
+Obsoletes-Dist: pywin31; sys.platform == 'win32'
+Requires-Dist: foo (1,!=1.3); platform.machine == 'i386'
+Requires-Dist: bar; python_version == '2.4' or python_version == '2.5'
+Requires-External: libxslt; 'linux' in sys.platform
+</pre>
+<p>The micro-language behind this is the simplest possible: it compares only
+strings, with the <tt class="docutils literal">==</tt> and <tt class="docutils literal">in</tt> operators (and their opposites), and
+with the ability to combine expressions. It makes it also easy to understand
+to non-pythoneers.</p>
+<p>The pseudo-grammar is</p>
+<pre class="literal-block">
+EXPR [in|==|!=|not in]&nbsp;EXPR [or|and] ...
+</pre>
+<p>where <tt class="docutils literal">EXPR</tt> belongs to any of those:</p>
+<ul class="simple">
+<li>python_version = '%s.%s' % (sys.version_info[0], sys.version_info[1])</li>
+<li>python_full_version = sys.version.split()[0]</li>
+<li>os.name = os.name</li>
+<li>sys.platform = sys.platform</li>
+<li>platform.version = platform.version()</li>
+<li>platform.machine = platform.machine()</li>
+<li>platform.python_implementation = platform.python_implementation()</li>
+<li>a free string, like <tt class="docutils literal">'2.4'</tt>, or <tt class="docutils literal">'win32'</tt></li>
+</ul>
+<p>Notice that <tt class="docutils literal">in</tt> is restricted to strings, meaning that it is not possible
+to use other sequences like tuples or lists on the right side.</p>
+<p>The fields that benefit from this marker are:</p>
+<ul class="simple">
+<li>Requires-Python</li>
+<li>Requires-External</li>
+<li>Requires-Dist</li>
+<li>Provides-Dist</li>
+<li>Obsoletes-Dist</li>
+<li>Classifier</li>
+</ul>
+</div>
+<div class="section" id="summary-of-differences-from-pep-314">
+<h1>Summary of Differences From <a class="reference external" href="/dev/peps/pep-0314">PEP 314</a></h1>
+<ul class="simple">
+<li>Metadata-Version is now 1.2.</li>
+<li>Added the environment markers.</li>
+<li>Changed fields:<ul>
+<li>Platform</li>
+<li>Author</li>
+</ul>
+</li>
+<li>Added fields:<ul>
+<li>Maintainer</li>
+<li>Maintainer-email</li>
+<li>Requires-Python</li>
+<li>Requires-External</li>
+<li>Requires-Dist</li>
+<li>Provides-Dist</li>
+<li>Obsoletes-Dist</li>
+<li>Project-URL</li>
+</ul>
+</li>
+<li>Deprecated fields:<ul>
+<li>Requires (in favor of Requires-Dist)</li>
+<li>Provides (in favor of Provides-Dist)</li>
+<li>Obsoletes (in favor of Obsoletes-Dist)</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="references">
+<h1><a class="toc-backref" href="#id34">References</a></h1>
+<p>This document specifies version 1.2 of the metadata format.
+Version 1.0 is specified in <a class="reference external" href="/dev/peps/pep-0241">PEP 241</a>.
+Version 1.1 is specified in <a class="reference external" href="/dev/peps/pep-0314">PEP 314</a>.</p>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>reStructuredText markup:
+<a class="reference external" href="http://docutils.sourceforge.net/">http://docutils.sourceforge.net/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="http://www.faqs.org/rfcs/rfc822.html">RFC 822</a> Long Header Fields:
+<a class="reference external" href="http://www.freesoft.org/CIE/RFC/822/7.htm">http://www.freesoft.org/CIE/RFC/822/7.htm</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[3]</a></td><td><a class="reference external" href="http://pypi.python.org/pypi/">http://pypi.python.org/pypi/</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="copyright">
+<h1><a class="toc-backref" href="#id35">Copyright</a></h1>
+<p>This document has been placed in the public domain.</p>
+</div>
+<div class="section" id="acknowledgements">
+<h1><a class="toc-backref" href="#id36">Acknowledgements</a></h1>
+<p>Fred Drake, Anthony Baxter and Matthias Klose have all contributed to
+the ideas presented in this PEP.</p>
+<p>Tres Seaver, Jim Fulton, Marc-AndrÃ© Lemburg, Martin von LÃ¶wis, Tarek ZiadÃ©,
+David Lyon and other people at the Distutils-SIG have contributed to the
+new updated version.</p>
+<!-- Local Variables:
+mode: indented-text
+indent-tabs-mode: nil
+sentence-end-double-space: t
+fill-column: 70
+End: -->
+</div>
+
+
+
+      </div>
+
+      
+      <div id="footer">
+	<div id="credits">
+ 	  <a href="/about/website">Website maintained by the Python community</a><br/>
+	  <a href="http://www.xs4all.com/" title="Web and email hosting provided by xs4all, Netherlands">hosting by xs4all</a> /
+	  <a href="http://www.timparkin.co.uk/" title="Design by Tim Parkin, Yorkshire man, photographer and developer">design by Tim Parkin</a>
+	</div>
+	Copyright &copy; 1990-2013, <a href='/psf/'>Python Software Foundation</a><br/>
+	<a href="/about/legal">Legal Statements</a>
+      </div>
+
+
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+

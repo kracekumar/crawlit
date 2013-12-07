@@ -1,0 +1,503 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>PEP 364 -- Transitioning to the Py3K Standard Library</title>
+  <meta name="keywords" content="PEP 364 -- Transitioning to the Py3K Standard Library" />
+  <meta name="description" content="PEP 364 -- Transitioning to the Py3K Standard Library" />
+  <link rel="alternate" type="application/rss+xml" title="Community Events"
+        href="http://www.python.org/channews.rdf" />
+  <link rel="alternate" type="application/rss+xml" title="Python Recipes"
+        href="http://aspn.activestate.com/ASPN/Cookbook/Python/index_rss" />
+  <link rel="alternate" type="application/rss+xml" title="Usergroup News"
+        href="http://python-groups.blogspot.com/feeds/posts/default" />
+  <link rel="alternate" type="application/rss+xml" title="Python Screencasts"
+        href="http://www.showmedo.com/latestVideoFeed/rss2.0?tag=python" />
+  <link rel="alternate" type="application/rss+xml" title="Python Podcasts"
+        href="http://www.awaretek.com/python/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Foundation News"
+        href="http://feeds.feedburner.com/PythonSoftwareFoundationNews" />
+  <link rel="alternate" type="application/rss+xml" title="Python Enhancement Proposals"
+        href="http://www.python.org/dev/peps/peps.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Job Opportunities"
+        href="http://www.python.org/community/jobs/jobs.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Reddit Feed of Python What's New Online"
+        href="http://www.reddit.com/r/Python/.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Insider"
+        href="http://feeds.feedburner.com/PythonInsider" />
+
+  <link rel="stylesheet" type="text/css" media="screen" id="screen-switcher-stylesheet"
+        href="/styles/screen-switcher-default.css" />
+  <link rel="stylesheet" type="text/css" media="sc&#82;een"
+        href="/styles/netscape4.css" />
+  <link rel="stylesheet" type="text/css" media="print"
+        href="/styles/print.css" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/largestyles.css" title="large text" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/defaultfonts.css" title="default fonts" />
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search under the www.python.org Domain"
+        href="/search-pysite.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Wiki"
+        href="/search-pywiki.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within Python Books at Google Book Search"
+        href="/search-pybooks.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Documentation"
+        href="/search-pydocs.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for a Module in the Standard Library"
+        href="/search-pymodules.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for Packages inside the Cheeseshop (PyPI)"
+        href="/search-pycheese.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search Archives of the Main Python Mailing List"
+        href="/search-pythonlist.xml"/>
+
+  <script type="text/javascript" src="/js/iotbs2-key-directors-load.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-directors.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-core.js"></script>
+
+</head>
+
+
+<body>
+  <!-- Logo -->
+  <h1 id="logoheader">
+    <a href="/" id="logolink" accesskey="1"><img id="logo" src="/images/python-logo.gif" alt="homepage" border="0" /></a>
+  </h1>
+  <!-- Skip to Navigation -->
+  <div class="skiptonav"><a href="#left-hand-navigation" accesskey="2"><img src="/images/trans.gif" id="skiptonav" alt="skip to navigation" border="0" /></a></div>
+  <div class="skiptonav"><a href="#content-body" accesskey="3"><img src="/images/trans.gif" id="skiptocontent" alt="skip to content" border="0" /></a></div>
+  <!-- Utility Menu -->
+  <div id="utility-menu">
+    <!-- Search Box -->
+    <div id="searchbox">
+      <form method="get" action="http://google.com/search" id="searchform" name="searchform">
+        <div id="search">
+          <input type="hidden" id="domains" name="domains" value="www.python.org" />
+          <input type="hidden" id="sitesearch" name="sitesearch" value="www.python.org" />
+          <input type="hidden" id="sourceid" name="sourceid" value="google-search" />
+          <input type="text" class="input-text" name="q" id="q" />
+          <input type="submit" value="search" class="input-button" name="submit" id="submit" />
+          <a href="/search" class="reference">Advanced Search</a>
+        </div>
+      </form>
+    </div>
+    <div id="screen-switcher"></div>
+  </div>
+
+  <div id="left-hand-navigation">
+    <!-- Main Menu -->
+    <div id="menu">
+      <ul class="level-one">
+            <li>
+          <a href="/about/" title="About The Python Language">About</a>
+        </li>
+            <li>
+          <a href="/news/" title="Major Happenings Within the Python Community">News</a>
+        </li>
+            <li>
+          <a href="/doc/" title="Tutorials, Library Reference, C API">Documentation</a>
+        </li>
+            <li>
+          <a href="/download/" title="Start Running Python Under Windows, Mac, Linux and Others">Download</a>
+        </li>
+            <li>
+          <a href="/getit/" title="Alternate Download page for China">ä¸è½½</a>
+        </li>
+            <li>
+          <a href="/community/" title="Mailing Lists, Jobs, Conferences, SIGs, Online Chats">Community</a>
+        </li>
+            <li>
+          <a href="/psf/" title="Python Software Foundation">Foundation</a>
+        </li>
+            <li>
+          <a href="http://docs.python.org/devguide/" title="Development of the Python language and website">Core Development</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Quick Links -->
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/">Python Wiki</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://blog.python.org/">Python Insider Blog</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/Python2orPython3">Python 2 or 3?</a></h4>
+    <h4><a style="color:#D58228; margin-top:1.5em" href="/psf/donations/">Help Fund Python</a></h4>
+    <div style="align:center; padding-top: 0.5em; padding-left: 1em">
+      <a href="/psf/donations/"><img width="116" height="42" src="/images/donate.png" alt="" title="" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.5em; padding-left: 2.5em">
+            <a href="http://wiki.python.org/moin/Languages"><img
+	      style="align:center"
+              width="94" height="46"
+	      src="/images/worldmap.jpg" alt="[Python resources in languages other than English]" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.0em; padding-left: 0em">
+       <h4><a href="http://wiki.python.org/moin/Languages">Non-English Resources</a></h4>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Release%20Schedule&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com/public/basic.ics">
+                Python Release Schedule iCal Calendar
+            </a>
+        </iframe>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Events%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com/public/basic.ics">
+                Python Events iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=User%20Group%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com&amp;color=%23125A12&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com/public/basic.ics">
+                Python User Group iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+  </div>
+
+  <div id="content-body">
+    <div id="body-main">
+      <div id="content">
+        
+          <div id="breadcrumb">
+               <a href="/dev/peps/">PEP Index</a>
+               <span class="breadcrumb-separator">&gt;</span>
+            
+            PEP 364 -- Transitioning to the Py3K Standard Library
+          </div>
+
+
+
+        <!--
+This HTML is auto-generated.  DO NOT EDIT THIS FILE!  If you are writing a new
+PEP, see http://www.python.org/dev/peps/pep-0001 for instructions and links
+to templates.  DO NOT USE THIS HTML FILE AS YOUR TEMPLATE!
+-->
+<table class="rfc2822 docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">PEP:</th><td class="field-body">364</td>
+</tr>
+<tr class="field"><th class="field-name">Title:</th><td class="field-body">Transitioning to the Py3K Standard Library</td>
+</tr>
+<tr class="field"><th class="field-name">Version:</th><td class="field-body">a6c8ddeb8e75</td>
+</tr>
+<tr class="field"><th class="field-name">Last-Modified:</th><td class="field-body"><a class="reference external" href="http://hg.python.org/peps/file/tip/pep-0364.txt">2008-12-05 13:03:28 +0000 (Fri, 05 Dec 2008)</a></td>
+</tr>
+<tr class="field"><th class="field-name">Author:</th><td class="field-body">Barry Warsaw &lt;barry&#32;&#97;t&#32;python.org&gt;</td>
+</tr>
+<tr class="field"><th class="field-name">Status:</th><td class="field-body">Withdrawn</td>
+</tr>
+<tr class="field"><th class="field-name">Type:</th><td class="field-body">Standards Track</td>
+</tr>
+<tr class="field"><th class="field-name">Content-Type:</th><td class="field-body"><a class="reference external" href="/dev/peps/pep-0012">text/x-rst</a></td>
+</tr>
+<tr class="field"><th class="field-name">Created:</th><td class="field-body">01-Mar-2007</td>
+</tr>
+<tr class="field"><th class="field-name">Python-Version:</th><td class="field-body">2.6</td>
+</tr>
+<tr class="field"><th class="field-name">Post-History:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#abstract" id="id9">Abstract</a></li>
+<li><a class="reference internal" href="#rationale" id="id10">Rationale</a></li>
+<li><a class="reference internal" href="#supported-renamings" id="id11">Supported Renamings</a></li>
+<li><a class="reference internal" href="#mv-files" id="id12">.mv files</a></li>
+<li><a class="reference internal" href="#implementation-specification" id="id13">Implementation Specification</a></li>
+<li><a class="reference internal" href="#programmatic-interface" id="id14">Programmatic Interface</a></li>
+<li><a class="reference internal" href="#open-issues" id="id15">Open Issues</a></li>
+<li><a class="reference internal" href="#reference-implementation" id="id16">Reference Implementation</a></li>
+<li><a class="reference internal" href="#references" id="id17">References</a></li>
+<li><a class="reference internal" href="#copyright" id="id18">Copyright</a></li>
+</ul>
+</div>
+<div class="section" id="abstract">
+<h1><a class="toc-backref" href="#id9">Abstract</a></h1>
+<p><a class="reference external" href="/dev/peps/pep-3108">PEP 3108</a> describes the reorganization of the Python standard library
+for the Python 3.0 release <a class="footnote-reference" href="#id5" id="id1">[1]</a>.  This PEP describes a
+mechanism for transitioning from the Python 2.x standard library to
+the Python 3.0 standard library.  This transition will allow and
+encourage Python programmers to use the new Python 3.0 library names
+starting with Python 2.6, while maintaining the old names for backward
+compatibility.  In this way, a Python programmer will be able to write
+forward compatible code without sacrificing interoperability with
+existing Python programs.</p>
+</div>
+<div class="section" id="rationale">
+<h1><a class="toc-backref" href="#id10">Rationale</a></h1>
+<p><a class="reference external" href="/dev/peps/pep-3108">PEP 3108</a> presents a rationale for Python standard library (stdlib)
+reorganization.  The reader is encouraged to consult that PEP for
+details about why and how the library will be reorganized.  Should
+<a class="reference external" href="/dev/peps/pep-3108">PEP 3108</a> be accepted in part or in whole, then it is advantageous to
+allow Python programmers to begin the transition to the new stdlib
+module names in Python 2.x, so that they can write forward compatible
+code starting with Python 2.6.</p>
+<p>Note that <a class="reference external" href="/dev/peps/pep-3108">PEP 3108</a> proposes to remove some &quot;silly old stuff&quot;,
+i.e. modules that are no longer useful or necessary.  The PEP you are
+reading does not address this because there are no forward
+compatibility issues for modules that are to be removed, except to
+stop using such modules.</p>
+<p>This PEP concerns only the mechanism by which mappings from old stdlib
+names to new stdlib names are maintained.  Please consult <a class="reference external" href="/dev/peps/pep-3108">PEP 3108</a> for
+all specific module renaming proposals.  Specifically see the section
+titled <tt class="docutils literal">Modules to Rename</tt> for guidelines on the old name to new
+name mappings.  The few examples in this PEP are given for
+illustrative purposes only and should not be used for specific
+renaming recommendations.</p>
+</div>
+<div class="section" id="supported-renamings">
+<h1><a class="toc-backref" href="#id11">Supported Renamings</a></h1>
+<p>There are at least 4 use cases explicitly supported by this PEP:</p>
+<ul class="simple">
+<li>Simple top-level package name renamings, such as <tt class="docutils literal">StringIO</tt> to
+<tt class="docutils literal">stringio</tt>;</li>
+<li>Sub-package renamings where the package name may or may not be
+renamed, such as <tt class="docutils literal">email.MIMEText</tt> to <tt class="docutils literal">email.mime.text</tt>;</li>
+<li>Extension module renaming, such as <tt class="docutils literal">cStringIO</tt> to <tt class="docutils literal">cstringio</tt>;</li>
+<li>Third party renaming of any of the above.</li>
+</ul>
+<p>Two use cases supported by this PEP include renaming simple top-level
+modules, such as <tt class="docutils literal">StringIO</tt>, as well as modules within packages,
+such as <tt class="docutils literal">email.MIMEText</tt>.</p>
+<p>In the former case, <a class="reference external" href="/dev/peps/pep-3108">PEP 3108</a> currently recommends <tt class="docutils literal">StringIO</tt> be
+renamed to <tt class="docutils literal">stringio</tt>, following <a class="reference external" href="/dev/peps/pep-0008">PEP 8</a> recommendations <a class="footnote-reference" href="#id6" id="id2">[2]</a>.</p>
+<p>In the latter case, the email 4.0 package distributed with Python 2.5
+already renamed <tt class="docutils literal">email.MIMEText</tt> to <tt class="docutils literal">email.mime.text</tt>, although it
+did so in a one-off, uniquely hackish way inside the email package.
+The mechanism described in this PEP is general enough to handle all
+module renamings, obviating the need for the Python 2.5 hack (except
+for backward compatibility with earlier Python versions).</p>
+<p>An additional use case is to support the renaming of C extension
+modules.  As long as the new name for the C module is importable, it
+can be remapped to the new name.  E.g. <tt class="docutils literal">cStringIO</tt> renamed to
+<tt class="docutils literal">cstringio</tt>.</p>
+<p>Third party package renaming is also supported, via several public
+interfaces accessible by any Python module.</p>
+<p>Remappings are not performed recursively.</p>
+</div>
+<div class="section" id="mv-files">
+<h1><a class="toc-backref" href="#id12">.mv files</a></h1>
+<p>Remapping files are called <tt class="docutils literal">.mv</tt> files; the suffix was chosen to be
+evocative of the Unix mv(1) command.  An <tt class="docutils literal">.mv</tt> file is a simple
+line-oriented text file.  All blank lines and lines that start with a
+# are ignored.  All other lines must contain two whitespace separated
+fields.  The first field is the old module name, and the second field
+is the new module name.  Both module names must be specified using
+their full dotted-path names.  Here is an example <tt class="docutils literal">.mv</tt> file from
+Python 2.6:</p>
+<pre class="literal-block">
+# Map the various string i/o libraries to their new names
+StringIO    stringio
+cStringIO   cstringio
+</pre>
+<p><tt class="docutils literal">.mv</tt> files can appear anywhere in the file system, and there is a
+programmatic interface provided to parse them, and register the
+remappings inside them.  By default, when Python starts up, all the
+<tt class="docutils literal">.mv</tt> files in the <tt class="docutils literal">oldlib</tt> package are read, and their remappings
+are automatically registered.  This is where all the module remappings
+should be specified for top-level Python 2.x standard library modules.</p>
+</div>
+<div class="section" id="implementation-specification">
+<h1><a class="toc-backref" href="#id13">Implementation Specification</a></h1>
+<p>This section provides the full specification for how module renamings
+in Python 2.x are implemented.  The central mechanism relies on
+various import hooks as described in <a class="reference external" href="/dev/peps/pep-0302">PEP 302</a> <a class="footnote-reference" href="#id7" id="id3">[3]</a>.  Specifically
+<tt class="docutils literal">sys.path_importer_cache</tt>, <tt class="docutils literal">sys.path</tt>, and <tt class="docutils literal">sys.meta_path</tt> are
+all employed to provide the necessary functionality.</p>
+<p>When Python's import machinery is initialized, the oldlib package is
+imported.  Inside oldlib there is a class called <tt class="docutils literal">OldStdlibLoader</tt>.
+This class implements the <a class="reference external" href="/dev/peps/pep-0302">PEP 302</a> interface and is automatically
+instantiated, with zero arguments.  The constructor reads all the
+<tt class="docutils literal">.mv</tt> files from the oldlib package directory, automatically
+registering all the remappings found in those <tt class="docutils literal">.mv</tt> files.  This is
+how the Python 2.x standard library is remapped.</p>
+<p>The OldStdlibLoader class should not be instantiated by other Python
+modules.  Instead, you can access the global OldStdlibLoader instance
+via the <tt class="docutils literal">sys.stdlib_remapper</tt> instance.  Use this instance if you want
+programmatic access to the remapping machinery.</p>
+<p>One important implementation detail: as needed by the <a class="reference external" href="/dev/peps/pep-0302">PEP 302</a> API, a
+magic string is added to sys.path, and module __path__ attributes in
+order to hook in our remapping loader.  This magic string is currently
+<tt class="docutils literal">&lt;oldlib&gt;</tt> and some changes were necessary to Python's site.py file
+in order to treat all sys.path entries starting with <tt class="docutils literal">&lt;</tt> as
+special.  Specifically, no attempt is made to make them absolute file
+names (since they aren't file names at all).</p>
+<p>In order for the remapping import hooks to work, the module or package
+must be physically located under its new name.  This is because the
+import hooks catch only modules that are not already imported, and
+cannot be imported by Python's built-in import rules.  Thus, if a
+module has been moved, say from Lib/StringIO.py to Lib/stringio.py,
+and the former's <tt class="docutils literal">.pyc</tt> file has been removed, then without the
+remapper, this would fail:</p>
+<pre class="literal-block">
+import StringIO
+</pre>
+<p>Instead, with the remapper, this failing import will be caught, the
+old name will be looked up in the registered remappings, and in this
+case, the new name <tt class="docutils literal">stringio</tt> will be found.  The remapper then
+attempts to import the new name, and if that succeeds, it binds the
+resulting module into sys.modules, under both the old and new names.
+Thus, the above import will result in entries in sys.modules for
+'StringIO' and 'stringio', and both will point to the exact same
+module object.</p>
+<p>Note that no way to disable the remapping machinery is proposed, short
+of moving all the <tt class="docutils literal">.mv</tt> files away or programmatically removing them
+in some custom start up code.  In Python 3.0, the remappings will be
+eliminated, leaving only the &quot;new&quot; names.</p>
+</div>
+<div class="section" id="programmatic-interface">
+<h1><a class="toc-backref" href="#id14">Programmatic Interface</a></h1>
+<p>Several methods are added to the <tt class="docutils literal">sys.stdlib_remapper</tt> object, which
+third party packages can use to register their own remappings.  Note
+however that in all cases, there is one and only one mapping from an
+old name to a new name.  If two <tt class="docutils literal">.mv</tt> files contain different
+mappings for an old name, or if a programmatic call is made with an
+old name that is already remapped, the previous mapping is lost.  This
+will not affect any already imported modules.</p>
+<p>The following methods are available on the <tt class="docutils literal">sys.stdlib_remapper</tt>
+object:</p>
+<ul class="simple">
+<li><tt class="docutils literal">read_mv_file(filename)</tt> -- Read the given file and register all
+remappings found in the file.</li>
+<li><tt class="docutils literal">read_directory_mv_files(dirname, <span class="pre">suffix='.mv')</span></tt> -- List the given
+directory, reading all files in that directory that have the
+matching suffix (<tt class="docutils literal">.mv</tt> by default).  For each parsed file,
+register all the remappings found in that file.</li>
+<li><tt class="docutils literal">set_mapping(oldname, newname)</tt> -- Register a new mapping from an
+old module name to a new module name.  Both must be the full
+dotted-path name to the module.  newname may be <tt class="docutils literal">None</tt> in which
+case any existing mapping for oldname will be removed (it is not an
+error if there is no existing mapping).</li>
+<li><tt class="docutils literal">get_mapping(oldname, default=None)</tt> -- Return any registered
+newname for the given oldname.  If there is no registered remapping,
+default is returned.</li>
+</ul>
+</div>
+<div class="section" id="open-issues">
+<h1><a class="toc-backref" href="#id15">Open Issues</a></h1>
+<blockquote>
+<ul>
+<li><p class="first">Should there be a command line switch and/or environment variable to
+disable all remappings?</p>
+</li>
+<li><p class="first">Should remappings occur recursively?</p>
+</li>
+<li><p class="first">Should we automatically parse package directories for .mv files when
+the package's __init__.py is loaded?  This would allow packages to
+easily include .mv files for their own remappings.  Compare what the
+email package currently has to do if we place its <tt class="docutils literal">.mv</tt> file in
+the email package instead of in the oldlib package:</p>
+<pre class="literal-block">
+# Expose old names
+import os, sys
+sys.stdlib_remapper.read_directory_mv_files(os.path.dirname(__file__))
+</pre>
+<p>I think we should automatically read a package's directory for any
+<tt class="docutils literal">.mv</tt> files it might contain.</p>
+</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="reference-implementation">
+<h1><a class="toc-backref" href="#id16">Reference Implementation</a></h1>
+<p>A reference implementation, in the form of a patch against the current
+(as of this writing) state of the Python 2.6 svn trunk, is available
+as SourceForge patch #1675334 <a class="footnote-reference" href="#id8" id="id4">[4]</a>.  Note that this patch includes a
+rename of <tt class="docutils literal">cStringIO</tt> to <tt class="docutils literal">cstringio</tt>, but this is primarily for
+illustrative and unit testing purposes.  Should the patch be accepted,
+we might want to split this change off into other <a class="reference external" href="/dev/peps/pep-3108">PEP 3108</a> changes.</p>
+</div>
+<div class="section" id="references">
+<h1><a class="toc-backref" href="#id17">References</a></h1>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="/dev/peps/pep-3108">PEP 3108</a>, Standard Library Reorganization, Cannon
+(<a class="reference external" href="http://www.python.org/dev/peps/pep-3108">http://www.python.org/dev/peps/pep-3108</a>)</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="/dev/peps/pep-0008">PEP 8</a>, Style Guide for Python Code, GvR, Warsaw
+(<a class="reference external" href="http://www.python.org/dev/peps/pep-0008">http://www.python.org/dev/peps/pep-0008</a>)</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="/dev/peps/pep-0302">PEP 302</a>, New Import Hooks, JvR, Moore
+(<a class="reference external" href="http://www.python.org/dev/peps/pep-0302">http://www.python.org/dev/peps/pep-0302</a>)</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td>Reference implementation
+(<a class="reference external" href="http://bugs.python.org/issue1675334">http://bugs.python.org/issue1675334</a>)</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="copyright">
+<h1><a class="toc-backref" href="#id18">Copyright</a></h1>
+<p>This document has been placed in the public domain.</p>
+<!-- Local Variables:
+mode: indented-text
+indent-tabs-mode: nil
+sentence-end-double-space: t
+fill-column: 70
+coding: utf-8
+End: -->
+</div>
+
+
+
+      </div>
+
+      
+      <div id="footer">
+	<div id="credits">
+ 	  <a href="/about/website">Website maintained by the Python community</a><br/>
+	  <a href="http://www.xs4all.com/" title="Web and email hosting provided by xs4all, Netherlands">hosting by xs4all</a> /
+	  <a href="http://www.timparkin.co.uk/" title="Design by Tim Parkin, Yorkshire man, photographer and developer">design by Tim Parkin</a>
+	</div>
+	Copyright &copy; 1990-2013, <a href='/psf/'>Python Software Foundation</a><br/>
+	<a href="/about/legal">Legal Statements</a>
+      </div>
+
+
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+

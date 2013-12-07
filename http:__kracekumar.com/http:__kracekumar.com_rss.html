@@ -1,0 +1,1159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0"><channel><description>kracekumar - Geek</description><title>Random stream</title><generator>Tumblr (3.0; @kracekumar)</generator><link>http://kracekumar.com/</link><item><title>easy_install broken in os x mavericks  </title><description>&lt;p&gt;I hardly use &lt;code&gt;easy_install&lt;/code&gt;. Nowadays all the python requirements are installed via &lt;code&gt;pip&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;IPython is my primary python console. After installing mavericks, I installed IPython and fired IPython console. Following warning message appeared&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;➜  ~  ipython
+/Library/Python/2.7/site-packages/IPython/utils/rlineimpl.py:94: RuntimeWarning: 
+******************************************************************************
+libedit detected - readline will not be well behaved, including but not limited to:
+   * crashes on tab completion
+   * incorrect history navigation
+   * corrupting long-lines
+   * failure to wrap or indent lines properly
+It is highly recommended that you install readline, which is easy_installable:
+     easy_install readline
+Note that `pip install readline` generally DOES NOT WORK, because
+it installs to site-packages, which come *after* lib-dynload in sys.path,
+where readline is located.  It must be `easy_install readline`, or to a custom
+location on your PYTHONPATH (even --user comes after lib-dyload).
+******************************************************************************
+  RuntimeWarning)
+Python 2.7.5 (default, Aug 25 2013, 00:04:04) 
+Type "copyright", "credits" or "license" for more information.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;IPython complains &lt;code&gt;readline&lt;/code&gt; is missing and insisting to use &lt;code&gt;easy_install&lt;/code&gt;. Then I tried&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;➜   ~  sudo easy_install-2.7 --upgrade setuptools
+Traceback (most recent call last):
+  File "/usr/bin/easy_install-2.7", line 7, in &amp;lt;module&amp;gt;
+    from pkg_resources import load_entry_point
+  File "/Library/Python/2.7/site-packages/pkg_resources.py", line 2797, in &amp;lt;module&amp;gt;
+    parse_requirements(__requires__), Environment()
+  File "/Library/Python/2.7/site-packages/pkg_resources.py", line 576, in resolve
+    raise DistributionNotFound(req)
+pkg_resources.DistributionNotFound: setuptools==0.6c12dev-r88846
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I know I can&amp;#8217;t use pip, but &lt;code&gt;distribute&lt;/code&gt; is already installed.&lt;/p&gt;
+
+&lt;p&gt;Now only way to install readline is to use &lt;code&gt;easy_install&lt;/code&gt; in Python site-packages. Normally &lt;code&gt;easy_install&lt;/code&gt; is installed in &lt;code&gt;/usr/bin&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;➜   ~  which easy_install
+/usr/bin/easy_install
+➜  ~  sudo python /Library/Python/2.7/site-packages/easy_install.py readline
+Searching for readline
+Reading &lt;a href="https://pypi.python.org/simple/readline/" target="_blank"&gt;https://pypi.python.org/simple/readline/&lt;/a&gt;
+Best match: readline 6.2.4.1
+Downloading &lt;a href="https://pypi.python.org/packages/2.7/r/readline/readline-6.2.4.1-py2.7-macosx-10.7-intel.egg#md5=6ede61046a61219a6d97c44a75853c23" target="_blank"&gt;https://pypi.python.org/packages/2.7/r/readline/readline-6.2.4.1-py2.7-macosx-10.7-intel.egg#md5=6ede61046a61219a6d97c44a75853c23&lt;/a&gt;
+Processing readline-6.2.4.1-py2.7-macosx-10.7-intel.egg
+creating /Library/Python/2.7/site-packages/readline-6.2.4.1-py2.7-macosx-10.7-intel.egg
+Extracting readline-6.2.4.1-py2.7-macosx-10.7-intel.egg to /Library/Python/2.7/site-packages
+Adding readline 6.2.4.1 to easy-install.pth file
+
+Installed /Library/Python/2.7/site-packages/readline-6.2.4.1-py2.7-macosx-10.7-intel.egg
+Processing dependencies for readline
+Finished processing dependencies for readline
+
+➜  ~  ipython 
+Python 2.7.5 (default, Aug 25 2013, 00:04:04) 
+Type "copyright", "credits" or "license" for more information.
+
+IPython 1.1.0 -- An enhanced Interactive Python.
+?         -&amp;gt; Introduction and overview of IPython's features.
+%quickref -&amp;gt; Quick reference.
+help      -&amp;gt; Python's own help system.
+object?   -&amp;gt; Details about 'object', use 'object??' for extra details.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Whenever issue pops up with &lt;code&gt;easy_install&lt;/code&gt; and &lt;code&gt;setuptools&lt;/code&gt;, remember using &lt;code&gt;easy_install&lt;/code&gt; from &lt;code&gt;site packages&lt;/code&gt; like &lt;code&gt;sudo python /Library/Python/2.7/site-packages/easy_install.py&lt;/code&gt;&lt;/p&gt;</description><link>http://kracekumar.com/post/67761708966</link><guid>http://kracekumar.com/post/67761708966</guid><pubDate>Fri, 22 Nov 2013 22:32:21 +0530</pubDate><category>python</category><category>easy_install</category><category>setuptools</category></item><item><title>Why programmers should love to read and write </title><description>&lt;p&gt;Everyday as a programmer we solve problems and introduce new problems. Most of the time is spent in reading other people source code, library documentation, replying to developers email. Though communication is what programmers do all the time with computer and humans.&lt;/p&gt;
+
+&lt;p&gt;Programmers around the globe suggests books like &lt;a href="https://mitpress.mit.edu/sicp/" target="_blank"&gt;SICP&lt;/a&gt;. I have never come across people who suggests books like &lt;a href="http://www.goodreads.com/book/show/53343.On_Writing_Well" target="_blank"&gt;on writing well&lt;/a&gt; for programmers. Though I haven&amp;#8217;t read the book myself, the point is why aren&amp;#8217;t people recommending books like how to write well.&lt;/p&gt;
+
+&lt;h3&gt;Why writing and reading is core to programmers&lt;/h3&gt;
+
+&lt;ul&gt;&lt;li&gt;&lt;p&gt;As a programmer most of the time we spend is reading documentation or code. what if the documentation of entire library is in single page (Unix style), how many would like to read&amp;#160;?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;More people read the documentation compared to source code. If you are a programmer and don&amp;#8217;t like to write, hardly your tools will save others time. If you don&amp;#8217;t enjoy writing or language is not as good as your code, library will have lukewarm acceptance.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If you aren&amp;#8217;t writing well you can&amp;#8217;t work remotely, though you may get a chance to work in awesome startup in your area.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Everybody spends equal time reading and writing email as compared to code. If your email is not well written, you will have tough time getting the work done.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If you are coming with new specs for your product and if your writing isn&amp;#8217;t lucid to read and not conveying the message, you will have hard time convincing though the design may be brilliant.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Most programmers feel happy when they commit lot of code also, when code is merged to master. You should have same kind of happiness when you read technical documentation or write one.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;</description><link>http://kracekumar.com/post/67127612627</link><guid>http://kracekumar.com/post/67127612627</guid><pubDate>Sat, 16 Nov 2013 11:20:33 +0530</pubDate><category>programming</category><category>writing</category></item><item><title>taking rest</title><description>&lt;p&gt;On my way back to home from work I was thinking, I should take rest. In my world rest always meant working on some non work codebase, reading a book, watching a movie. But I don&amp;#8217;t want to do any of these. Then I thought I would just listen to songs, quickly remembered that will not work out because I will start coding.&lt;/p&gt;
+
+&lt;p&gt;Finally I started to ask myself, is it possible for any human being to sit idle and take rest. Immediately I gave up. Brain will start thinking about something or other, you will be pulled into it.&lt;/p&gt;
+
+&lt;p&gt;Since I have computer, mobile phone, physical book I consider switching between. Well, somepeople will talk to other so called human beings in real life or in phone. I can&amp;#8217;t find any one whom I can ring up and speak without an agenda.&lt;/p&gt;
+
+&lt;p&gt;How would my forefathers relaxed 200 years back&amp;#160;?&lt;/p&gt;
+
+&lt;p&gt;Oh ya, you would catch up for a beer right? I don&amp;#8217;t drink. I can&amp;#8217;t meditate. I don&amp;#8217;t live near beach. Well, I have a lake near by but it is closed after 7 PM but I reach at 10 PM.&lt;/p&gt;
+
+&lt;p&gt;I can&amp;#8217;t draw, gym, paint, sing. Yes I can write poetry but I don&amp;#8217;t want to do that as well. I don&amp;#8217;t have a pet too.&lt;/p&gt;
+
+&lt;p&gt;Finally, it seems machines play key role in relaxing. Damn it.&lt;/p&gt;</description><link>http://kracekumar.com/post/64983193790</link><guid>http://kracekumar.com/post/64983193790</guid><pubDate>Fri, 25 Oct 2013 02:29:00 +0530</pubDate><category>random</category></item><item><title>Check Tamil word or sentence is palindrome</title><description>&lt;p&gt;How to check given text is palindrome or not&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;def sanitize(text):
+    for char in [" ", ".", ",", ";", "\n"]:
+        text = text.replace(char, "")
+    return text
+
+def palindrome(word):
+    # This approach is o(n), problem can be solved with o(n/2)
+    # I am using this approach for brevity
+    return word == word[::-1]
+
+palindrome(sanitize("madam")) # True
+palindrome(sanitize(u"விகடகவி")) # False
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here is the hand made version for Tamil&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Assign the variable meal the value 44.50 on line 3!
+# hex values from க..வ
+def sanitize(text):
+    for char in [" ", ".", ",", ";", "\n"]:
+        text = text.replace(char, "")
+    return text
+
+dependent_vowel_range = range(0xbbe, 0xbce)
+
+def palindrome_tamil(text):
+    front, rear = 0, len(text) - 1
+    while True:
+        #We will start checking from both ends
+        #If code reached centre exit
+        if front == rear or abs(front - rear) == 1:
+            return True
+        else:
+            if ord(text[front+1]) in dependent_vowel_range and ord(text[rear]) in dependent_vowel_range:
+                if text[front] == text[rear-1] and text[front+1] == text[rear]:
+                    front += 2
+                    rear -= 2
+                else:
+                    return False
+            else:
+                if text[front] == text[rear]:
+                    front += 1
+                    rear -= 1
+                else:
+                    return False
+
+
+
+
+print palindrome_tamil(sanitize(u"விகடகவி")) == True
+text = u"""
+யாமாமாநீ யாமாமா யாழீகாமா காணாகா
+காணாகாமா காழீயா மாமாயாநீ மாமாயா
+"""
+print palindrome_tamil(sanitize(text)) == True
+
+#output
+True
+True
+&lt;/code&gt;&lt;/pre&gt;</description><link>http://kracekumar.com/post/63834696015</link><guid>http://kracekumar.com/post/63834696015</guid><pubDate>Sat, 12 Oct 2013 22:31:00 +0530</pubDate><category>python</category><category>tamil</category><category>palindrome</category></item><item><title>How Tamil Unicode works</title><description>&lt;p&gt;Tamil has 247 characters. No panic. It is simple. 12 uyir eluthu(அ,ஆ..ஔ)
+, 18 mei eluthu(க்,ங்..)  , 216 uyirmei eluthu(12 * 18 க,ங ).1 ayutham(ஃ).&lt;/p&gt;
+
+&lt;p&gt;I assume you know what is unicode. If not read &lt;a href="http://www.joelonsoftware.com/articles/Unicode.html" target="_blank"&gt;The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets&lt;/a&gt; and then read wikipedia page. You will understand most of it. Back to the post.&lt;/p&gt;
+
+&lt;p&gt;Every character or letter in unicode has value called &lt;code&gt;code point&lt;/code&gt;. This is similar to ASCII where value of &lt;code&gt;a&lt;/code&gt; is 97. All code point value is represented in hexadecimal. Tamil unicode character range starts from &lt;code&gt;0B80 - 0BFF&lt;/code&gt;. Unicode consortium has a &lt;a href="http://www.unicode.org/charts/PDF/U0B80.pdf" target="_blank"&gt;complete mappings&lt;/a&gt;. So value of அ is &lt;code&gt;0B85&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;You don&amp;#8217;t believe me&amp;#160;? I will show you the code. Fireup &lt;code&gt;python2&lt;/code&gt; console(I am using ipython).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;In [343]: print(unichr(0x0b85))
+அ
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;How to find hex of a character&amp;#160;?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;In [344]: print(hex(ord(u'க')))
+0xb95
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What is the code point of  கி?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;In [345]: print(hex(ord(u'கி')))
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+&amp;lt;ipython-input-345-9e02bf5958df&amp;gt; in &amp;lt;module&amp;gt;()
+----&amp;gt; 1 print(hex(ord(u'கி')))
+
+TypeError: ord() expected a character, but string of length 2 found
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Python says len of the unicode character &lt;code&gt;கி&lt;/code&gt; is 2. Lets check.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;In [346]: print(len(u'கி'))
+2
+
+In [348]: print(len(unichr(0x0b85)))
+1
+
+In [349]: print(unichr(0x0b85))
+அ
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So clearly &lt;code&gt;கி&lt;/code&gt; is composed of two characters.&lt;code&gt;கி&lt;/code&gt;=
+&lt;code&gt;க்&lt;/code&gt;+ &lt;code&gt;இ&lt;/code&gt; from language point of view. Lets see what program says.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;In [355]: for c in u'கி':
+    print c, hex(ord(c))
+   .....:
+க 0xb95
+ ி 0xbbf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When you are typing in browser or editor, you use &lt;code&gt;க&lt;/code&gt; + &lt;code&gt;இ&lt;/code&gt;  after that it is the work of font and others work to replace it.&lt;/p&gt;
+
+&lt;p&gt;Below is the javascript code executed in chrome console.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;chr = "கி"
+for (var i in chr){console.log(chr[i]);}
+க
+ி
+undefined
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So irrespective of the programming language or console or browser unicode is stored in the same way.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ி&lt;/code&gt;is dependent vowel sign. Let me list all of them.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;In [362]: for c in range(0xbbe, 0xbce):
+    print c, unichr(c)
+   .....:
+3006 ா
+3007 ி
+3008 ீ
+3009 ு
+3010 ூ
+3011 ௃
+3012 ௄
+3013 ௅
+3014 ெ
+3015 ே
+3016 ை
+3017 ௉
+3018 ொ
+3019 ோ
+3020 ௌ
+3021 ்
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;௅&lt;/code&gt; is a placeholder and that hex value doesn&amp;#8217;t have any symbol or character. Dependent vowel will be used for replacing uyir eluthu.&lt;/p&gt;
+
+&lt;p&gt;Now lets read character by character in a word .&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;In [366]: for i in u'விகடகவி':
+        print i, hex(ord(i))
+   .....:
+வ 0xbb5
+ ி 0xbbf
+க 0xb95
+ட 0xb9f
+க 0xb95
+வ 0xbb5
+ ி 0xbbf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Well above logic holds true for english but not for Tamil.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;In [395]: word = u'விகடகவி'
+
+In [396]: dependent_vowel_range = range(0xbbe, 0xbce)
+
+In [397]: pos, stop = 0, len(word) - 1
+
+In [398]: while not pos &amp;gt;= stop:
+    #check if next char is dependent vowel if so, print together
+    if ord(word[pos+1]) in dependent_vowel_range:
+        print word[pos], word[pos+1]
+        pos += 2
+    else:
+        print word[pos]
+        pos += 1
+வ ி
+க
+ட
+க
+வ ி
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now try to write a program that will find a tamil word is palindrome or not and see the fun.&lt;/p&gt;
+
+&lt;p&gt;Note: I need to figure font that will club dependent vowel and print properly in terminal.&lt;/p&gt;</description><link>http://kracekumar.com/post/63832712202</link><guid>http://kracekumar.com/post/63832712202</guid><pubDate>Sat, 12 Oct 2013 22:06:37 +0530</pubDate><category>unicode</category><category>python</category><category>Tamil</category></item><item><title>code simplicity book review</title><description>&lt;p&gt;&lt;a href="http://shop.oreilly.com/product/0636920022251.do" target="_blank"&gt;Code Simplicity: The Fundamentals of Software&lt;/a&gt; by &lt;a href="http://max.kanat-alexander.com/" target="_blank"&gt;Max Kanat-Alexander&lt;/a&gt; is crisp book about writing better software.&lt;/p&gt;
+
+&lt;p&gt;The book is just 88 pages, but insights are useful for any software engineer. Author is creator of bugzilla project.&lt;/p&gt;
+
+&lt;p&gt;Whenever I come across bold statements in the book, I would sit and think for 2 minutes to correlate with my programming experience. Most of the time I was able to come up with valid example.&lt;/p&gt;
+
+&lt;p&gt;This book is highly recommended for programmers who had spent significant time reading other programmers code. If you are an experienced programmer you can consider the points in the books as to validate your current beliefs. I tend to agree on all of the points mentioned in the book and corelate with open source projects in positive and negative sense.&lt;/p&gt;
+
+&lt;p&gt;Few of my favorites:&lt;/p&gt;
+
+&lt;ul&gt;&lt;li&gt;Everybody who writes software is designer.&lt;/li&gt;
+&lt;li&gt;Design is not democracy. Decisions should be made by individuals.&lt;/li&gt;
+&lt;li&gt;There is something about future you don&amp;#8217;t know.&lt;/li&gt;
+&lt;li&gt;Be only as generic as you know you need to be right now.&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;Rating: ****&lt;/p&gt;</description><link>http://kracekumar.com/post/63657996702</link><guid>http://kracekumar.com/post/63657996702</guid><pubDate>Thu, 10 Oct 2013 23:30:00 +0530</pubDate><category>book-review</category><category>opensource</category><category>codesimplicity</category></item><item><title>Novice Forever: No kidding, we built an audio conferencing app overnight</title><description>&lt;a href="http://blog.anenth.com/post/61483460515/treffen"&gt;Novice Forever: No kidding, we built an audio conferencing app overnight&lt;/a&gt;: &lt;p&gt;&lt;a href="http://blog.anenth.com/post/61483460515/treffen" class="tumblr_blog" target="_blank"&gt;anenth&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;span&gt;&lt;img alt="image" class="fb-header" src="http://media.tumblr.com/b58ede415960a4dce54a0e03cc102600/tumblr_inline_mt9iwe9nYJ1qe4fbu.png"/&gt;&lt;/span&gt;&lt;/p&gt; &lt;p&gt;&lt;span&gt;I have earlier tried &lt;/span&gt;&lt;a href="http://www.sabsebolo.com/" target="_blank"&gt;&lt;span&gt;Sabsebolo &lt;/span&gt;&lt;/a&gt;&lt;span&gt;for conferencing with my team at &lt;/span&gt;&lt;a href="http://tripthirsty.com" target="_blank"&gt;&lt;span&gt;TripThirsty&lt;/span&gt;&lt;/a&gt;&lt;span&gt; and found that the setup is tedious. I have to remember a bridge number + PIN + Location specific dial-in number and also must remember to dial at a specific time. So, I ended up spending more than 4…&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;</description><link>http://kracekumar.com/post/61571320174</link><guid>http://kracekumar.com/post/61571320174</guid><pubDate>Wed, 18 Sep 2013 12:09:19 +0530</pubDate><category>android</category><category>exotel</category><category>conference-call</category></item><item><title>coverage.py to test web application coverage without writing tests</title><description>&lt;p&gt;Tests are mandatory for packages, modules, web apps. If you are lazy to write unit tests but wanted to see the coverage for web app here is the short cut.&lt;/p&gt;
+
+&lt;p&gt;Lets consider a Python web app uses Flask, &lt;code&gt;runserver.py&lt;/code&gt; runs the development web server. Normally server is started by the command &lt;code&gt;python runserver.py&lt;/code&gt;. Now use &lt;code&gt;coverage run runserver.py&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;coverage&lt;/code&gt; python package will run the python program til program exits or user halts. Once web app testing is complete via browser, run &lt;code&gt;coverage report -m&lt;/code&gt; this will produce big list of lines covered in modules during execution.&lt;/p&gt;
+
+&lt;p&gt;One more handy feature is  &lt;code&gt;coverage html&lt;/code&gt;. This produces html file containing python code highlighting executed line and other. All the html files is produced inside &lt;code&gt;hmtlcov&lt;/code&gt; directory.&lt;/p&gt;
+
+&lt;p&gt;Coverage &lt;a href="http://nedbatchelder.com/code/coverage/" target="_blank"&gt;documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Sample Output&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;➜ hacknight git:(issue-249) ✗ coverage run --source=hacknight runserver.py
+/Library/Python/2.7/site-packages/flask_cache/__init__.py:100:   UserWarning: Flask-Cache: CACHE_TYPE is set to null, caching is  effectively disabled.
+warnings.warn("Flask-Cache: CACHE_TYPE is set to null, "
+* Running on &lt;a href="http://0.0.0.0:8100/" target="_blank"&gt;http://0.0.0.0:8100/&lt;/a&gt;
+* Restarting with reloader
+/Library/Python/2.7/site-packages/flask_cache/__init__.py:100: UserWarning: Flask-Cache: CACHE_TYPE is set to null, caching is effectively disabled.
+warnings.warn("Flask-Cache: CACHE_TYPE is set to null, "
+127.0.0.1 - - [13/Sep/2013 23:08:31] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [13/Sep/2013 23:08:34] "GET /kracekumar HTTP/1.1" 200 -
+127.0.0.1 - - [13/Sep/2013 23:08:36] "GET /kracekumar/jsfoo-hackday HTTP/1.1" 200 -
+^C%                                                                                       
+➜  hacknight git:(issue-249) ✗ coverage report -m
+Name                           Stmts   Miss  Cover   Missing
+------------------------------------------------------------
+hacknight/__init__                28      0   100%
+hacknight/_version                 3      0   100%
+hacknight/forms/__init__           0      0   100%
+hacknight/forms/comment           12      0   100%
+hacknight/forms/event             42      5    88%   58-59, 62-72
+hacknight/forms/participant       12      0   100%
+hacknight/forms/profile            6      0   100%
+hacknight/forms/project            9      0   100%
+hacknight/forms/sponsor            9      0   100%
+hacknight/forms/venue             16      0   100%
+hacknight/models/__init__         10      0   100%
+hacknight/models/_profile         21     21     0%   3-37
+hacknight/models/comment          61     18    70%   34-35, 41, 71-72, 78-91, 95, 98
+hacknight/models/event           110     43    61%   45, 48-51, 84, 87-88, 91-93, 96-97, 100-109, 112-133
+hacknight/models/participant      31      5    84%   34-37, 41
+hacknight/models/project          72     31    57%   42-46, 50, 55, 58, 63, 68-85, 101-105
+hacknight/models/sponsor          17      2    88%   25-26
+hacknight/models/user             21      5    76%   20, 24, 28, 32, 35
+hacknight/models/venue            21      2    90%   26-27
+hacknight/models/vote             38     16    58%   17-18, 21-30, 33-36, 39
+hacknight/tests/__init__           0      0   100%
+hacknight/tests/test_data          3      3     0%   3-7
+hacknight/tests/test_models       17     17     0%   4-93
+hacknight/views/__init__           8      0   100%
+hacknight/views/event            244    192    21%   28-33, 41-56, 70-87, 97-116, 131, 140-145, 155-182, 191-222, 231-260, 269-276, 285-301, 310-313, 325-344, 354-373
+hacknight/views/index             36     23    36%   13-15, 20, 25, 30, 35, 40, 45-53, 58-65
+hacknight/views/login             28     12    57%   15, 21-22, 28-30, 36-37, 42-45
+hacknight/views/profile           36     22    39%   17-23, 30-47
+hacknight/views/project          323    256    21%   30-49, 61-73, 85-108, 118, 127-240, 252-259, 270-277, 288-295, 306-315, 327-336, 346-357, 369-378, 387-397, 406-416, 426-440, 451-464, 475-501, 514
+hacknight/views/sponsor           45     26    42%   18-30, 42-53, 65-68, 81
+hacknight/views/venue             47     29    38%   15-16, 22, 28-38, 45-56, 64-66
+hacknight/views/workflow          84     30    64%   42-46, 52, 57, 62, 67, 72, 77, 80, 114-119, 127-128, 136, 144, 152, 160, 168, 176, 182, 188, 194, 200, 206, 209
+------------------------------------------------------------
+TOTAL                           1410    758    46%
+&lt;/code&gt;&lt;/pre&gt;</description><link>http://kracekumar.com/post/61125040813</link><guid>http://kracekumar.com/post/61125040813</guid><pubDate>Fri, 13 Sep 2013 23:20:32 +0530</pubDate><category>python</category><category>coverage</category><category>unit testing</category></item><item><title>Observations from handling python workshop in engineering colleges</title><description>&lt;p&gt;&lt;em&gt;Observations from handling python workshop in engineering colleges&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;I handled 5 python workshop/sessions for novices from 8th march to 20th august, each one stretching from 1 hour to 2 days. It was worth the time.&lt;/p&gt;
+
+&lt;p&gt;Students who participated in the workshop where from Computer Science, Electronics background of Under Graduate and Post Graduate level. Minimum strength was 60 and maximum was close to 100.&lt;/p&gt;
+
+&lt;ol&gt;&lt;li&gt;When handling the strength of 60 students in lab, remember every one have their own pace of picking up.&lt;/li&gt;
+&lt;li&gt;Distribute the material in html or pdf format so students can look into it. Some students in the workshop start doing the examples as soon as they receive the material and these students will learn on their own, now you have segmented the students who need instructor support. These students also help their friends when stuck. &lt;/li&gt;
+&lt;li&gt;Go slow and repeat twice every concept. Students from engineering college use C, C++. Python&amp;#8217;s ease is difficult to digest at first.&lt;/li&gt;
+&lt;li&gt;Make sure you don&amp;#8217;t stand near your laptop for more than 20 minutes. Teach topic, show the example and move around so the students can approach you and you will get to know the difficulties of students. Not everyone will ask questions.&lt;/li&gt;
+&lt;li&gt;Give problems for them to solve and don&amp;#8217;t give problems which takes more than 10 minutes to solve. Spend the time in front of students terminal and help the struggling students. At the end of 10 minutes you will know how the students approached the problem and also you can get an insight how much students grasped. This gives you the signal whether your explanation understandable or not.&lt;/li&gt;
+&lt;li&gt;Write the code for the problem in front of the students, please don&amp;#8217;t show already written code. Discuss what are the approaches for the same problem and how others students solved.&lt;/li&gt;
+&lt;li&gt;Having few volunteers to help during workshops is great. Students will start approaching them for hurdles.&lt;/li&gt;
+&lt;li&gt;Don&amp;#8217;t flood students with too much of data in a single day. Make sure workshop is for only 6 - 7 hours per day. They need to time to digest.&lt;/li&gt;
+&lt;li&gt;When you are teaching list comprehensions make sure students write the same example using for loop and show them the one liner. Here most students gets confused with syntax. Now give them more problems to solve using list comprehension.&lt;/li&gt;
+&lt;li&gt;Be careful in using variable names, students will use the same variable names in their code.&lt;/li&gt;
+&lt;li&gt;Don&amp;#8217;t teach &lt;code&gt;classes&lt;/code&gt; for beginners, you will waste lot of time explaining public, private method, &lt;code&gt;__init__&lt;/code&gt;, &lt;code&gt;self&lt;/code&gt;. Instead use the time to solve problems.&lt;/li&gt;
+&lt;li&gt;Spend enough time in writing small programs(use text editor) using &lt;code&gt;if&lt;/code&gt;, &lt;code&gt;else&lt;/code&gt;, &lt;code&gt;elif&lt;/code&gt;, &lt;code&gt;for&lt;/code&gt; so that they get used to indentation. &lt;/li&gt;
+&lt;li&gt;Give problems like greatest of three numbers to show them the use case of &lt;code&gt;a &amp;gt; b &amp;gt; c&lt;/code&gt; rather than using &lt;code&gt;a &amp;gt; b and b &amp;gt; c&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Give problems like finding total number of lines, words in a file. This helps in getting rid of &lt;code&gt;for loop with counter&lt;/code&gt;, rather encourages to use &lt;code&gt;len(f.readlines())&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Don&amp;#8217;t teach &lt;code&gt;*args&lt;/code&gt;, &lt;code&gt;**kwargs&lt;/code&gt; but spend time in making them understand function can accept functions as parameters, so it becomes easy for them to digest &lt;code&gt;len(f.readlines())&lt;/code&gt;. &lt;/li&gt;
+&lt;li&gt;Make sure to teach &lt;code&gt;dir&lt;/code&gt; and &lt;code&gt;help&lt;/code&gt; this helps people who are interested to explore further.&lt;/li&gt;
+&lt;li&gt;If you want to enforce pythonic way of writing code like list comprehension, passing function to function show few examples comparing pythonic and non pythonic way. Advocate the advantage. &lt;/li&gt;
+&lt;li&gt;Leave your email id with students and collect the feedback via google forms or physical form make sure it is anonymous. &lt;/li&gt;
+&lt;li&gt;Students will ask recommendation for books, projects etc &amp;#8230; Be prepared to handle. &lt;/li&gt;
+&lt;li&gt;Don&amp;#8217;t teach &lt;code&gt;raw_input&lt;/code&gt; or &lt;code&gt;input&lt;/code&gt; teach them how to accept command line parameters.&lt;/li&gt;
+&lt;/ol&gt;&lt;p&gt;&lt;code&gt;There's no such thing as a bad student, only a bad teacher&lt;/code&gt; - Unknown&lt;/p&gt;</description><link>http://kracekumar.com/post/58802831892</link><guid>http://kracekumar.com/post/58802831892</guid><pubDate>Tue, 20 Aug 2013 23:36:00 +0530</pubDate><category>python</category><category>tip</category><category>training</category><category>teaching</category><category>college</category></item><item><title>avoid accessing wrong column in csv</title><description>&lt;p&gt;&lt;em&gt;Avoid accessing wrong column in csv&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;I was parsing few csv files. All were from same provider. Format is
+&lt;code&gt;Date, Name, Email, Company, City&lt;/code&gt; etc in one file. I made an assumption all the downloaded files are in the same format. For my surprise few files had same format and others din&amp;#8217;t.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;with open(filename, 'rb') as f:
+    reader = csv.reader(f)
+    reader.next() # first row contains column names
+    for row in reader:
+        name, email, company = row[1], row[2], row[3]
+        #save to db
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In the above code the fundamental mistake is fixing the position of the columns in csv file. What happens if &lt;code&gt;email&lt;/code&gt; and &lt;code&gt;company&lt;/code&gt; position is interchanged? In simple &lt;code&gt;screwed&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;How can I avoid these situations&amp;#160;?&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; with open(filename, 'rb') as f:
+     reader = csv.reader(f)
+     header = reader.next() #reader is not list
+     name_pos, email_pos, company_pos =          header.index("Name"),header.index("Email"),header.index("Company")
+
+ with open(filename, 'rb') as f:
+     reader = csv.reader(f)
+     reader.next()
+     for row in reader:
+         name, email, company = row[name_pos], row[email_pos], row[company_pos]
+         #save to db
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The code is bit longer here, but robost. The above snippet doesn&amp;#8217;t rely on column position but only relies on column name in the first line. Ofcourse &lt;code&gt;header.index&lt;/code&gt; will raise &lt;code&gt;ValueError&lt;/code&gt; you can wrap the exception. First all the required column positions are retrieved, file is reopened, first row is omitted and other details are accessed.&lt;/p&gt;</description><link>http://kracekumar.com/post/58766042678</link><guid>http://kracekumar.com/post/58766042678</guid><pubDate>Tue, 20 Aug 2013 11:01:00 +0530</pubDate><category>csv</category><category>python</category><category>tip</category></item><item><title>Funny experience of using trace module to trace function call</title><description>&lt;p&gt;I came across this issue in &lt;a href="https://github.com/jkbr/httpie/issues/128" target="_blank"&gt;httpie&lt;/a&gt; and started my investigation.&lt;/p&gt;
+
+&lt;p&gt;The problem is while pretty printing the json, output is alpha sorted because keys are hashed and user wanted to preserve the order. Then I made 3 comments to the issue. &lt;a href="https://github.com/jkbr/httpie/issues/128#issuecomment-21661339" target="_blank"&gt;First comment&lt;/a&gt; was half correct and explained why it isn&amp;#8217;t possible to get the desired output, quickly I figured my assumptions were wrong and &lt;a href="https://github.com/jkbr/httpie/issues/128#issuecomment-21661648" target="_blank"&gt;second comment&lt;/a&gt; explained what is actually happening, finally I proposed the &lt;a href="https://github.com/jkbr/httpie/issues/128#issuecomment-21661700" target="_blank"&gt;solution&lt;/a&gt;. Since I made wrong assumptions and to make further debugging easy, I want to find easiest way to trace all functions/methods invocations.&lt;/p&gt;
+
+&lt;p&gt;I remember &lt;a href="http://nibrahim.net.in/" target="_blank"&gt;Noufal&lt;/a&gt; sharing small snippet in twitter, but I wanted to use &lt;a href="http://docs.python.org/2/library/trace.html" target="_blank"&gt;trace&lt;/a&gt; and wrote small snippet(final one).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; #! -*- coding: utf-8 -*-
+
+ from httpie.core import main
+ #import pdb
+ import sys
+ #import os
+ #import trace
+
+ #pdb.set_trace()
+ main(args=sys.argv[1:])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;First I ran the command &lt;code&gt;python -m trace --trace httpie_test.py --pretty=all &lt;a href="http://httpbin.org/get" target="_blank"&gt;http://httpbin.org/get&lt;/a&gt;&lt;/code&gt; and it printed some 20 million lines. Then I got clever idea of using &lt;a href="http://pythonconquerstheuniverse.wordpress.com/2009/09/10/debugging-in-python/" target="_blank"&gt;pdb&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I debugged with pdb for half an hour pressing &lt;code&gt;s&lt;/code&gt; key and fed up. The pdb was beautiful like her, I was enjoying each line it was printing, it was like watching her speak and I was mesemerized. After half an hour I gave up and went back to trace command. Finally I figured out I can use &lt;code&gt;--ignore-module&lt;/code&gt; from command line.&lt;/p&gt;
+
+&lt;p&gt;After one hour of spending time, final command looked like(scroll completely)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; ➜  snippets  python -m trace --trace --ignore- module=os,sre_compile,sre_parse,zipfile,text_file,sysconfig,pkg_resources,re,posixpath,genericpath,decoder,hex_codec,socket,httplib,pkgutil,stat,token,style,calendar,spawn,util,collections,abc,decimal,lexer,StringIO,plist,argparse,_abcoll,structures,Queue,threading,_collections,urlparse,cookielib,platform,cookielib,terminal256,formatter,__init__,stringprep,_weakrefset,filter,encoder,codecs,latin,connectionpool,plugin,html,pygmentplugin,htmlentitydefs,__future__,weakref,UserDict,atexit,functools,base64,struct,hashlib,ssl,textwrap,six,exceptions,warnings,mimetools,tempfile,random,tempfile,rfc822,urllib,filepost,uuid,_endian,dyld,dylib,framework,io,poolmanager,pyopenssl,utils,cgi,netrc,shlex,compat,copy,numbers,locale,locale,unicode_escape,urllib2,Cookie,_LWPCookieJar,_MozillaCookieJar,ordered_dict,cookies,certs,ascii,status_codes,gettext,scanner,config,minicompat,domreg,minidom,xmlbuilder,NodeFilter,shutil,copy_reg,string,plistlib,_mapping,bbcode,img,Image,FixTk,ImageMode,ImagePalette,ImageColor,ImageDraw,ImageFont,latex,other,console,rtf,svg,terminal,solarized,getpass,pprint,downloads,idna,agile,web,unistring,functional,jvm,compiled,mimetypes httpie_test.py --pretty=all --verbose &lt;a href="http://headers.jsontest.com/" target="_blank"&gt;http://headers.jsontest.com/&lt;/a&gt; &amp;gt;&amp;gt; op.txt
+ ➜  snippets  wc -l op.txt
+     2344 op.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The essay is 1269 characters to terminal and the result of it is &lt;a href="https://github.com/jkbr/httpie/pull/151" target="_blank"&gt;pull request&lt;/a&gt;.&lt;/p&gt;</description><link>http://kracekumar.com/post/56633639978</link><guid>http://kracekumar.com/post/56633639978</guid><pubDate>Sun, 28 Jul 2013 03:05:32 +0530</pubDate><category>python</category><category>trace</category><category>httpie</category></item><item><title>idhuvarai naan book review</title><description>&lt;p&gt;&lt;p dir="ltr"&gt;இது வடுகப்பட்டியில் மையம் கொண்ட சூறாவளியின் சரிதம். &lt;/p&gt;
+
+&lt;p dir="ltr"&gt;இதிலுள்ள ஒவ்வொரு வார்த்தையும் வலியுள்ள வாசனையைப் பரப்பும்.&lt;br/&gt;
+இவரின் கவிதைக்கு ஒரு பொன் மான் தான் கடிதம் எழுதினாள் என்று என்னும் போது ஆச்சிரியமில்லை, மற்ற பொன் மான்களின் வார்த்தைக் கடல் வற்றியிருக்கம்.&lt;/p&gt;
+
+&lt;p dir="ltr"&gt;அந்த பொன் மாலைப் பொழுதில் தான் சூறாவளி மணம் வீசத் தொடங்கியது இன்னும் மனம் மீலவில்லை. &lt;/p&gt;
+
+&lt;p dir="ltr"&gt;பொன் மாலைப் பொழுதுப் பாடலின் வெற்றி முதல் போட்டியில் ஆவுத்திரலேயா அணிக்கு எதிராக சதம் அடித்த அறிமுக வீரனைப் போலயிருந்தது.&lt;/p&gt;
+
+&lt;p dir="ltr"&gt;3500 ஆண்டுக்கு முன் இட்ட உறம் இமயம் தான்டி வாசனை வீசுவதில் ஒர் ஆனந்தம்.&lt;/p&gt;&lt;/p&gt;</description><link>http://kracekumar.com/post/55934089762</link><guid>http://kracekumar.com/post/55934089762</guid><pubDate>Sat, 20 Jul 2013 20:49:00 +0530</pubDate><category>வைரமுத்து</category><category>நூல்</category><category>தமிழ்</category></item><item><title>http request examples for luasocket</title><description>&lt;p&gt;I was looking for &lt;code&gt;http&lt;/code&gt; library in lua and landed in &lt;a href="http://w3.impa.br/~diego/software/luasocket/http.html" target="_blank"&gt;luasocket.http page&lt;/a&gt;. It isn&amp;#8217;t well documented, sent few &lt;code&gt;GET, POST, PUT&lt;/code&gt; requests and figured few bits. This blog post aims in bridging the gap(code examples).&lt;/p&gt;
+
+&lt;p&gt;In this example, I will use &lt;a href="https://httpbin.org" target="_blank"&gt;httpbin&lt;/a&gt; as target site. The complete code is available as &lt;a href="https://gist.github.com/kracekumar/6037243" target="_blank"&gt;gist&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The following code should be executed like a standalone lua file(&lt;code&gt;lua lua_httpbin.lua&lt;/code&gt;) and while executing the code in interpreter please make local variables &lt;code&gt;http, ltn12, base_url&lt;/code&gt; as global variables.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;local http = require("socket.http")
+local ltn12 = require("ltn12")
+
+local base_url = "https://httpbin.org/"
+
+--Helper for priniting nested table
+function deep_print(tbl)
+    for i, v in pairs(tbl) do
+        if type(v) == "table" then 
+            deep_print(v)
+        else 
+            print(i, v) 
+        end
+    end
+end
+
+
+function http_request( args )
+--http.request(url [, body])
+--http.request{
+--  url = string,
+--  [sink = LTN12 sink,]
+--  [method = string,]
+--  [headers = header-table,]
+--  [source = LTN12 source],
+--  [step = LTN12 pump step,]
+--  [proxy = string,]
+--  [redirect = boolean,]
+--  [create = function]
+--}
+--
+--
+    local resp, r = {}, {}
+    if args.endpoint then
+        local params = ""
+        if args.method == nil or args.method == "GET" then
+            -- prepare query parameters like &lt;a href="http://xyz.com" target="_blank"&gt;http://xyz.com&lt;/a&gt;?q=23&amp;amp;a=2
+            if args.params then
+                for i, v in pairs(args.params) do
+                    params = params .. i .. "=" .. v .. "&amp;amp;"
+                end
+            end
+        end
+        params = string.sub(params, 1, -2)
+        local url = ""
+        if params then url = base_url .. args.endpoint .. "?" .. params else url = base_url .. args.endpoint end
+        client, code, headers, status = http.request{url=url, sink=ltn12.sink.table(resp),
+                                                method=args.method or "GET", headers=args.headers, source=args.source,
+                                                step=args.step,     proxy=args.proxy, redirect=args.redirect, create=args.create }
+        r['code'], r['headers'], r['status'], r['response'] = code, headers, status, resp
+    else
+        error("endpoint is missing")
+    end
+    return r
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;http_request&lt;/code&gt; takes table as an argument which is almost similar to &lt;code&gt;http.request&lt;/code&gt; function with an extra parameter &lt;code&gt;params&lt;/code&gt; which will be helpful for passing parameters to &lt;code&gt;GET&lt;/code&gt; request.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;http_request{endpoint=endpoint, params={age=23, name="kracekumar"}}&lt;/code&gt; rather than &lt;code&gt;http_request{endpoint=endpoint .. "?age=23&amp;amp;name=kracekumar"}&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Remaining piece of code&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function main()
+    -- Normal GET request
+    endpoint = "/user-agent"
+    print(endpoint)
+    deep_print(http_request{endpoint=endpoint})
+    -- GET request with parameters
+    endpoint = "/get"
+    print(endpoint)
+    deep_print(http_request{endpoint=endpoint, params={age=23, name    ="kracekumar"}})
+    -- POST request with form
+    endpoint = "/post"
+    print(endpoint)
+    local req_body = "a=2"
+    local headers = {
+    ["Content-Type"] = "application/x-www-form-urlencoded";
+    ["Content-Length"] = #req_body;
+    }
+    deep_print(http_request{endpoint=endpoint, method="POST", source=ltn12.source.string(req_body), headers=headers})
+    -- PATCH Method
+    endpoint = "/patch"
+    print(endpoint)
+    deep_print(http_request{endpoint=endpoint, method="PATCH"})
+    -- PUT Method
+    endpoint = "/put"
+    print(endpoint)
+    deep_print(http_request{endpoint=endpoint, method="PUT", source    =ltn12.source.string("a=23")})
+    -- Delete method
+    endpoint = "/delete"
+    print(endpoint)
+    deep_print(http_request{endpoint=endpoint, method="DELETE",     source=ltn12.source.string("a=23")})
+
+end
+
+main()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;output&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# First lua is directory name 
+➜  lua  lua lua_httpbin.lua
+/user-agent
+status    HTTP/1.1 200 OK
+code    200
+connection  Close
+content-type    application/json
+date    Fri, 19 Jul 2013 07:32:14 GMT
+content-length  37
+access-control-allow-origin *
+server  gunicorn/0.17.4
+1   {
+  "user-agent": "LuaSocket 2.0.2"
+}
+/get
+status  HTTP/1.1 200 OK
+code    200
+connection  Close
+content-type    application/json
+date    Fri, 19 Jul 2013 07:32:15 GMT
+content-length  258
+access-control-allow-origin *
+server  gunicorn/0.17.4
+1   {
+  "headers": {
+    "Host": "httpbin.org",
+    "Connection": "close",
+    "User-Agent": "LuaSocket 2.0.2"
+  },
+  "url": "http://httpbin.org/get?age=23&amp;amp;name=kracekumar",
+  "args": {
+    "age": "23",
+    "name": "kracekumar"
+  },
+  "origin": "106.51.166.47"
+}
+/post
+status    HTTP/1.1 200 OK
+code    200
+connection  Close
+content-type    application/json
+date    Fri, 19 Jul 2013 07:41:54 GMT
+content-length  350
+access-control-allow-origin *
+server  gunicorn/0.17.4
+1   {
+    "json": null,
+    "origin": "106.51.166.47",
+    "form": {
+        "a": "2"
+    },
+    "url": "http://httpbin.org/post",
+    "args": {},
+    "headers": {
+    "Connection": "close",
+    "Host": "httpbin.org",
+    "User-Agent": "LuaSocket 2.0.2",
+    "Content-Type": "application/x-www-form-urlencoded",
+    "Content-Length": "3"
+    },
+"files": {},
+"data": ""
+}
+/patch
+status  HTTP/1.1 200 OK
+code    200
+connection  Close
+content-type    application/json
+date    Fri, 19 Jul 2013 07:32:17 GMT
+content-length  251
+access-control-allow-origin *
+server  gunicorn/0.17.4
+1   {
+  "files": {},
+  "headers": {
+    "Host": "httpbin.org",
+    "Connection": "close",
+    "User-Agent": "LuaSocket 2.0.2"
+  },
+  "args": {},
+  "json": null,
+  "form": {},
+  "origin": "106.51.166.47",
+  "url": "http://httpbin.org/patch",
+  "data": ""
+}
+/put
+status  HTTP/1.1 200 OK
+code    200
+connection  Close
+content-type    application/json
+date    Fri, 19 Jul 2013 07:32:18 GMT
+content-length  276
+access-control-allow-origin *
+server  gunicorn/0.17.4
+1   {
+  "json": null,
+  "origin": "106.51.166.47",
+  "form": {},
+  "url": "http://httpbin.org/put",
+  "args": {},
+  "headers": {
+    "Connection": "close",
+    "Host": "httpbin.org",
+    "User-Agent": "LuaSocket 2.0.2",
+    "Content-Length": "0"
+  },
+  "files": {},
+  "data": ""
+}
+/delete
+status  HTTP/1.1 200 OK
+code    200
+connection  Close
+content-type    application/json
+date    Fri, 19 Jul 2013 07:32:19 GMT
+content-length  223
+access-control-allow-origin *
+server  gunicorn/0.17.4
+1   {
+  "args": {},
+  "json": null,
+  "headers": {
+    "Connection": "close",
+    "User-Agent": "LuaSocket 2.0.2",
+    "Host": "httpbin.org"
+  },
+  "origin": "106.51.166.47",
+  "data": "",
+  "url": "http://httpbin.org/delete"
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;My 2p&lt;/em&gt;&lt;/p&gt;
+
+&lt;ol&gt;&lt;li&gt;When sending &lt;code&gt;GET&lt;/code&gt; request don&amp;#8217;t send paramters in request body.&lt;/li&gt;
+&lt;li&gt;When sending &lt;code&gt;POST&lt;/code&gt; request set custom header for form.&lt;/li&gt;
+&lt;/ol&gt;&lt;p&gt;My experience of &lt;code&gt;luasocket.http&lt;/code&gt; produces solid reason to create a new library with helper functions like &lt;a href="http://python-requests.org" target="_blank"&gt;requests&lt;/a&gt;.&lt;/p&gt;</description><link>http://kracekumar.com/post/55856724724</link><guid>http://kracekumar.com/post/55856724724</guid><pubDate>Fri, 19 Jul 2013 13:31:00 +0530</pubDate><category>lua</category><category>http</category><category>luasocket</category></item><item><title>Why This Kolaveri Di song words language </title><description>&lt;p&gt;I was wondering how many words in &lt;a href="https://www.youtube.com/watch?v=JJpCV31n7T8" target="_blank"&gt;why this kolaveri di&lt;/a&gt; song belongs to english. So I wrote this code to evaluate.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#! /usr/bin/env
+#! -*- coding: utf-8 -*-
+
+lyrics = """
+yo boys i am singing song
+soup song
+flop song
+why this kolaveri kolaveri kolaveri di
+why this kolaveri kolaveri kolaveri di
+rhythm correct
+why this kolaveri kolaveri kolaveri di
+maintain please
+why this kolaveri di
+
+distance la moon-u moon-u
+moon-u color-u white-u
+white background night-u night-u
+night-u color-u black-u
+
+why this kolaveri kolaveri kolaveri di
+why this kolaveri kolaveri kolaveri di
+
+white skin-u girl-u girl-u
+girl-u heart-u black-u
+eyes-u eyes-u meet-u meet-u
+my future dark
+
+why this kolaveri kolaveri kolaveri di
+why this kolaveri kolaveri kolaveri di
+
+maama notes eduthuko
+apdiye kaila snacks eduthuko
+pa pa paan pa pa paan pa pa paa pa pa paan
+sariya vaasi
+super maama ready
+ready 1 2 3 4
+
+whaa wat a change over maama
+
+ok maama now tune change-u
+
+kaila glass
+only english
+
+hand la glass
+glass la scotch
+eyes-u full-a tear-u
+empty life-u
+girl-u come-u
+life reverse gear-u
+love-u love-u
+oh my love-u
+you showed me bouv-u
+cow-u cow-u holy cow-u
+i want you hear now-u
+god i am dying now-u
+she is happy how-u
+
+this song for soup boys-u
+we dont have choice-u
+
+why this kolaveri kolaveri kolaveri di
+why this kolaveri kolaveri kolaveri di
+why this kolaveri kolaveri kolaveri di
+why this kolaveri kolaveri kolaveri di
+
+flop song
+"""
+dict_file_path = "/usr/share/dict/words"
+
+
+def sanitize(words):
+    for index, word in enumerate(words):
+        if word.endswith("-u") or word.endswith("-a"):
+            words[index] = word[:-2]
+
+
+if __name__ == "__main__":
+    # Get all words
+    words = [word for line in lyrics.split("\n") for word in line.split(" ") if word != ""]
+    # Load english words
+    dictionary_words = open(dict_file_path).readlines()
+    # Remove \n in dictionary words
+    dictionary_words = [word.split("\n")[0] for word in dictionary_words]
+    # Add missing words
+    dictionary_words.append("boys")
+    dictionary_words.append("snacks")
+    dictionary_words.append("eyes")
+    dictionary_words.append("english")
+    dictionary_words.append("1")
+    dictionary_words.append("2")
+    dictionary_words.append("3")
+    dictionary_words.append("4")
+    dictionary_words.append("notes")
+    dictionary_words.append("ok")
+    dictionary_words.append("showed")
+    # Remove -u which sounds like Tamil words
+    sanitize(words)
+    # Find unique words
+    unique_words = set(words)
+    # Find english words
+    eng_words = [word for word in unique_words if word in dictionary_words]
+    non_eng_words = unique_words - set(eng_words)
+    # Remove empty element
+    non_eng_words = [word for word in non_eng_words if word != ""]
+    print("==English Words==")
+    print(eng_words)
+    print("==Non English Words==")
+    print(non_eng_words)
+    print("Total unique words: %d,\n English words: %d,\n Non English words: %d,\n percentage of english words: %f" % (len(unique_words), len(eng_words), len(non_eng_words), float(len(eng_words))/len(unique_words) * 100))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;Output&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;➜  lua  python why_this_kolaveri_di.py
+==English Words==
+['over', 'skin', 'la', 'only', 'black', '4', 'rhythm', 'yo', 'di', 'choice', 'dark', 'background', '2', 'now', 'tear', 'notes', 'she', 'night', 'girl', 'for', 'god', 'please', 'moon', '3', 'correct', 'we', 'full', 'how', 'super', 'change', 'ok', 'reverse', 'cow', 'oh', 'love', 'dont', 'color', 'singing', 'come', 'pa', 'white', 'wat', 'empty', 'happy', 'eyes', 'gear', 'holy', 'boys', 'hear', 'me', 'distance', 'showed', 'this', 'soup', 'future', 'meet', 'my', 'heart', 'have', 'snacks', 'is', 'am', 'want', 'ready', 'dying', 'song', '1', 'you', 'hand', 'why', 'tune', 'a', 'glass', 'i', 'scotch', 'flop', 'life', 'maintain', 'english']
+==Non English Words==
+['kaila', 'sariya', 'paa', 'apdiye', 'eduthuko', 'vaasi', 'maama', 'whaa',  'bouv', 'paan', 'kolaveri']
+Total unique words: 90,
+English words: 79,
+Non English words: 11,
+Percentage of english words: 87.777778
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It turns out, song contains &lt;code&gt;90&lt;/code&gt; unqiue words, &lt;code&gt;79&lt;/code&gt; words are &lt;code&gt;english&lt;/code&gt; and &lt;code&gt;11&lt;/code&gt; are &lt;code&gt;non english&lt;/code&gt;(Tamil). &lt;code&gt;87.8%&lt;/code&gt; words are english. So here after call &lt;code&gt;why this kolaveri di&lt;/code&gt; song as &lt;code&gt;Tanglish(Tamil + English)&lt;/code&gt; song.&lt;/p&gt;
+
+&lt;p&gt;Gist: &lt;a href="https://gist.github.com/kracekumar/6031683" target="_blank"&gt;https://gist.github.com/kracekumar/6031683&lt;/a&gt;&lt;/p&gt;</description><link>http://kracekumar.com/post/55796363713</link><guid>http://kracekumar.com/post/55796363713</guid><pubDate>Thu, 18 Jul 2013 23:56:20 +0530</pubDate><category>python</category><category>why-this-kolaveri-di</category><category>tanglish</category><category>tamil</category></item><item><title>SSL for flask local development </title><description>&lt;p&gt;Recently at &lt;a href="https://blog.hasgeek.com/2013/https-everywhere-at-hasgeek" target="_blank"&gt;HasGeek&lt;/a&gt; we moved all our web application to &lt;code&gt;https&lt;/code&gt;. So I wanted to have all my development environment urls to have &lt;code&gt;https&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;How to have &lt;code&gt;https&lt;/code&gt; in &lt;a href="http://flask.pocoo.org" target="_blank"&gt;flask&lt;/a&gt; app&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Method 1&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;from flask import Flask
+app = Flask(__name__)
+app.run('0.0.0.0', debug=True, port=8100, ssl_context='adhoc')
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In the above piece of code, &lt;code&gt;ssl_context&lt;/code&gt; variable is passed to &lt;code&gt;werkezug.run_simple&lt;/code&gt; which creates SSL certificates using &lt;code&gt;OpenSSL&lt;/code&gt;, you may need to install &lt;code&gt;pyopenssl&lt;/code&gt;. I had issues with this method, so I generated self signed certificate.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Method 2&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;&lt;li&gt;&lt;p&gt;Generate a private key&lt;br/&gt;&lt;code&gt;openssl genrsa -des3 -out server.key 1024&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Generate a CSR&lt;br/&gt;&lt;code&gt;openssl req -new -key server.key -out server.csr&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Remove Passphrase from key&lt;br/&gt;&lt;code&gt;cp server.key server.key.org&lt;/code&gt;
+&lt;code&gt;openssl rsa -in server.key.org -out server.key&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Generate self signed certificate&lt;br/&gt;&lt;code&gt;openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;&lt;em&gt;code&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;from flask import Flask    
+app = Flask(__name__)    
+app.run('0.0.0.0', debug=True, port=8100, ssl_context=('/Users/kracekumarramaraju/certificates/server.crt', '/Users/kracekumarramaraju/certificates/server.key'))    
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;ssl_context&lt;/code&gt; can take option &lt;code&gt;adhoc&lt;/code&gt; or &lt;code&gt;tuple of the form (cert_file, pkey_file)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;In case you are using &lt;code&gt;/etc/hosts&lt;/code&gt;, add something similar &lt;code&gt;127.0.0.1    &lt;a href="https://hacknight.local" target="_blank"&gt;https://hacknight.local&lt;/a&gt;&lt;/code&gt; for accessing the web application locally.&lt;/p&gt;
+
+&lt;p&gt;Here is much detailed post about generating self signed &lt;a href="http://www.akadia.com/services/ssh_test_certificate.html" target="_blank"&gt;certificates&lt;/a&gt;.&lt;/p&gt;</description><link>http://kracekumar.com/post/54437887454</link><guid>http://kracekumar.com/post/54437887454</guid><pubDate>Tue, 02 Jul 2013 22:20:39 +0530</pubDate><category>python</category><category>ssl</category><category>https</category><category>flask</category></item><item><title>cp command implementation and benchmark in python, go, lua</title><description>&lt;p&gt;I was wondering how much will be the speed difference between &lt;code&gt;cp&lt;/code&gt; command, &lt;code&gt;rsync&lt;/code&gt; and implementation in &lt;code&gt;python&lt;/code&gt;, &lt;code&gt;go&lt;/code&gt;, &lt;code&gt;lua&lt;/code&gt; and so wrote this &lt;a href="https://github.com/kracekumar/cp-tests" target="_blank"&gt;code&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Background&lt;/em&gt;&lt;/p&gt;
+
+&lt;ol&gt;&lt;li&gt;&lt;code&gt;python&lt;/code&gt; has two versions one with &lt;code&gt;gevent&lt;/code&gt; and without &lt;code&gt;gevent&lt;/code&gt;. Both the version uses &lt;code&gt;shutil&lt;/code&gt; for copying files and directory tree.      &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;go&lt;/code&gt; uses &lt;a href="https://github.com/opesun/copyrecur" target="_blank"&gt;https://github.com/opesun/copyrecur&lt;/a&gt; for copying recursively.   &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lua&lt;/code&gt; uses &lt;code&gt;lfs - LuaFileSystem&lt;/code&gt; module. &lt;code&gt;lfs&lt;/code&gt; has support for creating directory but not for files, in order to copy the files low level file opening and writing to file technique is used.    &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rsync --progress -ah -R&lt;/code&gt; was also added to the test.   &lt;/li&gt;
+&lt;/ol&gt;&lt;p&gt;&lt;em&gt;Code&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Directory chosen for the test has &lt;code&gt;28&lt;/code&gt; repos which are basically python projects, go repos with git version control. Total size of the directory &lt;code&gt;/Users/kracekumarramaraju/code&lt;/code&gt; is &lt;code&gt;300M&lt;/code&gt;(du -sh /Users/kracekumarramaraju/code) and destination is external disk which supports &lt;code&gt;USB3.0&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Python without gevent&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import sys
+import shutil
+
+
+def cp(source, dest):    
+    shutil.copytree(source, dest)
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 3:
+        print("Help")
+        print("python cp.py source dest is the format")
+        sys.exit(1)
+    cp(sys.argv[1], sys.argv[2])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;Python with gevent support&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import sys
+import os
+import shutil
+import gevent
+
+
+def cp(source, dest):
+    shutil.copytree(source, dest)
+
+
+def cpfile(source, dest):
+    shutil.copy2(source, dest)
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 3:
+        print("Help")
+        print("python cp.py source dest is the format")
+        os.exit(1)
+    source, dest = sys.argv[1], sys.argv[2]
+    os.mkdir(dest)
+    tasks = []
+    for name in os.listdir(source):
+        source_path, dest_path = os.path.join(source, name), os.path.join(dest, name)
+        if os.path.isdir(source_path):
+            tasks.append(gevent.spawn(cp, source_path, dest_path))
+        else:
+            tasks.append(gevent.spawn(cpfile, source_path, dest_path))
+    gevent.joinall(tasks)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;go&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;package main
+
+import (
+    "fmt"
+    "github.com/opesun/copyrecur"
+    "log"
+    "os"
+)
+
+func cp(source, dest string) {
+    err := copyrecur.CopyDir(source, dest)
+    if err != nil {
+        log.Fatal(err)
+    } else {
+        log.Print("Files copied.")
+    }
+}
+
+func main() {
+    if len(os.Args) != 3 {
+        fmt.Println("Syntax: go run cp.go source destination")
+        os.Exit(1)
+    }
+    cp(os.Args[1], os.Args[2])
+    fmt.Println("cp.go completed")
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;lua&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;require "lfs"
+
+
+function cp(source, dest)
+    -- body
+    for filename in lfs.dir(source) do
+        if filename ~= '.' and filename ~= '..' then
+            local source_path = source .. '/' .. filename
+            local attr = lfs.attributes(source_path)
+            --print(attr.mode, path)
+            if type(attr) == "table" and attr.mode == "directory" then 
+                local dest_path = dest .. "/" .. filename
+                lfs.mkdir(dest_path)
+                cp(source_path, dest_path)
+            else
+                local f = io.open(source_path, "rb")
+                local content = f:read("*all")
+                f:close()
+                local w = io.open(dest .. "/" .. filename, "wb")
+                w:write(content)
+                w:close() 
+            end
+        end
+    end
+end
+
+if #arg == 2 then
+    cp(arg[1], arg[2])
+else
+    print("Syntax:")
+    print("lua lua.go source dest")
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;rsync --progress -ah -R&lt;/code&gt;.&lt;br/&gt;
+ Plain &lt;code&gt;cp&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Tests&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Shell &lt;a href="https://github.com/kracekumar/cp-tests/blob/master/test.sh" target="_blank"&gt;script&lt;/a&gt; to run the tests.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;echo "source directory size"
+du -sh /Users/kracekumarramaraju/code
+echo "cp.py - Python without gevent"
+time python cp.py /Users/kracekumarramaraju/code /Volumes/My\ Passport/test/1
+du -sh /Volumes/My\ Passport/test/1
+echo "cp-gevent.py - Python with gevent"
+time python cp-gevent.py /Users/kracekumarramaraju/code /Volumes/My\ Passport/test/2
+du -sh /Volumes/My\ Passport/test/2
+echo "alias cp='rsync --progress -ah' - Rsync"
+time cp -R /Users/kracekumarramaraju/code /Volumes/My\ Passport/test/3
+du -sh /Volumes/My\ Passport/test/3
+echo "Plain cp command"
+time /bin/cp -R /Users/kracekumarramaraju/code /Volumes/My\ Passport/test/4
+du -sh /Volumes/My\ Passport/test/4
+echo "cp.go - cp in Go lang"
+time go run cp.go /Users/kracekumarramaraju/code /Volumes/My\ Passport/test/5
+du -sh /Volumes/My\ Passport/test/5
+echo "cp.lua - cp in lua"
+time lua cp.lua /Users/kracekumarramaraju/code /Volumes/My\ Passport/test/6
+du -sh /Volumes/My\ Passport/test/6
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;Results&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;➜  cp-tests  ./test.sh
+source directory size
+300M    /Users/kracekumarramaraju/code
+cp.py - Python without gevent
+
+real    1m23.354s
+user    0m1.818s
+sys 0m5.032s
+302M    /Volumes/My Passport/test/1
+cp-gevent.py - Python with gevent
+
+real    1m24.212s
+user    0m1.772s
+sys 0m4.748s
+302M    /Volumes/My Passport/test/2
+alias cp='rsync --progress -ah' - Rsync
+
+real    1m21.145s
+user    0m0.230s
+sys 0m5.172s
+302M    /Volumes/My Passport/test/3
+Plain cp command
+
+real    1m24.065s
+user    0m0.232s
+sys 0m5.174s
+302M    /Volumes/My Passport/test/4
+cp.go - cp in Go lang
+2013/06/23 21:04:38 Files copied.
+cp.go completed
+
+real    1m27.786s
+user    0m1.106s
+sys 0m3.369s
+302M    /Volumes/My Passport/test/5
+cp.lua - cp in lua
+
+real    1m19.340s
+user    0m1.905s
+sys 0m3.893s
+302M    /Volumes/My Passport/test/6
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;Conclusion&lt;/em&gt;&lt;/p&gt;
+
+&lt;ol&gt;&lt;li&gt;Surprisingly &lt;code&gt;lua&lt;/code&gt; was fastest with &lt;code&gt;1m19.340s&lt;/code&gt; and next one was &lt;code&gt;rsync&lt;/code&gt; with &lt;code&gt;1m21.145s&lt;/code&gt;.   &lt;/li&gt;
+&lt;li&gt;Slowest one was &lt;code&gt;go&lt;/code&gt; with &lt;code&gt;1m27.786s&lt;/code&gt;, I expected it to be faster than &lt;code&gt;python gevent&lt;/code&gt;. Probably extra time was due to compiling go code. &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Python&lt;/code&gt; non &lt;code&gt;gevent&lt;/code&gt; version took &lt;code&gt;1m23.354s&lt;/code&gt;  and &lt;code&gt;gevent&lt;/code&gt; version took &lt;code&gt;1m24.212s&lt;/code&gt;,  &lt;code&gt;gevent&lt;/code&gt; version spent less time in &lt;code&gt;user&lt;/code&gt; and &lt;code&gt;system&lt;/code&gt; space. &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cp&lt;/code&gt; command took &lt;code&gt;1m24.065s&lt;/code&gt;, which was second slowest.&lt;/li&gt;
+&lt;li&gt;Since the test was basically I/O there ins&amp;#8217;t much difference in speed of all versions.&lt;/li&gt;
+&lt;/ol&gt;&lt;p&gt;&lt;em&gt;Further work&lt;/em&gt;&lt;/p&gt;
+
+&lt;ol&gt;&lt;li&gt;Benchmark 1GB single file transfer using &lt;code&gt;lua&lt;/code&gt; and &lt;code&gt;rsync&lt;/code&gt;.    &lt;/li&gt;
+&lt;li&gt;Add all features of cp command to any one of the implementation and bench mark.&lt;/li&gt;
+&lt;/ol&gt;</description><link>http://kracekumar.com/post/53685731325</link><guid>http://kracekumar.com/post/53685731325</guid><pubDate>Sun, 23 Jun 2013 22:50:35 +0530</pubDate><category>cp</category><category>go-lang</category><category>python</category><category>gevent</category><category>lua</category><category>rsync</category></item><item><title>Reliance filed 420 case against me in Delhi consumer court</title><description>&lt;p&gt;&lt;em&gt;22, June 2013&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;I woke up like any other morning thinking of closing a github issue.I went out to pick up food items for the weekend, once I was back my friend said &amp;#8221; You got a call on Tamil Nadu number&amp;#8221;.&lt;/p&gt;
+
+&lt;p&gt;I reverted the call and the person said &amp;#8220;I am calling from Delhi consumer court, confirmed my name, address where I stayed in feb, 2009, added RC Gowtham has filled a 420 case against you(dc801/2013, couldn&amp;#8217;t find status in &lt;a href="http://164.100.72.12/ncdrcusersWeb/login.do?method=caseStatus" target="_blank"&gt;http://164.100.72.12/ncdrcusersWeb/login.do?method=caseStatus&lt;/a&gt;) and gave his phone number&amp;#8221;.&lt;/p&gt;
+
+&lt;p&gt;I called to RC Gowtham and asked for details. Reason is I haven&amp;#8217;t paid my Reliance Bill and he gave me Reliance ID. He hung the call saying &amp;#8220;Case will be in Delhi consumer court on monday&amp;#8221;.&lt;/p&gt;
+
+&lt;p&gt;Then I rushed to near by Reliance communication and enquired the details against the reliance id. I heard the whooping amount of 4435 is pending but actual bill must be 500+.&lt;/p&gt;
+
+&lt;p&gt;Then I spoke to customer care found out the bill was generated on february 2009, amount was 540. Now with the penalty I need to pay 4435.&lt;/p&gt;
+
+&lt;p&gt;I remember paying the bill and properly terminating the connection by returning the equipment in Peelamedu, Coimbatore. In March(update: 06/02/2009) we shifted our house.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;1.00 PM&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;I spoke to the person from Delhi who called me up earlier. I am supposed to pay the amount by 3.00 PM and pass on the bill details else I have to fight the case in Delhi consumer court. Seems the person who called me might be hired by Reliance.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Question?&lt;/em&gt;&lt;/p&gt;
+
+&lt;ol&gt;&lt;li&gt;Why hasn&amp;#8217;t reliance called to me in last 4 years to collect the bill&amp;#160;? I haven&amp;#8217;t  changed my number in past 6 years. &lt;/li&gt;
+&lt;li&gt;Is there a way I can fight this&amp;#160;?&lt;/li&gt;
+&lt;li&gt;How can a person from Coimbatore, living in Bangalore will fight a case in Delhi court&amp;#160;?&lt;/li&gt;
+&lt;/ol&gt;&lt;p&gt;Apart from paying the money, I don&amp;#8217;t have any option to exit from this problem. Any thoughts&amp;#160;?&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Updates&lt;/em&gt;&lt;/p&gt;
+
+&lt;ol&gt;&lt;li&gt;I have complaint filed against disconnection on 4th february 2009, 
+complaint no: 88025881. &lt;/li&gt;
+&lt;li&gt;Customer care couldn&amp;#8217;t find the status or resolution for the complaint since its 4 year old.&lt;/li&gt;
+&lt;li&gt;I have reopened the thread. Hope this time I get reply. &lt;/li&gt;
+&lt;li&gt;At 3.05 PM I got the call from the person and I said &amp;#8220;My lawyer will handle this&amp;#8221;. He replied &amp;#8220;case is on monday morning&amp;#8221;.&lt;/li&gt;
+&lt;/ol&gt;</description><link>http://kracekumar.com/post/53582319439</link><guid>http://kracekumar.com/post/53582319439</guid><pubDate>Sat, 22 Jun 2013 13:41:00 +0530</pubDate><category>reliance</category><category>consumercourt</category></item><item><title>progress bar for cp command</title><description>&lt;p&gt;I want &lt;code&gt;cp&lt;/code&gt; command to display the progress of copy. I found three options&lt;/p&gt;
+
+&lt;ol&gt;&lt;li&gt;Use tools like &lt;code&gt;gcp&lt;/code&gt;, &lt;code&gt;pv&lt;/code&gt;. Answer from &lt;a href="http://askubuntu.com/questions/17275/progress-and-speed-with-cp" target="_blank"&gt;askubuntu&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Use &lt;code&gt;rsync&lt;/code&gt;. &lt;code&gt;alias cp='rsync --progress -ah'&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Use this &lt;a href="https://chris-lamb.co.uk/posts/can-you-get-cp-to-give-a-progress-bar-like-wget" target="_blank"&gt;shell script&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;</description><link>http://kracekumar.com/post/52958861147</link><guid>http://kracekumar.com/post/52958861147</guid><pubDate>Fri, 14 Jun 2013 23:18:41 +0530</pubDate><category>linux</category><category>command line</category></item><item><title>Little spoof of Kannukku Mai Azhagu lyrics </title><description>&lt;p&gt;Today my sister was cleaning her contact lens in front of mirror. I suddenly remembered &lt;a href="http://www.youtube.com/watch?v=a6_ZBbIhXM4" target="_blank"&gt;Tamil song Kannukku Mai Azhagu&lt;/a&gt; and &lt;a href="http://www.paadalvarigal.com/940/kannukku-mai-azhagu-male-pudhiya-mugam-song-lyrics.html" target="_blank"&gt;lyrics&lt;/a&gt; and little poet in me whispered &lt;code&gt;Kannukku Contact lens Azhagu&lt;/code&gt;. This induced me to spoof little bit of lyrics pertaining to current trend. I will spoof lyrics which I could.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Kannukku **Contact lens** Azhagu, Kavithaikku Poi Azhagu
+Kannathil Kuzhi Azhagu, Kaar Koonthal **Kandalae** Azhagu
+Ilamaiku **photo** Azhagu, Muthumaikku Narai Azhagu
+Kalvarkku **phone number** Azhagu, Kaathalarkku **facebook** azhagu
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;**  are spoofed ones.&lt;/p&gt;
+
+&lt;h2&gt;Original Version&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;Kannukku Mai Azhagu, Kavithaikku Poi Azhagu
+Kannathil Kuzhi Azhagu, Kaar Koonthal Pen Azhagu..
+Kannukku Mai Azhagu, Kavithaikku Poi Azhagu
+Kannathil Kuzhi Azhagu, Kaar Koonthal Pen Azhagu..
+
+Kannukku Mai Azhagu, Kavithaikku Poi Azhagu
+Kannathil Kuzhi Azhagu, Kaar Koonthal Pen Azhagu..
+
+Ilamaiku Nadai Azhagu, Muthumaikku Narai Azhagu
+Kalvarkku Iravu Azhagu, Kaathalarkku Nilavazhagu
+Nilavukku Karai Azhagu, Paravaikku Siragazhagu
+Nilavukku Karai Azhagu, Paravaikku Siragazhagu
+Avvaiku Koon Azhagu, Annaikku Saei Azhagu
+
+Kannukku Mai Azhagu, Kavithaikku Poi Azhagu
+Kannathil Kuzhi Azhagu, Kaar Koonthal Pen Azhagu..
+Kannukku Mai Azhagu, Kavithaikku Poi Azhagu
+Kannathil Kuzhi Azhagu, Kaar Koonthal Pen Azhagu..
+
+Vidikaalai Vin Azhagu, Vidiyum Varai Pen Azhagu
+Nellukku Naatrazhagu, Thennaikku Keetrazhagu
+Orukku Aar Azhagu, Orvalathil Thaer Azhagu
+Orukku Aar Azhagu, Orvalathil Thaer Azhagu
+Thamizhukku Zha Azhagu, Thalaivikku Naan Azhagu..
+
+Kannukku Mai Azhagu, Kavithaikku Pøi Azhagu
+Kannathil Kuzhi Azhagu, Kaar Køønthal Pen Azhagu..
+Kannukku Mai Azhagu, Kavithaikku Pøi Azhagu
+Kannathil Kuzhi Azhagu, Kaar Køønthal Pen Azhagu..
+&lt;/code&gt;&lt;/pre&gt;</description><link>http://kracekumar.com/post/52686134804</link><guid>http://kracekumar.com/post/52686134804</guid><pubDate>Tue, 11 Jun 2013 10:10:52 +0530</pubDate><category>lyrics</category></item><item><title>Quora : I hate you for this</title><description>&lt;p&gt;I have been using quora for almost &lt;em&gt;two&lt;/em&gt; years. I have connected my &lt;code&gt;Facebook, twitter, wordpress, tumblr&lt;/code&gt; accounts.&lt;/p&gt;
+
+&lt;p&gt;Unless you are logged into &lt;code&gt;quora&lt;/code&gt; you cannot read the post, on the surface this is true. If you are web geek you know you can look into the source code and read the page content and by pass.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The Problem&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Now I am logged into facebook in &lt;code&gt;tab 1&lt;/code&gt;, &lt;code&gt;tab 2&lt;/code&gt; is loading quora url, after few seconds dialog box appears and I am automatically logged into quora account. Now I logout of quora and again I visit the quora url, I am logged back into quora. I deleted the cookies and tried again, still the same. Unless I am logged out of facebook I can&amp;#8217;t logout of quora.&lt;/p&gt;
+
+&lt;p&gt;This is F***ING ANNOYING.&lt;/p&gt;</description><link>http://kracekumar.com/post/51741593651</link><guid>http://kracekumar.com/post/51741593651</guid><pubDate>Fri, 31 May 2013 00:54:13 +0530</pubDate><category>quora</category><category>ux</category></item></channel></rss>

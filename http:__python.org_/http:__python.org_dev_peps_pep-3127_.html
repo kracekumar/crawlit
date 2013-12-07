@@ -1,0 +1,747 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>PEP 3127 -- Integer Literal Support and Syntax</title>
+  <meta name="keywords" content="PEP 3127 -- Integer Literal Support and Syntax" />
+  <meta name="description" content="PEP 3127 -- Integer Literal Support and Syntax" />
+  <link rel="alternate" type="application/rss+xml" title="Community Events"
+        href="http://www.python.org/channews.rdf" />
+  <link rel="alternate" type="application/rss+xml" title="Python Recipes"
+        href="http://aspn.activestate.com/ASPN/Cookbook/Python/index_rss" />
+  <link rel="alternate" type="application/rss+xml" title="Usergroup News"
+        href="http://python-groups.blogspot.com/feeds/posts/default" />
+  <link rel="alternate" type="application/rss+xml" title="Python Screencasts"
+        href="http://www.showmedo.com/latestVideoFeed/rss2.0?tag=python" />
+  <link rel="alternate" type="application/rss+xml" title="Python Podcasts"
+        href="http://www.awaretek.com/python/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Foundation News"
+        href="http://feeds.feedburner.com/PythonSoftwareFoundationNews" />
+  <link rel="alternate" type="application/rss+xml" title="Python Enhancement Proposals"
+        href="http://www.python.org/dev/peps/peps.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Job Opportunities"
+        href="http://www.python.org/community/jobs/jobs.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Reddit Feed of Python What's New Online"
+        href="http://www.reddit.com/r/Python/.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Insider"
+        href="http://feeds.feedburner.com/PythonInsider" />
+
+  <link rel="stylesheet" type="text/css" media="screen" id="screen-switcher-stylesheet"
+        href="/styles/screen-switcher-default.css" />
+  <link rel="stylesheet" type="text/css" media="sc&#82;een"
+        href="/styles/netscape4.css" />
+  <link rel="stylesheet" type="text/css" media="print"
+        href="/styles/print.css" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/largestyles.css" title="large text" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/defaultfonts.css" title="default fonts" />
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search under the www.python.org Domain"
+        href="/search-pysite.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Wiki"
+        href="/search-pywiki.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within Python Books at Google Book Search"
+        href="/search-pybooks.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Documentation"
+        href="/search-pydocs.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for a Module in the Standard Library"
+        href="/search-pymodules.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for Packages inside the Cheeseshop (PyPI)"
+        href="/search-pycheese.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search Archives of the Main Python Mailing List"
+        href="/search-pythonlist.xml"/>
+
+  <script type="text/javascript" src="/js/iotbs2-key-directors-load.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-directors.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-core.js"></script>
+
+</head>
+
+
+<body>
+  <!-- Logo -->
+  <h1 id="logoheader">
+    <a href="/" id="logolink" accesskey="1"><img id="logo" src="/images/python-logo.gif" alt="homepage" border="0" /></a>
+  </h1>
+  <!-- Skip to Navigation -->
+  <div class="skiptonav"><a href="#left-hand-navigation" accesskey="2"><img src="/images/trans.gif" id="skiptonav" alt="skip to navigation" border="0" /></a></div>
+  <div class="skiptonav"><a href="#content-body" accesskey="3"><img src="/images/trans.gif" id="skiptocontent" alt="skip to content" border="0" /></a></div>
+  <!-- Utility Menu -->
+  <div id="utility-menu">
+    <!-- Search Box -->
+    <div id="searchbox">
+      <form method="get" action="http://google.com/search" id="searchform" name="searchform">
+        <div id="search">
+          <input type="hidden" id="domains" name="domains" value="www.python.org" />
+          <input type="hidden" id="sitesearch" name="sitesearch" value="www.python.org" />
+          <input type="hidden" id="sourceid" name="sourceid" value="google-search" />
+          <input type="text" class="input-text" name="q" id="q" />
+          <input type="submit" value="search" class="input-button" name="submit" id="submit" />
+          <a href="/search" class="reference">Advanced Search</a>
+        </div>
+      </form>
+    </div>
+    <div id="screen-switcher"></div>
+  </div>
+
+  <div id="left-hand-navigation">
+    <!-- Main Menu -->
+    <div id="menu">
+      <ul class="level-one">
+            <li>
+          <a href="/about/" title="About The Python Language">About</a>
+        </li>
+            <li>
+          <a href="/news/" title="Major Happenings Within the Python Community">News</a>
+        </li>
+            <li>
+          <a href="/doc/" title="Tutorials, Library Reference, C API">Documentation</a>
+        </li>
+            <li>
+          <a href="/download/" title="Start Running Python Under Windows, Mac, Linux and Others">Download</a>
+        </li>
+            <li>
+          <a href="/getit/" title="Alternate Download page for China">ä¸è½½</a>
+        </li>
+            <li>
+          <a href="/community/" title="Mailing Lists, Jobs, Conferences, SIGs, Online Chats">Community</a>
+        </li>
+            <li>
+          <a href="/psf/" title="Python Software Foundation">Foundation</a>
+        </li>
+            <li>
+          <a href="http://docs.python.org/devguide/" title="Development of the Python language and website">Core Development</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Quick Links -->
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/">Python Wiki</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://blog.python.org/">Python Insider Blog</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/Python2orPython3">Python 2 or 3?</a></h4>
+    <h4><a style="color:#D58228; margin-top:1.5em" href="/psf/donations/">Help Fund Python</a></h4>
+    <div style="align:center; padding-top: 0.5em; padding-left: 1em">
+      <a href="/psf/donations/"><img width="116" height="42" src="/images/donate.png" alt="" title="" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.5em; padding-left: 2.5em">
+            <a href="http://wiki.python.org/moin/Languages"><img
+	      style="align:center"
+              width="94" height="46"
+	      src="/images/worldmap.jpg" alt="[Python resources in languages other than English]" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.0em; padding-left: 0em">
+       <h4><a href="http://wiki.python.org/moin/Languages">Non-English Resources</a></h4>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Release%20Schedule&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com/public/basic.ics">
+                Python Release Schedule iCal Calendar
+            </a>
+        </iframe>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Events%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com/public/basic.ics">
+                Python Events iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=User%20Group%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com&amp;color=%23125A12&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com/public/basic.ics">
+                Python User Group iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+  </div>
+
+  <div id="content-body">
+    <div id="body-main">
+      <div id="content">
+        
+          <div id="breadcrumb">
+               <a href="/dev/peps/">PEP Index</a>
+               <span class="breadcrumb-separator">&gt;</span>
+            
+            PEP 3127 -- Integer Literal Support and Syntax
+          </div>
+
+
+
+        <!--
+This HTML is auto-generated.  DO NOT EDIT THIS FILE!  If you are writing a new
+PEP, see http://www.python.org/dev/peps/pep-0001 for instructions and links
+to templates.  DO NOT USE THIS HTML FILE AS YOUR TEMPLATE!
+-->
+<table class="rfc2822 docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">PEP:</th><td class="field-body">3127</td>
+</tr>
+<tr class="field"><th class="field-name">Title:</th><td class="field-body">Integer Literal Support and Syntax</td>
+</tr>
+<tr class="field"><th class="field-name">Version:</th><td class="field-body">c8ad9e8586d5</td>
+</tr>
+<tr class="field"><th class="field-name">Last-Modified:</th><td class="field-body"><a class="reference external" href="http://hg.python.org/peps/file/tip/pep-3127.txt">2008-10-02 12:40:49 +0000 (Thu, 02 Oct 2008)</a></td>
+</tr>
+<tr class="field"><th class="field-name">Author:</th><td class="field-body">Patrick Maupin &lt;pmaupin&#32;&#97;t&#32;gmail.com&gt;</td>
+</tr>
+<tr class="field"><th class="field-name">Discussions-To:</th><td class="field-body"><a class="reference external" href="mailto:Python-3000&#64;python.org?subject=PEP%203127">Python-3000&#32;&#97;t&#32;python.org</a></td>
+</tr>
+<tr class="field"><th class="field-name">Status:</th><td class="field-body">Final</td>
+</tr>
+<tr class="field"><th class="field-name">Type:</th><td class="field-body">Standards Track</td>
+</tr>
+<tr class="field"><th class="field-name">Content-Type:</th><td class="field-body"><a class="reference external" href="/dev/peps/pep-0012">text/x-rst</a></td>
+</tr>
+<tr class="field"><th class="field-name">Created:</th><td class="field-body">14-Mar-2007</td>
+</tr>
+<tr class="field"><th class="field-name">Python-Version:</th><td class="field-body">3.0</td>
+</tr>
+<tr class="field"><th class="field-name">Post-History:</th><td class="field-body">18-Mar-2007</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#abstract" id="id11">Abstract</a></li>
+<li><a class="reference internal" href="#motivation" id="id12">Motivation</a></li>
+<li><a class="reference internal" href="#specification" id="id13">Specification</a><ul>
+<li><a class="reference internal" href="#grammar-specification" id="id14">Grammar specification</a></li>
+<li><a class="reference internal" href="#int-specification" id="id15">int() specification</a></li>
+<li><a class="reference internal" href="#long-specification" id="id16">long() specification</a></li>
+<li><a class="reference internal" href="#tokenizer-exception-handling" id="id17">Tokenizer exception handling</a></li>
+<li><a class="reference internal" href="#int-exception-handling" id="id18">int() exception handling</a></li>
+<li><a class="reference internal" href="#oct-function" id="id19">oct() function</a></li>
+<li><a class="reference internal" href="#output-formatting" id="id20">Output formatting</a></li>
+<li><a class="reference internal" href="#transition-from-2-6-to-3-0" id="id21">Transition from 2.6 to 3.0</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rationale" id="id22">Rationale</a><ul>
+<li><a class="reference internal" href="#background" id="id23">Background</a></li>
+<li><a class="reference internal" href="#removal-of-old-octal-syntax" id="id24">Removal of old octal syntax</a></li>
+<li><a class="reference internal" href="#supported-radices" id="id25">Supported radices</a></li>
+<li><a class="reference internal" href="#syntax-for-supported-radices" id="id26">Syntax for supported radices</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#open-issues" id="id27">Open Issues</a></li>
+<li><a class="reference internal" href="#references" id="id28">References</a></li>
+<li><a class="reference internal" href="#copyright" id="id29">Copyright</a></li>
+</ul>
+</div>
+<div class="section" id="abstract">
+<h1><a class="toc-backref" href="#id11">Abstract</a></h1>
+<p>This PEP proposes changes to the Python core to rationalize
+the treatment of string literal representations of integers
+in different radices (bases).  These changes are targeted at
+Python 3.0, but the backward-compatible parts of the changes
+should be added to Python 2.6, so that all valid 3.0 integer
+literals will also be valid in 2.6.</p>
+<p>The proposal is that:</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>octal literals must now be specified
+with a leading &quot;0o&quot; or &quot;0O&quot; instead of &quot;0&quot;;</li>
+<li>binary literals are now supported via a
+leading &quot;0b&quot; or &quot;0B&quot;; and</li>
+<li>provision will be made for binary numbers in
+string formatting.</li>
+</ol>
+</blockquote>
+</div>
+<div class="section" id="motivation">
+<h1><a class="toc-backref" href="#id12">Motivation</a></h1>
+<p>This PEP was motivated by two different issues:</p>
+<blockquote>
+<ul class="simple">
+<li>The default octal representation of integers is silently confusing
+to people unfamiliar with C-like languages.  It is extremely easy
+to inadvertently create an integer object with the wrong value,
+because '013' means 'decimal 11', not 'decimal 13', to the Python
+language itself, which is not the meaning that most humans would
+assign to this literal.</li>
+<li>Some Python users have a strong desire for binary support in
+the language.</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="specification">
+<h1><a class="toc-backref" href="#id13">Specification</a></h1>
+<div class="section" id="grammar-specification">
+<h2><a class="toc-backref" href="#id14">Grammar specification</a></h2>
+<p>The grammar will be changed.  For Python 2.6, the changed and
+new token definitions will be:</p>
+<pre class="literal-block">
+integer        ::=     decimalinteger | octinteger | hexinteger |
+                       bininteger | oldoctinteger
+
+octinteger     ::=     &quot;0&quot; (&quot;o&quot; | &quot;O&quot;) octdigit+
+
+bininteger     ::=     &quot;0&quot; (&quot;b&quot; | &quot;B&quot;) bindigit+
+
+oldoctinteger  ::=     &quot;0&quot; octdigit+
+
+bindigit       ::=     &quot;0&quot; | &quot;1&quot;
+</pre>
+<p>For Python 3.0, &quot;oldoctinteger&quot; will not be supported, and
+an exception will be raised if a literal has a leading &quot;0&quot; and
+a second character which is a digit.</p>
+<p>For both versions, this will require changes to PyLong_FromString
+as well as the grammar.</p>
+<p>The documentation will have to be changed as well:  grammar.txt,
+as well as the integer literal section of the reference manual.</p>
+<p><a class="reference external" href="/dev/peps/pep-0306">PEP 306</a> should be checked for other issues, and that PEP should
+be updated if the procedure described therein is insufficient.</p>
+</div>
+<div class="section" id="int-specification">
+<h2><a class="toc-backref" href="#id15">int() specification</a></h2>
+<p>int(s, 0) will also match the new grammar definition.</p>
+<p>This should happen automatically with the changes to
+PyLong_FromString required for the grammar change.</p>
+<p>Also the documentation for int() should be changed to explain
+that int(s) operates identically to int(s, 10), and the word
+&quot;guess&quot; should be removed from the description of int(s, 0).</p>
+</div>
+<div class="section" id="long-specification">
+<h2><a class="toc-backref" href="#id16">long() specification</a></h2>
+<p>For Python 2.6, the long() implementation and documentation
+should be changed to reflect the new grammar.</p>
+</div>
+<div class="section" id="tokenizer-exception-handling">
+<h2><a class="toc-backref" href="#id17">Tokenizer exception handling</a></h2>
+<p>If an invalid token contains a leading &quot;0&quot;, the exception
+error message should be more informative than the current
+&quot;SyntaxError: invalid token&quot;.  It should explain that decimal
+numbers may not have a leading zero, and that octal numbers
+require an &quot;o&quot; after the leading zero.</p>
+</div>
+<div class="section" id="int-exception-handling">
+<h2><a class="toc-backref" href="#id18">int() exception handling</a></h2>
+<p>The ValueError raised for any call to int() with a string
+should at least explicitly contain the base in the error
+message, e.g.:</p>
+<pre class="literal-block">
+ValueError: invalid literal for base 8 int(): 09
+</pre>
+</div>
+<div class="section" id="oct-function">
+<h2><a class="toc-backref" href="#id19">oct() function</a></h2>
+<p>oct() should be updated to output '0o' in front of
+the octal digits (for 3.0, and 2.6 compatibility mode).</p>
+</div>
+<div class="section" id="output-formatting">
+<h2><a class="toc-backref" href="#id20">Output formatting</a></h2>
+<p>In 3.0, the string % operator alternate syntax for the 'o'
+option will need to be updated to add '0o' in front,
+instead of '0'.  In 2.6, alternate octal formatting will
+continue to add only '0'.  In neither 2.6 nor 3.0 will
+the % operator support binary output.  This is because
+binary output is already supported by <a class="reference external" href="/dev/peps/pep-3101">PEP 3101</a>
+(str.format), which is the prefered string formatting
+method.</p>
+</div>
+<div class="section" id="transition-from-2-6-to-3-0">
+<h2><a class="toc-backref" href="#id21">Transition from 2.6 to 3.0</a></h2>
+<p>The 2to3 translator will have to insert 'o' into any
+octal string literal.</p>
+<p>The Py3K compatible option to Python 2.6 should cause
+attempts to use oldoctinteger literals to raise an
+exception.</p>
+</div>
+</div>
+<div class="section" id="rationale">
+<h1><a class="toc-backref" href="#id22">Rationale</a></h1>
+<p>Most of the discussion on these issues occurred on the Python-3000
+mailing list starting 14-Mar-2007, prompted by an observation that
+the average human being would be completely mystified upon finding
+that prepending a &quot;0&quot; to a string of digits changes the meaning of
+that digit string entirely.</p>
+<p>It was pointed out during this discussion that a similar, but shorter,
+discussion on the subject occurred in January of 2006, prompted by a
+discovery of the same issue.</p>
+<div class="section" id="background">
+<h2><a class="toc-backref" href="#id23">Background</a></h2>
+<p>For historical reasons, Python's string representation of integers
+in different bases (radices), for string formatting and token
+literals, borrows heavily from C.  <a class="footnote-reference" href="#id6" id="id1">[1]</a> <a class="footnote-reference" href="#id7" id="id2">[2]</a> Usage has shown that
+the historical method of specifying an octal number is confusing,
+and also that it would be nice to have additional support for binary
+literals.</p>
+<p>Throughout this document, unless otherwise noted, discussions about
+the string representation of integers relate to these features:</p>
+<blockquote>
+<ul>
+<li><p class="first">Literal integer tokens, as used by normal module compilation,
+by eval(), and by int(token, 0).  (int(token) and int(token, 2-36)
+are not modified by this proposal.)</p>
+<blockquote>
+<ul class="simple">
+<li>Under 2.6, long() is treated the same as int()</li>
+</ul>
+</blockquote>
+</li>
+<li><p class="first">Formatting of integers into strings, either via the % string
+operator or the new <a class="reference external" href="/dev/peps/pep-3101">PEP 3101</a> advanced string formatting method.</p>
+</li>
+</ul>
+</blockquote>
+<p>It is presumed that:</p>
+<blockquote>
+<ul class="simple">
+<li>All of these features should have an identical set
+of supported radices, for consistency.</li>
+<li>Python source code syntax and int(mystring, 0) should
+continue to share identical behavior.</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="removal-of-old-octal-syntax">
+<h2><a class="toc-backref" href="#id24">Removal of old octal syntax</a></h2>
+<p>This PEP proposes that the ability to specify an octal number by
+using a leading zero will be removed from the language in Python 3.0
+(and the Python 3.0 preview mode of 2.6), and that a SyntaxError will
+be raised whenever a leading &quot;0&quot; is immediately followed by another
+digit.</p>
+<p>During the present discussion, it was almost universally agreed that:</p>
+<pre class="literal-block">
+eval('010') == 8
+</pre>
+<p>should no longer be true, because that is confusing to new users.
+It was also proposed that:</p>
+<pre class="literal-block">
+eval('0010') == 10
+</pre>
+<p>should become true, but that is much more contentious, because it is so
+inconsistent with usage in other computer languages that mistakes are
+likely to be made.</p>
+<p>Almost all currently popular computer languages, including C/C++,
+Java, Perl, and JavaScript, treat a sequence of digits with a
+leading zero as an octal number.  Proponents of treating these
+numbers as decimal instead have a very valid point -- as discussed
+in <a class="reference internal" href="#supported-radices">Supported radices</a>, below, the entire non-computer world uses
+decimal numbers almost exclusively.  There is ample anecdotal
+evidence that many people are dismayed and confused if they
+are confronted with non-decimal radices.</p>
+<p>However, in most situations, most people do not write gratuitous
+zeros in front of their decimal numbers.  The primary exception is
+when an attempt is being made to line up columns of numbers.  But
+since <a class="reference external" href="/dev/peps/pep-0008">PEP 8</a> specifically discourages the use of spaces to try to
+align Python code, one would suspect the same argument should apply
+to the use of leading zeros for the same purpose.</p>
+<p>Finally, although the email discussion often focused on whether anybody
+actually <em>uses</em> octal any more, and whether we should cater to those
+old-timers in any case, that is almost entirely besides the point.</p>
+<p>Assume the rare complete newcomer to computing who <em>does</em>, either
+occasionally or as a matter of habit, use leading zeros for decimal
+numbers.  Python could either:</p>
+<blockquote>
+<ol class="loweralpha simple">
+<li>silently do the wrong thing with his numbers, as it does now;</li>
+<li>immediately disabuse him of the notion that this is viable syntax
+(and yes, the SyntaxWarning should be more gentle than it
+currently is, but that is a subject for a different PEP); or</li>
+<li>let him continue to think that computers are happy with
+multi-digit decimal integers which start with &quot;0&quot;.</li>
+</ol>
+</blockquote>
+<p>Some people passionately believe that (c) is the correct answer,
+and they would be absolutely right if we could be sure that new
+users will never blossom and grow and start writing AJAX applications.</p>
+<p>So while a new Python user may (currently) be mystified at the
+delayed discovery that his numbers don't work properly, we can
+fix it by explaining to him immediately that Python doesn't like
+leading zeros (hopefully with a reasonable message!), or we can
+delegate this teaching experience to the JavaScript interpreter
+in the Internet Explorer browser, and let him try to debug his
+issue there.</p>
+</div>
+<div class="section" id="supported-radices">
+<h2><a class="toc-backref" href="#id25">Supported radices</a></h2>
+<p>This PEP proposes that the supported radices for the Python
+language will be 2, 8, 10, and 16.</p>
+<p>Once it is agreed that the old syntax for octal (radix 8) representation
+of integers must be removed from the language, the next obvious
+question is &quot;Do we actually need a way to specify (and display)
+numbers in octal?&quot;</p>
+<p>This question is quickly followed by &quot;What radices does the language
+need to support?&quot;  Because computers are so adept at doing what you
+tell them to, a tempting answer in the discussion was &quot;all of them.&quot;
+This answer has obviously been given before -- the int() constructor
+will accept an explicit radix with a value between 2 and 36, inclusive,
+with the latter number bearing a suspicious arithmetic similarity to
+the sum of the number of numeric digits and the number of same-case
+letters in the ASCII alphabet.</p>
+<p>But the best argument for inclusion will have a use-case to back
+it up, so the idea of supporting all radices was quickly rejected,
+and the only radices left with any real support were decimal,
+hexadecimal, octal, and binary.</p>
+<p>Just because a particular radix has a vocal supporter on the
+mailing list does not mean that it really should be in the
+language, so the rest of this section is a treatise on the
+utility of these particular radices, vs. other possible choices.</p>
+<p>Humans use other numeric bases constantly.  If I tell you that
+it is 12:30 PM, I have communicated quantitative information
+arguably composed of <em>three</em> separate bases (12, 60, and 2),
+only one of which is in the &quot;agreed&quot; list above.  But the
+<em>communication</em> of that information used two decimal digits
+each for the base 12 and base 60 information, and, perversely,
+two letters for information which could have fit in a single
+decimal digit.</p>
+<p>So, in general, humans communicate &quot;normal&quot; (non-computer)
+numerical information either via names (AM, PM, January, ...)
+or via use of decimal notation.  Obviously, names are
+seldom used for large sets of items, so decimal is used for
+everything else.  There are studies which attempt to explain
+why this is so, typically reaching the expected conclusion
+that the Arabic numeral system is well-suited to human
+cognition. <a class="footnote-reference" href="#id8" id="id3">[3]</a></p>
+<p>There is even support in the history of the design of
+computers to indicate that decimal notation is the correct
+way for computers to communicate with humans.  One of
+the first modern computers, ENIAC <a class="footnote-reference" href="#id9" id="id4">[4]</a> computed in decimal,
+even though there were already existing computers which
+operated in binary.</p>
+<p>Decimal computer operation was important enough
+that many computers, including the ubiquitous PC, have
+instructions designed to operate on &quot;binary coded decimal&quot;
+(BCD) <a class="footnote-reference" href="#id10" id="id5">[5]</a> , a representation which devotes 4 bits to each
+decimal digit.  These instructions date from a time when the
+most strenuous calculations ever performed on many numbers
+were the calculations actually required to perform textual
+I/O with them.  It is possible to display BCD without having
+to perform a divide/remainder operation on every displayed
+digit, and this was a huge computational win when most
+hardware didn't have fast divide capability.  Another factor
+contributing to the use of BCD is that, with BCD calculations,
+rounding will happen exactly the same way that a human would
+do it, so BCD is still sometimes used in fields like finance,
+despite the computational and storage superiority of binary.</p>
+<p>So, if it weren't for the fact that computers themselves
+normally use binary for efficient computation and data
+storage, string representations of integers would probably
+always be in decimal.</p>
+<p>Unfortunately, computer hardware doesn't think like humans,
+so programmers and hardware engineers must often resort to
+thinking like the computer, which means that it is important
+for Python to have the ability to communicate binary data
+in a form that is understandable to humans.</p>
+<p>The requirement that the binary data notation must be cognitively
+easy for humans to process means that it should contain an integral
+number of binary digits (bits) per symbol, while otherwise
+conforming quite closely to the standard tried-and-true decimal
+notation (position indicates power, larger magnitude on the left,
+not too many symbols in the alphabet, etc.).</p>
+<p>The obvious &quot;sweet spot&quot; for this binary data notation is
+thus octal, which packs the largest integral number of bits
+possible into a single symbol chosen from the Arabic numeral
+alphabet.</p>
+<p>In fact, some computer architectures, such as the PDP8 and the
+8080/Z80, were defined in terms of octal, in the sense of arranging
+the bitfields of instructions in groups of three, and using
+octal representations to describe the instruction set.</p>
+<p>Even today, octal is important because of bit-packed structures
+which consist of 3 bits per field, such as Unix file permission
+masks.</p>
+<p>But octal has a drawback when used for larger numbers.  The
+number of bits per symbol, while integral, is not itself
+a power of two.  This limitation (given that the word size
+of most computers these days is a power of two) has resulted
+in hexadecimal, which is more popular than octal despite the
+fact that it requires a 60% larger alphabet than decimal,
+because each symbol contains 4 bits.</p>
+<p>Some numbers, such as Unix file permission masks, are easily
+decoded by humans when represented in octal, but difficult to
+decode in hexadecimal, while other numbers are much easier for
+humans to handle in hexadecimal.</p>
+<p>Unfortunately, there are also binary numbers used in computers
+which are not very well communicated in either hexadecimal or
+octal. Thankfully, fewer people have to deal with these on a
+regular basis, but on the other hand, this means that several
+people on the discussion list questioned the wisdom of adding
+a straight binary representation to Python.</p>
+<p>One example of where these numbers is very useful is in
+reading and writing hardware registers.  Sometimes hardware
+designers will eschew human readability and opt for address
+space efficiency, by packing multiple bit fields into a single
+hardware register at unaligned bit locations, and it is tedious
+and error-prone for a human to reconstruct a 5 bit field which
+consists of the upper 3 bits of one hex digit, and the lower 2
+bits of the next hex digit.</p>
+<p>Even if the ability of Python to communicate binary information
+to humans is only useful for a small technical subset of the
+population, it is exactly that population subset which contains
+most, if not all, members of the Python core team, so even straight
+binary, the least useful of these notations, has several enthusiastic
+supporters and few, if any, staunch opponents, among the Python community.</p>
+</div>
+<div class="section" id="syntax-for-supported-radices">
+<h2><a class="toc-backref" href="#id26">Syntax for supported radices</a></h2>
+<p>This proposal is to to use a &quot;0o&quot; prefix with either uppercase
+or lowercase &quot;o&quot; for octal, and a &quot;0b&quot; prefix with either
+uppercase or lowercase &quot;b&quot; for binary.</p>
+<p>There was strong support for not supporting uppercase, but
+this is a separate subject for a different PEP, as 'j' for
+complex numbers, 'e' for exponent, and 'r' for raw string
+(to name a few) already support uppercase.</p>
+<p>The syntax for delimiting the different radices received a lot of
+attention in the discussion on Python-3000.  There are several
+(sometimes conflicting) requirements and &quot;nice-to-haves&quot; for
+this syntax:</p>
+<blockquote>
+<ul class="simple">
+<li>It should be as compatible with other languages and
+previous versions of Python as is reasonable, both
+for the input syntax and for the output (e.g. string
+% operator) syntax.</li>
+<li>It should be as obvious to the casual observer as
+possible.</li>
+<li>It should be easy to visually distinguish integers
+formatted in the different bases.</li>
+</ul>
+</blockquote>
+<p>Proposed syntaxes included things like arbitrary radix prefixes,
+such as 16r100 (256 in hexadecimal), and radix suffixes, similar
+to the 100h assembler-style suffix.  The debate on whether the
+letter &quot;O&quot; could be used for octal was intense -- an uppercase
+&quot;O&quot; looks suspiciously similar to a zero in some fonts.  Suggestions
+were made to use a &quot;c&quot; (the second letter of &quot;oCtal&quot;), or even
+to use a &quot;t&quot; for &quot;ocTal&quot; and an &quot;n&quot; for &quot;biNary&quot; to go along
+with the &quot;x&quot; for &quot;heXadecimal&quot;.</p>
+<p>For the string % operator, &quot;o&quot; was already being used to denote
+octal.  Binary formatting is not being added to the % operator
+because <a class="reference external" href="/dev/peps/pep-3101">PEP 3101</a> (Advanced String Formatting) already supports
+binary, % formatting will be deprecated in the future.</p>
+<p>At the end of the day, since uppercase &quot;O&quot; can look like a zero
+and uppercase &quot;B&quot; can look like an 8, it was decided that these
+prefixes should be lowercase only, but, like 'r' for raw string,
+that can be a preference or style-guide issue.</p>
+</div>
+</div>
+<div class="section" id="open-issues">
+<h1><a class="toc-backref" href="#id27">Open Issues</a></h1>
+<p>It was suggested in the discussion that lowercase should be used
+for all numeric and string special modifiers, such as 'x' for
+hexadecimal, 'r' for raw strings, 'e' for exponentiation, and
+'j' for complex numbers.  This is an issue for a separate PEP.</p>
+<p>This PEP takes no position on uppercase or lowercase for input,
+just noting that, for consistency, if uppercase is not to be
+removed from input parsing for other letters, it should be
+added for octal and binary, and documenting the changes under
+this assumption, as there is not yet a PEP about the case issue.</p>
+<p>Output formatting may be a different story -- there is already
+ample precedence for case sensitivity in the output format string,
+and there would need to be a consensus that there is a valid
+use-case for the &quot;alternate form&quot; of the string % operator
+to support uppercase 'B' or 'O' characters for binary or
+octal output.  Currently, <a class="reference external" href="/dev/peps/pep-3101">PEP 3101</a> does not even support this
+alternate capability, and the hex() function does not allow
+the programmer to specify the case of the 'x' character.</p>
+<p>There are still some strong feelings that '0123' should be
+allowed as a literal decimal in Python 3.0.  If this is the
+right thing to do, this can easily be covered in an additional
+PEP.  This proposal only takes the first step of making '0123'
+not be a valid octal number, for reasons covered in the rationale.</p>
+<p>Is there (or should there be) an option for the 2to3 translator
+which only makes the 2.6 compatible changes?  Should this be
+run on 2.6 library code before the 2.6 release?</p>
+<p>Should a bin() function which matches hex() and oct() be added?</p>
+<p>Is hex() really that useful once we have advanced string formatting?</p>
+</div>
+<div class="section" id="references">
+<h1><a class="toc-backref" href="#id28">References</a></h1>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>GNU libc manual printf integer format conversions
+(<a class="reference external" href="http://www.gnu.org/software/libc/manual/html_node/Integer-Conversions.html">http://www.gnu.org/software/libc/manual/html_node/Integer-Conversions.html</a>)</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>Python string formatting operations
+(<a class="reference external" href="http://docs.python.org/library/stdtypes.html#string-formatting-operations">http://docs.python.org/library/stdtypes.html#string-formatting-operations</a>)</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>The Representation of Numbers, Jiajie Zhang and Donald A. Norman
+(<a class="reference external" href="http://acad88.sahs.uth.tmc.edu/research/publications/Number-Representation.pdf">http://acad88.sahs.uth.tmc.edu/research/publications/Number-Representation.pdf</a>)</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td>ENIAC page at wikipedia
+(<a class="reference external" href="http://en.wikipedia.org/wiki/ENIAC">http://en.wikipedia.org/wiki/ENIAC</a>)</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[5]</a></td><td>BCD page at wikipedia
+(<a class="reference external" href="http://en.wikipedia.org/wiki/Binary-coded_decimal">http://en.wikipedia.org/wiki/Binary-coded_decimal</a>)</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="copyright">
+<h1><a class="toc-backref" href="#id29">Copyright</a></h1>
+<p>This document has been placed in the public domain.</p>
+<!-- Local Variables:
+mode: indented-text
+indent-tabs-mode: nil
+sentence-end-double-space: t
+fill-column: 70
+coding: utf-8
+End: -->
+</div>
+
+
+
+      </div>
+
+      
+      <div id="footer">
+	<div id="credits">
+ 	  <a href="/about/website">Website maintained by the Python community</a><br/>
+	  <a href="http://www.xs4all.com/" title="Web and email hosting provided by xs4all, Netherlands">hosting by xs4all</a> /
+	  <a href="http://www.timparkin.co.uk/" title="Design by Tim Parkin, Yorkshire man, photographer and developer">design by Tim Parkin</a>
+	</div>
+	Copyright &copy; 1990-2013, <a href='/psf/'>Python Software Foundation</a><br/>
+	<a href="/about/legal">Legal Statements</a>
+      </div>
+
+
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+

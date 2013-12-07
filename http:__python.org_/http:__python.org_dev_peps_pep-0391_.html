@@ -1,0 +1,891 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>PEP 391 -- Dictionary-Based Configuration For Logging</title>
+  <meta name="keywords" content="PEP 391 -- Dictionary-Based Configuration For Logging" />
+  <meta name="description" content="PEP 391 -- Dictionary-Based Configuration For Logging" />
+  <link rel="alternate" type="application/rss+xml" title="Community Events"
+        href="http://www.python.org/channews.rdf" />
+  <link rel="alternate" type="application/rss+xml" title="Python Recipes"
+        href="http://aspn.activestate.com/ASPN/Cookbook/Python/index_rss" />
+  <link rel="alternate" type="application/rss+xml" title="Usergroup News"
+        href="http://python-groups.blogspot.com/feeds/posts/default" />
+  <link rel="alternate" type="application/rss+xml" title="Python Screencasts"
+        href="http://www.showmedo.com/latestVideoFeed/rss2.0?tag=python" />
+  <link rel="alternate" type="application/rss+xml" title="Python Podcasts"
+        href="http://www.awaretek.com/python/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Foundation News"
+        href="http://feeds.feedburner.com/PythonSoftwareFoundationNews" />
+  <link rel="alternate" type="application/rss+xml" title="Python Enhancement Proposals"
+        href="http://www.python.org/dev/peps/peps.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Job Opportunities"
+        href="http://www.python.org/community/jobs/jobs.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Reddit Feed of Python What's New Online"
+        href="http://www.reddit.com/r/Python/.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Insider"
+        href="http://feeds.feedburner.com/PythonInsider" />
+
+  <link rel="stylesheet" type="text/css" media="screen" id="screen-switcher-stylesheet"
+        href="/styles/screen-switcher-default.css" />
+  <link rel="stylesheet" type="text/css" media="sc&#82;een"
+        href="/styles/netscape4.css" />
+  <link rel="stylesheet" type="text/css" media="print"
+        href="/styles/print.css" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/largestyles.css" title="large text" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/defaultfonts.css" title="default fonts" />
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search under the www.python.org Domain"
+        href="/search-pysite.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Wiki"
+        href="/search-pywiki.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within Python Books at Google Book Search"
+        href="/search-pybooks.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Documentation"
+        href="/search-pydocs.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for a Module in the Standard Library"
+        href="/search-pymodules.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for Packages inside the Cheeseshop (PyPI)"
+        href="/search-pycheese.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search Archives of the Main Python Mailing List"
+        href="/search-pythonlist.xml"/>
+
+  <script type="text/javascript" src="/js/iotbs2-key-directors-load.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-directors.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-core.js"></script>
+
+</head>
+
+
+<body>
+  <!-- Logo -->
+  <h1 id="logoheader">
+    <a href="/" id="logolink" accesskey="1"><img id="logo" src="/images/python-logo.gif" alt="homepage" border="0" /></a>
+  </h1>
+  <!-- Skip to Navigation -->
+  <div class="skiptonav"><a href="#left-hand-navigation" accesskey="2"><img src="/images/trans.gif" id="skiptonav" alt="skip to navigation" border="0" /></a></div>
+  <div class="skiptonav"><a href="#content-body" accesskey="3"><img src="/images/trans.gif" id="skiptocontent" alt="skip to content" border="0" /></a></div>
+  <!-- Utility Menu -->
+  <div id="utility-menu">
+    <!-- Search Box -->
+    <div id="searchbox">
+      <form method="get" action="http://google.com/search" id="searchform" name="searchform">
+        <div id="search">
+          <input type="hidden" id="domains" name="domains" value="www.python.org" />
+          <input type="hidden" id="sitesearch" name="sitesearch" value="www.python.org" />
+          <input type="hidden" id="sourceid" name="sourceid" value="google-search" />
+          <input type="text" class="input-text" name="q" id="q" />
+          <input type="submit" value="search" class="input-button" name="submit" id="submit" />
+          <a href="/search" class="reference">Advanced Search</a>
+        </div>
+      </form>
+    </div>
+    <div id="screen-switcher"></div>
+  </div>
+
+  <div id="left-hand-navigation">
+    <!-- Main Menu -->
+    <div id="menu">
+      <ul class="level-one">
+            <li>
+          <a href="/about/" title="About The Python Language">About</a>
+        </li>
+            <li>
+          <a href="/news/" title="Major Happenings Within the Python Community">News</a>
+        </li>
+            <li>
+          <a href="/doc/" title="Tutorials, Library Reference, C API">Documentation</a>
+        </li>
+            <li>
+          <a href="/download/" title="Start Running Python Under Windows, Mac, Linux and Others">Download</a>
+        </li>
+            <li>
+          <a href="/getit/" title="Alternate Download page for China">ä¸è½½</a>
+        </li>
+            <li>
+          <a href="/community/" title="Mailing Lists, Jobs, Conferences, SIGs, Online Chats">Community</a>
+        </li>
+            <li>
+          <a href="/psf/" title="Python Software Foundation">Foundation</a>
+        </li>
+            <li>
+          <a href="http://docs.python.org/devguide/" title="Development of the Python language and website">Core Development</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Quick Links -->
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/">Python Wiki</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://blog.python.org/">Python Insider Blog</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/Python2orPython3">Python 2 or 3?</a></h4>
+    <h4><a style="color:#D58228; margin-top:1.5em" href="/psf/donations/">Help Fund Python</a></h4>
+    <div style="align:center; padding-top: 0.5em; padding-left: 1em">
+      <a href="/psf/donations/"><img width="116" height="42" src="/images/donate.png" alt="" title="" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.5em; padding-left: 2.5em">
+            <a href="http://wiki.python.org/moin/Languages"><img
+	      style="align:center"
+              width="94" height="46"
+	      src="/images/worldmap.jpg" alt="[Python resources in languages other than English]" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.0em; padding-left: 0em">
+       <h4><a href="http://wiki.python.org/moin/Languages">Non-English Resources</a></h4>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Release%20Schedule&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com/public/basic.ics">
+                Python Release Schedule iCal Calendar
+            </a>
+        </iframe>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Events%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com/public/basic.ics">
+                Python Events iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=User%20Group%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com&amp;color=%23125A12&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com/public/basic.ics">
+                Python User Group iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+  </div>
+
+  <div id="content-body">
+    <div id="body-main">
+      <div id="content">
+        
+          <div id="breadcrumb">
+               <a href="/dev/peps/">PEP Index</a>
+               <span class="breadcrumb-separator">&gt;</span>
+            
+            PEP 391 -- Dictionary-Based Configuration For Logging
+          </div>
+
+
+
+        <!--
+This HTML is auto-generated.  DO NOT EDIT THIS FILE!  If you are writing a new
+PEP, see http://www.python.org/dev/peps/pep-0001 for instructions and links
+to templates.  DO NOT USE THIS HTML FILE AS YOUR TEMPLATE!
+-->
+<table class="rfc2822 docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">PEP:</th><td class="field-body">391</td>
+</tr>
+<tr class="field"><th class="field-name">Title:</th><td class="field-body">Dictionary-Based Configuration For Logging</td>
+</tr>
+<tr class="field"><th class="field-name">Version:</th><td class="field-body">07e52e30e5e3</td>
+</tr>
+<tr class="field"><th class="field-name">Last-Modified:</th><td class="field-body"><a class="reference external" href="http://hg.python.org/peps/file/tip/pep-0391.txt">2011-08-30 20:50:41 +1000 (Tue, 30 Aug 2011)</a></td>
+</tr>
+<tr class="field"><th class="field-name">Author:</th><td class="field-body">Vinay Sajip &lt;vinay_sajip at red-dove.com&gt;</td>
+</tr>
+<tr class="field"><th class="field-name">Status:</th><td class="field-body">Final</td>
+</tr>
+<tr class="field"><th class="field-name">Type:</th><td class="field-body">Standards Track</td>
+</tr>
+<tr class="field"><th class="field-name">Content-Type:</th><td class="field-body"><a class="reference external" href="/dev/peps/pep-0012">text/x-rst</a></td>
+</tr>
+<tr class="field"><th class="field-name">Created:</th><td class="field-body">15-Oct-2009</td>
+</tr>
+<tr class="field"><th class="field-name">Python-Version:</th><td class="field-body">2.7, 3.2</td>
+</tr>
+<tr class="field"><th class="field-name">Post-History:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#abstract" id="id3">Abstract</a></li>
+<li><a class="reference internal" href="#rationale" id="id4">Rationale</a></li>
+<li><a class="reference internal" href="#specification" id="id5">Specification</a><ul>
+<li><a class="reference internal" href="#naming" id="id6">Naming</a></li>
+<li><a class="reference internal" href="#api" id="id7">API</a></li>
+<li><a class="reference internal" href="#dictionary-schema-overview" id="id8">Dictionary Schema - Overview</a><ul>
+<li><a class="reference internal" href="#object-connections" id="id9">Object connections</a></li>
+<li><a class="reference internal" href="#user-defined-objects" id="id10">User-defined objects</a></li>
+<li><a class="reference internal" href="#access-to-external-objects" id="id11">Access to external objects</a></li>
+<li><a class="reference internal" href="#access-to-internal-objects" id="id12">Access to internal objects</a></li>
+<li><a class="reference internal" href="#handler-ids" id="id13">Handler Ids</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dictionary-schema-detail" id="id14">Dictionary Schema - Detail</a></li>
+<li><a class="reference internal" href="#a-working-example" id="id15">A Working Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#incremental-configuration" id="id16">Incremental Configuration</a></li>
+<li><a class="reference internal" href="#api-customization" id="id17">API Customization</a></li>
+<li><a class="reference internal" href="#change-to-socket-listener-implementation" id="id18">Change to Socket Listener Implementation</a></li>
+<li><a class="reference internal" href="#configuration-errors" id="id19">Configuration Errors</a></li>
+<li><a class="reference internal" href="#discussion-in-the-community" id="id20">Discussion in the community</a></li>
+<li><a class="reference internal" href="#reference-implementation" id="id21">Reference implementation</a></li>
+<li><a class="reference internal" href="#references" id="id22">References</a></li>
+<li><a class="reference internal" href="#copyright" id="id23">Copyright</a></li>
+</ul>
+</div>
+<div class="section" id="abstract">
+<h1><a class="toc-backref" href="#id3">Abstract</a></h1>
+<p>This PEP describes a new way of configuring logging using a dictionary
+to hold configuration information.</p>
+</div>
+<div class="section" id="rationale">
+<h1><a class="toc-backref" href="#id4">Rationale</a></h1>
+<p>The present means for configuring Python's logging package is either
+by using the logging API to configure logging programmatically, or
+else by means of ConfigParser-based configuration files.</p>
+<p>Programmatic configuration, while offering maximal control, fixes the
+configuration in Python code.  This does not facilitate changing it
+easily at runtime, and, as a result, the ability to flexibly turn the
+verbosity of logging up and down for different parts of a using
+application is lost.  This limits the usability of logging as an aid
+to diagnosing problems - and sometimes, logging is the only diagnostic
+aid available in production environments.</p>
+<p>The ConfigParser-based configuration system is usable, but does not
+allow its users to configure all aspects of the logging package.  For
+example, Filters cannot be configured using this system.  Furthermore,
+the ConfigParser format appears to engender dislike (sometimes strong
+dislike) in some quarters.  Though it was chosen because it was the
+only configuration format supported in the Python standard at that
+time, many people regard it (or perhaps just the particular schema
+chosen for logging's configuration) as 'crufty' or 'ugly', in some
+cases apparently on purely aesthetic grounds.</p>
+<p>Recent versions of Python include JSON support in the standard
+library, and this is also usable as a configuration format.  In other
+environments, such as Google App Engine, YAML is used to configure
+applications, and usually the configuration of logging would be
+considered an integral part of the application configuration.
+Although the standard library does not contain YAML support at
+present, support for both JSON and YAML can be provided in a common
+way because both of these serialization formats allow deserialization
+to Python dictionaries.</p>
+<p>By providing a way to configure logging by passing the configuration
+in a dictionary, logging will be easier to configure not only for
+users of JSON and/or YAML, but also for users of custom configuration
+methods, by providing a common format in which to describe the desired
+configuration.</p>
+<p>Another drawback of the current ConfigParser-based configuration
+system is that it does not support incremental configuration: a new
+configuration completely replaces the existing configuration.
+Although full flexibility for incremental configuration is difficult
+to provide in a multi-threaded environment, the new configuration
+mechanism will allow the provision of limited support for incremental
+configuration.</p>
+</div>
+<div class="section" id="specification">
+<h1><a class="toc-backref" href="#id5">Specification</a></h1>
+<p>The specification consists of two parts: the API and the format of the
+dictionary used to convey configuration information (i.e. the schema
+to which it must conform).</p>
+<div class="section" id="naming">
+<h2><a class="toc-backref" href="#id6">Naming</a></h2>
+<p>Historically, the logging package has not been <a class="reference external" href="/dev/peps/pep-0008">PEP 8</a> conformant <a class="footnote-reference" href="#id2" id="id1">[1]</a>.
+At some future time, this will be corrected by changing method and
+function names in the package in order to conform with <a class="reference external" href="/dev/peps/pep-0008">PEP 8</a>.
+However, in the interests of uniformity, the proposed additions to the
+API use a naming scheme which is consistent with the present scheme
+used by logging.</p>
+</div>
+<div class="section" id="api">
+<h2><a class="toc-backref" href="#id7">API</a></h2>
+<p>The logging.config module will have the following addition:</p>
+<ul class="simple">
+<li>A function, called <tt class="docutils literal">dictConfig()</tt>, which takes a single argument
+- the dictionary holding the configuration.  Exceptions will be
+raised if there are errors while processing the dictionary.</li>
+</ul>
+<p>It will be possible to customize this API - see the section on <a class="reference internal" href="#api-customization">API
+Customization</a>.  <a class="reference internal" href="#incremental-configuration">Incremental configuration</a> is covered in its own
+section.</p>
+</div>
+<div class="section" id="dictionary-schema-overview">
+<h2><a class="toc-backref" href="#id8">Dictionary Schema - Overview</a></h2>
+<p>Before describing the schema in detail, it is worth saying a few words
+about object connections, support for user-defined objects and access
+to external and internal objects.</p>
+<div class="section" id="object-connections">
+<h3><a class="toc-backref" href="#id9">Object connections</a></h3>
+<p>The schema is intended to describe a set of logging objects - loggers,
+handlers, formatters, filters - which are connected to each other in
+an object graph.  Thus, the schema needs to represent connections
+between the objects.  For example, say that, once configured, a
+particular logger has attached to it a particular handler.  For the
+purposes of this discussion, we can say that the logger represents the
+source, and the handler the destination, of a connection between the
+two.  Of course in the configured objects this is represented by the
+logger holding a reference to the handler.  In the configuration dict,
+this is done by giving each destination object an id which identifies
+it unambiguously, and then using the id in the source object's
+configuration to indicate that a connection exists between the source
+and the destination object with that id.</p>
+<p>So, for example, consider the following YAML snippet:</p>
+<pre class="literal-block">
+formatters:
+  brief:
+    # configuration for formatter with id 'brief' goes here
+  precise:
+    # configuration for formatter with id 'precise' goes here
+handlers:
+  h1: #This is an id
+   # configuration of handler with id 'h1' goes here
+   formatter: brief
+  h2: #This is another id
+   # configuration of handler with id 'h2' goes here
+   formatter: precise
+loggers:
+  foo.bar.baz:
+    # other configuration for logger 'foo.bar.baz'
+    handlers: [h1, h2]
+</pre>
+<p>(Note: YAML will be used in this document as it is a little more
+readable than the equivalent Python source form for the dictionary.)</p>
+<p>The ids for loggers are the logger names which would be used
+programmatically to obtain a reference to those loggers, e.g.
+<tt class="docutils literal">foo.bar.baz</tt>.  The ids for Formatters and Filters can be any string
+value (such as <tt class="docutils literal">brief</tt>, <tt class="docutils literal">precise</tt> above) and they are transient,
+in that they are only meaningful for processing the configuration
+dictionary and used to determine connections between objects, and are
+not persisted anywhere when the configuration call is complete.</p>
+<p>Handler ids are treated specially, see the section on
+<a class="reference internal" href="#handler-ids">Handler Ids</a>, below.</p>
+<p>The above snippet indicates that logger named <tt class="docutils literal">foo.bar.baz</tt> should
+have two handlers attached to it, which are described by the handler
+ids <tt class="docutils literal">h1</tt> and <tt class="docutils literal">h2</tt>. The formatter for <tt class="docutils literal">h1</tt> is that described by id
+<tt class="docutils literal">brief</tt>, and the formatter for <tt class="docutils literal">h2</tt> is that described by id
+<tt class="docutils literal">precise</tt>.</p>
+</div>
+<div class="section" id="user-defined-objects">
+<h3><a class="toc-backref" href="#id10">User-defined objects</a></h3>
+<p>The schema should support user-defined objects for handlers, filters
+and formatters.  (Loggers do not need to have different types for
+different instances, so there is no support - in the configuration -
+for user-defined logger classes.)</p>
+<p>Objects to be configured will typically be described by dictionaries
+which detail their configuration.  In some places, the logging system
+will be able to infer from the context how an object is to be
+instantiated, but when a user-defined object is to be instantiated,
+the system will not know how to do this.  In order to provide complete
+flexibility for user-defined object instantiation, the user will need
+to provide a 'factory' - a callable which is called with a
+configuration dictionary and which returns the instantiated object.
+This will be signalled by an absolute import path to the factory being
+made available under the special key <tt class="docutils literal"><span class="pre">'()'</span></tt>.  Here's a concrete
+example:</p>
+<pre class="literal-block">
+formatters:
+  brief:
+    format: '%(message)s'
+  default:
+    format: '%(asctime)s %(levelname)-8s %(name)-15s %(message)s'
+    datefmt: '%Y-%m-%d %H:%M:%S'
+  custom:
+      (): my.package.customFormatterFactory
+      bar: baz
+      spam: 99.9
+      answer: 42
+</pre>
+<p>The above YAML snippet defines three formatters.  The first, with id
+<tt class="docutils literal">brief</tt>, is a standard <tt class="docutils literal">logging.Formatter</tt> instance with the
+specified format string.  The second, with id <tt class="docutils literal">default</tt>, has a
+longer format and also defines the time format explicitly, and will
+result in a <tt class="docutils literal">logging.Formatter</tt> initialized with those two format
+strings.  Shown in Python source form, the <tt class="docutils literal">brief</tt> and <tt class="docutils literal">default</tt>
+formatters have configuration sub-dictionaries:</p>
+<pre class="literal-block">
+{
+  'format' : '%(message)s'
+}
+</pre>
+<p>and:</p>
+<pre class="literal-block">
+{
+  'format' : '%(asctime)s %(levelname)-8s %(name)-15s %(message)s',
+  'datefmt' : '%Y-%m-%d %H:%M:%S'
+}
+</pre>
+<p>respectively, and as these dictionaries do not contain the special key
+<tt class="docutils literal"><span class="pre">'()'</span></tt>, the instantiation is inferred from the context: as a result,
+standard <tt class="docutils literal">logging.Formatter</tt> instances are created.  The
+configuration sub-dictionary for the third formatter, with id
+<tt class="docutils literal">custom</tt>, is:</p>
+<pre class="literal-block">
+{
+  '()' : 'my.package.customFormatterFactory',
+  'bar' : 'baz',
+  'spam' : 99.9,
+  'answer' : 42
+}
+</pre>
+<p>and this contains the special key <tt class="docutils literal"><span class="pre">'()'</span></tt>, which means that
+user-defined instantiation is wanted.  In this case, the specified
+factory callable will be used. If it is an actual callable it will be
+used directly - otherwise, if you specify a string (as in the example)
+the actual callable will be located using normal import mechanisms.
+The callable will be called with the <em>remaining</em> items in the
+configuration sub-dictionary as keyword arguments.  In the above
+example, the formatter with id <tt class="docutils literal">custom</tt> will be assumed to be
+returned by the call:</p>
+<pre class="literal-block">
+my.package.customFormatterFactory(bar='baz', spam=99.9, answer=42)
+</pre>
+<p>The key <tt class="docutils literal"><span class="pre">'()'</span></tt> has been used as the special key because it is not a
+valid keyword parameter name, and so will not clash with the names of
+the keyword arguments used in the call.  The <tt class="docutils literal"><span class="pre">'()'</span></tt> also serves as a
+mnemonic that the corresponding value is a callable.</p>
+</div>
+<div class="section" id="access-to-external-objects">
+<h3><a class="toc-backref" href="#id11">Access to external objects</a></h3>
+<p>There are times where a configuration will need to refer to objects
+external to the configuration, for example <tt class="docutils literal">sys.stderr</tt>.  If the
+configuration dict is constructed using Python code then this is
+straightforward, but a problem arises when the configuration is
+provided via a text file (e.g. JSON, YAML).  In a text file, there is
+no standard way to distinguish <tt class="docutils literal">sys.stderr</tt> from the literal string
+<tt class="docutils literal">'sys.stderr'</tt>.  To facilitate this distinction, the configuration
+system will look for certain special prefixes in string values and
+treat them specially.  For example, if the literal string
+<tt class="docutils literal"><span class="pre">'ext://sys.stderr'</span></tt> is provided as a value in the configuration,
+then the <tt class="docutils literal"><span class="pre">ext://</span></tt> will be stripped off and the remainder of the
+value processed using normal import mechanisms.</p>
+<p>The handling of such prefixes will be done in a way analogous to
+protocol handling: there will be a generic mechanism to look for
+prefixes which match the regular expression
+<tt class="docutils literal"><span class="pre">^(?P&lt;prefix&gt;[a-z]+)://(?P&lt;suffix&gt;.*)$</span></tt> whereby, if the <tt class="docutils literal">prefix</tt>
+is recognised, the <tt class="docutils literal">suffix</tt> is processed in a prefix-dependent
+manner and the result of the processing replaces the string value.  If
+the prefix is not recognised, then the string value will be left
+as-is.</p>
+<p>The implementation will provide for a set of standard prefixes such as
+<tt class="docutils literal"><span class="pre">ext://</span></tt> but it will be possible to disable the mechanism completely
+or provide additional or different prefixes for special handling.</p>
+</div>
+<div class="section" id="access-to-internal-objects">
+<h3><a class="toc-backref" href="#id12">Access to internal objects</a></h3>
+<p>As well as external objects, there is sometimes also a need to refer
+to objects in the configuration.  This will be done implicitly by the
+configuration system for things that it knows about.  For example, the
+string value <tt class="docutils literal">'DEBUG'</tt> for a <tt class="docutils literal">level</tt> in a logger or handler will
+automatically be converted to the value <tt class="docutils literal">logging.DEBUG</tt>, and the
+<tt class="docutils literal">handlers</tt>, <tt class="docutils literal">filters</tt> and <tt class="docutils literal">formatter</tt> entries will take an
+object id and resolve to the appropriate destination object.</p>
+<p>However, a more generic mechanism needs to be provided for the case
+of user-defined objects which are not known to logging.  For example,
+take the instance of <tt class="docutils literal">logging.handlers.MemoryHandler</tt>, which takes
+a <tt class="docutils literal">target</tt> which is another handler to delegate to. Since the system
+already knows about this class, then in the configuration, the given
+<tt class="docutils literal">target</tt> just needs to be the object id of the relevant target
+handler, and the system will resolve to the handler from the id.  If,
+however, a user defines a <tt class="docutils literal">my.package.MyHandler</tt> which has a
+<tt class="docutils literal">alternate</tt> handler, the configuration system would not know that
+the <tt class="docutils literal">alternate</tt> referred to a handler.  To cater for this, a
+generic resolution system will be provided which allows the user to
+specify:</p>
+<pre class="literal-block">
+handlers:
+  file:
+    # configuration of file handler goes here
+
+  custom:
+    (): my.package.MyHandler
+    alternate: cfg://handlers.file
+</pre>
+<p>The literal string <tt class="docutils literal"><span class="pre">'cfg://handlers.file'</span></tt> will be resolved in an
+analogous way to the strings with the <tt class="docutils literal"><span class="pre">ext://</span></tt> prefix, but looking
+in the configuration itself rather than the import namespace.  The
+mechanism will allow access by dot or by index, in a similar way to
+that provided by <tt class="docutils literal">str.format</tt>.  Thus, given the following snippet:</p>
+<pre class="literal-block">
+handlers:
+  email:
+    class: logging.handlers.SMTPHandler
+    mailhost: localhost
+    fromaddr: my_app&#64;domain.tld
+    toaddrs:
+      - support_team&#64;domain.tld
+      - dev_team&#64;domain.tld
+    subject: Houston, we have a problem.
+</pre>
+<p>in the configuration, the string <tt class="docutils literal"><span class="pre">'cfg://handlers'</span></tt> would resolve to
+the dict with key <tt class="docutils literal">handlers</tt>, the string <tt class="docutils literal"><span class="pre">'cfg://handlers.email</span></tt>
+would resolve to the dict with key <tt class="docutils literal">email</tt> in the <tt class="docutils literal">handlers</tt> dict,
+and so on.  The string <tt class="docutils literal"><span class="pre">'cfg://handlers.email.toaddrs[1]</span></tt> would
+resolve to <tt class="docutils literal">'dev_team.domain.tld'</tt> and the string
+<tt class="docutils literal"><span class="pre">'cfg://handlers.email.toaddrs[0]'</span></tt> would resolve to the value
+<tt class="docutils literal">'support_team&#64;domain.tld'</tt>. The <tt class="docutils literal">subject</tt> value could be accessed
+using either <tt class="docutils literal"><span class="pre">'cfg://handlers.email.subject'</span></tt> or, equivalently,
+<tt class="docutils literal"><span class="pre">'cfg://handlers.email[subject]'</span></tt>.  The latter form only needs to be
+used if the key contains spaces or non-alphanumeric characters.  If an
+index value consists only of decimal digits, access will be attempted
+using the corresponding integer value, falling back to the string
+value if needed.</p>
+<p>Given a string <tt class="docutils literal"><span class="pre">cfg://handlers.myhandler.mykey.123</span></tt>, this will
+resolve to <tt class="docutils literal"><span class="pre">config_dict['handlers']['myhandler']['mykey']['123']</span></tt>.
+If the string is specified as <tt class="docutils literal"><span class="pre">cfg://handlers.myhandler.mykey[123]</span></tt>,
+the system will attempt to retrieve the value from
+<tt class="docutils literal"><span class="pre">config_dict['handlers']['myhandler']['mykey'][123]</span></tt>, and fall back
+to <tt class="docutils literal"><span class="pre">config_dict['handlers']['myhandler']['mykey']['123']</span></tt> if that
+fails.</p>
+</div>
+<div class="section" id="handler-ids">
+<h3><a class="toc-backref" href="#id13">Handler Ids</a></h3>
+<p>Some specific logging configurations require the use of handler levels
+to achieve the desired effect.  However, unlike loggers which can
+always be identified by their names, handlers have no persistent
+handles whereby levels can be changed via an incremental configuration
+call.</p>
+<p>Therefore, this PEP proposes to add an optional <tt class="docutils literal">name</tt> property to
+handlers. If used, this will add an entry in a dictionary which maps
+the name to the handler.  (The entry will be removed when the handler
+is closed.)  When an incremental configuration call is made, handlers
+will be looked up in this dictionary to set the handler level
+according to the value in the configuration.  See the section on
+<a class="reference internal" href="#incremental-configuration">incremental configuration</a> for more details.</p>
+<p>In theory, such a &quot;persistent name&quot; facility could also be provided
+for Filters and Formatters.  However, there is not a strong case to be
+made for being able to configure these incrementally.  On the basis
+that practicality beats purity, only Handlers will be given this new
+<tt class="docutils literal">name</tt> property.  The id of a handler in the configuration will
+become its <tt class="docutils literal">name</tt>.</p>
+<p>The handler name lookup dictionary is for configuration use only and
+will not become part of the public API for the package.</p>
+</div>
+</div>
+<div class="section" id="dictionary-schema-detail">
+<h2><a class="toc-backref" href="#id14">Dictionary Schema - Detail</a></h2>
+<p>The dictionary passed to <tt class="docutils literal">dictConfig()</tt> must contain the following
+keys:</p>
+<ul class="simple">
+<li><cite>version</cite> - to be set to an integer value representing the schema
+version.  The only valid value at present is 1, but having this key
+allows the schema to evolve while still preserving backwards
+compatibility.</li>
+</ul>
+<p>All other keys are optional, but if present they will be interpreted
+as described below.  In all cases below where a 'configuring dict' is
+mentioned, it will be checked for the special <tt class="docutils literal"><span class="pre">'()'</span></tt> key to see if a
+custom instantiation is required.  If so, the mechanism described
+above is used to instantiate; otherwise, the context is used to
+determine how to instantiate.</p>
+<ul>
+<li><p class="first"><cite>formatters</cite> - the corresponding value will be a dict in which each
+key is a formatter id and each value is a dict describing how to
+configure the corresponding Formatter instance.</p>
+<p>The configuring dict is searched for keys <tt class="docutils literal">format</tt> and <tt class="docutils literal">datefmt</tt>
+(with defaults of <tt class="docutils literal">None</tt>) and these are used to construct a
+<tt class="docutils literal">logging.Formatter</tt> instance.</p>
+</li>
+<li><p class="first"><cite>filters</cite> - the corresponding value will be a dict in which each key
+is a filter id and each value is a dict describing how to configure
+the corresponding Filter instance.</p>
+<p>The configuring dict is searched for key <tt class="docutils literal">name</tt> (defaulting to the
+empty string) and this is used to construct a <tt class="docutils literal">logging.Filter</tt>
+instance.</p>
+</li>
+<li><p class="first"><cite>handlers</cite> - the corresponding value will be a dict in which each
+key is a handler id and each value is a dict describing how to
+configure the corresponding Handler instance.</p>
+<p>The configuring dict is searched for the following keys:</p>
+<ul class="simple">
+<li><tt class="docutils literal">class</tt> (mandatory).  This is the fully qualified name of the
+handler class.</li>
+<li><tt class="docutils literal">level</tt> (optional).  The level of the handler.</li>
+<li><tt class="docutils literal">formatter</tt> (optional).  The id of the formatter for this
+handler.</li>
+<li><tt class="docutils literal">filters</tt> (optional).  A list of ids of the filters for this
+handler.</li>
+</ul>
+<p>All <em>other</em> keys are passed through as keyword arguments to the
+handler's constructor.  For example, given the snippet:</p>
+<pre class="literal-block">
+handlers:
+  console:
+    class : logging.StreamHandler
+    formatter: brief
+    level   : INFO
+    filters: [allow_foo]
+    stream  : ext://sys.stdout
+  file:
+    class : logging.handlers.RotatingFileHandler
+    formatter: precise
+    filename: logconfig.log
+    maxBytes: 1024
+    backupCount: 3
+</pre>
+<p>the handler with id <tt class="docutils literal">console</tt> is instantiated as a
+<tt class="docutils literal">logging.StreamHandler</tt>, using <tt class="docutils literal">sys.stdout</tt> as the underlying
+stream.  The handler with id <tt class="docutils literal">file</tt> is instantiated as a
+<tt class="docutils literal">logging.handlers.RotatingFileHandler</tt> with the keyword arguments
+<tt class="docutils literal"><span class="pre">filename='logconfig.log',</span> maxBytes=1024, backupCount=3</tt>.</p>
+</li>
+<li><p class="first"><cite>loggers</cite> - the corresponding value will be a dict in which each key
+is a logger name and each value is a dict describing how to
+configure the corresponding Logger instance.</p>
+<p>The configuring dict is searched for the following keys:</p>
+<ul class="simple">
+<li><tt class="docutils literal">level</tt> (optional).  The level of the logger.</li>
+<li><tt class="docutils literal">propagate</tt> (optional).  The propagation setting of the logger.</li>
+<li><tt class="docutils literal">filters</tt> (optional).  A list of ids of the filters for this
+logger.</li>
+<li><tt class="docutils literal">handlers</tt> (optional).  A list of ids of the handlers for this
+logger.</li>
+</ul>
+<p>The specified loggers will be configured according to the level,
+propagation, filters and handlers specified.</p>
+</li>
+<li><p class="first"><cite>root</cite> - this will be the configuration for the root logger.
+Processing of the configuration will be as for any logger, except
+that the <tt class="docutils literal">propagate</tt> setting will not be applicable.</p>
+</li>
+<li><p class="first"><cite>incremental</cite> - whether the configuration is to be interpreted as
+incremental to the existing configuration.  This value defaults to
+<tt class="docutils literal">False</tt>, which means that the specified configuration replaces the
+existing configuration with the same semantics as used by the
+existing <tt class="docutils literal">fileConfig()</tt> API.</p>
+<p>If the specified value is <tt class="docutils literal">True</tt>, the configuration is processed
+as described in the section on <a class="reference internal" href="#incremental-configuration">Incremental Configuration</a>, below.</p>
+</li>
+<li><p class="first"><cite>disable_existing_loggers</cite> - whether any existing loggers are to be
+disabled. This setting mirrors the parameter of the same name in
+<tt class="docutils literal">fileConfig()</tt>. If absent, this parameter defaults to <tt class="docutils literal">True</tt>.
+This value is ignored if <cite>incremental</cite> is <tt class="docutils literal">True</tt>.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="a-working-example">
+<h2><a class="toc-backref" href="#id15">A Working Example</a></h2>
+<p>The following is an actual working configuration in YAML format
+(except that the email addresses are bogus):</p>
+<pre class="literal-block">
+formatters:
+  brief:
+    format: '%(levelname)-8s: %(name)-15s: %(message)s'
+  precise:
+    format: '%(asctime)s %(name)-15s %(levelname)-8s %(message)s'
+filters:
+  allow_foo:
+    name: foo
+handlers:
+  console:
+    class : logging.StreamHandler
+    formatter: brief
+    level   : INFO
+    stream  : ext://sys.stdout
+    filters: [allow_foo]
+  file:
+    class : logging.handlers.RotatingFileHandler
+    formatter: precise
+    filename: logconfig.log
+    maxBytes: 1024
+    backupCount: 3
+  debugfile:
+    class : logging.FileHandler
+    formatter: precise
+    filename: logconfig-detail.log
+    mode: a
+  email:
+    class: logging.handlers.SMTPHandler
+    mailhost: localhost
+    fromaddr: my_app&#64;domain.tld
+    toaddrs:
+      - support_team&#64;domain.tld
+      - dev_team&#64;domain.tld
+    subject: Houston, we have a problem.
+loggers:
+  foo:
+    level : ERROR
+    handlers: [debugfile]
+  spam:
+    level : CRITICAL
+    handlers: [debugfile]
+    propagate: no
+  bar.baz:
+    level: WARNING
+root:
+  level     : DEBUG
+  handlers  : [console, file]
+</pre>
+</div>
+</div>
+<div class="section" id="incremental-configuration">
+<h1><a class="toc-backref" href="#id16">Incremental Configuration</a></h1>
+<p>It is difficult to provide complete flexibility for incremental
+configuration.  For example, because objects such as filters
+and formatters are anonymous, once a configuration is set up, it is
+not possible to refer to such anonymous objects when augmenting a
+configuration.</p>
+<p>Furthermore, there is not a compelling case for arbitrarily altering
+the object graph of loggers, handlers, filters, formatters at
+run-time, once a configuration is set up; the verbosity of loggers and
+handlers can be controlled just by setting levels (and, in the case of
+loggers, propagation flags).  Changing the object graph arbitrarily in
+a safe way is problematic in a multi-threaded environment; while not
+impossible, the benefits are not worth the complexity it adds to the
+implementation.</p>
+<p>Thus, when the <tt class="docutils literal">incremental</tt> key of a configuration dict is present
+and is <tt class="docutils literal">True</tt>, the system will ignore any <tt class="docutils literal">formatters</tt> and
+<tt class="docutils literal">filters</tt> entries completely, and process only the <tt class="docutils literal">level</tt>
+settings in the <tt class="docutils literal">handlers</tt> entries, and the <tt class="docutils literal">level</tt> and
+<tt class="docutils literal">propagate</tt> settings in the <tt class="docutils literal">loggers</tt> and <tt class="docutils literal">root</tt> entries.</p>
+<p>It's certainly possible to provide incremental configuration by other
+means, for example making <tt class="docutils literal">dictConfig()</tt> take an <tt class="docutils literal">incremental</tt>
+keyword argument which defaults to <tt class="docutils literal">False</tt>. The reason for
+suggesting that a value in the configuration dict be used is that it
+allows for configurations to be sent over the wire as pickled dicts
+to a socket listener. Thus, the logging verbosity of a long-running
+application can be altered over time with no need to stop and
+restart the application.</p>
+<p>Note: Feedback on incremental configuration needs based on your
+practical experience will be particularly welcome.</p>
+</div>
+<div class="section" id="api-customization">
+<h1><a class="toc-backref" href="#id17">API Customization</a></h1>
+<p>The bare-bones <tt class="docutils literal">dictConfig()</tt> API will not be sufficient for all
+use cases.  Provision for customization of the API will be made by
+providing the following:</p>
+<ul class="simple">
+<li>A class, called <tt class="docutils literal">DictConfigurator</tt>, whose constructor is passed
+the dictionary used for configuration, and which has a
+<tt class="docutils literal">configure()</tt> method.</li>
+<li>A callable, called <tt class="docutils literal">dictConfigClass</tt>, which will (by default) be
+set to <tt class="docutils literal">DictConfigurator</tt>.  This is provided so that if desired,
+<tt class="docutils literal">DictConfigurator</tt> can be replaced with a suitable user-defined
+implementation.</li>
+</ul>
+<p>The <tt class="docutils literal">dictConfig()</tt> function will call <tt class="docutils literal">dictConfigClass</tt> passing
+the specified dictionary, and then call the <tt class="docutils literal">configure()</tt> method on
+the returned object to actually put the configuration into effect:</p>
+<pre class="literal-block">
+def dictConfig(config):
+    dictConfigClass(config).configure()
+</pre>
+<p>This should cater to all customization needs. For example, a subclass
+of <tt class="docutils literal">DictConfigurator</tt> could call <tt class="docutils literal">DictConfigurator.__init__()</tt> in
+its own <tt class="docutils literal">__init__()</tt>, then set up custom prefixes which would be
+usable in the subsequent <tt class="docutils literal">configure() call</tt>. The <tt class="docutils literal">dictConfigClass</tt>
+would be bound to the subclass, and then <tt class="docutils literal">dictConfig()</tt> could be
+called exactly as in the default, uncustomized state.</p>
+</div>
+<div class="section" id="change-to-socket-listener-implementation">
+<h1><a class="toc-backref" href="#id18">Change to Socket Listener Implementation</a></h1>
+<p>The existing socket listener implementation will be modified as
+follows: when a configuration message is received, an attempt will be
+made to deserialize to a dictionary using the json module. If this
+step fails, the message will be assumed to be in the fileConfig format
+and processed as before. If deserialization is successful, then
+<tt class="docutils literal">dictConfig()</tt> will be called to process the resulting dictionary.</p>
+</div>
+<div class="section" id="configuration-errors">
+<h1><a class="toc-backref" href="#id19">Configuration Errors</a></h1>
+<p>If an error is encountered during configuration, the system will raise
+a <tt class="docutils literal">ValueError</tt>, <tt class="docutils literal">TypeError</tt>, <tt class="docutils literal">AttributeError</tt> or <tt class="docutils literal">ImportError</tt>
+with a suitably descriptive message.  The following is a (possibly
+incomplete) list of conditions which will raise an error:</p>
+<ul class="simple">
+<li>A <tt class="docutils literal">level</tt> which is not a string or which is a string not
+corresponding to an actual logging level</li>
+<li>A <tt class="docutils literal">propagate</tt> value which is not a boolean</li>
+<li>An id which does not have a corresponding destination</li>
+<li>A non-existent handler id found during an incremental call</li>
+<li>An invalid logger name</li>
+<li>Inability to resolve to an internal or external object</li>
+</ul>
+</div>
+<div class="section" id="discussion-in-the-community">
+<h1><a class="toc-backref" href="#id20">Discussion in the community</a></h1>
+<p>The PEP has been announced on python-dev and python-list. While there
+hasn't been a huge amount of discussion, this is perhaps to be
+expected for a niche topic.</p>
+<p>Discussion threads on python-dev:</p>
+<p><a class="reference external" href="http://mail.python.org/pipermail/python-dev/2009-October/092695.html">http://mail.python.org/pipermail/python-dev/2009-October/092695.html</a>
+<a class="reference external" href="http://mail.python.org/pipermail/python-dev/2009-October/092782.html">http://mail.python.org/pipermail/python-dev/2009-October/092782.html</a>
+<a class="reference external" href="http://mail.python.org/pipermail/python-dev/2009-October/093062.html">http://mail.python.org/pipermail/python-dev/2009-October/093062.html</a></p>
+<p>And on python-list:</p>
+<p><a class="reference external" href="http://mail.python.org/pipermail/python-list/2009-October/1223658.html">http://mail.python.org/pipermail/python-list/2009-October/1223658.html</a>
+<a class="reference external" href="http://mail.python.org/pipermail/python-list/2009-October/1224228.html">http://mail.python.org/pipermail/python-list/2009-October/1224228.html</a></p>
+<p>There have been some comments in favour of the proposal, no
+objections to the proposal as a whole, and some questions and
+objections about specific details. These are believed by the author
+to have been addressed by making changes to the PEP.</p>
+</div>
+<div class="section" id="reference-implementation">
+<h1><a class="toc-backref" href="#id21">Reference implementation</a></h1>
+<p>A reference implementation of the changes is available as a module
+dictconfig.py with accompanying unit tests in test_dictconfig.py, at:</p>
+<p><a class="reference external" href="http://bitbucket.org/vinay.sajip/dictconfig">http://bitbucket.org/vinay.sajip/dictconfig</a></p>
+<p>This incorporates all features other than the socket listener change.</p>
+</div>
+<div class="section" id="references">
+<h1><a class="toc-backref" href="#id22">References</a></h1>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="/dev/peps/pep-0008">PEP 8</a>, Style Guide for Python Code, van Rossum, Warsaw
+(<a class="reference external" href="http://www.python.org/dev/peps/pep-0008">http://www.python.org/dev/peps/pep-0008</a>)</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="copyright">
+<h1><a class="toc-backref" href="#id23">Copyright</a></h1>
+<p>This document has been placed in the public domain.</p>
+<!-- Local Variables:
+mode: indented-text
+indent-tabs-mode: nil
+sentence-end-double-space: t
+fill-column: 70
+coding: utf-8
+End: -->
+</div>
+
+
+
+      </div>
+
+      
+      <div id="footer">
+	<div id="credits">
+ 	  <a href="/about/website">Website maintained by the Python community</a><br/>
+	  <a href="http://www.xs4all.com/" title="Web and email hosting provided by xs4all, Netherlands">hosting by xs4all</a> /
+	  <a href="http://www.timparkin.co.uk/" title="Design by Tim Parkin, Yorkshire man, photographer and developer">design by Tim Parkin</a>
+	</div>
+	Copyright &copy; 1990-2013, <a href='/psf/'>Python Software Foundation</a><br/>
+	<a href="/about/legal">Legal Statements</a>
+      </div>
+
+
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+

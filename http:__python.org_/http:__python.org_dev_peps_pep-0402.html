@@ -1,0 +1,842 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>PEP 402 -- Simplified Package Layout and Partitioning</title>
+  <meta name="keywords" content="PEP 402 -- Simplified Package Layout and Partitioning" />
+  <meta name="description" content="PEP 402 -- Simplified Package Layout and Partitioning" />
+  <link rel="alternate" type="application/rss+xml" title="Community Events"
+        href="http://www.python.org/channews.rdf" />
+  <link rel="alternate" type="application/rss+xml" title="Python Recipes"
+        href="http://aspn.activestate.com/ASPN/Cookbook/Python/index_rss" />
+  <link rel="alternate" type="application/rss+xml" title="Usergroup News"
+        href="http://python-groups.blogspot.com/feeds/posts/default" />
+  <link rel="alternate" type="application/rss+xml" title="Python Screencasts"
+        href="http://www.showmedo.com/latestVideoFeed/rss2.0?tag=python" />
+  <link rel="alternate" type="application/rss+xml" title="Python Podcasts"
+        href="http://www.awaretek.com/python/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Foundation News"
+        href="http://feeds.feedburner.com/PythonSoftwareFoundationNews" />
+  <link rel="alternate" type="application/rss+xml" title="Python Enhancement Proposals"
+        href="http://www.python.org/dev/peps/peps.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Job Opportunities"
+        href="http://www.python.org/community/jobs/jobs.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Reddit Feed of Python What's New Online"
+        href="http://www.reddit.com/r/Python/.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Insider"
+        href="http://feeds.feedburner.com/PythonInsider" />
+
+  <link rel="stylesheet" type="text/css" media="screen" id="screen-switcher-stylesheet"
+        href="/styles/screen-switcher-default.css" />
+  <link rel="stylesheet" type="text/css" media="sc&#82;een"
+        href="/styles/netscape4.css" />
+  <link rel="stylesheet" type="text/css" media="print"
+        href="/styles/print.css" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/largestyles.css" title="large text" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/defaultfonts.css" title="default fonts" />
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search under the www.python.org Domain"
+        href="/search-pysite.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Wiki"
+        href="/search-pywiki.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within Python Books at Google Book Search"
+        href="/search-pybooks.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Documentation"
+        href="/search-pydocs.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for a Module in the Standard Library"
+        href="/search-pymodules.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for Packages inside the Cheeseshop (PyPI)"
+        href="/search-pycheese.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search Archives of the Main Python Mailing List"
+        href="/search-pythonlist.xml"/>
+
+  <script type="text/javascript" src="/js/iotbs2-key-directors-load.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-directors.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-core.js"></script>
+
+</head>
+
+
+<body>
+  <!-- Logo -->
+  <h1 id="logoheader">
+    <a href="/" id="logolink" accesskey="1"><img id="logo" src="/images/python-logo.gif" alt="homepage" border="0" /></a>
+  </h1>
+  <!-- Skip to Navigation -->
+  <div class="skiptonav"><a href="#left-hand-navigation" accesskey="2"><img src="/images/trans.gif" id="skiptonav" alt="skip to navigation" border="0" /></a></div>
+  <div class="skiptonav"><a href="#content-body" accesskey="3"><img src="/images/trans.gif" id="skiptocontent" alt="skip to content" border="0" /></a></div>
+  <!-- Utility Menu -->
+  <div id="utility-menu">
+    <!-- Search Box -->
+    <div id="searchbox">
+      <form method="get" action="http://google.com/search" id="searchform" name="searchform">
+        <div id="search">
+          <input type="hidden" id="domains" name="domains" value="www.python.org" />
+          <input type="hidden" id="sitesearch" name="sitesearch" value="www.python.org" />
+          <input type="hidden" id="sourceid" name="sourceid" value="google-search" />
+          <input type="text" class="input-text" name="q" id="q" />
+          <input type="submit" value="search" class="input-button" name="submit" id="submit" />
+          <a href="/search" class="reference">Advanced Search</a>
+        </div>
+      </form>
+    </div>
+    <div id="screen-switcher"></div>
+  </div>
+
+  <div id="left-hand-navigation">
+    <!-- Main Menu -->
+    <div id="menu">
+      <ul class="level-one">
+            <li>
+          <a href="/about/" title="About The Python Language">About</a>
+        </li>
+            <li>
+          <a href="/news/" title="Major Happenings Within the Python Community">News</a>
+        </li>
+            <li>
+          <a href="/doc/" title="Tutorials, Library Reference, C API">Documentation</a>
+        </li>
+            <li>
+          <a href="/download/" title="Start Running Python Under Windows, Mac, Linux and Others">Download</a>
+        </li>
+            <li>
+          <a href="/getit/" title="Alternate Download page for China">ä¸è½½</a>
+        </li>
+            <li>
+          <a href="/community/" title="Mailing Lists, Jobs, Conferences, SIGs, Online Chats">Community</a>
+        </li>
+            <li>
+          <a href="/psf/" title="Python Software Foundation">Foundation</a>
+        </li>
+            <li>
+          <a href="http://docs.python.org/devguide/" title="Development of the Python language and website">Core Development</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Quick Links -->
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/">Python Wiki</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://blog.python.org/">Python Insider Blog</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/Python2orPython3">Python 2 or 3?</a></h4>
+    <h4><a style="color:#D58228; margin-top:1.5em" href="/psf/donations/">Help Fund Python</a></h4>
+    <div style="align:center; padding-top: 0.5em; padding-left: 1em">
+      <a href="/psf/donations/"><img width="116" height="42" src="/images/donate.png" alt="" title="" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.5em; padding-left: 2.5em">
+            <a href="http://wiki.python.org/moin/Languages"><img
+	      style="align:center"
+              width="94" height="46"
+	      src="/images/worldmap.jpg" alt="[Python resources in languages other than English]" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.0em; padding-left: 0em">
+       <h4><a href="http://wiki.python.org/moin/Languages">Non-English Resources</a></h4>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Release%20Schedule&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com/public/basic.ics">
+                Python Release Schedule iCal Calendar
+            </a>
+        </iframe>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Events%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com/public/basic.ics">
+                Python Events iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=User%20Group%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com&amp;color=%23125A12&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com/public/basic.ics">
+                Python User Group iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+  </div>
+
+  <div id="content-body">
+    <div id="body-main">
+      <div id="content">
+        
+          <div id="breadcrumb">
+               <a href="/dev/peps/">PEP Index</a>
+               <span class="breadcrumb-separator">&gt;</span>
+            
+            PEP 402 -- Simplified Package Layout and Partitioning
+          </div>
+
+
+
+        <!--
+This HTML is auto-generated.  DO NOT EDIT THIS FILE!  If you are writing a new
+PEP, see http://www.python.org/dev/peps/pep-0001 for instructions and links
+to templates.  DO NOT USE THIS HTML FILE AS YOUR TEMPLATE!
+-->
+<table class="rfc2822 docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">PEP:</th><td class="field-body">402</td>
+</tr>
+<tr class="field"><th class="field-name">Title:</th><td class="field-body">Simplified Package Layout and Partitioning</td>
+</tr>
+<tr class="field"><th class="field-name">Version:</th><td class="field-body">5b93aa6c1322</td>
+</tr>
+<tr class="field"><th class="field-name">Last-Modified:</th><td class="field-body"><a class="reference external" href="http://hg.python.org/peps/file/tip/pep-0402.txt">2012-03-12 16:58:36 -0700 (Mon, 12 Mar 2012)</a></td>
+</tr>
+<tr class="field"><th class="field-name">Author:</th><td class="field-body">P.J. Eby</td>
+</tr>
+<tr class="field"><th class="field-name">Status:</th><td class="field-body">Rejected</td>
+</tr>
+<tr class="field"><th class="field-name">Type:</th><td class="field-body">Standards Track</td>
+</tr>
+<tr class="field"><th class="field-name">Content-Type:</th><td class="field-body"><a class="reference external" href="/dev/peps/pep-0012">text/x-rst</a></td>
+</tr>
+<tr class="field"><th class="field-name">Created:</th><td class="field-body">12-Jul-2011</td>
+</tr>
+<tr class="field"><th class="field-name">Python-Version:</th><td class="field-body">3.3</td>
+</tr>
+<tr class="field"><th class="field-name">Post-History:</th><td class="field-body">20-Jul-2011</td>
+</tr>
+<tr class="field"><th class="field-name">Replaces:</th><td class="field-body"><a class="reference external" href="/dev/peps/pep-0382">382</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#rejection-notice" id="id7">Rejection Notice</a></li>
+<li><a class="reference internal" href="#abstract" id="id8">Abstract</a></li>
+<li><a class="reference internal" href="#the-problem" id="id9">The Problem</a></li>
+<li><a class="reference internal" href="#the-solution" id="id10">The Solution</a><ul>
+<li><a class="reference internal" href="#a-thought-experiment" id="id11">A Thought Experiment</a></li>
+<li><a class="reference internal" href="#self-contained-vs-virtual-packages" id="id12">Self-Contained vs. &quot;Virtual&quot; Packages</a></li>
+<li><a class="reference internal" href="#backwards-compatibility-and-performance" id="id13">Backwards Compatibility and Performance</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#specification" id="id14">Specification</a><ul>
+<li><a class="reference internal" href="#virtual-paths" id="id15">Virtual Paths</a></li>
+<li><a class="reference internal" href="#standard-library-changes-additions" id="id16">Standard Library Changes/Additions</a></li>
+<li><a class="reference internal" href="#implementation-notes" id="id17">Implementation Notes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#references" id="id18">References</a></li>
+<li><a class="reference internal" href="#copyright" id="id19">Copyright</a></li>
+</ul>
+</div>
+<div class="section" id="rejection-notice">
+<h1><a class="toc-backref" href="#id7">Rejection Notice</a></h1>
+<p>On the first day of sprints at US PyCon 2012 we had a long and
+fruitful discussion about <a class="reference external" href="/dev/peps/pep-0382">PEP 382</a> and <a class="reference external" href="/dev/peps/pep-0402">PEP 402</a>.  We ended up rejecting
+both but a new PEP will be written to carry on in the spirit of <a class="reference external" href="/dev/peps/pep-0402">PEP
+402</a>.  Martin von LÃ¶wis wrote up a summary: <a class="footnote-reference" href="#id6" id="id1">[3]</a>.</p>
+</div>
+<div class="section" id="abstract">
+<h1><a class="toc-backref" href="#id8">Abstract</a></h1>
+<p>This PEP proposes an enhancement to Python's package importing
+to:</p>
+<ul class="simple">
+<li>Surprise users of other languages less,</li>
+<li>Make it easier to convert a module into a package, and</li>
+<li>Support dividing packages into separately installed components
+(ala &quot;namespace packages&quot;, as described in <a class="reference external" href="/dev/peps/pep-0382">PEP 382</a>)</li>
+</ul>
+<p>The proposed enhancements do not change the semantics of any
+currently-importable directory layouts, but make it possible for
+packages to use a simplified directory layout (that is not importable
+currently).</p>
+<p>However, the proposed changes do NOT add any performance overhead to
+the importing of existing modules or packages, and performance for the
+new directory layout should be about the same as that of previous
+&quot;namespace package&quot; solutions (such as <tt class="docutils literal">pkgutil.extend_path()</tt>).</p>
+</div>
+<div class="section" id="the-problem">
+<h1><a class="toc-backref" href="#id9">The Problem</a></h1>
+<blockquote class="epigraph">
+<p>&quot;Most packages are like modules.  Their contents are highly
+interdependent and can't be pulled apart.  [However,] some
+packages exist to provide a separate namespace. ...  It should
+be possible to distribute sub-packages or submodules of these
+[namespace packages] independently.&quot;</p>
+<p class="attribution">&mdash;Jim Fulton, shortly before the release of Python 2.3 <a class="footnote-reference" href="#id4" id="id2">[1]</a></p>
+</blockquote>
+<p>When new users come to Python from other languages, they are often
+confused by Python's package import semantics.  At Google, for example,
+Guido received complaints from &quot;a large crowd with pitchforks&quot; <a class="footnote-reference" href="#id5" id="id3">[2]</a>
+that the requirement for packages to contain an <tt class="docutils literal">__init__</tt> module
+was a &quot;misfeature&quot;, and should be dropped.</p>
+<p>In addition, users coming from languages like Java or Perl are
+sometimes confused by a difference in Python's import path searching.</p>
+<p>In most other languages that have a similar path mechanism to Python's
+<tt class="docutils literal">sys.path</tt>, a package is merely a namespace that contains modules
+or classes, and can thus be spread across multiple directories in
+the language's path.  In Perl, for instance, a <tt class="docutils literal"><span class="pre">Foo::Bar</span></tt> module
+will be searched for in <tt class="docutils literal">Foo/</tt> subdirectories all along the module
+include path, not just in the first such subdirectory found.</p>
+<p>Worse, this is not just a problem for new users: it prevents <em>anyone</em>
+from easily splitting a package into separately-installable
+components.  In Perl terms, it would be as if every possible <tt class="docutils literal">Net::</tt>
+module on CPAN had to be bundled up and shipped in a single tarball!</p>
+<p>For that reason, various workarounds for this latter limitation exist,
+circulated under the term &quot;namespace packages&quot;.  The Python standard
+library has provided one such workaround since Python 2.3 (via the
+<tt class="docutils literal">pkgutil.extend_path()</tt> function), and the &quot;setuptools&quot; package
+provides another (via <tt class="docutils literal">pkg_resources.declare_namespace()</tt>).</p>
+<p>The workarounds themselves, however, fall prey to a <em>third</em> issue with
+Python's way of laying out packages in the filesystem.</p>
+<p>Because a package <em>must</em> contain an <tt class="docutils literal">__init__</tt> module, any attempt
+to distribute modules for that package must necessarily include that
+<tt class="docutils literal">__init__</tt> module, if those modules are to be importable.</p>
+<p>However, the very fact that each distribution of modules for a package
+must contain this (duplicated) <tt class="docutils literal">__init__</tt> module, means that OS
+vendors who package up these module distributions must somehow handle
+the conflict caused by several module distributions installing that
+<tt class="docutils literal">__init__</tt> module to the same location in the filesystem.</p>
+<p>This led to the proposing of <a class="reference external" href="/dev/peps/pep-0382">PEP 382</a> (&quot;Namespace Packages&quot;) - a way
+to signal to Python's import machinery that a directory was
+importable, using unique filenames per module distribution.</p>
+<p>However, there was more than one downside to this approach.
+Performance for all import operations would be affected, and the
+process of designating a package became even more complex.  New
+terminology had to be invented to explain the solution, and so on.</p>
+<p>As terminology discussions continued on the Import-SIG, it soon became
+apparent that the main reason it was so difficult to explain the
+concepts related to &quot;namespace packages&quot; was because Python's
+current way of handling packages is somewhat underpowered, when
+compared to other languages.</p>
+<p>That is, in other popular languages with package systems, no special
+term is needed to describe &quot;namespace packages&quot;, because <em>all</em>
+packages generally behave in the desired fashion.</p>
+<p>Rather than being an isolated single directory with a special marker
+module (as in Python), packages in other languages are typically just
+the <em>union</em> of appropriately-named directories across the <em>entire</em>
+import or inclusion path.</p>
+<p>In Perl, for example, the module <tt class="docutils literal">Foo</tt> is always found in a
+<tt class="docutils literal">Foo.pm</tt> file, and a module <tt class="docutils literal"><span class="pre">Foo::Bar</span></tt> is always found in a
+<tt class="docutils literal">Foo/Bar.pm</tt> file.  (In other words, there is One Obvious Way to
+find the location of a particular module.)</p>
+<p>This is because Perl considers a module to be <em>different</em> from a
+package: the package is purely a <em>namespace</em> in which other modules
+may reside, and is only <em>coincidentally</em> the name of a module as well.</p>
+<p>In current versions of Python, however, the module and the package are
+more tightly bound together.  <tt class="docutils literal">Foo</tt> is always a module -- whether it
+is found in <tt class="docutils literal">Foo.py</tt> or <tt class="docutils literal">Foo/__init__.py</tt> -- and it is tightly
+linked to its submodules (if any), which <em>must</em> reside in the exact
+same directory where the <tt class="docutils literal">__init__.py</tt> was found.</p>
+<p>On the positive side, this design choice means that a package is quite
+self-contained, and can be installed, copied, etc. as a unit just by
+performing an operation on the package's root directory.</p>
+<p>On the negative side, however, it is non-intuitive for beginners, and
+requires a more complex step to turn a module into a package.  If
+<tt class="docutils literal">Foo</tt> begins its life as <tt class="docutils literal">Foo.py</tt>, then it must be moved and
+renamed to <tt class="docutils literal">Foo/__init__.py</tt>.</p>
+<p>Conversely, if you intend to create a <tt class="docutils literal">Foo.Bar</tt> module from the
+start, but have no particular module contents to put in <tt class="docutils literal">Foo</tt>
+itself, then you have to create an empty and seemingly-irrelevant
+<tt class="docutils literal">Foo/__init__.py</tt> file, just so that <tt class="docutils literal">Foo.Bar</tt> can be imported.</p>
+<p>(And these issues don't just confuse newcomers to the language,
+either: they annoy many experienced developers as well.)</p>
+<p>So, after some discussion on the Import-SIG, this PEP was created
+as an alternative to PEP 382, in an attempt to solve <em>all</em> of the
+above problems, not just the &quot;namespace package&quot; use cases.</p>
+<p>And, as a delightful side effect, the solution proposed in this PEP
+does not affect the import performance of ordinary modules or
+self-contained (i.e. <tt class="docutils literal">__init__</tt>-based) packages.</p>
+</div>
+<div class="section" id="the-solution">
+<h1><a class="toc-backref" href="#id10">The Solution</a></h1>
+<p>In the past, various proposals have been made to allow more intuitive
+approaches to package directory layout.  However, most of them failed
+because of an apparent backward-compatibility problem.</p>
+<p>That is, if the requirement for an <tt class="docutils literal">__init__</tt> module were simply
+dropped, it would open up the possibility for a directory named, say,
+<tt class="docutils literal">string</tt> on <tt class="docutils literal">sys.path</tt>, to block importing of the standard library
+<tt class="docutils literal">string</tt> module.</p>
+<p>Paradoxically, however, the failure of this approach does <em>not</em> arise
+from the elimination of the <tt class="docutils literal">__init__</tt> requirement!</p>
+<p>Rather, the failure arises because the underlying approach takes for
+granted that a package is just ONE thing, instead of two.</p>
+<p>In truth, a package comprises two separate, but related entities: a
+module (with its own, optional contents), and a <em>namespace</em> where
+<em>other</em> modules or packages can be found.</p>
+<p>In current versions of Python, however, the module part (found in
+<tt class="docutils literal">__init__</tt>) and the namespace for submodule imports (represented
+by the <tt class="docutils literal">__path__</tt> attribute) are both initialized at the same time,
+when the package is first imported.</p>
+<p>And, if you assume this is the <em>only</em> way to initialize these two
+things, then there is no way to drop the need for an <tt class="docutils literal">__init__</tt>
+module, while still being backwards-compatible with existing directory
+layouts.</p>
+<p>After all, as soon as you encounter a directory on <tt class="docutils literal">sys.path</tt>
+matching the desired name, that means you've &quot;found&quot; the package, and
+must stop searching, right?</p>
+<p>Well, not quite.</p>
+<div class="section" id="a-thought-experiment">
+<h2><a class="toc-backref" href="#id11">A Thought Experiment</a></h2>
+<p>Let's hop into the time machine for a moment, and pretend we're back
+in the early 1990s, shortly before Python packages and <tt class="docutils literal">__init__.py</tt>
+have been invented.  But, imagine that we <em>are</em> familiar with
+Perl-like package imports, and we want to implement a similar system
+in Python.</p>
+<p>We'd still have Python's <em>module</em> imports to build on, so we could
+certainly conceive of having <tt class="docutils literal">Foo.py</tt> as a parent <tt class="docutils literal">Foo</tt> module
+for a <tt class="docutils literal">Foo</tt> package.  But how would we implement submodule and
+subpackage imports?</p>
+<p>Well, if we didn't have the idea of <tt class="docutils literal">__path__</tt> attributes yet,
+we'd probably just search <tt class="docutils literal">sys.path</tt> looking for <tt class="docutils literal">Foo/Bar.py</tt>.</p>
+<p>But we'd <em>only</em> do it when someone actually tried to <em>import</em>
+<tt class="docutils literal">Foo.Bar</tt>.</p>
+<p>NOT when they imported <tt class="docutils literal">Foo</tt>.</p>
+<p>And <em>that</em> lets us get rid of the backwards-compatibility problem
+of dropping the <tt class="docutils literal">__init__</tt> requirement, back here in 2011.</p>
+<p>How?</p>
+<p>Well, when we <tt class="docutils literal">import Foo</tt>, we're not even <em>looking</em> for <tt class="docutils literal">Foo/</tt>
+directories on <tt class="docutils literal">sys.path</tt>, because we don't <em>care</em> yet.  The only
+point at which we care, is the point when somebody tries to actually
+import a submodule or subpackage of <tt class="docutils literal">Foo</tt>.</p>
+<p>That means that if <tt class="docutils literal">Foo</tt> is a standard library module (for example),
+and I happen to have a <tt class="docutils literal">Foo</tt> directory on <tt class="docutils literal">sys.path</tt> (without
+an <tt class="docutils literal">__init__.py</tt>, of course), then <em>nothing breaks</em>.  The <tt class="docutils literal">Foo</tt>
+module is still just a module, and it's still imported normally.</p>
+</div>
+<div class="section" id="self-contained-vs-virtual-packages">
+<h2><a class="toc-backref" href="#id12">Self-Contained vs. &quot;Virtual&quot; Packages</a></h2>
+<p>Of course, in today's Python, trying to <tt class="docutils literal">import Foo.Bar</tt> will
+fail if <tt class="docutils literal">Foo</tt> is just a <tt class="docutils literal">Foo.py</tt> module (and thus lacks a
+<tt class="docutils literal">__path__</tt> attribute).</p>
+<p>So, this PEP proposes to <em>dynamically</em> create a <tt class="docutils literal">__path__</tt>, in the
+case where one is missing.</p>
+<p>That is, if I try to <tt class="docutils literal">import Foo.Bar</tt> the proposed change to the
+import machinery will notice that the <tt class="docutils literal">Foo</tt> module lacks a
+<tt class="docutils literal">__path__</tt>, and will therefore try to <em>build</em> one before proceeding.</p>
+<p>And it will do this by making a list of all the existing <tt class="docutils literal">Foo/</tt>
+subdirectories of the directories listed in <tt class="docutils literal">sys.path</tt>.</p>
+<p>If the list is empty, the import will fail with <tt class="docutils literal">ImportError</tt>, just
+like today.  But if the list is <em>not</em> empty, then it is saved in
+a new <tt class="docutils literal">Foo.__path__</tt> attribute, making the module a &quot;virtual
+package&quot;.</p>
+<p>That is, because it now has a valid <tt class="docutils literal">__path__</tt>, we can proceed
+to import submodules or subpackages in the normal way.</p>
+<p>Now, notice that this change does not affect &quot;classic&quot;, self-contained
+packages that have an <tt class="docutils literal">__init__</tt> module in them.  Such packages
+already <em>have</em> a <tt class="docutils literal">__path__</tt> attribute (initialized at import time)
+so the import machinery won't try to create another one later.</p>
+<p>This means that (for example) the standard library <tt class="docutils literal">email</tt> package
+will not be affected in any way by you having a bunch of unrelated
+directories named <tt class="docutils literal">email</tt> on <tt class="docutils literal">sys.path</tt>.  (Even if they contain
+<tt class="docutils literal">*.py</tt> files.)</p>
+<p>But it <em>does</em> mean that if you want to turn your <tt class="docutils literal">Foo</tt> module into
+a <tt class="docutils literal">Foo</tt> package, all you have to do is add a <tt class="docutils literal">Foo/</tt> directory
+somewhere on <tt class="docutils literal">sys.path</tt>, and start adding modules to it.</p>
+<p>But what if you only want a &quot;namespace package&quot;?  That is, a package
+that is <em>only</em> a namespace for various separately-distributed
+submodules and subpackages?</p>
+<p>For example, if you're Zope Corporation, distributing dozens of
+separate tools like <tt class="docutils literal">zc.buildout</tt>, each in packages under the <tt class="docutils literal">zc</tt>
+namespace, you don't want to have to make and include an empty
+<tt class="docutils literal">zc.py</tt> in every tool you ship.  (And, if you're a Linux or other
+OS vendor, you don't want to deal with the package installation
+conflicts created by trying to install ten copies of <tt class="docutils literal">zc.py</tt> to the
+same location!)</p>
+<p>No problem.  All we have to do is make one more minor tweak to the
+import process: if the &quot;classic&quot; import process fails to find a
+self-contained module or package (e.g., if <tt class="docutils literal">import zc</tt> fails to find
+a <tt class="docutils literal">zc.py</tt> or <tt class="docutils literal">zc/__init__.py</tt>), then we once more try to build a
+<tt class="docutils literal">__path__</tt> by searching for all the <tt class="docutils literal">zc/</tt> directories on
+<tt class="docutils literal">sys.path</tt>, and putting them in a list.</p>
+<p>If this list is empty, we raise <tt class="docutils literal">ImportError</tt>.  But if it's
+non-empty, we create an empty <tt class="docutils literal">zc</tt> module, and put the list in
+<tt class="docutils literal">zc.__path__</tt>.  Congratulations: <tt class="docutils literal">zc</tt> is now a namespace-only,
+&quot;pure virtual&quot; package!  It has no module contents, but you can still
+import submodules and subpackages from it, regardless of where they're
+located on <tt class="docutils literal">sys.path</tt>.</p>
+<p>(By the way, both of these additions to the import protocol (i.e. the
+dynamically-added <tt class="docutils literal">__path__</tt>, and dynamically-created modules)
+apply recursively to child packages, using the parent package's
+<tt class="docutils literal">__path__</tt> in place of <tt class="docutils literal">sys.path</tt> as a basis for generating a
+child <tt class="docutils literal">__path__</tt>.  This means that self-contained and virtual
+packages can contain each other without limitation, with the caveat
+that if you put a virtual package inside a self-contained one, it's
+gonna have a really short <tt class="docutils literal">__path__</tt>!)</p>
+</div>
+<div class="section" id="backwards-compatibility-and-performance">
+<h2><a class="toc-backref" href="#id13">Backwards Compatibility and Performance</a></h2>
+<p>Notice that these two changes <em>only</em> affect import operations that
+today would result in <tt class="docutils literal">ImportError</tt>.  As a result, the performance
+of imports that do not involve virtual packages is unaffected, and
+potential backward compatibility issues are very restricted.</p>
+<p>Today, if you try to import submodules or subpackages from a module
+with no <tt class="docutils literal">__path__</tt>, it's an immediate error.  And of course, if you
+don't have a <tt class="docutils literal">zc.py</tt> or <tt class="docutils literal">zc/__init__.py</tt> somewhere on <tt class="docutils literal">sys.path</tt>
+today, <tt class="docutils literal">import zc</tt> would likewise fail.</p>
+<p>Thus, the only potential backwards-compatibility issues are:</p>
+<ol class="arabic">
+<li><p class="first">Tools that expect package directories to have an <tt class="docutils literal">__init__</tt>
+module, that expect directories without an <tt class="docutils literal">__init__</tt> module
+to be unimportable, or that expect <tt class="docutils literal">__path__</tt> attributes to be
+static, will not recognize virtual packages as packages.</p>
+<p>(In practice, this just means that tools will need updating to
+support virtual packages, e.g. by using <tt class="docutils literal">pkgutil.walk_modules()</tt>
+instead of using hardcoded filesystem searches.)</p>
+</li>
+<li><p class="first">Code that <em>expects</em> certain imports to fail may now do something
+unexpected.  This should be fairly rare in practice, as most sane,
+non-test code does not import things that are expected not to
+exist!</p>
+</li>
+</ol>
+<p>The biggest likely exception to the above would be when a piece of
+code tries to check whether some package is installed by importing
+it.  If this is done <em>only</em> by importing a top-level module (i.e., not
+checking for a <tt class="docutils literal">__version__</tt> or some other attribute), <em>and</em> there
+is a directory of the same name as the sought-for package on
+<tt class="docutils literal">sys.path</tt> somewhere, <em>and</em> the package is not actually installed,
+then such code could be fooled into thinking a package is installed
+that really isn't.</p>
+<p>For example, suppose someone writes a script (<tt class="docutils literal">datagen.py</tt>)
+containing the following code:</p>
+<pre class="literal-block">
+try:
+    import json
+except ImportError:
+    import simplejson as json
+</pre>
+<p>And runs it in a directory laid out like this:</p>
+<pre class="literal-block">
+datagen.py
+json/
+    foo.js
+    bar.js
+</pre>
+<p>If <tt class="docutils literal">import json</tt> succeeded due to the mere presence of the <tt class="docutils literal">json/</tt>
+subdirectory, the code would incorrectly believe that the <tt class="docutils literal">json</tt>
+module was available, and proceed to fail with an error.</p>
+<p>However, we can prevent corner cases like these from arising, simply
+by making one small change to the algorithm presented so far.  Instead
+of allowing you to import a &quot;pure virtual&quot; package (like <tt class="docutils literal">zc</tt>),
+we allow only importing of the <em>contents</em> of virtual packages.</p>
+<p>That is, a statement like <tt class="docutils literal">import zc</tt> should raise <tt class="docutils literal">ImportError</tt>
+if there is no <tt class="docutils literal">zc.py</tt> or <tt class="docutils literal">zc/__init__.py</tt> on <tt class="docutils literal">sys.path</tt>.  But,
+doing <tt class="docutils literal">import zc.buildout</tt> should still succeed, as long as there's
+a <tt class="docutils literal">zc/buildout.py</tt> or <tt class="docutils literal">zc/buildout/__init__.py</tt> on <tt class="docutils literal">sys.path</tt>.</p>
+<p>In other words, we don't allow pure virtual packages to be imported
+directly, only modules and self-contained packages.  (This is an
+acceptable limitation, because there is no <em>functional</em> value to
+importing such a package by itself.  After all, the module object
+will have no <em>contents</em> until you import at least one of its
+subpackages or submodules!)</p>
+<p>Once <tt class="docutils literal">zc.buildout</tt> has been successfully imported, though, there
+<em>will</em> be a <tt class="docutils literal">zc</tt> module in <tt class="docutils literal">sys.modules</tt>, and trying to import it
+will of course succeed.  We are only preventing an <em>initial</em> import
+from succeeding, in order to prevent false-positive import successes
+when clashing subdirectories are present on <tt class="docutils literal">sys.path</tt>.</p>
+<p>So, with this slight change, the <tt class="docutils literal">datagen.py</tt> example above will
+work correctly.  When it does <tt class="docutils literal">import json</tt>, the mere presence of a
+<tt class="docutils literal">json/</tt> directory will simply not affect the import process at all,
+even if it contains <tt class="docutils literal">.py</tt> files.  The <tt class="docutils literal">json/</tt> directory will still
+only be searched in the case where an import like <tt class="docutils literal">import
+json.converter</tt> is attempted.</p>
+<p>Meanwhile, tools that expect to locate packages and modules by
+walking a directory tree can be updated to use the existing
+<tt class="docutils literal">pkgutil.walk_modules()</tt> API, and tools that need to inspect
+packages in memory should use the other APIs described in the
+<a class="reference internal" href="#standard-library-changes-additions">Standard Library Changes/Additions</a> section below.</p>
+</div>
+</div>
+<div class="section" id="specification">
+<h1><a class="toc-backref" href="#id14">Specification</a></h1>
+<p>A change is made to the existing import process, when importing
+names containing at least one <tt class="docutils literal">.</tt> -- that is, imports of modules
+that have a parent package.</p>
+<p>Specifically, if the parent package does not exist, or exists but
+lacks a <tt class="docutils literal">__path__</tt> attribute, an attempt is first made to create a
+&quot;virtual path&quot; for the parent package (following the algorithm
+described in the section on <a class="reference internal" href="#virtual-paths">virtual paths</a>, below).</p>
+<p>If the computed &quot;virtual path&quot; is empty, an <tt class="docutils literal">ImportError</tt> results,
+just as it would today.  However, if a non-empty virtual path is
+obtained, the normal import of the submodule or subpackage proceeds,
+using that virtual path to find the submodule or subpackage.  (Just
+as it would have with the parent's <tt class="docutils literal">__path__</tt>, if the parent package
+had existed and had a <tt class="docutils literal">__path__</tt>.)</p>
+<p>When a submodule or subpackage is found (but not yet loaded),
+the parent package is created and added to <tt class="docutils literal">sys.modules</tt> (if it
+didn't exist before), and its <tt class="docutils literal">__path__</tt> is set to the computed
+virtual path (if it wasn't already set).</p>
+<p>In this way, when the actual loading of the submodule or subpackage
+occurs, it will see a parent package existing, and any relative
+imports will work correctly.  However, if no submodule or subpackage
+exists, then the parent package will <em>not</em> be created, nor will a
+standalone module be converted into a package (by the addition of a
+spurious <tt class="docutils literal">__path__</tt> attribute).</p>
+<p>Note, by the way, that this change must be applied <em>recursively</em>: that
+is, if <tt class="docutils literal">foo</tt> and <tt class="docutils literal">foo.bar</tt> are pure virtual packages, then
+<tt class="docutils literal">import foo.bar.baz</tt> must wait until <tt class="docutils literal">foo.bar.baz</tt> is found before
+creating module objects for <em>both</em> <tt class="docutils literal">foo</tt> and <tt class="docutils literal">foo.bar</tt>, and then
+create both of them together, properly setting the <tt class="docutils literal">foo</tt> module's
+<tt class="docutils literal">.bar</tt> attribute to point to the <tt class="docutils literal">foo.bar</tt> module.</p>
+<p>In this way, pure virtual packages are never directly importable:
+an <tt class="docutils literal">import foo</tt> or <tt class="docutils literal">import foo.bar</tt> by itself will fail, and the
+corresponding modules will not appear in <tt class="docutils literal">sys.modules</tt> until they
+are needed to point to a <em>successfully</em> imported submodule or
+self-contained subpackage.</p>
+<div class="section" id="virtual-paths">
+<h2><a class="toc-backref" href="#id15">Virtual Paths</a></h2>
+<p>A virtual path is created by obtaining a <a class="reference external" href="/dev/peps/pep-0302">PEP 302</a> &quot;importer&quot; object for
+each of the path entries found in <tt class="docutils literal">sys.path</tt> (for a top-level
+module) or the parent <tt class="docutils literal">__path__</tt> (for a submodule).</p>
+<p>(Note: because <tt class="docutils literal">sys.meta_path</tt> importers are not associated with
+<tt class="docutils literal">sys.path</tt> or <tt class="docutils literal">__path__</tt> entry strings, such importers do <em>not</em>
+participate in this process.)</p>
+<p>Each importer is checked for a <tt class="docutils literal">get_subpath()</tt> method, and if
+present, the method is called with the full name of the module/package
+the path is being constructed for.  The return value is either a
+string representing a subdirectory for the requested package, or
+<tt class="docutils literal">None</tt> if no such subdirectory exists.</p>
+<p>The strings returned by the importers are added to the path list
+being built, in the same order as they are found.  (<tt class="docutils literal">None</tt> values
+and missing <tt class="docutils literal">get_subpath()</tt> methods are simply skipped.)</p>
+<p>The resulting list (whether empty or not) is then stored in a
+<tt class="docutils literal">sys.virtual_package_paths</tt> dictionary, keyed by module name.</p>
+<p>This dictionary has two purposes.  First, it serves as a cache, in
+the event that more than one attempt is made to import a submodule
+of a virtual package.</p>
+<p>Second, and more importantly, the dictionary can be used by code that
+extends <tt class="docutils literal">sys.path</tt> at runtime to <em>update</em> imported packages'
+<tt class="docutils literal">__path__</tt> attributes accordingly.  (See <a class="reference internal" href="#standard-library-changes-additions">Standard Library
+Changes/Additions</a> below for more details.)</p>
+<p>In Python code, the virtual path construction algorithm would look
+something like this:</p>
+<pre class="literal-block">
+def get_virtual_path(modulename, parent_path=None):
+
+    if modulename in sys.virtual_package_paths:
+        return sys.virtual_package_paths[modulename]
+
+    if parent_path is None:
+        parent_path = sys.path
+
+    path = []
+
+    for entry in parent_path:
+        # Obtain a PEP 302 importer object - see pkgutil module
+        importer = pkgutil.get_importer(entry)
+
+        if hasattr(importer, 'get_subpath'):
+            subpath = importer.get_subpath(modulename)
+            if subpath is not None:
+                path.append(subpath)
+
+    sys.virtual_package_paths[modulename] = path
+    return path
+</pre>
+<p>And a function like this one should be exposed in the standard
+library as e.g. <tt class="docutils literal">imp.get_virtual_path()</tt>, so that people creating
+<tt class="docutils literal">__import__</tt> replacements or <tt class="docutils literal">sys.meta_path</tt> hooks can reuse it.</p>
+</div>
+<div class="section" id="standard-library-changes-additions">
+<h2><a class="toc-backref" href="#id16">Standard Library Changes/Additions</a></h2>
+<p>The <tt class="docutils literal">pkgutil</tt> module should be updated to handle this
+specification appropriately, including any necessary changes to
+<tt class="docutils literal">extend_path()</tt>, <tt class="docutils literal">iter_modules()</tt>, etc.</p>
+<p>Specifically the proposed changes and additions to <tt class="docutils literal">pkgutil</tt> are:</p>
+<ul>
+<li><p class="first">A new <tt class="docutils literal">extend_virtual_paths(path_entry)</tt> function, to extend
+existing, already-imported virtual packages' <tt class="docutils literal">__path__</tt> attributes
+to include any portions found in a new <tt class="docutils literal">sys.path</tt> entry.  This
+function should be called by applications extending <tt class="docutils literal">sys.path</tt>
+at runtime, e.g. when adding a plugin directory or an egg to the
+path.</p>
+<p>The implementation of this function does a simple top-down traversal
+of <tt class="docutils literal">sys.virtual_package_paths</tt>, and performs any necessary
+<tt class="docutils literal">get_subpath()</tt> calls to identify what path entries need to be
+added to the virtual path for that package, given that <cite>path_entry</cite>
+has been added to <tt class="docutils literal">sys.path</tt>.  (Or, in the case of sub-packages,
+adding a derived subpath entry, based on their parent package's
+virtual path.)</p>
+<p>(Note: this function must update both the path values in
+<tt class="docutils literal">sys.virtual_package_paths</tt> as well as the <tt class="docutils literal">__path__</tt> attributes
+of any corresponding modules in <tt class="docutils literal">sys.modules</tt>, even though in the
+common case they will both be the same <tt class="docutils literal">list</tt> object.)</p>
+</li>
+<li><p class="first">A new <tt class="docutils literal"><span class="pre">iter_virtual_packages(parent='')</span></tt> function to allow
+top-down traversal of virtual packages from
+<tt class="docutils literal">sys.virtual_package_paths</tt>, by yielding the child virtual
+packages of <cite>parent</cite>.  For example, calling
+<tt class="docutils literal"><span class="pre">iter_virtual_packages(&quot;zope&quot;)</span></tt> might yield <tt class="docutils literal">zope.app</tt>
+and <tt class="docutils literal">zope.products</tt> (if they are virtual packages listed in
+<tt class="docutils literal">sys.virtual_package_paths</tt>), but <strong>not</strong> <tt class="docutils literal">zope.foo.bar</tt>.
+(This function is needed to implement <tt class="docutils literal">extend_virtual_paths()</tt>,
+but is also potentially useful for other code that needs to inspect
+imported virtual packages.)</p>
+</li>
+<li><p class="first"><tt class="docutils literal">ImpImporter.iter_modules()</tt> should be changed to also detect and
+yield the names of modules found in virtual packages.</p>
+</li>
+</ul>
+<p>In addition to the above changes, the <tt class="docutils literal">zipimport</tt> importer should
+have its <tt class="docutils literal">iter_modules()</tt> implementation similarly changed.  (Note:
+current versions of Python implement this via a shim in <tt class="docutils literal">pkgutil</tt>,
+so technically this is also a change to <tt class="docutils literal">pkgutil</tt>.)</p>
+<p>Last, but not least, the <tt class="docutils literal">imp</tt> module (or <tt class="docutils literal">importlib</tt>, if
+appropriate) should expose the algorithm described in the <a class="reference internal" href="#virtual-paths">virtual
+paths</a> section above, as a
+<tt class="docutils literal">get_virtual_path(modulename, parent_path=None)</tt> function, so that
+creators of <tt class="docutils literal">__import__</tt> replacements can use it.</p>
+</div>
+<div class="section" id="implementation-notes">
+<h2><a class="toc-backref" href="#id17">Implementation Notes</a></h2>
+<p>For users, developers, and distributors of virtual packages:</p>
+<ul>
+<li><p class="first">While virtual packages are easy to set up and use, there is still
+a time and place for using self-contained packages.  While it's not
+strictly necessary, adding an <tt class="docutils literal">__init__</tt> module to your
+self-contained packages lets users of the package (and Python
+itself) know that <em>all</em> of the package's code will be found in
+that single subdirectory.  In addition, it lets you define
+<tt class="docutils literal">__all__</tt>, expose a public API, provide a package-level docstring,
+and do other things that make more sense for a self-contained
+project than for a mere &quot;namespace&quot; package.</p>
+</li>
+<li><p class="first"><tt class="docutils literal">sys.virtual_package_paths</tt> is allowed to contain entries for
+non-existent or not-yet-imported package names; code that uses its
+contents should not assume that every key in this dictionary is also
+present in <tt class="docutils literal">sys.modules</tt> or that importing the name will
+necessarily succeed.</p>
+</li>
+<li><p class="first">If you are changing a currently self-contained package into a
+virtual one, it's important to note that you can no longer use its
+<tt class="docutils literal">__file__</tt> attribute to locate data files stored in a package
+directory.  Instead, you must search <tt class="docutils literal">__path__</tt> or use the
+<tt class="docutils literal">__file__</tt> of a submodule adjacent to the desired files, or
+of a self-contained subpackage that contains the desired files.</p>
+<p>(Note: this caveat is already true for existing users of &quot;namespace
+packages&quot; today.  That is, it is an inherent result of being able
+to partition a package, that you must know <em>which</em> partition the
+desired data file lives in.  We mention it here simply so that
+<em>new</em> users converting from self-contained to virtual packages will
+also be aware of it.)</p>
+</li>
+<li><p class="first">XXX what is the __file__ of a &quot;pure virtual&quot; package?  <tt class="docutils literal">None</tt>?
+Some arbitrary string?  The path of the first directory with a
+trailing separator?  No matter what we put, <em>some</em> code is
+going to break, but the last choice might allow some code to
+accidentally work.  Is that good or bad?</p>
+</li>
+</ul>
+<p>For those implementing <a class="reference external" href="/dev/peps/pep-0302">PEP 302</a> importer objects:</p>
+<ul>
+<li><p class="first">Importers that support the <tt class="docutils literal">iter_modules()</tt> method (used by
+<tt class="docutils literal">pkgutil</tt> to locate importable modules and packages) and want to
+add virtual package support should modify their <tt class="docutils literal">iter_modules()</tt>
+method so that it discovers and lists virtual packages as well as
+standard modules and packages.  To do this, the importer should
+simply list all immediate subdirectory names in its jurisdiction
+that are valid Python identifiers.</p>
+<p>XXX This might list a lot of not-really-packages.  Should we
+require importable contents to exist?  If so, how deep do we
+search, and how do we prevent e.g. link loops, or traversing onto
+different filesystems, etc.?  Ick.  Also, if virtual packages are
+listed, they still can't be <em>imported</em>, which is a problem for the
+way that <tt class="docutils literal">pkgutil.walk_modules()</tt> is currently implemented.</p>
+</li>
+<li><p class="first">&quot;Meta&quot; importers (i.e., importers placed on <tt class="docutils literal">sys.meta_path</tt>) do
+not need to implement <tt class="docutils literal">get_subpath()</tt>, because the method
+is only called on importers corresponding to <tt class="docutils literal">sys.path</tt> entries
+and <tt class="docutils literal">__path__</tt> entries.  If a meta importer wishes to support
+virtual packages, it must do so entirely within its own
+<tt class="docutils literal">find_module()</tt> implementation.</p>
+<p>Unfortunately, it is unlikely that any such implementation will be
+able to merge its package subpaths with those of other meta
+importers or <tt class="docutils literal">sys.path</tt> importers, so the meaning of &quot;supporting
+virtual packages&quot; for a meta importer is currently undefined!</p>
+<p>(However, since the intended use case for meta importers is to
+replace Python's normal import process entirely for some subset of
+modules, and the number of such importers currently implemented is
+quite small, this seems unlikely to be a big issue in practice.)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="references">
+<h1><a class="toc-backref" href="#id18">References</a></h1>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>&quot;namespace&quot; vs &quot;module&quot; packages (mailing list thread)
+(<a class="reference external" href="http://mail.zope.org/pipermail/zope3-dev/2002-December/004251.html">http://mail.zope.org/pipermail/zope3-dev/2002-December/004251.html</a>)</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>&quot;Dropping __init__.py requirement for subpackages&quot;
+(<a class="reference external" href="http://mail.python.org/pipermail/python-dev/2006-April/064400.html">http://mail.python.org/pipermail/python-dev/2006-April/064400.html</a>)</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[3]</a></td><td>Namespace Packages resolution
+(<a class="reference external" href="http://mail.python.org/pipermail/import-sig/2012-March/000421.html">http://mail.python.org/pipermail/import-sig/2012-March/000421.html</a>)</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="copyright">
+<h1><a class="toc-backref" href="#id19">Copyright</a></h1>
+<p>This document has been placed in the public domain.</p>
+<!-- Local Variables:
+mode: indented-text
+indent-tabs-mode: nil
+sentence-end-double-space: t
+fill-column: 70
+coding: utf-8
+End: -->
+</div>
+
+
+
+      </div>
+
+      
+      <div id="footer">
+	<div id="credits">
+ 	  <a href="/about/website">Website maintained by the Python community</a><br/>
+	  <a href="http://www.xs4all.com/" title="Web and email hosting provided by xs4all, Netherlands">hosting by xs4all</a> /
+	  <a href="http://www.timparkin.co.uk/" title="Design by Tim Parkin, Yorkshire man, photographer and developer">design by Tim Parkin</a>
+	</div>
+	Copyright &copy; 1990-2013, <a href='/psf/'>Python Software Foundation</a><br/>
+	<a href="/about/legal">Legal Statements</a>
+      </div>
+
+
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+

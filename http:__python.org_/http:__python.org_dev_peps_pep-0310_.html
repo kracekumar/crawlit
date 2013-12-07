@@ -1,0 +1,470 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>PEP 310 -- Reliable Acquisition/Release Pairs</title>
+  <meta name="keywords" content="PEP 310 -- Reliable Acquisition/Release Pairs" />
+  <meta name="description" content="PEP 310 -- Reliable Acquisition/Release Pairs" />
+  <link rel="alternate" type="application/rss+xml" title="Community Events"
+        href="http://www.python.org/channews.rdf" />
+  <link rel="alternate" type="application/rss+xml" title="Python Recipes"
+        href="http://aspn.activestate.com/ASPN/Cookbook/Python/index_rss" />
+  <link rel="alternate" type="application/rss+xml" title="Usergroup News"
+        href="http://python-groups.blogspot.com/feeds/posts/default" />
+  <link rel="alternate" type="application/rss+xml" title="Python Screencasts"
+        href="http://www.showmedo.com/latestVideoFeed/rss2.0?tag=python" />
+  <link rel="alternate" type="application/rss+xml" title="Python Podcasts"
+        href="http://www.awaretek.com/python/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Foundation News"
+        href="http://feeds.feedburner.com/PythonSoftwareFoundationNews" />
+  <link rel="alternate" type="application/rss+xml" title="Python Enhancement Proposals"
+        href="http://www.python.org/dev/peps/peps.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Job Opportunities"
+        href="http://www.python.org/community/jobs/jobs.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Reddit Feed of Python What's New Online"
+        href="http://www.reddit.com/r/Python/.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Insider"
+        href="http://feeds.feedburner.com/PythonInsider" />
+
+  <link rel="stylesheet" type="text/css" media="screen" id="screen-switcher-stylesheet"
+        href="/styles/screen-switcher-default.css" />
+  <link rel="stylesheet" type="text/css" media="sc&#82;een"
+        href="/styles/netscape4.css" />
+  <link rel="stylesheet" type="text/css" media="print"
+        href="/styles/print.css" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/largestyles.css" title="large text" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/defaultfonts.css" title="default fonts" />
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search under the www.python.org Domain"
+        href="/search-pysite.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Wiki"
+        href="/search-pywiki.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within Python Books at Google Book Search"
+        href="/search-pybooks.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Documentation"
+        href="/search-pydocs.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for a Module in the Standard Library"
+        href="/search-pymodules.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for Packages inside the Cheeseshop (PyPI)"
+        href="/search-pycheese.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search Archives of the Main Python Mailing List"
+        href="/search-pythonlist.xml"/>
+
+  <script type="text/javascript" src="/js/iotbs2-key-directors-load.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-directors.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-core.js"></script>
+
+</head>
+
+
+<body>
+  <!-- Logo -->
+  <h1 id="logoheader">
+    <a href="/" id="logolink" accesskey="1"><img id="logo" src="/images/python-logo.gif" alt="homepage" border="0" /></a>
+  </h1>
+  <!-- Skip to Navigation -->
+  <div class="skiptonav"><a href="#left-hand-navigation" accesskey="2"><img src="/images/trans.gif" id="skiptonav" alt="skip to navigation" border="0" /></a></div>
+  <div class="skiptonav"><a href="#content-body" accesskey="3"><img src="/images/trans.gif" id="skiptocontent" alt="skip to content" border="0" /></a></div>
+  <!-- Utility Menu -->
+  <div id="utility-menu">
+    <!-- Search Box -->
+    <div id="searchbox">
+      <form method="get" action="http://google.com/search" id="searchform" name="searchform">
+        <div id="search">
+          <input type="hidden" id="domains" name="domains" value="www.python.org" />
+          <input type="hidden" id="sitesearch" name="sitesearch" value="www.python.org" />
+          <input type="hidden" id="sourceid" name="sourceid" value="google-search" />
+          <input type="text" class="input-text" name="q" id="q" />
+          <input type="submit" value="search" class="input-button" name="submit" id="submit" />
+          <a href="/search" class="reference">Advanced Search</a>
+        </div>
+      </form>
+    </div>
+    <div id="screen-switcher"></div>
+  </div>
+
+  <div id="left-hand-navigation">
+    <!-- Main Menu -->
+    <div id="menu">
+      <ul class="level-one">
+            <li>
+          <a href="/about/" title="About The Python Language">About</a>
+        </li>
+            <li>
+          <a href="/news/" title="Major Happenings Within the Python Community">News</a>
+        </li>
+            <li>
+          <a href="/doc/" title="Tutorials, Library Reference, C API">Documentation</a>
+        </li>
+            <li>
+          <a href="/download/" title="Start Running Python Under Windows, Mac, Linux and Others">Download</a>
+        </li>
+            <li>
+          <a href="/getit/" title="Alternate Download page for China">ä¸è½½</a>
+        </li>
+            <li>
+          <a href="/community/" title="Mailing Lists, Jobs, Conferences, SIGs, Online Chats">Community</a>
+        </li>
+            <li>
+          <a href="/psf/" title="Python Software Foundation">Foundation</a>
+        </li>
+            <li>
+          <a href="http://docs.python.org/devguide/" title="Development of the Python language and website">Core Development</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Quick Links -->
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/">Python Wiki</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://blog.python.org/">Python Insider Blog</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/Python2orPython3">Python 2 or 3?</a></h4>
+    <h4><a style="color:#D58228; margin-top:1.5em" href="/psf/donations/">Help Fund Python</a></h4>
+    <div style="align:center; padding-top: 0.5em; padding-left: 1em">
+      <a href="/psf/donations/"><img width="116" height="42" src="/images/donate.png" alt="" title="" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.5em; padding-left: 2.5em">
+            <a href="http://wiki.python.org/moin/Languages"><img
+	      style="align:center"
+              width="94" height="46"
+	      src="/images/worldmap.jpg" alt="[Python resources in languages other than English]" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.0em; padding-left: 0em">
+       <h4><a href="http://wiki.python.org/moin/Languages">Non-English Resources</a></h4>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Release%20Schedule&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com/public/basic.ics">
+                Python Release Schedule iCal Calendar
+            </a>
+        </iframe>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Events%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com/public/basic.ics">
+                Python Events iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=User%20Group%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com&amp;color=%23125A12&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com/public/basic.ics">
+                Python User Group iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+  </div>
+
+  <div id="content-body">
+    <div id="body-main">
+      <div id="content">
+        
+          <div id="breadcrumb">
+               <a href="/dev/peps/">PEP Index</a>
+               <span class="breadcrumb-separator">&gt;</span>
+            
+            PEP 310 -- Reliable Acquisition/Release Pairs
+          </div>
+
+
+
+        <!--
+This HTML is auto-generated.  DO NOT EDIT THIS FILE!  If you are writing a new
+PEP, see http://www.python.org/dev/peps/pep-0001 for instructions and links
+to templates.  DO NOT USE THIS HTML FILE AS YOUR TEMPLATE!
+-->
+<div class="header">
+<table border="0" class="rfc2822">
+  <tr><th class="field-name">PEP:&nbsp;</th><td>310</td></tr>
+  <tr><th class="field-name">Title:&nbsp;</th><td>Reliable Acquisition/Release Pairs</td></tr>
+  <tr><th class="field-name">Version:&nbsp;</th><td>c85738940952</td></tr>
+  <tr><th class="field-name">Last-Modified:&nbsp;</th><td><a href="http://hg.python.org/peps/file/tip/pep-0310.txt"> 2005-06-28 08:31:09 +0000 (Tue, 28 Jun 2005)</a> </td></tr>
+  <tr><th class="field-name">Author:&nbsp;</th><td>Michael Hudson &lt;mwh&#32;&#97;t&#32;python.net&gt;, Paul Moore &lt;gustav&#32;&#97;t&#32;morpheus.demon.co.uk&gt;</td></tr>
+  <tr><th class="field-name">Status:&nbsp;</th><td>Rejected</td></tr>
+  <tr><th class="field-name">Type:&nbsp;</th><td>Standards Track</td></tr>
+  <tr><th class="field-name">Content-Type:&nbsp;</th><td><a href="/dev/peps/pep-0009">text/plain</a> </td></tr>
+  <tr><th class="field-name">Created:&nbsp;</th><td>18-Dec-2002</td></tr>
+  <tr><th class="field-name">Python-Version:&nbsp;</th><td>2.4</td></tr>
+  <tr><th class="field-name">Post-History:&nbsp;</th><td></td></tr>
+</table>
+</div>
+<h3>Abstract</h3>
+<pre>
+    It would be nice to have a less typing-intense way of writing:
+
+        the_lock.acquire()
+        try:
+            ....
+        finally:
+            the_lock.release()
+
+    This PEP proposes a piece of syntax (a 'with' block) and a
+    "small-i" interface that generalizes the above.
+
+</pre>
+<h3>Pronouncement</h3>
+<pre>
+    This PEP is rejected in favor of <a href="/dev/peps/pep-0343">PEP 343</a>.
+
+</pre>
+<h3>Rationale</h3>
+<pre>
+    One of the advantages of Python's exception handling philosophy is
+    that it makes it harder to do the "wrong" thing (e.g. failing to
+    check the return value of some system call).  Currently, this does
+    not apply to resource cleanup.  The current syntax for acquisition
+    and release of a resource (for example, a lock) is
+
+        the_lock.acquire()
+        try:
+            ....
+        finally:
+            the_lock.release()
+
+    This syntax separates the acquisition and release by a (possibly
+    large) block of code, which makes it difficult to confirm "at a
+    glance" that the code manages the resource correctly.  Another
+    common error is to code the "acquire" call within the try block,
+    which incorrectly releases the lock if the acquire fails.
+
+
+</pre>
+<h3>Basic Syntax and Semantics</h3>
+<pre>
+    The syntax of a 'with' statement is as follows::
+
+	'with' [ var '=' ] expr ':'
+	    suite
+
+    This statement is defined as being equivalent to the following
+    sequence of statements:
+
+	var = expr
+
+	if hasattr(var, "__enter__"):
+	    var.__enter__()
+
+	try:
+	    suite
+
+	finally:
+            var.__exit__()
+
+    (The presence of an __exit__ method is *not* checked like that of
+    __enter__ to ensure that using inappropriate objects in with:
+    statements gives an error).
+
+    If the variable is omitted, an unnamed object is allocated on the
+    stack.  In that case, the suite has no access to the unnamed object.
+
+
+</pre>
+<h3>Possible Extensions</h3>
+<pre>
+    A number of potential extensions to the basic syntax have been
+    discussed on the Python Developers list.  None of these extensions
+    are included in the solution proposed by this PEP.  In many cases,
+    the arguments are nearly equally strong in both directions.  In
+    such cases, the PEP has always chosen simplicity, simply because
+    where extra power is needed, the existing try block is available.
+
+    Multiple expressions
+
+    One proposal was for allowing multiple expressions within one
+    'with' statement.  The __enter__ methods would be called left to
+    right, and the __exit__ methods right to left.  The advantage of
+    doing so is that where more than one resource is being managed,
+    nested 'with' statements will result in code drifting towards the
+    right margin.  The solution to this problem is the same as for any
+    other deep nesting - factor out some of the code into a separate
+    function.  Furthermore, the question of what happens if one of the
+    __exit__ methods raises an exception (should the other __exit__
+    methods be called?) needs to be addressed.
+
+    Exception handling
+
+    An extension to the protocol to include an optional __except__
+    handler, which is called when an exception is raised, and which
+    can handle or re-raise the exception, has been suggested.  It is
+    not at all clear that the semantics of this extension can be made
+    precise and understandable.  For example, should the equivalent
+    code be try ... except ... else if an exception handler is
+    defined, and try ... finally if not?  How can this be determined
+    at compile time, in general?  The alternative is to define the
+    code as expanding to a try ... except inside a try ... finally.
+    But this may not do the right thing in real life.
+
+    The only use case identified for exception handling is with
+    transactional processing (commit on a clean finish, and rollback
+    on an exception).  This is probably just as easy to handle with a
+    conventional try ... except ... else block, and so the PEP does
+    not include any support for exception handlers.
+
+
+</pre>
+<h3>Implementation Notes</h3>
+<pre>
+    There is a potential race condition in the code specified as
+    equivalent to the with statement.  For example, if a
+    KeyboardInterrupt exception is raised between the completion of
+    the __enter__ method call and the start of the try block, the
+    __exit__ method will not be called.  This can lead to resource
+    leaks, or to deadlocks.  [XXX Guido has stated that he cares about
+    this sort of race condition, and intends to write some C magic to
+    handle them.  The implementation of the 'with' statement should
+    copy this.]
+
+
+</pre>
+<h3>Open Issues</h3>
+<pre>
+    Should existing classes (for example, file-like objects and locks)
+    gain appropriate __enter__ and __exit__ methods?  The obvious
+    reason in favour is convenience (no adapter needed).  The argument
+    against is that if built-in files have this but (say) StringIO
+    does not, then code that uses "with" on a file object can't be
+    reused with a StringIO object.  So __exit__ = close becomes a part
+    of the "file-like object" protocol, which user-defined classes may
+    need to support.
+
+    The __enter__ hook may be unnecessary - for many use cases, an
+    adapter class is needed and in that case, the work done by the
+    __enter__ hook can just as easily be done in the __init__ hook.
+
+    If a way of controlling object lifetimes explicitly was available,
+    the function of the __exit__ hook could be taken over by the
+    existing __del__ hook.  An email exchange[1] with a proponent of
+    this approach left one of the authors even more convinced that
+    it isn't the right idea...
+
+    It has been suggested[2] that the "__exit__" method be called
+    "close", or that a "close" method should be considered if no
+    __exit__ method is found, to increase the "out-of-the-box utility"
+    of the "with ..." construct.
+
+    There are some similarities in concept between 'with ...' blocks
+    and generators, which have led to proposals that for loops could
+    implement the with block functionality[3].  While neat on some
+    levels, we think that for loops should stick to being loops.
+
+
+</pre>
+<h3>Alternative Ideas</h3>
+<pre>
+    IEXEC: Holger Krekel -- generalised approach with XML-like syntax
+                            (no URL found...)
+
+    Holger has much more far-reaching ideas about "execution monitors"
+    that are informed about details of control flow in the monitored
+    block.  While interesting, these ideas could change the language
+    in deep and subtle ways and as such belong to a different PEP.
+
+    Any Smalltalk/Ruby anonymous block style extension obviously
+    subsumes this one.
+
+    <a href="/dev/peps/pep-0319">PEP 319</a> is in the same area, but did not win support when aired on
+    python-dev.
+
+
+</pre>
+<h3>Backwards Compatibility</h3>
+<pre>
+    This PEP proposes a new keyword, so the __future__ game will need
+    to be played.
+
+
+</pre>
+<h3>Cost of Adoption</h3>
+<pre>
+    Those who claim the language is getting larger and more
+    complicated have something else to complain about.  It's something
+    else to teach.
+
+    For the proposal to be useful, many file-like and lock-like
+    classes in the standard library and other code will have to have
+
+        __exit__ = close
+
+    or similar added.
+
+
+</pre>
+<h3>Cost of Non-Adoption</h3>
+<pre>
+    Writing correct code continues to be more effort than writing
+    incorrect code.
+
+
+</pre>
+<h3>References</h3>
+<pre>
+    There are various python-list and python-dev discussions that
+    could be mentioned here.
+
+    [1] Off-list conversation between Michael Hudson and Bill Soudan
+        (made public with permission)
+        <a href="http://starship.python.net/crew/mwh/pep310/">http://starship.python.net/crew/mwh/pep310/</a>
+
+    [2] Samuele Pedroni on python-dev
+        <a href="http://mail.python.org/pipermail/python-dev/2003-August/037795.html">http://mail.python.org/pipermail/python-dev/2003-August/037795.html</a>
+
+    [3] Thread on python-dev with subject
+
+        [Python-Dev] pre-PEP: Resource-Release Support for Generators
+
+        starting at
+
+        <a href="http://mail.python.org/pipermail/python-dev/2003-August/037803.html">http://mail.python.org/pipermail/python-dev/2003-August/037803.html</a>
+
+</pre>
+<h3>Copyright</h3>
+<pre>
+    This document has been placed in the public domain.
+
+
+</pre>
+
+
+      </div>
+
+      
+      <div id="footer">
+	<div id="credits">
+ 	  <a href="/about/website">Website maintained by the Python community</a><br/>
+	  <a href="http://www.xs4all.com/" title="Web and email hosting provided by xs4all, Netherlands">hosting by xs4all</a> /
+	  <a href="http://www.timparkin.co.uk/" title="Design by Tim Parkin, Yorkshire man, photographer and developer">design by Tim Parkin</a>
+	</div>
+	Copyright &copy; 1990-2013, <a href='/psf/'>Python Software Foundation</a><br/>
+	<a href="/about/legal">Legal Statements</a>
+      </div>
+
+
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+

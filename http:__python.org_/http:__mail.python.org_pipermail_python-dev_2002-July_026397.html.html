@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Python-Dev] PEP 292-related: why string substitution is not the same operation as data formatting
+   </TITLE>
+   <LINK REL="Index" HREF="index.html" >
+   <LINK REL="made" HREF="mailto:guido%40python.org">
+   <META NAME="robots" CONTENT="index,nofollow">
+   
+   <LINK REL="Previous"  HREF="026374.html">
+   <LINK REL="Next"  HREF="026401.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Python-Dev] PEP 292-related: why string substitution is not the same operation as data formatting
+   </H1>
+    <B>Guido van Rossum
+    </B> 
+    <A HREF="mailto:guido%40python.org"
+       TITLE="[Python-Dev] PEP 292-related: why string substitution is not the same operation as data formatting">guido@python.org
+       </A><BR>
+    <I>Fri, 12 Jul 2002 15:07:06 -0400</I>
+    <P><UL>
+        <LI> Previous message: <A HREF="026374.html">[Python-Dev] PEP 292-related: why string substitution is not the same operation as data formatting
+</A></li>
+        <LI> Next message: <A HREF="026401.html">[Python-Dev] PEP 292-related: why string substitution is not the same operation as data formatting
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#26397">[ date ]</a>
+              <a href="thread.html#26397">[ thread ]</a>
+              <a href="subject.html#26397">[ subject ]</a>
+              <a href="author.html#26397">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> The syntax rules of PEP 292 are likely to cause confusion for
+</I>&gt;<i> newbies who have never used sh or perl. They will ask why Python
+</I>&gt;<i> have two syntaxes for doing string substitutions? Why not always
+</I>&gt;<i> spell the substitution string with ${identifier} or %(identifier)?
+</I>&gt;<i> The third rule of PEP292 in particular look like a patch to fix a
+</I>&gt;<i> kludge when an unanticipated exception was discovered.
+</I>&gt;<i> 
+</I>&gt;<i>    3. ${identifier} is equivalent to $identifier.  It is required for
+</I>&gt;<i>           when valid identifier characters follow the placeholder but are
+</I>&gt;<i>           not part of the placeholder, e.g. &quot;${noun}ification&quot;.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; On Sunday 23 June 2002 02:16 pm, Lalo Martins wrote:
+</I>&gt;<i> &gt; &gt; More, I'm completely opposed to &quot;&lt;&lt;name&gt;&gt; is &lt;&lt;age:.0d&gt;&gt; years
+</I>&gt;<i> &gt; &gt; old&quot; because it's still cryptic and invasive. This should
+</I>&gt;<i> &gt; &gt; instead read similar to &quot;&lt;&lt;name&gt;&gt; is &lt;&lt;age&gt;&gt; years
+</I>&gt;<i> &gt; &gt; old&quot;.sub({'name': x.name, 'age': x.age.format(None, 0)})
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; &gt; Guido, can you please, for our enlightenment, tell us what are the
+</I>&gt;<i> &gt; &gt; reasons you feel %(foo)s was a mistake?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Because of the trailing 's'.  It's very easy to leave it out by
+</I>&gt;<i> &gt; mistake, and because the definition of printf formats skips over
+</I>&gt;<i> &gt; spaces (don't ask me why), the first character of the following word
+</I>&gt;<i> &gt; is used as the type indicator.
+</I>&gt;<i> 
+</I>&gt;<i> It's easy to leave it out by mistake, but the error is almost always
+</I>&gt;<i> immediately obvious. In the interest of keeping the language as
+</I>&gt;<i> simple as possible, I hope no changes are made. If a method based
+</I>&gt;<i> .sub() capability is to be added, why not reuse the %(identifier)
+</I>&gt;<i> syntax instead of introducing $ and ${} syntax? The .sub() string
+</I>&gt;<i> method would use the %(identifier) syntax without the 's' to spell
+</I>&gt;<i> the new substitution format. Instead of the proposed:
+</I>&gt;<i> 
+</I>&gt;<i> 	'$name was born in ${country}'.sub()
+</I>&gt;<i> 
+</I>&gt;<i> the phrase would be spelled:
+</I>&gt;<i> 
+</I>&gt;<i> 	'%(name) was born in %(country)'.sub()
+</I>&gt;<i> 
+</I>&gt;<i> This approach would introduce one new string method with a small
+</I>&gt;<i> variation on the existing '%' substitution syntax.
+</I>
+An argument can be made that since this works rather different than
+the current % operator, it's better to avoid confusion by using a
+different character.  One can also argue that many Perl and shell
+programmers are migrating to Python, for whom this would be helpful --
+for others, $ or % makes little difference (DOS batch file programmers
+aren't that common, most Windows users never get to this).
+
+But the exact syntax to use in the template is a relatively trivial
+detail IMO.  Whether to pick `name`, &lt;&lt;name&gt;&gt;, $name, $(name),
+${name}, %name, %{name}, or %(name), is a choice we can make later.
+Ditto about whether to allow full expressions, dotted names only, or
+simple names only, and whether to allow leaving off the brackets for
+simple names (or even for dotted names, as in PEP 215).  User testing
+would be good.
+
+User testing has already shown that the current %(name)s notation
+causes too many mistakes, because of the odd trailing 's'.  These
+errors may be immediately obvious when you run the code, but
+constructs that are easily mistyped should still be avoided if
+possible.  Also, I believe that the error has actually been puzzling
+for many people (e.g. sometimes no error is raised but on close
+inspection a few characters appear to be omitted from the output).
+
+The real issues are IMO:
+
+- Compile-time vs. run-time parsing.  I've become convinced that the
+  compiler should do the parsing: this is the only way to make access
+  to variables in nested scopes work, avoids security issues, and
+  makes it easier to diagnose errors (e.g. in PyChecker).
+
+- How to support translation.  Here the template must be replaced at
+  run-time, but it is still desirable that the collection of available
+  names is known at compile time (to avoid the security issues).
+
+- Optional formatting specifiers.  I agree with Lalo that these should
+  not be part of the interpolation syntax but need to be dealt with at
+  a different level.  I think these are only relevant for numeric
+  data.  Funny, there's still a (now-deprecated) module fpformat.py
+  that supports arbitrary floating point formatting, and
+  string.zfill() supports a bit of integer formatting.
+
+--Guido van Rossum (home page: <A HREF="http://www.python.org/~guido/">http://www.python.org/~guido/</A>)
+
+
+
+</PRE>
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI> Previous message: <A HREF="026374.html">[Python-Dev] PEP 292-related: why string substitution is not the same operation as data formatting
+</A></li>
+	<LI> Next message: <A HREF="026401.html">[Python-Dev] PEP 292-related: why string substitution is not the same operation as data formatting
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#26397">[ date ]</a>
+              <a href="thread.html#26397">[ thread ]</a>
+              <a href="subject.html#26397">[ subject ]</a>
+              <a href="author.html#26397">[ author ]</a>
+         </LI>
+       </UL>
+</body></html>

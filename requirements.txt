@@ -1,0 +1,7 @@
+requests == 2.0.1
+BeautifulSoup==3.2.1
+gevent==1.0
+reppy==0.2.2
+tldextract==1.2.2
+pybloomfiltermmap==0.3.11
+argparse

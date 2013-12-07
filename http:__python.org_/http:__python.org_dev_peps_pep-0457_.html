@@ -1,0 +1,583 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>PEP 457 -- Syntax For Positional-Only Parameters</title>
+  <meta name="keywords" content="PEP 457 -- Syntax For Positional-Only Parameters" />
+  <meta name="description" content="PEP 457 -- Syntax For Positional-Only Parameters" />
+  <link rel="alternate" type="application/rss+xml" title="Community Events"
+        href="http://www.python.org/channews.rdf" />
+  <link rel="alternate" type="application/rss+xml" title="Python Recipes"
+        href="http://aspn.activestate.com/ASPN/Cookbook/Python/index_rss" />
+  <link rel="alternate" type="application/rss+xml" title="Usergroup News"
+        href="http://python-groups.blogspot.com/feeds/posts/default" />
+  <link rel="alternate" type="application/rss+xml" title="Python Screencasts"
+        href="http://www.showmedo.com/latestVideoFeed/rss2.0?tag=python" />
+  <link rel="alternate" type="application/rss+xml" title="Python Podcasts"
+        href="http://www.awaretek.com/python/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Foundation News"
+        href="http://feeds.feedburner.com/PythonSoftwareFoundationNews" />
+  <link rel="alternate" type="application/rss+xml" title="Python Enhancement Proposals"
+        href="http://www.python.org/dev/peps/peps.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Job Opportunities"
+        href="http://www.python.org/community/jobs/jobs.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Reddit Feed of Python What's New Online"
+        href="http://www.reddit.com/r/Python/.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Insider"
+        href="http://feeds.feedburner.com/PythonInsider" />
+
+  <link rel="stylesheet" type="text/css" media="screen" id="screen-switcher-stylesheet"
+        href="/styles/screen-switcher-default.css" />
+  <link rel="stylesheet" type="text/css" media="sc&#82;een"
+        href="/styles/netscape4.css" />
+  <link rel="stylesheet" type="text/css" media="print"
+        href="/styles/print.css" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/largestyles.css" title="large text" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/defaultfonts.css" title="default fonts" />
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search under the www.python.org Domain"
+        href="/search-pysite.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Wiki"
+        href="/search-pywiki.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within Python Books at Google Book Search"
+        href="/search-pybooks.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Documentation"
+        href="/search-pydocs.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for a Module in the Standard Library"
+        href="/search-pymodules.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for Packages inside the Cheeseshop (PyPI)"
+        href="/search-pycheese.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search Archives of the Main Python Mailing List"
+        href="/search-pythonlist.xml"/>
+
+  <script type="text/javascript" src="/js/iotbs2-key-directors-load.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-directors.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-core.js"></script>
+
+</head>
+
+
+<body>
+  <!-- Logo -->
+  <h1 id="logoheader">
+    <a href="/" id="logolink" accesskey="1"><img id="logo" src="/images/python-logo.gif" alt="homepage" border="0" /></a>
+  </h1>
+  <!-- Skip to Navigation -->
+  <div class="skiptonav"><a href="#left-hand-navigation" accesskey="2"><img src="/images/trans.gif" id="skiptonav" alt="skip to navigation" border="0" /></a></div>
+  <div class="skiptonav"><a href="#content-body" accesskey="3"><img src="/images/trans.gif" id="skiptocontent" alt="skip to content" border="0" /></a></div>
+  <!-- Utility Menu -->
+  <div id="utility-menu">
+    <!-- Search Box -->
+    <div id="searchbox">
+      <form method="get" action="http://google.com/search" id="searchform" name="searchform">
+        <div id="search">
+          <input type="hidden" id="domains" name="domains" value="www.python.org" />
+          <input type="hidden" id="sitesearch" name="sitesearch" value="www.python.org" />
+          <input type="hidden" id="sourceid" name="sourceid" value="google-search" />
+          <input type="text" class="input-text" name="q" id="q" />
+          <input type="submit" value="search" class="input-button" name="submit" id="submit" />
+          <a href="/search" class="reference">Advanced Search</a>
+        </div>
+      </form>
+    </div>
+    <div id="screen-switcher"></div>
+  </div>
+
+  <div id="left-hand-navigation">
+    <!-- Main Menu -->
+    <div id="menu">
+      <ul class="level-one">
+            <li>
+          <a href="/about/" title="About The Python Language">About</a>
+        </li>
+            <li>
+          <a href="/news/" title="Major Happenings Within the Python Community">News</a>
+        </li>
+            <li>
+          <a href="/doc/" title="Tutorials, Library Reference, C API">Documentation</a>
+        </li>
+            <li>
+          <a href="/download/" title="Start Running Python Under Windows, Mac, Linux and Others">Download</a>
+        </li>
+            <li>
+          <a href="/getit/" title="Alternate Download page for China">ä¸è½½</a>
+        </li>
+            <li>
+          <a href="/community/" title="Mailing Lists, Jobs, Conferences, SIGs, Online Chats">Community</a>
+        </li>
+            <li>
+          <a href="/psf/" title="Python Software Foundation">Foundation</a>
+        </li>
+            <li>
+          <a href="http://docs.python.org/devguide/" title="Development of the Python language and website">Core Development</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Quick Links -->
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/">Python Wiki</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://blog.python.org/">Python Insider Blog</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/Python2orPython3">Python 2 or 3?</a></h4>
+    <h4><a style="color:#D58228; margin-top:1.5em" href="/psf/donations/">Help Fund Python</a></h4>
+    <div style="align:center; padding-top: 0.5em; padding-left: 1em">
+      <a href="/psf/donations/"><img width="116" height="42" src="/images/donate.png" alt="" title="" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.5em; padding-left: 2.5em">
+            <a href="http://wiki.python.org/moin/Languages"><img
+	      style="align:center"
+              width="94" height="46"
+	      src="/images/worldmap.jpg" alt="[Python resources in languages other than English]" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.0em; padding-left: 0em">
+       <h4><a href="http://wiki.python.org/moin/Languages">Non-English Resources</a></h4>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Release%20Schedule&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com/public/basic.ics">
+                Python Release Schedule iCal Calendar
+            </a>
+        </iframe>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Events%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com/public/basic.ics">
+                Python Events iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=User%20Group%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com&amp;color=%23125A12&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com/public/basic.ics">
+                Python User Group iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+  </div>
+
+  <div id="content-body">
+    <div id="body-main">
+      <div id="content">
+        
+          <div id="breadcrumb">
+               <a href="/dev/peps/">PEP Index</a>
+               <span class="breadcrumb-separator">&gt;</span>
+            
+            PEP 457 -- Syntax For Positional-Only Parameters
+          </div>
+
+
+
+        <!--
+This HTML is auto-generated.  DO NOT EDIT THIS FILE!  If you are writing a new
+PEP, see http://www.python.org/dev/peps/pep-0001 for instructions and links
+to templates.  DO NOT USE THIS HTML FILE AS YOUR TEMPLATE!
+-->
+<table class="rfc2822 docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">PEP:</th><td class="field-body">457</td>
+</tr>
+<tr class="field"><th class="field-name">Title:</th><td class="field-body">Syntax For Positional-Only Parameters</td>
+</tr>
+<tr class="field"><th class="field-name">Version:</th><td class="field-body">1b5ccbf217af</td>
+</tr>
+<tr class="field"><th class="field-name">Last-Modified:</th><td class="field-body"><a class="reference external" href="http://hg.python.org/peps/file/tip/pep-0457.txt">2013-10-09 02:56:36 +0200 (Wed, 09 Oct 2013)</a></td>
+</tr>
+<tr class="field"><th class="field-name">Author:</th><td class="field-body">Larry Hastings &lt;larry&#32;&#97;t&#32;hastings.org&gt;</td>
+</tr>
+<tr class="field"><th class="field-name">Discussions-To:</th><td class="field-body">Python-Dev &lt;<a class="reference external" href="mailto:python-dev&#64;python.org?subject=PEP%20457">python-dev&#32;&#97;t&#32;python.org</a>&gt;</td>
+</tr>
+<tr class="field"><th class="field-name">Status:</th><td class="field-body">Draft</td>
+</tr>
+<tr class="field"><th class="field-name">Type:</th><td class="field-body">Informational</td>
+</tr>
+<tr class="field"><th class="field-name">Content-Type:</th><td class="field-body"><a class="reference external" href="/dev/peps/pep-0012">text/x-rst</a></td>
+</tr>
+<tr class="field"><th class="field-name">Created:</th><td class="field-body">08-Oct-2013</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#overview" id="id9">Overview</a></li>
+<li><a class="reference internal" href="#rationale" id="id10">Rationale</a><ul>
+<li><a class="reference internal" href="#positional-only-parameter-semantics-in-current-python" id="id11">Positional-Only Parameter Semantics In Current Python</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#motivation" id="id12">Motivation</a></li>
+<li><a class="reference internal" href="#the-current-state-of-documentation-for-positional-only-parameters" id="id13">The Current State Of Documentation For Positional-Only Parameters</a></li>
+<li><a class="reference internal" href="#syntax-and-semantics" id="id14">Syntax And Semantics</a></li>
+<li><a class="reference internal" href="#additional-limitations" id="id15">Additional Limitations</a></li>
+<li><a class="reference internal" href="#notes-for-a-future-implementor" id="id16">Notes For A Future Implementor</a></li>
+<li><a class="reference internal" href="#unresolved-questions" id="id17">Unresolved Questions</a></li>
+<li><a class="reference internal" href="#thanks" id="id18">Thanks</a></li>
+<li><a class="reference internal" href="#copyright" id="id19">Copyright</a></li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h1><a class="toc-backref" href="#id9">Overview</a></h1>
+<p>This PEP proposes a syntax for positional-only parameters in Python.
+Positional-only parameters are parameters without an externally-usable
+name; when a function accepting positional-only parameters is called,
+positional arguments are mapped to these parameters based solely on
+their position.</p>
+</div>
+<div class="section" id="rationale">
+<h1><a class="toc-backref" href="#id10">Rationale</a></h1>
+<p>Python has always supported positional-only parameters.
+Early versions of Python lacked the concept of specifying
+parameters by name, so naturally all parameters were
+positional-only.  This changed around Python 1.0, when
+all parameters suddenly became positional-or-keyword.
+But, even in current versions of Python, many CPython
+&quot;builtin&quot; functions still only accept positional-only
+arguments.</p>
+<p>Functions implemented in modern Python can accept
+an arbitrary number of positional-only arguments, via the
+variadic <tt class="docutils literal">*args</tt> parameter.  However, there is no Python
+syntax to specify accepting a specific number of
+positional-only parameters.  Put another way, there are
+many builtin functions whose signatures are simply not
+expressable with Python syntax.</p>
+<p>This PEP proposes a backwards-compatible syntax that should
+permit implementing any builtin in pure Python code.</p>
+<div class="section" id="positional-only-parameter-semantics-in-current-python">
+<h2><a class="toc-backref" href="#id11">Positional-Only Parameter Semantics In Current Python</a></h2>
+<p>There are many, many examples of builtins that only
+accept positional-only parameters.  The resulting
+semantics are easily experienced by the Python
+programmer--just try calling one, specifying its
+arguments by name:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; pow(x=5, y=3)
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+TypeError: pow() takes no keyword arguments
+</pre>
+<p>In addition, there are some functions with particularly
+interesting semantics:</p>
+<blockquote>
+<ul class="simple">
+<li><tt class="docutils literal">range()</tt>, which accepts an optional parameter
+to the <em>left</em> of its required parameter. <a class="footnote-reference" href="#range" id="id1">[2]</a></li>
+<li><tt class="docutils literal">dict()</tt>, whose mapping/iterator parameter is optional and
+semantically must be positional-only.  Any externally
+visible name for this parameter would occlude
+that name going into the <tt class="docutils literal">**kwarg</tt> keyword variadic
+parameter dict! <a class="footnote-reference" href="#dict" id="id2">[1]</a></li>
+</ul>
+</blockquote>
+<p>Obviously one can simulate any of these in pure Python code
+by accepting <tt class="docutils literal">(*args, **kwargs)</tt> and parsing the arguments
+by hand.  But this results in a disconnect between the
+Python function's signature and what it actually accepts,
+not to mention the work of implementing said argument parsing.</p>
+</div>
+</div>
+<div class="section" id="motivation">
+<h1><a class="toc-backref" href="#id12">Motivation</a></h1>
+<p>This PEP does not propose we implement positional-only
+parameters in Python.  The goal of this PEP is simply
+to define the syntax, so that:</p>
+<blockquote>
+<ul class="simple">
+<li>Documentation can clearly, unambiguously, and
+consistently express exactly how the arguments
+for a function will be interpreted.</li>
+<li>The syntax is reserved for future use, in case
+the community decides someday to add positional-only
+parameters to the language.</li>
+<li>Argument Clinic can use a variant of the syntax
+as part of its input when defining
+the arguments for built-in functions.</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="the-current-state-of-documentation-for-positional-only-parameters">
+<h1><a class="toc-backref" href="#id13">The Current State Of Documentation For Positional-Only Parameters</a></h1>
+<p>The documentation for positional-only parameters is incomplete
+and inconsistent:</p>
+<ul class="simple">
+<li>Some functions denote optional groups of positional-only arguments
+by enclosing them in nested square brackets. <a class="footnote-reference" href="#border" id="id3">[3]</a></li>
+<li>Some functions denote optional groups of positional-only arguments
+by presenting multiple prototypes with varying numbers of
+arguments. <a class="footnote-reference" href="#sendfile" id="id4">[4]</a></li>
+<li>Some functions use <em>both</em> of the above approaches. <a class="footnote-reference" href="#range" id="id5">[2]</a> <a class="footnote-reference" href="#addch" id="id6">[5]</a></li>
+</ul>
+<p>One more important idea to consider: currently in the documentation
+there's no way to tell whether a function takes positional-only
+parameters.  <tt class="docutils literal">open()</tt> accepts keyword arguments, <tt class="docutils literal">ord()</tt> does
+not, but there is no way of telling just by reading the
+documentation that this is true.</p>
+</div>
+<div class="section" id="syntax-and-semantics">
+<h1><a class="toc-backref" href="#id14">Syntax And Semantics</a></h1>
+<p>From the &quot;ten-thousand foot view&quot;, and ignoring <tt class="docutils literal">*args</tt> and <tt class="docutils literal">**kwargs</tt>
+for now, the grammar for a function definition currently looks like this:</p>
+<pre class="literal-block">
+def name(positional_or_keyword_parameters, *, keyword_only_parameters):
+</pre>
+<p>Building on that perspective, the new syntax for functions would look
+like this:</p>
+<pre class="literal-block">
+def name(positional_only_parameters, /, positional_or_keyword_parameters,
+         *, keyword_only_parameters):
+</pre>
+<p>All parameters before the <tt class="docutils literal">/</tt> are positional-only.  If <tt class="docutils literal">/</tt> is
+not specified in a function signature, that function does not
+accept any positional-only parameters.</p>
+<p>Positional-only parameters can be optional, but the mechanism is
+significantly different from positional-or-keyword or keyword-only
+parameters.  Positional-only parameters don't accept default
+values.  Instead, positional-only parameters can be specified
+in optional &quot;groups&quot;.  Groups of parameters are surrounded by
+square brackets, like so:</p>
+<pre class="literal-block">
+def addch([y, x,] ch, [attr,] /):
+</pre>
+<p>Positional-only parameters that are not in an option group are
+&quot;required&quot; positional-only parameters.  All &quot;required&quot; positional-only
+parameters must be contiguous.</p>
+<p>Parameters in an optional group accept arguments in a group; you
+must provide arguments either for all of the them or for none of them.
+Using the example of <tt class="docutils literal">addch()</tt> above, you could not call <tt class="docutils literal">addch()</tt>
+in such a way that <tt class="docutils literal">x</tt> was specified but <tt class="docutils literal">y</tt> was not (and vice versa).
+The mapping of positional parameters to optional groups is done
+based on fitting the number of parameters to groups.  Based on the
+above definition, <tt class="docutils literal">addch()</tt> would assign arguments to parameters
+in the following way:</p>
+<blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="39%" />
+<col width="61%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>Number of arguments</td>
+<td>Parameter assignment</td>
+</tr>
+<tr><td>0</td>
+<td><em>raises an exception</em></td>
+</tr>
+<tr><td>1</td>
+<td><tt class="docutils literal">ch</tt></td>
+</tr>
+<tr><td>2</td>
+<td><tt class="docutils literal">ch</tt>, <tt class="docutils literal">attr</tt></td>
+</tr>
+<tr><td>3</td>
+<td><tt class="docutils literal">y</tt>, <tt class="docutils literal">x</tt>, <tt class="docutils literal">ch</tt></td>
+</tr>
+<tr><td>4</td>
+<td><tt class="docutils literal">y</tt>, <tt class="docutils literal">x</tt>, <tt class="docutils literal">ch</tt>, <tt class="docutils literal">attr</tt></td>
+</tr>
+<tr><td>5 or more</td>
+<td><em>raises an exception</em></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p>More semantics of positional-only parameters:</p>
+<blockquote>
+<ul class="simple">
+<li>Although positional-only parameter technically have names,
+these names are internal-only; positional-only parameters
+are <em>never</em> externally addressable by name.  (Similarly
+to <tt class="docutils literal">*args</tt> and <tt class="docutils literal">**kwargs</tt>.)</li>
+<li>It's possible to nest option groups.</li>
+<li>If there are no required parameters, all option groups behave
+as if they're to the right of the required parameter group.</li>
+<li>For clarity and consistency, the comma for a parameter always
+comes immediately after the parameter name.  It's a syntax error
+to specify a square bracket between the name of a parameter and
+the following comma.  (This is far more readable than putting
+the comma outside the square bracket, particularly for nested
+groups.)</li>
+<li>If there are arguments after the <tt class="docutils literal">/</tt>, then you must specify
+a comma after the <tt class="docutils literal">/</tt>, just as there is a comma
+after the <tt class="docutils literal">*</tt> denoting the shift to keyword-only parameters.</li>
+<li>This syntax has no effect on <tt class="docutils literal">*args</tt> or <tt class="docutils literal">**kwargs</tt>.</li>
+</ul>
+</blockquote>
+<p>It's possible to specify a function prototype where the mapping
+of arguments to parameters is ambiguous.  Consider:</p>
+<pre class="literal-block">
+def range([start,] stop, [range,] /):
+</pre>
+<p>Python disambiguates these situations by preferring optional groups
+to the <em>left</em> of the required group.</p>
+</div>
+<div class="section" id="additional-limitations">
+<h1><a class="toc-backref" href="#id15">Additional Limitations</a></h1>
+<p>Argument Clinic uses a form of this syntax for specifying
+builtins.  It imposes further limitations that are
+theoretically unnecessary but make the implementation
+easier.  Specifically:</p>
+<ul>
+<li><p class="first">A function that has positional-only parameters currently
+cannot have any other kind of parameter.  (This will
+probably be relaxed slightly in the near future.)</p>
+</li>
+<li><p class="first">Multiple option groups on either side of the required
+positional-only parameters must be nested, with the
+nesting getting deeper the further away the group is
+from the required positional-parameter group.</p>
+<p>Put another way:
+all the left-brackets for option groups to the
+left of the required group must be specified contiguously,
+and
+all the right-brackets for option groups to the
+right of the required group must be specified contiguously.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="notes-for-a-future-implementor">
+<h1><a class="toc-backref" href="#id16">Notes For A Future Implementor</a></h1>
+<p>If we decide to implement positional-only parameters in a future
+version of Python, we'd have to do some additional work to preserve
+their semantics.  The problem: how do we inform a parameter that
+no value was passed in for it when the function was called?</p>
+<p>The obvious solution: add a new singleton constant to Python
+that is passed in when a parameter is not mapped to an argument.
+I propose that the value be called <tt class="docutils literal">undefined</tt>,
+and be a singleton of a special class called <tt class="docutils literal">Undefined</tt>.
+If a positional-only parameter did not receive an argument
+when called, its value would be set to <tt class="docutils literal">undefined</tt>.</p>
+<p>But this raises a further problem.  How do can we tell the
+difference between &quot;this positional-only parameter did not
+receive an argument&quot; and &quot;the caller passed in <tt class="docutils literal">undefined</tt>
+for this parameter&quot;?</p>
+<p>It'd be nice to make it illegal to pass <tt class="docutils literal">undefined</tt> in
+as an argument to a function--to, say, raise an exception.
+But that would slow Python down, and the &quot;consenting adults&quot;
+rule appears applicable here.  So making it illegal should
+probably be strongly discouraged but not outright prevented.</p>
+<p>However, it should be allowed (and encouraged) for user
+functions to specify <tt class="docutils literal">undefined</tt> as a default value for
+parameters.</p>
+</div>
+<div class="section" id="unresolved-questions">
+<h1><a class="toc-backref" href="#id17">Unresolved Questions</a></h1>
+<p>There are three types of parameters in Python:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>positional-only parameters,</li>
+<li>positional-or-keyword parameters, and</li>
+<li>keyword-only parameters.</li>
+</ol>
+</blockquote>
+<p>Python allows functions to have both 2 and 3.  And some
+builtins (e.g. range) have both 1 and 3.  Does it make
+sense to have functions that have both 1 and 2?  Or
+all of the above?</p>
+</div>
+<div class="section" id="thanks">
+<h1><a class="toc-backref" href="#id18">Thanks</a></h1>
+<p>Credit for the use of '/' as the separator between positional-only and positional-or-keyword
+parameters goes to Guido van Rossum, in a proposal from 2012. <a class="footnote-reference" href="#guido" id="id7">[6]</a></p>
+<p>Credit for making left option groups higher precedence goes to
+Nick Coghlan. (Conversation in person at PyCon US 2013.)</p>
+<table class="docutils footnote" frame="void" id="dict" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td><a class="reference external" href="http://docs.python.org/3/library/stdtypes.html#dict">http://docs.python.org/3/library/stdtypes.html#dict</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="range" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[2]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id5">2</a>)</em> <a class="reference external" href="http://docs.python.org/3/library/functions.html#func-range">http://docs.python.org/3/library/functions.html#func-range</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="border" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="http://docs.python.org/3/library/curses.html#curses.window.border">http://docs.python.org/3/library/curses.html#curses.window.border</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="sendfile" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td><a class="reference external" href="http://docs.python.org/3/library/os.html#os.sendfile">http://docs.python.org/3/library/os.html#os.sendfile</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="addch" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[5]</a></td><td><a class="reference external" href="http://docs.python.org/3/library/curses.html#curses.window.addch">http://docs.python.org/3/library/curses.html#curses.window.addch</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="guido" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[6]</a></td><td>Guido van Rossum, posting to python-ideas, March 2012:
+<a class="reference external" href="http://mail.python.org/pipermail/python-ideas/2012-March/014364.html">http://mail.python.org/pipermail/python-ideas/2012-March/014364.html</a>
+and
+<a class="reference external" href="http://mail.python.org/pipermail/python-ideas/2012-March/014378.html">http://mail.python.org/pipermail/python-ideas/2012-March/014378.html</a>
+and
+<a class="reference external" href="http://mail.python.org/pipermail/python-ideas/2012-March/014417.html">http://mail.python.org/pipermail/python-ideas/2012-March/014417.html</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="copyright">
+<h1><a class="toc-backref" href="#id19">Copyright</a></h1>
+<p>This document has been placed in the public domain.</p>
+<!-- Local Variables:
+mode: indented-text
+indent-tabs-mode: nil
+sentence-end-double-space: t
+fill-column: 70
+coding: utf-8
+End: -->
+</div>
+
+
+
+      </div>
+
+      
+      <div id="footer">
+	<div id="credits">
+ 	  <a href="/about/website">Website maintained by the Python community</a><br/>
+	  <a href="http://www.xs4all.com/" title="Web and email hosting provided by xs4all, Netherlands">hosting by xs4all</a> /
+	  <a href="http://www.timparkin.co.uk/" title="Design by Tim Parkin, Yorkshire man, photographer and developer">design by Tim Parkin</a>
+	</div>
+	Copyright &copy; 1990-2013, <a href='/psf/'>Python Software Foundation</a><br/>
+	<a href="/about/legal">Legal Statements</a>
+      </div>
+
+
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+

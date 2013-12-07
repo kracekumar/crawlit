@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Python-Dev] PEP 348 (exception reorg) revised again
+   </TITLE>
+   <LINK REL="Index" HREF="index.html" >
+   <LINK REL="made" HREF="mailto:python-dev%40python.org?Subject=%5BPython-Dev%5D%20PEP%20348%20%28exception%20reorg%29%20revised%20again&In-Reply-To=001601c5a19b%249b2abf80%24af26c797%40oemcomputer">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="055429.html">
+   <LINK REL="Next"  HREF="055425.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Python-Dev] PEP 348 (exception reorg) revised again</H1>
+    <B>Guido van Rossum</B> 
+    <A HREF="mailto:python-dev%40python.org?Subject=%5BPython-Dev%5D%20PEP%20348%20%28exception%20reorg%29%20revised%20again&In-Reply-To=001601c5a19b%249b2abf80%24af26c797%40oemcomputer"
+       TITLE="[Python-Dev] PEP 348 (exception reorg) revised again">gvanrossum at gmail.com
+       </A><BR>
+    <I>Mon Aug 15 19:08:02 CEST 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="055429.html">[Python-Dev] PEP 348 (exception reorg) revised again
+</A></li>
+        <LI>Next message: <A HREF="055425.html">[Python-Dev] PEP 348 (exception reorg) revised again
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#55423">[ date ]</a>
+              <a href="thread.html#55423">[ thread ]</a>
+              <a href="subject.html#55423">[ subject ]</a>
+              <a href="author.html#55423">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I'm with Raymond here.
+
+On 8/15/05, Raymond Hettinger &lt;<A HREF="http://mail.python.org/mailman/listinfo/python-dev">raymond.hettinger at verizon.net</A>&gt; wrote:
+&gt;<i> [Brett]
+</I>&gt;<i> &gt; This obviously goes against what Guido last said he
+</I>&gt;<i> &gt; wanted, but I hope I can convince him to get rid of bare 'except's.
+</I>&gt;<i> 
+</I>&gt;<i> -1 on eliminating bare excepts.  This unnecessarily breaks tons of code
+</I>&gt;<i> without offering ANY compensating benefits.  There are valid use cases
+</I>&gt;<i> for this construct.  It is completely Pythonic to have bare keywords
+</I>&gt;<i> apply a useful default as an aid to readability and ease of coding.
+</I>&gt;<i> 
+</I>&gt;<i> +1 on the new BaseException
+</I>&gt;<i> 
+</I>&gt;<i> +1 on moving NotImplementedError, SystemExit, and KeyboardInterrupt.
+</I>&gt;<i> 
+</I>&gt;<i> -1 on replacing &quot;except (KeyboardInterrupt, SystemExit)&quot; with &quot;except
+</I>&gt;<i> TerminatingException&quot;.  1) Grepping existing code bases shows that these
+</I>&gt;<i> two are almost never caught together so it is a bit silly to introduce a
+</I>&gt;<i> second way to do it.  2) Efforts to keep the builtin namespace compact
+</I>&gt;<i> argue against adding a new builtin that will almost never be used.  3)
+</I>&gt;<i> The change unnecessarily sacrifices flatness, making the language more
+</I>&gt;<i> difficult to learn.  4) The &quot;self-documenting&quot; rationale is weak -- if
+</I>&gt;<i> needed, a two-word comment would suffice.  Existing code almost never
+</I>&gt;<i> has had to comment on catching multiple exceptions -- the exception
+</I>&gt;<i> tuple itself has been sufficiently obvious and explicit.  This rationale
+</I>&gt;<i> assumes that code readers aren't smart enough to infer that SystemExit
+</I>&gt;<i> has something to do with termination.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Raymond
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Python-Dev mailing list
+</I>&gt;<i> <A HREF="http://mail.python.org/mailman/listinfo/python-dev">Python-Dev at python.org</A>
+</I>&gt;<i> <A HREF="http://mail.python.org/mailman/listinfo/python-dev">http://mail.python.org/mailman/listinfo/python-dev</A>
+</I>&gt;<i> Unsubscribe: <A HREF="http://mail.python.org/mailman/options/python-dev/guido%40python.org">http://mail.python.org/mailman/options/python-dev/guido%40python.org</A>
+</I>&gt;<i> 
+</I>
+
+-- 
+--Guido van Rossum (home page: <A HREF="http://www.python.org/~guido/">http://www.python.org/~guido/</A>)
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="055429.html">[Python-Dev] PEP 348 (exception reorg) revised again
+</A></li>
+	<LI>Next message: <A HREF="055425.html">[Python-Dev] PEP 348 (exception reorg) revised again
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#55423">[ date ]</a>
+              <a href="thread.html#55423">[ thread ]</a>
+              <a href="subject.html#55423">[ subject ]</a>
+              <a href="author.html#55423">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="http://mail.python.org/mailman/listinfo/python-dev">More information about the Python-Dev
+mailing list</a><br>
+</body></html>

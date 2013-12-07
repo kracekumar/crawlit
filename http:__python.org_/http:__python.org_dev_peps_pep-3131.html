@@ -1,0 +1,523 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>PEP 3131 -- Supporting Non-ASCII Identifiers</title>
+  <meta name="keywords" content="PEP 3131 -- Supporting Non-ASCII Identifiers" />
+  <meta name="description" content="PEP 3131 -- Supporting Non-ASCII Identifiers" />
+  <link rel="alternate" type="application/rss+xml" title="Community Events"
+        href="http://www.python.org/channews.rdf" />
+  <link rel="alternate" type="application/rss+xml" title="Python Recipes"
+        href="http://aspn.activestate.com/ASPN/Cookbook/Python/index_rss" />
+  <link rel="alternate" type="application/rss+xml" title="Usergroup News"
+        href="http://python-groups.blogspot.com/feeds/posts/default" />
+  <link rel="alternate" type="application/rss+xml" title="Python Screencasts"
+        href="http://www.showmedo.com/latestVideoFeed/rss2.0?tag=python" />
+  <link rel="alternate" type="application/rss+xml" title="Python Podcasts"
+        href="http://www.awaretek.com/python/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Foundation News"
+        href="http://feeds.feedburner.com/PythonSoftwareFoundationNews" />
+  <link rel="alternate" type="application/rss+xml" title="Python Enhancement Proposals"
+        href="http://www.python.org/dev/peps/peps.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Job Opportunities"
+        href="http://www.python.org/community/jobs/jobs.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Reddit Feed of Python What's New Online"
+        href="http://www.reddit.com/r/Python/.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Insider"
+        href="http://feeds.feedburner.com/PythonInsider" />
+
+  <link rel="stylesheet" type="text/css" media="screen" id="screen-switcher-stylesheet"
+        href="/styles/screen-switcher-default.css" />
+  <link rel="stylesheet" type="text/css" media="sc&#82;een"
+        href="/styles/netscape4.css" />
+  <link rel="stylesheet" type="text/css" media="print"
+        href="/styles/print.css" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/largestyles.css" title="large text" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/defaultfonts.css" title="default fonts" />
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search under the www.python.org Domain"
+        href="/search-pysite.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Wiki"
+        href="/search-pywiki.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within Python Books at Google Book Search"
+        href="/search-pybooks.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Documentation"
+        href="/search-pydocs.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for a Module in the Standard Library"
+        href="/search-pymodules.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for Packages inside the Cheeseshop (PyPI)"
+        href="/search-pycheese.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search Archives of the Main Python Mailing List"
+        href="/search-pythonlist.xml"/>
+
+  <script type="text/javascript" src="/js/iotbs2-key-directors-load.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-directors.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-core.js"></script>
+
+</head>
+
+
+<body>
+  <!-- Logo -->
+  <h1 id="logoheader">
+    <a href="/" id="logolink" accesskey="1"><img id="logo" src="/images/python-logo.gif" alt="homepage" border="0" /></a>
+  </h1>
+  <!-- Skip to Navigation -->
+  <div class="skiptonav"><a href="#left-hand-navigation" accesskey="2"><img src="/images/trans.gif" id="skiptonav" alt="skip to navigation" border="0" /></a></div>
+  <div class="skiptonav"><a href="#content-body" accesskey="3"><img src="/images/trans.gif" id="skiptocontent" alt="skip to content" border="0" /></a></div>
+  <!-- Utility Menu -->
+  <div id="utility-menu">
+    <!-- Search Box -->
+    <div id="searchbox">
+      <form method="get" action="http://google.com/search" id="searchform" name="searchform">
+        <div id="search">
+          <input type="hidden" id="domains" name="domains" value="www.python.org" />
+          <input type="hidden" id="sitesearch" name="sitesearch" value="www.python.org" />
+          <input type="hidden" id="sourceid" name="sourceid" value="google-search" />
+          <input type="text" class="input-text" name="q" id="q" />
+          <input type="submit" value="search" class="input-button" name="submit" id="submit" />
+          <a href="/search" class="reference">Advanced Search</a>
+        </div>
+      </form>
+    </div>
+    <div id="screen-switcher"></div>
+  </div>
+
+  <div id="left-hand-navigation">
+    <!-- Main Menu -->
+    <div id="menu">
+      <ul class="level-one">
+            <li>
+          <a href="/about/" title="About The Python Language">About</a>
+        </li>
+            <li>
+          <a href="/news/" title="Major Happenings Within the Python Community">News</a>
+        </li>
+            <li>
+          <a href="/doc/" title="Tutorials, Library Reference, C API">Documentation</a>
+        </li>
+            <li>
+          <a href="/download/" title="Start Running Python Under Windows, Mac, Linux and Others">Download</a>
+        </li>
+            <li>
+          <a href="/getit/" title="Alternate Download page for China">ä¸è½½</a>
+        </li>
+            <li>
+          <a href="/community/" title="Mailing Lists, Jobs, Conferences, SIGs, Online Chats">Community</a>
+        </li>
+            <li>
+          <a href="/psf/" title="Python Software Foundation">Foundation</a>
+        </li>
+            <li>
+          <a href="http://docs.python.org/devguide/" title="Development of the Python language and website">Core Development</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Quick Links -->
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/">Python Wiki</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://blog.python.org/">Python Insider Blog</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/Python2orPython3">Python 2 or 3?</a></h4>
+    <h4><a style="color:#D58228; margin-top:1.5em" href="/psf/donations/">Help Fund Python</a></h4>
+    <div style="align:center; padding-top: 0.5em; padding-left: 1em">
+      <a href="/psf/donations/"><img width="116" height="42" src="/images/donate.png" alt="" title="" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.5em; padding-left: 2.5em">
+            <a href="http://wiki.python.org/moin/Languages"><img
+	      style="align:center"
+              width="94" height="46"
+	      src="/images/worldmap.jpg" alt="[Python resources in languages other than English]" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.0em; padding-left: 0em">
+       <h4><a href="http://wiki.python.org/moin/Languages">Non-English Resources</a></h4>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Release%20Schedule&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com/public/basic.ics">
+                Python Release Schedule iCal Calendar
+            </a>
+        </iframe>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Events%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com/public/basic.ics">
+                Python Events iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=User%20Group%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com&amp;color=%23125A12&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com/public/basic.ics">
+                Python User Group iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+  </div>
+
+  <div id="content-body">
+    <div id="body-main">
+      <div id="content">
+        
+          <div id="breadcrumb">
+               <a href="/dev/peps/">PEP Index</a>
+               <span class="breadcrumb-separator">&gt;</span>
+            
+            PEP 3131 -- Supporting Non-ASCII Identifiers
+          </div>
+
+
+
+        <!--
+This HTML is auto-generated.  DO NOT EDIT THIS FILE!  If you are writing a new
+PEP, see http://www.python.org/dev/peps/pep-0001 for instructions and links
+to templates.  DO NOT USE THIS HTML FILE AS YOUR TEMPLATE!
+-->
+<table class="rfc2822 docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">PEP:</th><td class="field-body">3131</td>
+</tr>
+<tr class="field"><th class="field-name">Title:</th><td class="field-body">Supporting Non-ASCII Identifiers</td>
+</tr>
+<tr class="field"><th class="field-name">Version:</th><td class="field-body">c1c10a852b97</td>
+</tr>
+<tr class="field"><th class="field-name">Last-Modified:</th><td class="field-body"><a class="reference external" href="http://hg.python.org/peps/file/tip/pep-3131.txt">2007-08-15 07:59:57 +0000 (Wed, 15 Aug 2007)</a></td>
+</tr>
+<tr class="field"><th class="field-name">Author:</th><td class="field-body">Martin von LÃ¶wis &lt;martin&#32;&#97;t&#32;v.loewis.de&gt;</td>
+</tr>
+<tr class="field"><th class="field-name">Status:</th><td class="field-body">Final</td>
+</tr>
+<tr class="field"><th class="field-name">Type:</th><td class="field-body">Standards Track</td>
+</tr>
+<tr class="field"><th class="field-name">Content-Type:</th><td class="field-body"><a class="reference external" href="/dev/peps/pep-0012">text/x-rst</a></td>
+</tr>
+<tr class="field"><th class="field-name">Created:</th><td class="field-body">1-May-2007</td>
+</tr>
+<tr class="field"><th class="field-name">Python-Version:</th><td class="field-body">3.0</td>
+</tr>
+<tr class="field"><th class="field-name">Post-History:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#abstract" id="id13">Abstract</a></li>
+<li><a class="reference internal" href="#rationale" id="id14">Rationale</a></li>
+<li><a class="reference internal" href="#common-objections" id="id15">Common Objections</a></li>
+<li><a class="reference internal" href="#specification-of-language-changes" id="id16">Specification of Language Changes</a></li>
+<li><a class="reference internal" href="#policy-specification" id="id17">Policy Specification</a></li>
+<li><a class="reference internal" href="#implementation" id="id18">Implementation</a></li>
+<li><a class="reference internal" href="#open-issues" id="id19">Open Issues</a></li>
+<li><a class="reference internal" href="#discussion" id="id20">Discussion</a></li>
+<li><a class="reference internal" href="#references" id="id21">References</a></li>
+<li><a class="reference internal" href="#copyright" id="id22">Copyright</a></li>
+</ul>
+</div>
+<div class="section" id="abstract">
+<h1><a class="toc-backref" href="#id13">Abstract</a></h1>
+<p>This PEP suggests to support non-ASCII letters (such as accented characters,
+Cyrillic, Greek, Kanji, etc.) in Python identifiers.</p>
+</div>
+<div class="section" id="rationale">
+<h1><a class="toc-backref" href="#id14">Rationale</a></h1>
+<p>Python code is written by many people in the world who are not
+familiar with the English language, or even well-acquainted with the
+Latin writing system.  Such developers often desire to define classes
+and functions with names in their native languages, rather than having
+to come up with an (often incorrect) English translation of the
+concept they want to name. By using identifiers in their native
+language, code clarity and maintainability of the code among
+speakers of that language improves.</p>
+<p>For some languages, common transliteration systems exist (in particular, for the
+Latin-based writing systems).  For other languages, users have larger
+difficulties to use Latin to write their native words.</p>
+</div>
+<div class="section" id="common-objections">
+<h1><a class="toc-backref" href="#id15">Common Objections</a></h1>
+<p>Some objections are often raised against proposals similar to this one.</p>
+<p>People claim that they will not be able to use a library if to do so they have
+to use characters they cannot type on their keyboards.  However, it is the
+choice of the designer of the library to decide on various constraints for using
+the library: people may not be able to use the library because they cannot get
+physical access to the source code (because it is not published), or because
+licensing prohibits usage, or because the documentation is in a language they
+cannot understand.  A developer wishing to make a library widely available needs
+to make a number of explicit choices (such as publication, licensing, language
+of documentation, and language of identifiers).  It should always be the choice
+of the author to make these decisions - not the choice of the language
+designers.</p>
+<p>In particular, projects wishing to have wide usage probably might want to
+establish a policy that all identifiers, comments, and documentation is written
+in English (see the GNU coding style guide for an example of such a policy).
+Restricting the language to ASCII-only identifiers does not enforce comments and
+documentation to be English, or the identifiers actually to be English words, so
+an additional policy is necessary, anyway.</p>
+</div>
+<div class="section" id="specification-of-language-changes">
+<h1><a class="toc-backref" href="#id16">Specification of Language Changes</a></h1>
+<p>The syntax of identifiers in Python will be based on the Unicode standard annex
+UAX-31 <a class="footnote-reference" href="#id7" id="id1">[1]</a>, with elaboration and changes as defined below.</p>
+<p>Within the ASCII range (U+0001..U+007F), the valid characters for identifiers
+are the same as in Python 2.5.  This specification only introduces additional
+characters from outside the ASCII range.  For other characters, the
+classification uses the version of the Unicode Character Database as included in
+the <tt class="docutils literal">unicodedata</tt> module.</p>
+<p>The identifier syntax is <tt class="docutils literal">&lt;XID_Start&gt; &lt;XID_Continue&gt;*</tt>.</p>
+<p>The exact specification of what characters have the XID_Start or
+XID_Continue properties can be found in the DerivedCoreProperties
+file of the Unicode data in use by Python (4.1 at the time this
+PEP was written), see <a class="footnote-reference" href="#id12" id="id2">[6]</a>. For reference, the construction rules
+for these sets are given below. The XID_* properties are derived
+from ID_Start/ID_Continue, which are derived themselves.</p>
+<p><tt class="docutils literal">ID_Start</tt> is defined as all characters having one of the general
+categories uppercase letters (Lu), lowercase letters (Ll), titlecase
+letters (Lt), modifier letters (Lm), other letters (Lo), letter
+numbers (Nl), the underscore, and characters carrying the
+Other_ID_Start property. <tt class="docutils literal">XID_Start</tt> then closes this set under
+normalization, by removing all characters whose NFKC normalization
+is not of the form ID_Start ID_Continue* anymore.</p>
+<p><tt class="docutils literal">ID_Continue</tt> is defined as all characters in <tt class="docutils literal">ID_Start</tt>, plus
+nonspacing marks (Mn), spacing combining marks (Mc), decimal number
+(Nd), connector punctuations (Pc), and characters carryig the
+Other_ID_Continue property. Again, <tt class="docutils literal">XID_Continue</tt> closes this set
+under NFKC-normalization; it also adds U+00B7 to support Catalan.</p>
+<p>All identifiers are converted into the normal form NFKC while parsing;
+comparison of identifiers is based on NFKC.</p>
+<p>A non-normative HTML file listing all valid identifier characters for
+Unicode 4.1 can be found at
+<a class="reference external" href="http://www.dcl.hpi.uni-potsdam.de/home/loewis/table-3131.html">http://www.dcl.hpi.uni-potsdam.de/home/loewis/table-3131.html</a>.</p>
+</div>
+<div class="section" id="policy-specification">
+<h1><a class="toc-backref" href="#id17">Policy Specification</a></h1>
+<p>As an addition to the Python Coding style, the following policy is
+prescribed: All identifiers in the Python standard library MUST use
+ASCII-only identifiers, and SHOULD use English words wherever feasible
+(in many cases, abbreviations and technical terms are used which
+aren't English). In addition, string literals and comments must also
+be in ASCII. The only exceptions are (a) test cases testing the
+non-ASCII features, and (b) names of authors. Authors whose names are
+not based on the latin alphabet MUST provide a latin transliteration
+of their names.</p>
+<p>As an option, this specification can be applied to Python 2.x.  In
+that case, ASCII-only identifiers would continue to be represented as
+byte string objects in namespace dictionaries; identifiers with
+non-ASCII characters would be represented as Unicode strings.</p>
+</div>
+<div class="section" id="implementation">
+<h1><a class="toc-backref" href="#id18">Implementation</a></h1>
+<p>The following changes will need to be made to the parser:</p>
+<ol class="arabic simple">
+<li>If a non-ASCII character is found in the UTF-8 representation of
+the source code, a forward scan is made to find the first ASCII
+non-identifier character (e.g. a space or punctuation character)</li>
+<li>The entire UTF-8 string is passed to a function to normalize the
+string to NFKC, and then verify that it follows the identifier
+syntax. No such callout is made for pure-ASCII identifiers, which
+continue to be parsed the way they are today. The Unicode database
+must start including the Other_ID_{Start|Continue} property.</li>
+<li>If this specification is implemented for 2.x, reflective libraries
+(such as pydoc) must be verified to continue to work when Unicode
+strings appear in <tt class="docutils literal">__dict__</tt> slots as keys.</li>
+</ol>
+</div>
+<div class="section" id="open-issues">
+<h1><a class="toc-backref" href="#id19">Open Issues</a></h1>
+<p>John Nagle suggested consideration of Unicode Technical Standard #39,
+<a class="footnote-reference" href="#id8" id="id3">[2]</a>, which discusses security mechanisms for Unicode identifiers.
+It's not clear how that can precisely apply to this PEP; possible
+consequences are</p>
+<blockquote>
+<ul class="simple">
+<li>warn about characters listed as &quot;restricted&quot; in xidmodifications.txt</li>
+<li>warn about identifiers using mixed scripts</li>
+<li>somehow perform Confusable Detection</li>
+</ul>
+</blockquote>
+<p>In the latter two approaches, it's not clear how precisely the
+algorithm should work. For mixed scripts, certain kinds of mixing
+should probably allowed - are these the &quot;Common&quot; and &quot;Inherited&quot;
+scripts mentioned in section 5? For Confusable Detection, it seems one
+needs two identifiers to compare them for confusion - is it possible
+to somehow apply it to a single identifier only, and warn?</p>
+<p>In follow-up discussion, it turns out that John Nagle actually
+meant to suggest UTR#36, level &quot;Highly Restrictive&quot;, <a class="footnote-reference" href="#id9" id="id4">[3]</a>.</p>
+<p>Several people suggested to allow and ignore formatting control
+characters (general category Cf), as is done in Java, JavaScript, and
+C#. It's not clear whether this would improve things (it might
+for RTL languages); if there is a need, these can be added
+later.</p>
+<p>Some people would like to see an option on selecting support
+for this PEP at run-time; opinions vary on what precisely
+that option should be, and what precisely its default value
+should be. Guido van Rossum commented in <a class="footnote-reference" href="#id11" id="id5">[5]</a> that a global
+flag passed to the interpreter is not acceptable, as it would
+apply to all modules.</p>
+</div>
+<div class="section" id="discussion">
+<h1><a class="toc-backref" href="#id20">Discussion</a></h1>
+<p>Ka-Ping Yee summarizes discussion and further objection
+in <a class="footnote-reference" href="#id10" id="id6">[4]</a> as such:</p>
+<ol class="upperalpha">
+<li><p class="first">Should identifiers be allowed to contain any Unicode letter?</p>
+<p>Drawbacks of allowing non-ASCII identifiers wholesale:</p>
+<ol class="arabic simple">
+<li>Python will lose the ability to make a reliable round trip to
+a human-readable display on screen or on paper.</li>
+<li>Python will become vulnerable to a new class of security exploits;
+code and submitted patches will be much harder to inspect.</li>
+<li>Humans will no longer be able to validate Python syntax.</li>
+<li>Unicode is young; its problems are not yet well understood and
+solved; tool support is weak.</li>
+<li>Languages with non-ASCII identifiers use different character sets
+and normalization schemes; <a class="reference external" href="/dev/peps/pep-3131">PEP 3131</a>'s choices are non-obvious.</li>
+<li>The Unicode bidi algorithm yields an extremely confusing display
+order for RTL text when digits or operators are nearby.</li>
+</ol>
+</li>
+<li><p class="first">Should the default behaviour accept only ASCII identifiers, or
+should it accept identifiers containing non-ASCII characters?</p>
+<p>Arguments for ASCII only by default:</p>
+<ol class="arabic simple">
+<li>Non-ASCII identifiers by default makes common practice/assumptions
+subtly/unknowingly wrong; rarely wrong is worse than obviously wrong.</li>
+<li>Better to raise a warning than to fail silently when encountering
+an probably unexpected situation.</li>
+<li>All of current usage is ASCII-only; the vast majority of future
+usage will be ASCII-only.</li>
+</ol>
+<ol class="arabic simple" start="3">
+<li>It is the pockets of Unicode adoption that are parochial, not the
+ASCII advocates.</li>
+<li>Python should audit for ASCII-only identifiers for the same
+reasons that it audits for tab-space consistency</li>
+<li>Incremental change is safer.</li>
+<li>An ASCII-only default favors open-source development and sharing
+of source code.</li>
+<li>Existing projects won't have to waste any brainpower worrying
+about the implications of Unicode identifiers.</li>
+</ol>
+</li>
+<li><p class="first">Should non-ASCII identifiers be optional?</p>
+<p>Various voices in support of a flag (although there's been debate
+over which should be the default, no one seems to be saying that
+there shouldn't be an off switch)</p>
+</li>
+<li><p class="first">Should the identifier character set be configurable?</p>
+<p>Various voices proposing and supporting a selectable character set,
+so that users can get all the benefits of using their own language
+without the drawbacks of confusable/unfamiliar characters</p>
+</li>
+<li><p class="first">Which identifier characters should be allowed?</p>
+<ol class="arabic simple">
+<li>What to do about bidi format control characters?</li>
+<li>What about other ID_Continue characters?  What about characters
+that look like punctuation?  What about other recommendations
+in UTS #39?  What about mixed-script identifiers?</li>
+</ol>
+</li>
+<li><p class="first">Which normalization form should be used, NFC or NFKC?</p>
+</li>
+<li><p class="first">Should source code be required to be in normalized form?</p>
+</li>
+</ol>
+</div>
+<div class="section" id="references">
+<h1><a class="toc-backref" href="#id21">References</a></h1>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://www.unicode.org/reports/tr31/">http://www.unicode.org/reports/tr31/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td><a class="reference external" href="http://www.unicode.org/reports/tr39/">http://www.unicode.org/reports/tr39/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[3]</a></td><td><a class="reference external" href="http://www.unicode.org/reports/tr36/">http://www.unicode.org/reports/tr36/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[4]</a></td><td><a class="reference external" href="http://mail.python.org/pipermail/python-3000/2007-June/008161.html">http://mail.python.org/pipermail/python-3000/2007-June/008161.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id11" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[5]</a></td><td><a class="reference external" href="http://mail.python.org/pipermail/python-3000/2007-May/007925.html">http://mail.python.org/pipermail/python-3000/2007-May/007925.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id12" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[6]</a></td><td><a class="reference external" href="http://www.unicode.org/Public/4.1.0/ucd/DerivedCoreProperties.txt">http://www.unicode.org/Public/4.1.0/ucd/DerivedCoreProperties.txt</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="copyright">
+<h1><a class="toc-backref" href="#id22">Copyright</a></h1>
+<p>This document has been placed in the public domain.</p>
+<!-- Local Variables:
+mode: indented-text
+indent-tabs-mode: nil
+sentence-end-double-space: t
+fill-column: 70
+coding: utf-8
+End: -->
+</div>
+
+
+
+      </div>
+
+      
+      <div id="footer">
+	<div id="credits">
+ 	  <a href="/about/website">Website maintained by the Python community</a><br/>
+	  <a href="http://www.xs4all.com/" title="Web and email hosting provided by xs4all, Netherlands">hosting by xs4all</a> /
+	  <a href="http://www.timparkin.co.uk/" title="Design by Tim Parkin, Yorkshire man, photographer and developer">design by Tim Parkin</a>
+	</div>
+	Copyright &copy; 1990-2013, <a href='/psf/'>Python Software Foundation</a><br/>
+	<a href="/about/legal">Legal Statements</a>
+      </div>
+
+
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+

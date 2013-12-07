@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Python-ideas] statistics.sum [was Re: Pre-PEP: adding a statistics module to Python]
+   </TITLE>
+   <LINK REL="Index" HREF="index.html" >
+   <LINK REL="made" HREF="mailto:python-ideas%40python.org?Subject=Re%3A%20%5BPython-ideas%5D%20statistics.sum%20%5Bwas%20Re%3A%20Pre-PEP%3A%20adding%20a%20statistics%0A%20module%20to%20Python%5D&In-Reply-To=%3C52000541.6040000%40pearwood.info%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="022669.html">
+   <LINK REL="Next"  HREF="022631.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Python-ideas] statistics.sum [was Re: Pre-PEP: adding a statistics module to Python]</H1>
+    <B>Steven D'Aprano</B> 
+    <A HREF="mailto:python-ideas%40python.org?Subject=Re%3A%20%5BPython-ideas%5D%20statistics.sum%20%5Bwas%20Re%3A%20Pre-PEP%3A%20adding%20a%20statistics%0A%20module%20to%20Python%5D&In-Reply-To=%3C52000541.6040000%40pearwood.info%3E"
+       TITLE="[Python-ideas] statistics.sum [was Re: Pre-PEP: adding a statistics module to Python]">steve at pearwood.info
+       </A><BR>
+    <I>Mon Aug  5 22:04:17 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="022669.html">[Python-ideas] Pre-PEP: adding a statistics module to Python
+</A></li>
+        <LI>Next message: <A HREF="022631.html">[Python-ideas] statistics.sum [was Re: Pre-PEP: adding a statistics module to Python]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#22630">[ date ]</a>
+              <a href="thread.html#22630">[ thread ]</a>
+              <a href="subject.html#22630">[ subject ]</a>
+              <a href="author.html#22630">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 03/08/13 03:45, Steven D'Aprano wrote:
+&gt;<i> I have raised an issue on the tracker to add a statistics module to Python's standard library:
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://bugs.python.org/issue18606">http://bugs.python.org/issue18606</A>
+</I>
+
+Thanks to everyone who has given feedback, it has been very humbling and informative. I have a revised proto-PEP just about ready for (hopefully final) feedback, but before I do there is one potentially major stumbling block: whether or not the statistics module should have it's own version of sum.
+
+
+Against the idea
+----------------
+
+
+* One Obvious Way / Only One Way -- there are already two ways to calculate a sum (builtins.sum and math.fsum), no need for a third.
+
+* Even if there is a need, we should aim to fix the problems with the existing sum functions rather than add a third.
+
+* Even if we can't, don't call it &quot;sum&quot;, call it something else. &quot;precise_sum&quot; was the only suggestion given so far.
+
+(If I have missed any objections, I apologize.)
+
+
+
+In favour
+---------
+
+* Speaking as the module author, it is my considered opinion that I cannot (easily, or at all) get the behaviour I expect from the statistics module using the existing sum functions without a lot of pain. See below.
+
+* For backward compatibility, I don't think we can change the existing sum functions. E.g.:
+
+   - built-in sum accepts non-numeric values if they support
+     the + operator, that won't change before Python 4000;
+
+   - built-in sum can be inaccurate with floats;
+
+   - math.fsum coerces everything to float.
+
+* Even if we could change one of the existing sum functions (math.fsum is probably the better candidate) I personally don't know enough C to do so. Either somebody else steps up and volunteers, or any such change is deferred indefinitely.
+
+
+Now that Decimal has an accelerated C version in CPython, it is more important that ever before to treat it (and Fraction) as first-class numeric types, and avoid coercing them to float unless necessary. So I consider it a Must Have that stats functions support Decimal and Fraction data without unnecessarily converting them to floats. This rules out fsum:
+
+py&gt; from decimal import Decimal as D
+py&gt; data = [D(&quot;0.1&quot;), D(&quot;0.3&quot;)]
+py&gt; math.fsum(data)
+0.4
+py&gt; statistics.sum(data)
+Decimal('0.4')
+
+
+On the other hand, the built-in sum is demonstrably inaccurate with floats, which is why fsum exists in the first place:
+
+py&gt; data = [1e100, 1, -1e100, 1]
+py&gt; sum(data)
+1.0
+py&gt; math.fsum(data)
+2.0
+py&gt; statistics.sum(data)
+2.0
+
+
+Consequently the statistics module includes its own version of sum. Never mind the implementation, that may change in the future. Regardless of the implementation, the interface of statistics.sum is distinct from both of the existing sum functions. There are three versions of sum because they each do different things.
+
+Currently, I can do this, both internally within other functions such as mean, and externally, when I just want a total:
+
+total = statistics.sum(data)
+
+and get the right result regardless of the numeric type of data[1]. Without it, I have to do something like this:
+
+# Make sure data is a list, and not an iterator.
+if any(isinstance(x, float) for x in data):
+     total = math.fsum(data)
+else:
+     total = sum(data)
+
+
+Are there still objections to making statistics.sum public? If the only way to move forward is to make it a private implementation detail, I will do so, but I really think that I have built a better sum and hope to keep it as a public function.
+
+Show of hands please, +1 or -1 on statistics.sum.
+
+
+
+
+[1] Well, not complex numbers.
+
+-- 
+Steven
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="022669.html">[Python-ideas] Pre-PEP: adding a statistics module to Python
+</A></li>
+	<LI>Next message: <A HREF="022631.html">[Python-ideas] statistics.sum [was Re: Pre-PEP: adding a statistics module to Python]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#22630">[ date ]</a>
+              <a href="thread.html#22630">[ thread ]</a>
+              <a href="subject.html#22630">[ subject ]</a>
+              <a href="author.html#22630">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="http://mail.python.org/mailman/listinfo/python-ideas">More information about the Python-ideas
+mailing list</a><br>
+</body></html>

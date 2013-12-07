@@ -1,0 +1,267 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Python-Dev] IO module precisions and exception hierarchy
+   </TITLE>
+   <LINK REL="Index" HREF="index.html" >
+   <LINK REL="made" HREF="mailto:python-dev%40python.org?Subject=Re%3A%20%5BPython-Dev%5D%20IO%20module%20precisions%20and%20exception%20hierarchy&In-Reply-To=%3C4ABF2047.7050501%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="092128.html">
+   <LINK REL="Next"  HREF="092132.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Python-Dev] IO module precisions and exception hierarchy</H1>
+    <B>Pascal Chambon</B> 
+    <A HREF="mailto:python-dev%40python.org?Subject=Re%3A%20%5BPython-Dev%5D%20IO%20module%20precisions%20and%20exception%20hierarchy&In-Reply-To=%3C4ABF2047.7050501%40gmail.com%3E"
+       TITLE="[Python-Dev] IO module precisions and exception hierarchy">chambon.pascal at gmail.com
+       </A><BR>
+    <I>Sun Sep 27 10:20:23 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="092128.html">[Python-Dev] Python build question (fixing pymath.c).
+</A></li>
+        <LI>Next message: <A HREF="092132.html">[Python-Dev] IO module precisions and exception hierarchy
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#92130">[ date ]</a>
+              <a href="thread.html#92130">[ thread ]</a>
+              <a href="subject.html#92130">[ subject ]</a>
+              <a href="author.html#92130">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Found in current io PEP :
+Q: Do we want to mandate in the specification that switching between 
+reading and writing on a read-write object implies a .flush()? Or is 
+that an implementation convenience that users should not rely on?
+-&gt; it seems that the only important matter is : file pointer positions 
+and bytes/characters read should always be the ones that the user 
+expects, as if there
+were no buffering. So flushing or not may stay a non-mandatory 
+behaviour, as long as the buffered streams ensures this data integrity.
+Eg. If a user opens a file in r/w mode, writes two bytes in it (which 
+stay buffered), and then reads 2 bytes, the two bytes read should be 
+those on range [2:4] of course, even though the file pointer would, due 
+to python buffering, still be at index 0.
+
+
+Q from me : What happens in read/write text files, when overwriting a 
+three-bytes character with a single-byte character ? Or at the contrary, 
+when a single chinese character overrides 3 ASCII characters in an UTF8 
+file ? Is there any system designed to avoid this data corruption ? Or 
+should TextIO classes forbid read+write streams ?
+
+
+IO Exceptions :
+Currently, the situation is kind of fuzzy around EnvironmentError 
+subclasses.
+* OSError represents errors notified by the OS via errno.h error codes 
+(as mirrored in the python &quot;errno&quot; module).
+errno.h errors (less than 125 error codes) seem to represent the whole 
+of *nix system errors. However, Windows has many more system errors 
+(15000+). So windows errors, when they can't be mapped to one of the 
+errno errors are raises as &quot;WindowsError&quot; instances (a subclass of 
+OSError), with the special attribute &quot;winerror&quot; indicating that win32 
+error code.
+* IOError are &quot;errors raised because of I/O problems&quot;, but they use 
+errno codes, like OSError.
+
+Thus, at the moment IOErrors rather have the semantic of &quot;particular 
+case of OSError&quot;, and it's kind of confusing to have them remain in 
+their own separate tree... Furthermore, OSErrors are often used where 
+IOErrors would perfectly fit, eg. in low level I/O functions of the OS 
+module.
+Since OSErrors and IOErrors are slightly mixed up when we deal with IO 
+operations, maybe the easiest way to make it clearer would be to push to 
+their limits already existing designs.
+
+- the os module should only raise OSErrors, whatever the os operation 
+involved (maybe it's already the case in CPython, isn't it ?)
+- the io module should only raise IOErrors and its subclasses, so that 
+davs can easily take measures depending on the cause of the io failure 
+(except 1 OSError exception, it's already the case in _fileio)
+- other modules refering to i/o might maybe keep their current (fuzzy) 
+behaviour, since they're more platform specific, and should in the end 
+be replaced by a crossplatform solution (at least I'd love it to happen)
+
+Until there, there would be no real benefits for the user, compared to 
+catching EnvironmentErrors as most probably do. But the sweet thing 
+would be to offer a concise but meaningfull IOError hierarchy, so that 
+we can easily handle most specific errors gracefully (having a disk full 
+is not the same level of gravity as simply having another process 
+locking your target file).
+
+Here is a very rough beginning of IOError hierarchy. I'd liek to have 
+people's opinion on the relevance of these, as well as on what other 
+exceptions should be distinguished from basic IOErrors.
+
+IOError
+  +-InvalidStreamError  (eg. we try to write on a stream opened in 
+readonly mode)
+  +-LockingError
+  +-PermissionError (mostly *nix chmod stuffs)
+  +-FileNotFoundError
+  +-DiskFullError
+  +-MaxFileSizeError (maybe hard to implement, happens when we exceed 
+4Gb on fat32 and stuffs...)
+  +-InvalidFileNameError (filepath max lengths, or &quot;? / : &quot; characters 
+in a windows file name...)
+
+Regards,
+Pascal
+
+
+
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="092128.html">[Python-Dev] Python build question (fixing pymath.c).
+</A></li>
+	<LI>Next message: <A HREF="092132.html">[Python-Dev] IO module precisions and exception hierarchy
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#92130">[ date ]</a>
+              <a href="thread.html#92130">[ thread ]</a>
+              <a href="subject.html#92130">[ subject ]</a>
+              <a href="author.html#92130">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="http://mail.python.org/mailman/listinfo/python-dev">More information about the Python-Dev
+mailing list</a><br>
+</body></html>

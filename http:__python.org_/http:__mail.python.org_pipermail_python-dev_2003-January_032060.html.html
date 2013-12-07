@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Python-Dev] Parallel pyc construction
+   </TITLE>
+   <LINK REL="Index" HREF="index.html" >
+   <LINK REL="made" HREF="mailto:paul%40pfdubois.com">
+   <META NAME="robots" CONTENT="index,nofollow">
+   
+   <LINK REL="Previous"  HREF="032086.html">
+   <LINK REL="Next"  HREF="032062.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Python-Dev] Parallel pyc construction
+   </H1>
+    <B>Paul F Dubois
+    </B> 
+    <A HREF="mailto:paul%40pfdubois.com"
+       TITLE="[Python-Dev] Parallel pyc construction">paul@pfdubois.com
+       </A><BR>
+    <I>Fri, 10 Jan 2003 09:43:19 -0800</I>
+    <P><UL>
+        <LI> Previous message: <A HREF="032086.html">[Python-Dev] [ann] Minimal Python project
+</A></li>
+        <LI> Next message: <A HREF="032062.html">[Python-Dev] Parallel pyc construction
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#32060">[ date ]</a>
+              <a href="thread.html#32060">[ thread ]</a>
+              <a href="subject.html#32060">[ subject ]</a>
+              <a href="author.html#32060">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On a 384 processor job we have once again encountered that old question =
+of
+corrupted .pyc files, sometimes resulting in an error, sometimes in a =
+silent
+wrong behavior later. I know this was allegedly fixed previously but it
+looks like it doesn't really work. We lost a couple of weeks work this =
+time.
+
+Didn't we talk about an option to not make pyc files? I can't seem to =
+find
+it. (We totally don't care about the cost of imports. The documentation
+mentions &quot;ihooks&quot; but not the module itself. I know that importing has =
+been
+an area of create turmoil so I don't really know where to look.) I =
+couldn't
+even find the list of command-line options for Python itself except a
+mention of -c in the tutorial. Any pointers would be appreciated.
+
+
+
+</PRE>
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI> Previous message: <A HREF="032086.html">[Python-Dev] [ann] Minimal Python project
+</A></li>
+	<LI> Next message: <A HREF="032062.html">[Python-Dev] Parallel pyc construction
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#32060">[ date ]</a>
+              <a href="thread.html#32060">[ thread ]</a>
+              <a href="subject.html#32060">[ subject ]</a>
+              <a href="author.html#32060">[ author ]</a>
+         </LI>
+       </UL>
+</body></html>

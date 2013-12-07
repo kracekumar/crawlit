@@ -1,0 +1,433 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>PEP 292 -- Simpler String Substitutions</title>
+  <meta name="keywords" content="PEP 292 -- Simpler String Substitutions" />
+  <meta name="description" content="PEP 292 -- Simpler String Substitutions" />
+  <link rel="alternate" type="application/rss+xml" title="Community Events"
+        href="http://www.python.org/channews.rdf" />
+  <link rel="alternate" type="application/rss+xml" title="Python Recipes"
+        href="http://aspn.activestate.com/ASPN/Cookbook/Python/index_rss" />
+  <link rel="alternate" type="application/rss+xml" title="Usergroup News"
+        href="http://python-groups.blogspot.com/feeds/posts/default" />
+  <link rel="alternate" type="application/rss+xml" title="Python Screencasts"
+        href="http://www.showmedo.com/latestVideoFeed/rss2.0?tag=python" />
+  <link rel="alternate" type="application/rss+xml" title="Python Podcasts"
+        href="http://www.awaretek.com/python/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Foundation News"
+        href="http://feeds.feedburner.com/PythonSoftwareFoundationNews" />
+  <link rel="alternate" type="application/rss+xml" title="Python Enhancement Proposals"
+        href="http://www.python.org/dev/peps/peps.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Job Opportunities"
+        href="http://www.python.org/community/jobs/jobs.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Reddit Feed of Python What's New Online"
+        href="http://www.reddit.com/r/Python/.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Insider"
+        href="http://feeds.feedburner.com/PythonInsider" />
+
+  <link rel="stylesheet" type="text/css" media="screen" id="screen-switcher-stylesheet"
+        href="/styles/screen-switcher-default.css" />
+  <link rel="stylesheet" type="text/css" media="sc&#82;een"
+        href="/styles/netscape4.css" />
+  <link rel="stylesheet" type="text/css" media="print"
+        href="/styles/print.css" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/largestyles.css" title="large text" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/defaultfonts.css" title="default fonts" />
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search under the www.python.org Domain"
+        href="/search-pysite.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Wiki"
+        href="/search-pywiki.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within Python Books at Google Book Search"
+        href="/search-pybooks.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Documentation"
+        href="/search-pydocs.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for a Module in the Standard Library"
+        href="/search-pymodules.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for Packages inside the Cheeseshop (PyPI)"
+        href="/search-pycheese.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search Archives of the Main Python Mailing List"
+        href="/search-pythonlist.xml"/>
+
+  <script type="text/javascript" src="/js/iotbs2-key-directors-load.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-directors.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-core.js"></script>
+
+</head>
+
+
+<body>
+  <!-- Logo -->
+  <h1 id="logoheader">
+    <a href="/" id="logolink" accesskey="1"><img id="logo" src="/images/python-logo.gif" alt="homepage" border="0" /></a>
+  </h1>
+  <!-- Skip to Navigation -->
+  <div class="skiptonav"><a href="#left-hand-navigation" accesskey="2"><img src="/images/trans.gif" id="skiptonav" alt="skip to navigation" border="0" /></a></div>
+  <div class="skiptonav"><a href="#content-body" accesskey="3"><img src="/images/trans.gif" id="skiptocontent" alt="skip to content" border="0" /></a></div>
+  <!-- Utility Menu -->
+  <div id="utility-menu">
+    <!-- Search Box -->
+    <div id="searchbox">
+      <form method="get" action="http://google.com/search" id="searchform" name="searchform">
+        <div id="search">
+          <input type="hidden" id="domains" name="domains" value="www.python.org" />
+          <input type="hidden" id="sitesearch" name="sitesearch" value="www.python.org" />
+          <input type="hidden" id="sourceid" name="sourceid" value="google-search" />
+          <input type="text" class="input-text" name="q" id="q" />
+          <input type="submit" value="search" class="input-button" name="submit" id="submit" />
+          <a href="/search" class="reference">Advanced Search</a>
+        </div>
+      </form>
+    </div>
+    <div id="screen-switcher"></div>
+  </div>
+
+  <div id="left-hand-navigation">
+    <!-- Main Menu -->
+    <div id="menu">
+      <ul class="level-one">
+            <li>
+          <a href="/about/" title="About The Python Language">About</a>
+        </li>
+            <li>
+          <a href="/news/" title="Major Happenings Within the Python Community">News</a>
+        </li>
+            <li>
+          <a href="/doc/" title="Tutorials, Library Reference, C API">Documentation</a>
+        </li>
+            <li>
+          <a href="/download/" title="Start Running Python Under Windows, Mac, Linux and Others">Download</a>
+        </li>
+            <li>
+          <a href="/getit/" title="Alternate Download page for China">ä¸è½½</a>
+        </li>
+            <li>
+          <a href="/community/" title="Mailing Lists, Jobs, Conferences, SIGs, Online Chats">Community</a>
+        </li>
+            <li>
+          <a href="/psf/" title="Python Software Foundation">Foundation</a>
+        </li>
+            <li>
+          <a href="http://docs.python.org/devguide/" title="Development of the Python language and website">Core Development</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Quick Links -->
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/">Python Wiki</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://blog.python.org/">Python Insider Blog</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/Python2orPython3">Python 2 or 3?</a></h4>
+    <h4><a style="color:#D58228; margin-top:1.5em" href="/psf/donations/">Help Fund Python</a></h4>
+    <div style="align:center; padding-top: 0.5em; padding-left: 1em">
+      <a href="/psf/donations/"><img width="116" height="42" src="/images/donate.png" alt="" title="" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.5em; padding-left: 2.5em">
+            <a href="http://wiki.python.org/moin/Languages"><img
+	      style="align:center"
+              width="94" height="46"
+	      src="/images/worldmap.jpg" alt="[Python resources in languages other than English]" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.0em; padding-left: 0em">
+       <h4><a href="http://wiki.python.org/moin/Languages">Non-English Resources</a></h4>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Release%20Schedule&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com/public/basic.ics">
+                Python Release Schedule iCal Calendar
+            </a>
+        </iframe>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Events%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com/public/basic.ics">
+                Python Events iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=User%20Group%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com&amp;color=%23125A12&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com/public/basic.ics">
+                Python User Group iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+  </div>
+
+  <div id="content-body">
+    <div id="body-main">
+      <div id="content">
+        
+          <div id="breadcrumb">
+               <a href="/dev/peps/">PEP Index</a>
+               <span class="breadcrumb-separator">&gt;</span>
+            
+            PEP 292 -- Simpler String Substitutions
+          </div>
+
+
+
+        <!--
+This HTML is auto-generated.  DO NOT EDIT THIS FILE!  If you are writing a new
+PEP, see http://www.python.org/dev/peps/pep-0001 for instructions and links
+to templates.  DO NOT USE THIS HTML FILE AS YOUR TEMPLATE!
+-->
+<div class="header">
+<table border="0" class="rfc2822">
+  <tr><th class="field-name">PEP:&nbsp;</th><td>292</td></tr>
+  <tr><th class="field-name">Title:&nbsp;</th><td>Simpler String Substitutions</td></tr>
+  <tr><th class="field-name">Version:&nbsp;</th><td>b58467baacaa</td></tr>
+  <tr><th class="field-name">Last-Modified:&nbsp;</th><td><a href="http://hg.python.org/peps/file/tip/pep-0292.txt"> 2008-10-02 12:51:05 +0000 (Thu, 02 Oct 2008)</a> </td></tr>
+  <tr><th class="field-name">Author:&nbsp;</th><td>Barry Warsaw &lt;barry&#32;&#97;t&#32;python.org&gt;</td></tr>
+  <tr><th class="field-name">Status:&nbsp;</th><td>Final</td></tr>
+  <tr><th class="field-name">Type:&nbsp;</th><td>Standards Track</td></tr>
+  <tr><th class="field-name">Created:&nbsp;</th><td>18-Jun-2002</td></tr>
+  <tr><th class="field-name">Python-Version:&nbsp;</th><td>2.4</td></tr>
+  <tr><th class="field-name">Post-History:&nbsp;</th><td>18-Jun-2002, 23-Mar-2004, 22-Aug-2004</td></tr>
+</table>
+</div>
+<h3>Abstract</h3>
+<pre>
+    This PEP describes a simpler string substitution feature, also
+    known as string interpolation.  This PEP is "simpler" in two
+    respects:
+
+    1. Python's current string substitution feature
+       (i.e. %-substitution) is complicated and error prone.  This PEP
+       is simpler at the cost of some expressiveness.
+
+    2. <a href="/dev/peps/pep-0215">PEP 215</a> proposed an alternative string interpolation feature,
+       introducing a new `$' string prefix.  <a href="/dev/peps/pep-0292">PEP 292</a> is simpler than
+       this because it involves no syntax changes and has much simpler
+       rules for what substitutions can occur in the string.
+
+
+</pre>
+<h3>Rationale</h3>
+<pre>
+    Python currently supports a string substitution syntax based on
+    C's printf() '%' formatting character[1].  While quite rich,
+    %-formatting codes are also error prone, even for
+    experienced Python programmers.  A common mistake is to leave off
+    the trailing format character, e.g. the `s' in "%(name)s".
+
+    In addition, the rules for what can follow a % sign are fairly
+    complex, while the usual application rarely needs such complexity.
+    Most scripts need to do some string interpolation, but most of
+    those use simple `stringification' formats, i.e. %s or %(name)s
+    This form should be made simpler and less error prone.
+
+
+</pre>
+<h3>A Simpler Proposal</h3>
+<pre>
+    We propose the addition of a new class, called 'Template', which
+    will live in the string module.  The Template class supports new
+    rules for string substitution; its value contains placeholders,
+    introduced with the $ character.  The following rules for
+    $-placeholders apply:
+
+    1. $$ is an escape; it is replaced with a single $
+
+    2. $identifier names a substitution placeholder matching a mapping
+       key of "identifier".  By default, "identifier" must spell a
+       Python identifier as defined in [2].  The first non-identifier
+       character after the $ character terminates this placeholder
+       specification.
+
+    3. ${identifier} is equivalent to $identifier.  It is required
+       when valid identifier characters follow the placeholder but are
+       not part of the placeholder, e.g. "${noun}ification".
+
+    If the $ character appears at the end of the line, or is followed
+    by any other character than those described above, a ValueError
+    will be raised at interpolation time.  Values in mapping are
+    converted automatically to strings.
+
+    No other characters have special meaning, however it is possible
+    to derive from the Template class to define different substitution
+    rules.  For example, a derived class could allow for periods in
+    the placeholder (e.g. to support a kind of dynamic namespace and
+    attribute path lookup), or could define a delimiter character
+    other than '$'.
+
+    Once the Template has been created, substitutions can be performed
+    by calling one of two methods:
+
+    - substitute().  This method returns a new string which results
+      when the values of a mapping are substituted for the
+      placeholders in the Template.  If there are placeholders which
+      are not present in the mapping, a KeyError will be raised.
+
+    - safe_substitute().  This is similar to the substitute() method,
+      except that KeyErrors are never raised (due to placeholders
+      missing from the mapping).  When a placeholder is missing, the
+      original placeholder will appear in the resulting string.
+
+   Here are some examples:
+
+        &gt;&gt;&gt; from string import Template
+        &gt;&gt;&gt; s = Template('${name} was born in ${country}')
+        &gt;&gt;&gt; print s.substitute(name='Guido', country='the Netherlands')
+        Guido was born in the Netherlands
+        &gt;&gt;&gt; print s.substitute(name='Guido')
+        Traceback (most recent call last):
+        [...]
+        KeyError: 'country'
+        &gt;&gt;&gt; print s.safe_substitute(name='Guido')
+        Guido was born in ${country}
+
+    The signature of substitute() and safe_substitute() allows for
+    passing the mapping of placeholders to values, either as a single
+    dictionary-like object in the first positional argument, or as
+    keyword arguments as shown above.  The exact details and
+    signatures of these two methods is reserved for the standard
+    library documentation.
+
+
+</pre>
+<h3>Why `$' and Braces?</h3>
+<pre>
+    The BDFL said it best[4]: "The $ means "substitution" in so many
+    languages besides Perl that I wonder where you've been. [...]
+    We're copying this from the shell."
+
+    Thus the substitution rules are chosen because of the similarity
+    with so many other languages.  This makes the substitution rules
+    easier to teach, learn, and remember.
+
+
+</pre>
+<h3>Comparison to PEP 215</h3>
+<pre>
+    <a href="/dev/peps/pep-0215">PEP 215</a> describes an alternate proposal for string interpolation.
+    Unlike that PEP, this one does not propose any new syntax for
+    Python.  All the proposed new features are embodied in a new
+    library module.  <a href="/dev/peps/pep-0215">PEP 215</a> proposes a new string prefix
+    representation such as $"" which signal to Python that a new type
+    of string is present.  $-strings would have to interact with the
+    existing r-prefixes and u-prefixes, essentially doubling the
+    number of string prefix combinations.
+
+    <a href="/dev/peps/pep-0215">PEP 215</a> also allows for arbitrary Python expressions inside the
+    $-strings, so that you could do things like:
+
+        import sys
+        print $"sys = $sys, sys = $sys.modules['sys']"
+
+    which would return
+
+        sys = &lt;module 'sys' (built-in)&gt;, sys = &lt;module 'sys' (built-in)&gt;
+
+    It's generally accepted that the rules in <a href="/dev/peps/pep-0215">PEP 215</a> are safe in the
+    sense that they introduce no new security issues (see <a href="/dev/peps/pep-0215">PEP 215</a>,
+    "Security Issues" for details).  However, the rules are still
+    quite complex, and make it more difficult to see the substitution
+    placeholder in the original $-string.
+
+    The interesting thing is that the Template class defined in this
+    PEP is designed for inheritance and, with a little extra work,
+    it's possible to support <a href="/dev/peps/pep-0215">PEP 215</a>'s functionality using existing
+    Python syntax.
+
+    For example, one could define subclasses of Template and dict that
+    allowed for a more complex placeholder syntax and a mapping that
+    evaluated those placeholders.
+
+
+</pre>
+<h3>Internationalization</h3>
+<pre>
+    The implementation supports internationalization by recording the
+    original template string in the Template instance's 'template'
+    attribute.  This attribute would serve as the lookup key in an
+    gettext-based catalog.  It is up to the application to turn the
+    resulting string back into a Template for substitution.
+
+    However, the Template class was designed to work more intuitively
+    in an internationalized application, by supporting the mixing-in
+    of Template and unicode subclasses.  Thus an internationalized
+    application could create an application-specific subclass,
+    multiply inheriting from Template and unicode, and using instances
+    of that subclass as the gettext catalog key.  Further, the
+    subclass could alias the special __mod__() method to either
+    .substitute() or .safe_substitute() to provide a more traditional
+    string/unicode like %-operator substitution syntax.
+
+
+</pre>
+<h3>Reference Implementation</h3>
+<pre>
+    The implementation has been committed to the Python 2.4 source tree.
+
+
+</pre>
+<h3>References</h3>
+<pre>
+    [1] String Formatting Operations
+        <a href="http://docs.python.org/library/stdtypes.html#string-formatting-operations">http://docs.python.org/library/stdtypes.html#string-formatting-operations</a>
+
+    [2] Identifiers and Keywords
+        <a href="http://docs.python.org/reference/lexical_analysis.html#identifiers-and-keywords">http://docs.python.org/reference/lexical_analysis.html#identifiers-and-keywords</a>
+
+    [3] Guido's python-dev posting from 21-Jul-2002
+        <a href="http://mail.python.org/pipermail/python-dev/2002-July/026397.html">http://mail.python.org/pipermail/python-dev/2002-July/026397.html</a>
+
+    [4] <a href="http://mail.python.org/pipermail/python-dev/2002-June/025652.html">http://mail.python.org/pipermail/python-dev/2002-June/025652.html</a>
+
+    [5] Reference Implementation
+        <a href="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=1014055&amp;group_id=5470&amp;atid=305470">http://sourceforge.net/tracker/index.php?func=detail&amp;aid=1014055&amp;group_id=5470&amp;atid=305470</a>
+
+</pre>
+<h3>Copyright</h3>
+<pre>
+    This document has been placed in the public domain.
+
+
+</pre>
+
+
+      </div>
+
+      
+      <div id="footer">
+	<div id="credits">
+ 	  <a href="/about/website">Website maintained by the Python community</a><br/>
+	  <a href="http://www.xs4all.com/" title="Web and email hosting provided by xs4all, Netherlands">hosting by xs4all</a> /
+	  <a href="http://www.timparkin.co.uk/" title="Design by Tim Parkin, Yorkshire man, photographer and developer">design by Tim Parkin</a>
+	</div>
+	Copyright &copy; 1990-2013, <a href='/psf/'>Python Software Foundation</a><br/>
+	<a href="/about/legal">Legal Statements</a>
+      </div>
+
+
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+

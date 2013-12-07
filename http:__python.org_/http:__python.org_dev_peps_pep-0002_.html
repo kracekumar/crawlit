@@ -1,0 +1,434 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>PEP 2 -- Procedure for Adding New Modules</title>
+  <meta name="keywords" content="PEP 2 -- Procedure for Adding New Modules" />
+  <meta name="description" content="PEP 2 -- Procedure for Adding New Modules" />
+  <link rel="alternate" type="application/rss+xml" title="Community Events"
+        href="http://www.python.org/channews.rdf" />
+  <link rel="alternate" type="application/rss+xml" title="Python Recipes"
+        href="http://aspn.activestate.com/ASPN/Cookbook/Python/index_rss" />
+  <link rel="alternate" type="application/rss+xml" title="Usergroup News"
+        href="http://python-groups.blogspot.com/feeds/posts/default" />
+  <link rel="alternate" type="application/rss+xml" title="Python Screencasts"
+        href="http://www.showmedo.com/latestVideoFeed/rss2.0?tag=python" />
+  <link rel="alternate" type="application/rss+xml" title="Python Podcasts"
+        href="http://www.awaretek.com/python/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Foundation News"
+        href="http://feeds.feedburner.com/PythonSoftwareFoundationNews" />
+  <link rel="alternate" type="application/rss+xml" title="Python Enhancement Proposals"
+        href="http://www.python.org/dev/peps/peps.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Job Opportunities"
+        href="http://www.python.org/community/jobs/jobs.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Reddit Feed of Python What's New Online"
+        href="http://www.reddit.com/r/Python/.rss" />
+  <link rel="alternate" type="application/rss+xml" title="Python Insider"
+        href="http://feeds.feedburner.com/PythonInsider" />
+
+  <link rel="stylesheet" type="text/css" media="screen" id="screen-switcher-stylesheet"
+        href="/styles/screen-switcher-default.css" />
+  <link rel="stylesheet" type="text/css" media="sc&#82;een"
+        href="/styles/netscape4.css" />
+  <link rel="stylesheet" type="text/css" media="print"
+        href="/styles/print.css" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/largestyles.css" title="large text" />
+  <link rel="alternate stylesheet" type="text/css" media="screen"
+        href="/styles/defaultfonts.css" title="default fonts" />
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search under the www.python.org Domain"
+        href="/search-pysite.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Wiki"
+        href="/search-pywiki.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within Python Books at Google Book Search"
+        href="/search-pybooks.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search within the Python Documentation"
+        href="/search-pydocs.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for a Module in the Standard Library"
+        href="/search-pymodules.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search for Packages inside the Cheeseshop (PyPI)"
+        href="/search-pycheese.xml"/>
+
+  <link rel="search" type="application/opensearchdescription+xml"
+        title="Search Archives of the Main Python Mailing List"
+        href="/search-pythonlist.xml"/>
+
+  <script type="text/javascript" src="/js/iotbs2-key-directors-load.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-directors.js"></script>
+  <script type="text/javascript" src="/js/iotbs2-core.js"></script>
+
+</head>
+
+
+<body>
+  <!-- Logo -->
+  <h1 id="logoheader">
+    <a href="/" id="logolink" accesskey="1"><img id="logo" src="/images/python-logo.gif" alt="homepage" border="0" /></a>
+  </h1>
+  <!-- Skip to Navigation -->
+  <div class="skiptonav"><a href="#left-hand-navigation" accesskey="2"><img src="/images/trans.gif" id="skiptonav" alt="skip to navigation" border="0" /></a></div>
+  <div class="skiptonav"><a href="#content-body" accesskey="3"><img src="/images/trans.gif" id="skiptocontent" alt="skip to content" border="0" /></a></div>
+  <!-- Utility Menu -->
+  <div id="utility-menu">
+    <!-- Search Box -->
+    <div id="searchbox">
+      <form method="get" action="http://google.com/search" id="searchform" name="searchform">
+        <div id="search">
+          <input type="hidden" id="domains" name="domains" value="www.python.org" />
+          <input type="hidden" id="sitesearch" name="sitesearch" value="www.python.org" />
+          <input type="hidden" id="sourceid" name="sourceid" value="google-search" />
+          <input type="text" class="input-text" name="q" id="q" />
+          <input type="submit" value="search" class="input-button" name="submit" id="submit" />
+          <a href="/search" class="reference">Advanced Search</a>
+        </div>
+      </form>
+    </div>
+    <div id="screen-switcher"></div>
+  </div>
+
+  <div id="left-hand-navigation">
+    <!-- Main Menu -->
+    <div id="menu">
+      <ul class="level-one">
+            <li>
+          <a href="/about/" title="About The Python Language">About</a>
+        </li>
+            <li>
+          <a href="/news/" title="Major Happenings Within the Python Community">News</a>
+        </li>
+            <li>
+          <a href="/doc/" title="Tutorials, Library Reference, C API">Documentation</a>
+        </li>
+            <li>
+          <a href="/download/" title="Start Running Python Under Windows, Mac, Linux and Others">Download</a>
+        </li>
+            <li>
+          <a href="/getit/" title="Alternate Download page for China">ä¸è½½</a>
+        </li>
+            <li>
+          <a href="/community/" title="Mailing Lists, Jobs, Conferences, SIGs, Online Chats">Community</a>
+        </li>
+            <li>
+          <a href="/psf/" title="Python Software Foundation">Foundation</a>
+        </li>
+            <li>
+          <a href="http://docs.python.org/devguide/" title="Development of the Python language and website">Core Development</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Quick Links -->
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/">Python Wiki</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://blog.python.org/">Python Insider Blog</a></h4>
+    <h4><a style="margin-top:1.5em" href="http://wiki.python.org/moin/Python2orPython3">Python 2 or 3?</a></h4>
+    <h4><a style="color:#D58228; margin-top:1.5em" href="/psf/donations/">Help Fund Python</a></h4>
+    <div style="align:center; padding-top: 0.5em; padding-left: 1em">
+      <a href="/psf/donations/"><img width="116" height="42" src="/images/donate.png" alt="" title="" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.5em; padding-left: 2.5em">
+            <a href="http://wiki.python.org/moin/Languages"><img
+	      style="align:center"
+              width="94" height="46"
+	      src="/images/worldmap.jpg" alt="[Python resources in languages other than English]" /></a>
+    </div>
+    <div style="align:center; padding-top: 0.0em; padding-left: 0em">
+       <h4><a href="http://wiki.python.org/moin/Languages">Non-English Resources</a></h4>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Release%20Schedule&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/b6v58qvojllt0i6ql654r1vh00%40group.calendar.google.com/public/basic.ics">
+                Python Release Schedule iCal Calendar
+            </a>
+        </iframe>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=Events%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com&amp;color=%23B1365F&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/j7gov1cmnqr9tvg14k621j7t5c%40group.calendar.google.com/public/basic.ics">
+                Python Events iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+    <div class="calendar">
+        <iframe src="https://www.google.com/calendar/embed?title=User%20Group%20Calendar&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com&amp;color=%23125A12&amp;" style=" border-width:0 " width="180" height="300" frameborder="0" scrolling="no">
+            <a href="http://www.google.com/calendar/ical/3haig2m9msslkpf2tn1h56nn9g%40group.calendar.google.com/public/basic.ics">
+                Python User Group iCal Calendar
+            </a>
+        </iframe>
+        <p class="level-one"><a href="http://pycon.org/#calendar">Add an event</a> to this calendar.</p>
+    </div>
+  </div>
+
+  <div id="content-body">
+    <div id="body-main">
+      <div id="content">
+        
+          <div id="breadcrumb">
+               <a href="/dev/peps/">PEP Index</a>
+               <span class="breadcrumb-separator">&gt;</span>
+            
+            PEP 2 -- Procedure for Adding New Modules
+          </div>
+
+
+
+        <!--
+This HTML is auto-generated.  DO NOT EDIT THIS FILE!  If you are writing a new
+PEP, see http://www.python.org/dev/peps/pep-0001 for instructions and links
+to templates.  DO NOT USE THIS HTML FILE AS YOUR TEMPLATE!
+-->
+<div class="header">
+<table border="0" class="rfc2822">
+  <tr><th class="field-name">PEP:&nbsp;</th><td>2</td></tr>
+  <tr><th class="field-name">Title:&nbsp;</th><td>Procedure for Adding New Modules</td></tr>
+  <tr><th class="field-name">Version:&nbsp;</th><td>26c61cd277ed</td></tr>
+  <tr><th class="field-name">Last-Modified:&nbsp;</th><td><a href="http://hg.python.org/peps/file/tip/pep-0002.txt"> 2012-05-30 20:43:49 +1000 (Wed, 30 May 2012)</a> </td></tr>
+  <tr><th class="field-name">Author:&nbsp;</th><td>Martijn Faassen &lt;faassen&#32;&#97;t&#32;infrae.com&gt;</td></tr>
+  <tr><th class="field-name">Status:&nbsp;</th><td>Final</td></tr>
+  <tr><th class="field-name">Type:&nbsp;</th><td>Process</td></tr>
+  <tr><th class="field-name">Created:&nbsp;</th><td>07-Jul-2001</td></tr>
+  <tr><th class="field-name">Post-History:&nbsp;</th><td>07-Jul-2001, 09-Mar-2002</td></tr>
+</table>
+</div>
+<h3>PEP Replacement</h3>
+<pre>
+    This PEP has been superseded by the updated material in the Python
+    Developer's Guide [1].
+
+</pre>
+<h3>Introduction</h3>
+<pre>
+    The Python Standard Library contributes significantly to Python's
+    success.  The language comes with "batteries included", so it is
+    easy for people to become productive with just the standard
+    library alone.  It is therefore important that this library grows
+    with the language, and that such growth is supported and
+    encouraged.
+
+    Many contributions to the library are not created by core
+    developers but by people from the Python community who are experts
+    in their particular field.  Furthermore, community members are
+    also the users of the standard library, applying it in a great
+    diversity of settings.  This makes the community well equipped to
+    detect and report gaps in the library; things that are missing but
+    should be added.
+
+    New functionality is commonly added to the library in the form of
+    new modules.  This PEP will describe the procedure for the
+    _addition_ of new modules.  <a href="/dev/peps/pep-0004">PEP 4</a> deals with procedures for
+    deprecation of modules; the _removal_ of old and unused modules
+    from the standard library.  Finally there is also the issue of
+    _changing_ existing modules to make the picture of library
+    evolution complete.  <a href="/dev/peps/pep-0003">PEP 3</a> and <a href="/dev/peps/pep-0005">PEP 5</a> give some guidelines on this.
+    The continued maintenance of existing modules is an integral part
+    of the decision on whether to add a new module to the standard
+    library.  Therefore, this PEP also introduces concepts
+    (integrators, maintainers) relevant to the maintenance issue.
+    
+
+</pre>
+<h3>Integrators</h3>
+<pre>
+    The integrators are a group of people with the following
+    responsibilities:
+
+    - They determine if a proposed contribution should become part of
+      the standard library.
+
+    - They integrate accepted contributions into the standard library.
+
+    - They produce standard library releases.
+
+   This group of people shall be PythonLabs, led by Guido.
+
+
+</pre>
+<h3>Maintainer(s)</h3>
+<pre>
+    All contributions to the standard library need one or more
+    maintainers.  This can be an individual, but it is frequently a
+    group of people such as the XML-SIG.  Groups may subdivide
+    maintenance tasks among themselves.  One ore more maintainers
+    shall be the _head maintainer_ (usually this is also the main
+    developer).  Head maintainers are convenient people the
+    integrators can address if they want to resolve specific issues,
+    such as the ones detailed later in this document.
+
+
+</pre>
+<h3>Developers(s)</h3>
+<pre>
+    Contributions to the standard library have been developed by one
+    or more developers.  The initial maintainers are the original
+    developers unless there are special circumstances (which should be
+    detailed in the PEP proposing the contribution).
+
+
+</pre>
+<h3>Acceptance Procedure</h3>
+<pre>
+    When developers wish to have a contribution accepted into the
+    standard library, they will first form a group of maintainers
+    (normally initially consisting of themselves).
+
+    Then, this group shall produce a PEP called a library PEP. A
+    library PEP is a special form of standards track PEP.  The library
+    PEP gives an overview of the proposed contribution, along with the
+    proposed contribution as the reference implementation.  This PEP
+    should also contain a motivation on why this contribution should
+    be part of the standard library.
+
+    One or more maintainers shall step forward as PEP champion (the
+    people listed in the Author field are the champions).  The PEP
+    champion(s) shall be the initial head maintainer(s).
+    
+    As described in <a href="/dev/peps/pep-0001">PEP 1</a>, a standards track PEP should consist of a
+    design document and a reference implementation.  The library PEP
+    differs from a normal standard track PEP in that the reference
+    implementation should in this case always already have been
+    written before the PEP is to be reviewed for inclusion by the
+    integrators and to be commented upon by the community; the
+    reference implementation _is_ the proposed contribution.
+
+    This different requirement exists for the following reasons:
+
+    - The integrators can only properly evaluate a contribution to the
+      standard library when there is source code and documentation to
+      look at; i.e. the reference implementation is always necessary
+      to aid people in studying the PEP.
+
+    - Even rejected contributions will be useful outside the standard
+      library, so there will a lower risk of waste of effort by the
+      developers.
+  
+    - It will impress the integrators of the seriousness of
+      contribution and will help guard them against having to evaluate
+      too many frivolous proposals.
+
+    Once the library PEP has been submitted for review, the
+    integrators will then evaluate it.  The PEP will follow the normal
+    PEP work flow as described in <a href="/dev/peps/pep-0001">PEP 1</a>.  If the PEP is accepted, they
+    will work through the head maintainers to make the contribution
+    ready for integration.
+
+
+</pre>
+<h3>Maintenance Procedure</h3>
+<pre>
+    After a contribution has been accepted, the job is not over for
+    both integrators and maintainers.  The integrators will forward
+    any bug reports in the standard library to the appropriate head
+    maintainers.
+
+    Before the feature freeze preparing for a release of the standard
+    library, the integrators will check with the head maintainers for
+    all contributions, to see if there are any updates to be included
+    in the next release.  The integrators will evaluate any such
+    updates for issues like backwards compatibility and may require
+    PEPs if the changes are deemed to be large.
+
+    The head maintainers should take an active role in keeping up to
+    date with the Python development process.  If a head maintainer is
+    unable to function in this way, he or she should announce the
+    intention to step down to the integrators and the rest of the
+    maintainers, so that a replacement can step forward.  The
+    integrators should at all times be capable of reaching the head
+    maintainers by email.
+
+    In the case where no head maintainer can be found (possibly
+    because there are no maintainers left), the integrators will issue
+    a call to the community at large asking for new maintainers to
+    step forward.  If no one does, the integrators can decide to
+    declare the contribution deprecated as described in <a href="/dev/peps/pep-0004">PEP 4</a>.
+
+
+</pre>
+<h3>Open issues</h3>
+<pre>
+    There needs to be some procedure so that the integrators can
+    always reach the maintainers (or at least the head maintainers).
+    This could be accomplished by a mailing list to which all head
+    maintainers should be subscribed (this could be python-dev).
+    Another possibility, which may be useful in any case, is the
+    maintenance of a list similar to that of the list of PEPs which
+    lists all the contributions and their head maintainers with
+    contact info.  This could in fact be part of the list of the PEPs,
+    as a new contribution requires a PEP.  But since the
+    authors/owners of a PEP introducing a new module may eventually be
+    different from those who maintain it, this wouldn't resolve all
+    issues yet.
+
+    Should there be a list of what criteria integrators use for
+    evaluating contributions?  (Source code but also things like
+    documentation and a test suite, as well as such vague things like
+    'dependability of the maintainers'.)
+    
+    This relates to all the technical issues; check-in privileges,
+    coding style requirements, documentation requirements, test suite
+    requirements.  These are preferably part of another PEP.
+
+    Should the current standard library be subdivided among
+    maintainers?  Many parts already have (informal) maintainers; it
+    may be good to make this more explicit.
+
+    Perhaps there is a better word for 'contribution'; the word
+    'contribution' may not imply enough that the process (of
+    development and maintenance) does not stop after the contribution
+    is accepted and integrated into the library.
+
+    Relationship to the mythical Catalog?
+
+</pre>
+<h3>References</h3>
+<pre>
+    [1] Adding to the Stdlib
+        <a href="http://docs.python.org/devguide/stdlibchanges.html">http://docs.python.org/devguide/stdlibchanges.html</a>
+
+</pre>
+<h3>Copyright</h3>
+<pre>
+    This document has been placed in the public domain.
+
+
+</pre>
+
+
+      </div>
+
+      
+      <div id="footer">
+	<div id="credits">
+ 	  <a href="/about/website">Website maintained by the Python community</a><br/>
+	  <a href="http://www.xs4all.com/" title="Web and email hosting provided by xs4all, Netherlands">hosting by xs4all</a> /
+	  <a href="http://www.timparkin.co.uk/" title="Design by Tim Parkin, Yorkshire man, photographer and developer">design by Tim Parkin</a>
+	</div>
+	Copyright &copy; 1990-2013, <a href='/psf/'>Python Software Foundation</a><br/>
+	<a href="/about/legal">Legal Statements</a>
+      </div>
+
+
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
