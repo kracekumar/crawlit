@@ -106,8 +106,6 @@ def is_same_domain(url1, url2):
 def extract_links(data):
     """
     parse the page and extract all links in the data.
-    Check whether all links belong to same domain and add them to queue if
-    content-type is text/html.
     """
     soup = BeautifulSoup(data)
     for link in soup.findAll("a"):
@@ -191,19 +189,19 @@ def main():
     parser = argparse.ArgumentParser(
         version=get_version(),
         description='crawl a given url')
-    parser.add_argument('urls', metavar='urls',
+    parser.add_argument('url', metavar='urls',
         type=unicode, nargs='*', help='seed url')
     parser.add_argument('--count', metavar='count',
         type=int, help='max number of pages to fetch')
 
     args = parser.parse_args()
 
-    if len(args.urls) is 0:
+    if len(args.url) is 0:
         parser.print_usage()
         exit(1)
 
     # Focus only on one site for time being
-    url = args.urls[0]
+    url = args.url[0]
     count_to_stop = count_to_stop or args.count
     total_pages_crawled = 0
 
