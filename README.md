@@ -10,7 +10,7 @@ Python web crawler with limitations.
 Installation
 ----
 
-- `$ git clone https://github.com/crawlit/crawlit.git`
+- `$ git clone https://github.com/kracekumar/crawlit.git`
 - `$ cd crawlit`
 - `$ sudo python setup.py install ` or `$ pip install -r requirements`
 
